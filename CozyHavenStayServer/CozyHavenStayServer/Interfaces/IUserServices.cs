@@ -2,7 +2,7 @@
 
 namespace CozyHavenStayServer.Interfaces
 {
-    public interface IUserServices
+    public interface IUserServices:IHotelServices
     {
         public Task<List<User>> GetAllUsersAsync(); 
         public Task<User> GetUserByIdAsync(int id);
@@ -10,6 +10,6 @@ namespace CozyHavenStayServer.Interfaces
         public Task<User> CreateUserAsync(User user);
         public Task<bool> UpdateUserAsync(User user);
         public Task<bool> DeleteUserAsync(int id);
-
+        
     }
 }
