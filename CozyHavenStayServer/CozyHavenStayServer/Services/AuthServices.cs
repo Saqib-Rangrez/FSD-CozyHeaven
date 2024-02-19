@@ -21,7 +21,7 @@ namespace CozyHavenStayServer.Services
             _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_keyString));
         }
 
-        public string GenerateToken(User user)
+        public string GenerateToken(dynamic user)
         {
             string token = string.Empty;
 
@@ -47,7 +47,7 @@ namespace CozyHavenStayServer.Services
             return token;
         }
 
-        public async Task<string> HashPassword(string password)
+        public string HashPassword(string password)
         {
             byte[] salt;
             new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CozyHavenStayServer.Models
 {
@@ -13,5 +14,7 @@ namespace CozyHavenStayServer.Models
         public string Password { get; set; }
         public string? ProfileImage { get; set; }
         public string? Role { get; set; }
+        [NotMapped]
+        public string? Token { get; set; }
     }
 }

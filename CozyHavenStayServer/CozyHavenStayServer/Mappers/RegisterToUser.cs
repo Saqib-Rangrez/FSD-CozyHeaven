@@ -15,9 +15,10 @@ namespace CozyHavenStayServer.Mappers
             user.Email = registerUser.Email;
             user.ContactNumber = registerUser.ContactNumber;
             user.Address = registerUser.Address;
-            user.Role = registerUser.Role;
+            user.Role = "User";
             user.Password = registerUser.Password;
-            user.Gender = registerUser.Gender;            
+            user.Gender = registerUser.Gender;
+            user.ProfileImage = $"https://api.dicebear.com/5.x/initials/svg?seed={registerUser.FirstName} {registerUser.LastName}";
         }
 
         public User GetUser()

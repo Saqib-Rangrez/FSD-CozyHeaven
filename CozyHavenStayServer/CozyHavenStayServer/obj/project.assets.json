@@ -2480,25 +2480,26 @@
     "net6.0": [
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 6.0.13",
       "Microsoft.EntityFrameworkCore >= 6.0.13",
+      "Microsoft.EntityFrameworkCore.Analyzers >= 6.0.13",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.13",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.13",
       "Swashbuckle.AspNetCore >= 6.5.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\PILR\\.nuget\\packages\\": {}
+    "C:\\Users\\saqui\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\c sharp program\\CaseStudy\\FSD-CozyHeaven\\CozyHavenStayServer\\CozyHavenStayServer\\CozyHavenStayServer.csproj",
+      "projectUniqueName": "C:\\FSD Project\\CozyHavenStayServer\\CozyHavenStayServer\\CozyHavenStayServer.csproj",
       "projectName": "CozyHavenStayServer",
-      "projectPath": "F:\\c sharp program\\CaseStudy\\FSD-CozyHeaven\\CozyHavenStayServer\\CozyHavenStayServer\\CozyHavenStayServer.csproj",
-      "packagesPath": "C:\\Users\\PILR\\.nuget\\packages\\",
-      "outputPath": "F:\\c sharp program\\CaseStudy\\FSD-CozyHeaven\\CozyHavenStayServer\\CozyHavenStayServer\\obj\\",
+      "projectPath": "C:\\FSD Project\\CozyHavenStayServer\\CozyHavenStayServer\\CozyHavenStayServer.csproj",
+      "packagesPath": "C:\\Users\\saqui\\.nuget\\packages\\",
+      "outputPath": "C:\\FSD Project\\CozyHavenStayServer\\CozyHavenStayServer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\PILR\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\saqui\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2518,6 +2519,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -2529,6 +2535,10 @@
             "version": "[6.0.13, )"
           },
           "Microsoft.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[6.0.13, )"
+          },
+          "Microsoft.EntityFrameworkCore.Analyzers": {
             "target": "Package",
             "version": "[6.0.13, )"
           },
@@ -2566,7 +2576,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }

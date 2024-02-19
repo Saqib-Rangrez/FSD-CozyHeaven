@@ -16,7 +16,6 @@ namespace CozyHavenStayServer.Services
             _adminRepository = adminRepository;
             _logger = logger;
         }
-
         
 
         public async Task<Admin> CreateAdminAsync(Admin admin)
@@ -76,9 +75,9 @@ namespace CozyHavenStayServer.Services
         }
    
 
-        public async Task<Admin> GetAdminByNameAsync(string name)
+        public async Task<Admin> GetAdminByEmailAsync(string email)
         {
-            var admin = await _adminRepository.GetAsync(admin => admin.FirstName.Contains(name) || admin.LastName.Contains(name), false);
+            var admin = await _adminRepository.GetAsync(admin => admin.Email == email, false);
 
             if (admin == null)
             {

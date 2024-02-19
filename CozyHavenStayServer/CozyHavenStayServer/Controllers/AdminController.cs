@@ -102,30 +102,30 @@ namespace CozyHavenStayServer.Controllers
 
         //GetAdminByName
         [HttpGet]
-        [Route("GetAdminByName/{name}")]
-        public async Task<ActionResult<Admin>> GetAdminByNameAsync(string name)
+        [Route("GetAdminByEmail/{email}")]
+        public async Task<ActionResult<Admin>> GetAdminByEmailAsync(string email)
         {
             try
             {
-                if (string.IsNullOrEmpty(name))
+                if (string.IsNullOrEmpty(email))
                 {
                     _logger.LogWarning("Bad Request");
                     return BadRequest(new
                     {
                         success = "False",
-                        message = "Invalid Admin Name"
+                        message = "Invalid Admin Email"
                     });
                 }
 
-                var admin = await _adminServices.GetAdminByNameAsync(name);
+                var admin = await _adminServices.GetAdminByEmailAsync(email);
 
                 if (admin == null)
                 {
-                    _logger.LogError("Admin not found with given name");
+                    _logger.LogError("Admin not found with given email");
                     return NotFound(new
                     {
                         success = "False",
-                        message = $"The 'admin' with Name: {name} not found"
+                        message = $"The 'admin' with Email: {email} not found"
                     });
                 }
 

@@ -104,30 +104,30 @@ namespace CozyHavenStayServer.Controllers
 
         //GetHotelOwnerByName
         [HttpGet]
-        [Route("GetHotelOwnerByName/{name}")]
-        public async Task<ActionResult<HotelOwner>> GetHotelOwnerByNameAsync(string name)
+        [Route("GetHotelOwnerByEmail/{email}")]
+        public async Task<ActionResult<HotelOwner>> GetHotelOwnerByEmailAsync(string email)
         {
             try
             {
-                if (string.IsNullOrEmpty(name))
+                if (string.IsNullOrEmpty(email))
                 {
                     _logger.LogWarning("Bad Request");
                     return BadRequest(new
                     {
                         success = "False",
-                        message = "Invalid HotelOwner Name"
+                        message = "Invalid HotelOwner Email"
                     });
                 }
 
-                var hotelOwner = await _hotelOwnerServices.GetHotelOwnerByNameAsync(name);
+                var hotelOwner = await _hotelOwnerServices.GetHotelOwnerByEmailAsync(email);
 
                 if (hotelOwner == null)
                 {
-                    _logger.LogError("HotelOwner not found with given name");
+                    _logger.LogError("HotelOwner not found with given email");
                     return NotFound(new
                     {
                         success = "False",
-                        message = $"The 'hotelOwner' with Name: {name} not found"
+                        message = $"The 'hotelOwner' with Email: {email} not found"
                     });
                 }
 

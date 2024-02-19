@@ -6,7 +6,7 @@ namespace CozyHavenStayServer.Interfaces
     {
         public Task<List<Admin>> GetAllAdminsAsync();
         public Task<Admin> GetAdminByIdAsync(int id);
-        public Task<Admin> GetAdminByNameAsync(string name);
+        public Task<Admin> GetAdminByEmailAsync(string email);
         public Task<Admin> CreateAdminAsync(Admin admin);
         public Task<bool> UpdateAdminAsync(Admin admin);
         public Task<bool> DeleteAdminAsync(int id);

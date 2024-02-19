@@ -32,7 +32,6 @@ namespace CozyHavenStayServer.Context
             modelBuilder.ApplyConfiguration(new ReviewConfig());
             modelBuilder.ApplyConfiguration(new RoomConfig());
             modelBuilder.ApplyConfiguration(new RoomImageConfig());
-
         }
     }
 }

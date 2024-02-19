@@ -53,6 +53,8 @@ builder.Services.AddScoped<IRepository<Booking>, BookingRepository>();
 builder.Services.AddScoped<IUserServices, UserServices>();
 builder.Services.AddScoped<IAuthServices, AuthServices>();
 builder.Services.AddScoped<IAccountServices, AccountServices>();
+builder.Services.AddScoped<IAdminServices, AdminServices>();
+builder.Services.AddScoped<IHotelOwnerServices, HotelOwnerServices>();
 #endregion
 
 builder.Services.AddSwaggerGen(opt =>
