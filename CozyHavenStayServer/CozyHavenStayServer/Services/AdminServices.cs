@@ -114,7 +114,7 @@ namespace CozyHavenStayServer.Services
                     return false;
                 }
 
-                await _adminRepository.UpdateAsync(adminUser);
+                await _adminRepository.UpdateAsync(admin);
                 return true;
             }
             catch (Exception ex)
