@@ -31,6 +31,7 @@ builder.Services.AddScoped<IRepository<Booking>, BookingRepository>();
 
 //Services
 builder.Services.AddScoped<IUserServices, UserServices>();
+builder.Services.AddScoped<IAdminServices, AdminServices>();
 
 
 /*builder.Services.AddSwaggerGen(opt =>
