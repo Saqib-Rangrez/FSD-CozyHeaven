@@ -259,6 +259,73 @@ namespace CozyHavenStayServer.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("SearchHotels")]
+        public async Task<ActionResult<List<Hotel>>> SearchHotelsAsync(string location, string amenities)
+        {
+            try
+            {
+                var hotels = await _hotelOwnerServices.SearchHotelsAsync(location, amenities);
 
+                return Ok(new
+                {
+                    success = "True",
+                    data = hotels
+                });
+            }
+            catch (ArgumentException ex)
+            {
+                _logger.LogWarning(ex.Message);
+                return BadRequest(new
+                {
+                    success = "False",
+                    error = ex.Message
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = "False",
+                    error = "An error occurred while searching hotels."
+                });
+            }
+        }
+
+        // Search hotel rooms
+        [HttpGet]
+        [Route("SearchHotelRooms")]
+        public async Task<ActionResult<List<Room>>> SearchHotelRoomsAsync(string location, DateTime checkInDate, DateTime checkOutDate, int numberOfRooms)
+        {
+            try
+            {
+                var hotelRooms = await _hotelOwnerServices.SearchHotelRoomsAsync(location, checkInDate, checkOutDate, numberOfRooms);
+
+                return Ok(new
+                {
+                    success = "True",
+                    data = hotelRooms
+                });
+            }
+            catch (ArgumentException ex)
+            {
+                _logger.LogWarning(ex.Message);
+                return BadRequest(new
+                {
+                    success = "False",
+                    error = ex.Message
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = "False",
+                    error = "An error occurred while searching hotel rooms."
+                });
+            }
+        }
     }
 }

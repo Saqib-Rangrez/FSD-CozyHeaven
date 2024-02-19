@@ -46,5 +46,15 @@ namespace CozyHavenStayServer.Repositories
             await _context.SaveChangesAsync();
             return dbRecord;
         }
+
+        public async Task<List<Hotel>> SearchHotelsAsync(string location, string amenities)
+        {
+
+            var hotels = await _context.Hotels
+                .Where(h => h.Location.Contains(location) && h.Amenities.Contains(amenities))
+                .ToListAsync();
+
+            return hotels;
+        }
     }
 }

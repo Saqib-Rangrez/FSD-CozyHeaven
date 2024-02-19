@@ -9,11 +9,13 @@ namespace CozyHavenStayServer.Services
     {
         private readonly IRepository<HotelOwner> _hotelOwnerRepository;
         private readonly ILogger<HotelOwnerController> _logger;
+        private readonly IHotelServices _hotelRepository;
 
-        public HotelOwnerServices(IRepository<HotelOwner> hotelOwnerRepository, ILogger<HotelOwnerController> logger)
+        public HotelOwnerServices(IRepository<HotelOwner> hotelOwnerRepository, ILogger<HotelOwnerController> logger, IHotelServices hotelRepository)
         {
             _hotelOwnerRepository = hotelOwnerRepository;
             _logger = logger;
+            _hotelRepository = hotelRepository;
         }
         public async Task<HotelOwner> CreateHotelOwnerAsync(HotelOwner hotelOwner)
         {
@@ -116,6 +118,44 @@ namespace CozyHavenStayServer.Services
             {
                 _logger.LogError(ex.Message);
                 return false;
+            }
+        }
+
+        public async Task<List<Hotel>> SearchHotelsAsync(string location, string amenities)
+        {
+            try
+            {
+                var hotels = await _hotelRepository.SearchHotelsAsync(location, amenities);
+                if (hotels == null)
+                {
+                    _logger.LogError("Hotel not found");
+                    return null;
+                }
+
+                return hotels;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return null;
+            }
+        }
+
+        public async Task<List<Room>> SearchHotelRoomsAsync(string location, DateTime checkInDate, DateTime checkOutDate, int numberOfRooms)
+        {
+            try
+            {
+                // Validate input parameters
+                if (string.IsNullOrWhiteSpace(location) || checkInDate >= checkOutDate || numberOfRooms <= 0)
+                    throw new ArgumentException("Invalid input parameters");
+
+                var availableRooms = await _hotelRepository.SearchHotelRoomsAsync(location, checkInDate, checkOutDate, numberOfRooms);
+                return availableRooms;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return null;
             }
         }
     }

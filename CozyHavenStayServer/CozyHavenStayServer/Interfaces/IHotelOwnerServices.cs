@@ -2,7 +2,7 @@
 
 namespace CozyHavenStayServer.Interfaces
 {
-    public interface IHotelOwnerServices
+    public interface IHotelOwnerServices:IHotelServices
     {
         public Task<List<HotelOwner>> GetAllHotelOwnersAsync();
         public Task<HotelOwner> GetHotelOwnerByIdAsync(int id);

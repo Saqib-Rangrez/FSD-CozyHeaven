@@ -1,6 +1,7 @@
 ﻿using CozyHavenStayServer.Controllers;
 using CozyHavenStayServer.Interfaces;
 using CozyHavenStayServer.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CozyHavenStayServer.Services
 {
@@ -8,11 +9,13 @@ namespace CozyHavenStayServer.Services
     {
         private readonly IRepository<User> _userRepository;
         private readonly ILogger<UserController> _logger;
+        private readonly IHotelServices _hotelRepository;
 
-        public UserServices(IRepository<User> userRepository, ILogger<UserController> logger)
+        public UserServices(IRepository<User> userRepository, ILogger<UserController> logger, IHotelServices hotelRepository)
         {
             _userRepository = userRepository;
             _logger = logger;
+            _hotelRepository = hotelRepository;
         }
 
         public async Task<List<User>> GetAllUsersAsync()
@@ -116,6 +119,44 @@ namespace CozyHavenStayServer.Services
             {
                 _logger.LogError(ex.Message);
                 return false;
+            }
+        }
+
+        public async Task<List<Hotel>> SearchHotelsAsync(string location, string amenities)
+        {
+            try
+            {
+                var hotels = await _hotelRepository.SearchHotelsAsync(location, amenities);
+                if (hotels == null)
+                {
+                    _logger.LogError("Hotel not found");
+                    return null;
+                }
+
+                return hotels;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return null;
+            }
+        }
+
+        public async Task<List<Room>> SearchHotelRoomsAsync(string location, DateTime checkInDate, DateTime checkOutDate, int numberOfRooms)
+        {
+            try
+            {
+                // Validate input parameters
+                if (string.IsNullOrWhiteSpace(location) || checkInDate >= checkOutDate || numberOfRooms <= 0)
+                    throw new ArgumentException("Invalid input parameters");
+
+                var availableRooms = await _hotelRepository.SearchHotelRoomsAsync(location, checkInDate, checkOutDate, numberOfRooms);
+                return availableRooms;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return null;
             }
         }
     }
