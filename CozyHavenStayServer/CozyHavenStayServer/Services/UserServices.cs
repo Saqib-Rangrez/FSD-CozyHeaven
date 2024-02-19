@@ -49,9 +49,9 @@ namespace CozyHavenStayServer.Services
             }
         }
 
-        public async Task<User> GetUserByNameAsync(string name)
+        public async Task<User> GetUserByEmailAsync(string email)
         {
-            var user = await _userRepository.GetAsync(user => user.FirstName.Contains(name) || user.LastName.Contains(name), false);
+            var user = await _userRepository.GetAsync(user => user.Email == email, false);
 
             if (user == null)
             {

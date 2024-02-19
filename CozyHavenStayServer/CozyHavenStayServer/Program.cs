@@ -3,8 +3,11 @@ using CozyHavenStayServer.Interfaces;
 using CozyHavenStayServer.Models;
 using CozyHavenStayServer.Repositories;
 using CozyHavenStayServer.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,8 +20,25 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//Dependency Injection
-//Repositories
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["SecretKey"])),
+        ValidateIssuer = false,
+        ValidateAudience = false,
+    };
+});
+
+#region Dependency Injecttion
+//-----Repositories
 builder.Services.AddScoped<IRepository<User>, UserRepository>();
 builder.Services.AddScoped<IRepository<Admin>, AdminRepository>();
 builder.Services.AddScoped<IRepository<Hotel>, HotelRepository>();
@@ -29,11 +49,13 @@ builder.Services.AddScoped<IRepository<RoomImage>, RoomImageRepository>();
 builder.Services.AddScoped<IRepository<HotelImage>, HotelImageRepository>();
 builder.Services.AddScoped<IRepository<Booking>, BookingRepository>();
 
-//Services
+//-------Services
 builder.Services.AddScoped<IUserServices, UserServices>();
+builder.Services.AddScoped<IAuthServices, AuthServices>();
+builder.Services.AddScoped<IAccountServices, AccountServices>();
+#endregion
 
-
-/*builder.Services.AddSwaggerGen(opt =>
+builder.Services.AddSwaggerGen(opt =>
 {
     opt.SwaggerDoc("v1", new OpenApiInfo { Title = "MyAPI", Version = "v1" });
     opt.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -61,7 +83,7 @@ builder.Services.AddScoped<IUserServices, UserServices>();
             }
     });
 });
-*/
+
 
 var app = builder.Build();
 
@@ -74,6 +96,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

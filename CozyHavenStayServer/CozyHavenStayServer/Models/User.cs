@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CozyHavenStayServer.Models
 {
@@ -23,6 +24,8 @@ namespace CozyHavenStayServer.Models
         public string Address { get; set; }
         public string? Role { get; set; }
         public string? ProfileImage { get; set; }
+        [NotMapped]
+        public string? Token {  get; set; }
 
         public virtual List<Booking> Bookings { get; set; }
         public virtual List<Review> Reviews { get; set; }

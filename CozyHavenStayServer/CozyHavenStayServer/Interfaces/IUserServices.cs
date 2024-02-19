@@ -6,7 +6,7 @@ namespace CozyHavenStayServer.Interfaces
     {
         public Task<List<User>> GetAllUsersAsync(); 
         public Task<User> GetUserByIdAsync(int id);
-        public Task<User> GetUserByNameAsync(string name);
+        public Task<User> GetUserByEmailAsync(string name);
         public Task<User> CreateUserAsync(User user);
         public Task<bool> UpdateUserAsync(User user);
         public Task<bool> DeleteUserAsync(int id);

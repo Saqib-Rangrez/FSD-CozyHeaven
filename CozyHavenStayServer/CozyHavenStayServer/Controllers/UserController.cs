@@ -104,22 +104,22 @@ namespace CozyHavenStayServer.Controllers
 
         //GetUserByName
         [HttpGet]
-        [Route("GetUserByName/{name}")]
-        public async Task<ActionResult<User>> GetUserByNameAsync(string name)
+        [Route("GetUserByEmail/{email}")]
+        public async Task<ActionResult<User>> GetUserByNameAsync(string email)
         {
             try
             {
-                if (string.IsNullOrEmpty(name))
+                if (string.IsNullOrEmpty(email))
                 {
                     _logger.LogWarning("Bad Request");
                     return BadRequest(new
                     {
                         success = "False",
-                        message = "Invalid User Name"
+                        message = "Invalid User Email"
                     });
                 }
 
-                var user = await _userServices.GetUserByNameAsync(name);
+                var user = await _userServices.GetUserByEmailAsync(email);
 
                 if (user == null)
                 {
@@ -127,7 +127,7 @@ namespace CozyHavenStayServer.Controllers
                     return NotFound(new
                     {
                         success = "False",
-                        message = $"The 'user' with Name: {name} not found"
+                        message = $"The 'user' with Email: {email} not found"
                     });
                 }
 
