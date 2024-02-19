@@ -2,6 +2,7 @@
 using CozyHavenStayServer.Interfaces;
 using CozyHavenStayServer.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace CozyHavenStayServer.Repositories
@@ -14,29 +15,40 @@ namespace CozyHavenStayServer.Repositories
             _context = context;
         }
 
-        public Task<Booking> CreateAsync(Booking dbRecord)
+        public async Task<Booking> CreateAsync(Booking dbRecord)
         {
-            throw new NotImplementedException();
+            _context.Add(dbRecord);
+            await _context.SaveChangesAsync();
+            return dbRecord;
         }
 
-        public Task<bool> DeleteAsync(Booking dbRecord)
+        public async Task<bool> DeleteAsync(Booking dbRecord)
         {
-            throw new NotImplementedException();
+            _context.Remove(dbRecord);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
-        public Task<List<Booking>> GetAllAsync()
+        public async Task<List<Booking>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Bookings.ToListAsync();
         }
 
-        public Task<Booking> GetAsync(Expression<Func<Booking, bool>> filter, bool useNoTracking = false)
+        public async Task<Booking> GetAsync(Expression<Func<Booking, bool>> filter, bool useNoTracking = false)
         {
-            throw new NotImplementedException();
+            if (useNoTracking)
+                return await _context.Bookings.AsNoTracking().Where(filter).FirstOrDefaultAsync();
+            else
+                return await _context.Bookings.Where(filter).FirstOrDefaultAsync();
         }
 
-        public Task<Booking> UpdateAsync(Booking dbRecord)
+        public async Task<Booking> UpdateAsync(Booking dbRecord)
         {
-            throw new NotImplementedException();
+            _context.Bookings.Update(dbRecord);
+            await _context.SaveChangesAsync();
+            return dbRecord;
         }
+
+
     }
 }
