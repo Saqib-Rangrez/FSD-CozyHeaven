@@ -2,6 +2,7 @@
 using CozyHavenStayServer.Interfaces;
 using CozyHavenStayServer.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace CozyHavenStayServer.Repositories
@@ -14,29 +15,38 @@ namespace CozyHavenStayServer.Repositories
             _context = context;
         }
 
-        public Task<Admin> CreateAsync(Admin dbRecord)
+        public async Task<Admin> CreateAsync(Admin dbRecord)
         {
-            throw new NotImplementedException();
+            _context.Add(dbRecord);
+            await _context.SaveChangesAsync();
+            return dbRecord;
         }
 
-        public Task<bool> DeleteAsync(Admin dbRecord)
+        public async Task<bool> DeleteAsync(Admin dbRecord)
         {
-            throw new NotImplementedException();
+            _context.Remove(dbRecord);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
-        public Task<List<Admin>> GetAllAsync()
+        public async Task<List<Admin>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Admins.ToListAsync();
         }
 
-        public Task<Admin> GetAsync(Expression<Func<Admin, bool>> filter, bool useNoTracking = false)
+        public async Task<Admin> GetAsync(Expression<Func<Admin, bool>> filter, bool useNoTracking = false)
         {
-            throw new NotImplementedException();
+            if (useNoTracking)
+                return await _context.Admins.AsNoTracking().Where(filter).FirstOrDefaultAsync();
+            else
+                return await _context.Admins.Where(filter).FirstOrDefaultAsync();
         }
 
-        public Task<Admin> UpdateAsync(Admin dbRecord)
+        public async Task<Admin> UpdateAsync(Admin dbRecord)
         {
-            throw new NotImplementedException();
+            _context.Admins.Update(dbRecord);
+            await _context.SaveChangesAsync();
+            return dbRecord;
         }
     }
 }

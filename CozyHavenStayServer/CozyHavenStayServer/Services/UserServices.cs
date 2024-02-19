@@ -87,7 +87,7 @@ namespace CozyHavenStayServer.Services
                     return false;
                 }
 
-                await _userRepository.UpdateAsync(user);
+                await _userRepository.UpdateAsync(model);
                 return true;
             }
             catch(Exception ex)

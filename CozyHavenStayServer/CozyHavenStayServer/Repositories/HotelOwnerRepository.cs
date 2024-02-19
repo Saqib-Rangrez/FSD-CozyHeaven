@@ -2,6 +2,7 @@
 using CozyHavenStayServer.Interfaces;
 using CozyHavenStayServer.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace CozyHavenStayServer.Repositories
@@ -14,29 +15,38 @@ namespace CozyHavenStayServer.Repositories
             _context = context;
         }
 
-        public Task<HotelOwner> CreateAsync(HotelOwner dbRecord)
+        public async Task<HotelOwner> CreateAsync(HotelOwner dbRecord)
         {
-            throw new NotImplementedException();
+            _context.Add(dbRecord);
+            await _context.SaveChangesAsync();
+            return dbRecord;
         }
 
-        public Task<bool> DeleteAsync(HotelOwner dbRecord)
+        public async Task<bool> DeleteAsync(HotelOwner dbRecord)
         {
-            throw new NotImplementedException();
+            _context.Remove(dbRecord);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
-        public Task<List<HotelOwner>> GetAllAsync()
+        public async Task<List<HotelOwner>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.HotelOwners.ToListAsync();
         }
 
-        public Task<HotelOwner> GetAsync(Expression<Func<HotelOwner, bool>> filter, bool useNoTracking = false)
+        public async Task<HotelOwner> GetAsync(Expression<Func<HotelOwner, bool>> filter, bool useNoTracking = false)
         {
-            throw new NotImplementedException();
+            if (useNoTracking)
+                return await _context.HotelOwners.AsNoTracking().Where(filter).FirstOrDefaultAsync();
+            else
+                return await _context.HotelOwners.Where(filter).FirstOrDefaultAsync();
         }
 
-        public Task<HotelOwner> UpdateAsync(HotelOwner dbRecord)
+        public async Task<HotelOwner> UpdateAsync(HotelOwner dbRecord)
         {
-            throw new NotImplementedException();
+            _context.HotelOwners.Update(dbRecord);
+            await _context.SaveChangesAsync();
+            return dbRecord;
         }
     }
 }
