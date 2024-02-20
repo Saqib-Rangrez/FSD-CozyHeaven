@@ -54,5 +54,7 @@ namespace CozyHavenStayServer.Repositories
             await _context.SaveChangesAsync();
             return dbRecord;
         }
+
+ 
     }
 }

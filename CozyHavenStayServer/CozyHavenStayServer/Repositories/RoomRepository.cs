@@ -2,6 +2,7 @@
 using CozyHavenStayServer.Interfaces;
 using CozyHavenStayServer.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace CozyHavenStayServer.Repositories
@@ -14,29 +15,41 @@ namespace CozyHavenStayServer.Repositories
             _context = context;
         }
 
-        public Task<Room> CreateAsync(Room dbRecord)
+        public async Task<Room> CreateAsync(Room dbRecord)
         {
-            throw new NotImplementedException();
+            _context.Add(dbRecord);
+            await _context.SaveChangesAsync();
+            return dbRecord;
         }
 
-        public Task<bool> DeleteAsync(Room dbRecord)
+        public async Task<bool> DeleteAsync(Room dbRecord)
         {
-            throw new NotImplementedException();
+            _context.Remove(dbRecord);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
-        public Task<List<Room>> GetAllAsync()
+        public async Task<List<Room>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Rooms.ToListAsync();
         }
 
-        public Task<Room> GetAsync(Expression<Func<Room, bool>> filter, bool useNoTracking = false)
+        public async Task<Room> GetAsync(Expression<Func<Room, bool>> filter, bool useNoTracking = false)
         {
-            throw new NotImplementedException();
+            if (useNoTracking)
+                return await _context.Rooms.AsNoTracking().Where(filter).FirstOrDefaultAsync();
+            else
+                return await _context.Rooms.Where(filter).FirstOrDefaultAsync();
         }
 
-        public Task<Room> UpdateAsync(Room dbRecord)
+        public async Task<Room> UpdateAsync(Room dbRecord)
         {
-            throw new NotImplementedException();
+            _context.Rooms.Update(dbRecord);
+            await _context.SaveChangesAsync();
+            return dbRecord;
         }
+
+
+        
     }
 }

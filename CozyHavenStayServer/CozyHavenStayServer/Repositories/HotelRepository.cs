@@ -2,6 +2,7 @@
 using CozyHavenStayServer.Interfaces;
 using CozyHavenStayServer.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace CozyHavenStayServer.Repositories
@@ -14,29 +15,41 @@ namespace CozyHavenStayServer.Repositories
             _context = context;
         }
 
-        public Task<Hotel> CreateAsync(Hotel dbRecord)
+        public async Task<Hotel> CreateAsync(Hotel dbRecord)
         {
-            throw new NotImplementedException();
+            _context.Add(dbRecord);
+            await _context.SaveChangesAsync();
+            return dbRecord;
         }
 
-        public Task<bool> DeleteAsync(Hotel dbRecord)
+        public async Task<bool> DeleteAsync(Hotel dbRecord)
         {
-            throw new NotImplementedException();
+            _context.Remove(dbRecord);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
-        public Task<List<Hotel>> GetAllAsync()
+        public async Task<List<Hotel>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Hotels.ToListAsync();
         }
 
-        public Task<Hotel> GetAsync(Expression<Func<Hotel, bool>> filter, bool useNoTracking = false)
+        public async Task<Hotel> GetAsync(Expression<Func<Hotel, bool>> filter, bool useNoTracking = false)
         {
-            throw new NotImplementedException();
+            if (useNoTracking)
+                return await _context.Hotels.AsNoTracking().Where(filter).FirstOrDefaultAsync();
+            else
+                return await _context.Hotels.Where(filter).FirstOrDefaultAsync();
+
         }
 
-        public Task<Hotel> UpdateAsync(Hotel dbRecord)
+        public async Task<Hotel> UpdateAsync(Hotel dbRecord)
         {
-            throw new NotImplementedException();
+            _context.Hotels.Update(dbRecord);
+            await _context.SaveChangesAsync();
+            return dbRecord;
         }
+
+        
     }
 }
