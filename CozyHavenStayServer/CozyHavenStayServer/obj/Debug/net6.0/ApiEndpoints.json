@@ -210,6 +210,280 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "CozyHavenStayServer.Controllers.BookingController",
+    "Method": "CreateBookingAsync",
+    "RelativePath": "api/Booking/CreateBooking",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "booking",
+        "Type": "CozyHavenStayServer.Models.Booking",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "CozyHavenStayServer.Models.Booking",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CozyHavenStayServer.Controllers.BookingController",
+    "Method": "DeleteBookingAsync",
+    "RelativePath": "api/Booking/DeleteBooking/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CozyHavenStayServer.Controllers.BookingController",
+    "Method": "GetAllBookingsAsync",
+    "RelativePath": "api/Booking/GetAllBookings",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[CozyHavenStayServer.Models.Booking, CozyHavenStayServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CozyHavenStayServer.Controllers.BookingController",
+    "Method": "GetBookingByIdAsync",
+    "RelativePath": "api/Booking/GetBookingById/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "CozyHavenStayServer.Models.Booking",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CozyHavenStayServer.Controllers.BookingController",
+    "Method": "UpdateBookingAsync",
+    "RelativePath": "api/Booking/UpdateBooking",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "booking",
+        "Type": "CozyHavenStayServer.Models.Booking",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CozyHavenStayServer.Controllers.HotelController",
+    "Method": "CreateHotelAsync",
+    "RelativePath": "api/Hotel/CreateHotel",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "hotel",
+        "Type": "CozyHavenStayServer.Models.Hotel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "CozyHavenStayServer.Models.Hotel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CozyHavenStayServer.Controllers.HotelController",
+    "Method": "DeleteHotelAsync",
+    "RelativePath": "api/Hotel/DeleteHotel/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CozyHavenStayServer.Controllers.HotelController",
+    "Method": "GetAllHotelsAsync",
+    "RelativePath": "api/Hotel/GetAllHotels",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[CozyHavenStayServer.Models.Hotel, CozyHavenStayServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CozyHavenStayServer.Controllers.HotelController",
+    "Method": "GetHotelByIdAsync",
+    "RelativePath": "api/Hotel/GetHotelById/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "CozyHavenStayServer.Models.Hotel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CozyHavenStayServer.Controllers.HotelController",
+    "Method": "GetHotelByNameAsync",
+    "RelativePath": "api/Hotel/GetHotelByName/{name}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "name",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "CozyHavenStayServer.Models.Hotel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CozyHavenStayServer.Controllers.HotelController",
+    "Method": "UpdateHotelAsync",
+    "RelativePath": "api/Hotel/UpdateHotel",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "hotel",
+        "Type": "CozyHavenStayServer.Models.Hotel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "CozyHavenStayServer.Controllers.HotelOwnerController",
     "Method": "CreateHotelOwnerAsync",
     "RelativePath": "api/HotelOwner/CreateHotelOwner",
@@ -226,6 +500,32 @@
     "ReturnTypes": [
       {
         "Type": "CozyHavenStayServer.Models.HotelOwner",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CozyHavenStayServer.Controllers.HotelOwnerController",
+    "Method": "DeleteHotelOwnerAsync",
+    "RelativePath": "api/HotelOwner/DeleteHotelOwner/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -324,9 +624,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "CozyHavenStayServer.Controllers.UserController",
+    "ContainingType": "CozyHavenStayServer.Controllers.ReviewController",
     "Method": "AddReviewAsync",
-    "RelativePath": "api/User/AddReview",
+    "RelativePath": "api/Review/AddReview",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -340,6 +640,270 @@
     "ReturnTypes": [
       {
         "Type": "CozyHavenStayServer.Models.Review",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CozyHavenStayServer.Controllers.ReviewController",
+    "Method": "DeleteReviewAsync",
+    "RelativePath": "api/Review/DeleteReview/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CozyHavenStayServer.Controllers.ReviewController",
+    "Method": "GetAllReviewsAsync",
+    "RelativePath": "api/Review/GetAllReviews",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[CozyHavenStayServer.Models.Review, CozyHavenStayServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CozyHavenStayServer.Controllers.ReviewController",
+    "Method": "GetReviewByHotelIdAsync",
+    "RelativePath": "api/Review/GetReviewByHotelId/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "CozyHavenStayServer.Models.Review",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CozyHavenStayServer.Controllers.ReviewController",
+    "Method": "GetReviewByReviewIdAsync",
+    "RelativePath": "api/Review/GetReviewByReviewId/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "CozyHavenStayServer.Models.Review",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CozyHavenStayServer.Controllers.ReviewController",
+    "Method": "GetReviewByUserIdAsync",
+    "RelativePath": "api/Review/GetReviewByUserId/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "CozyHavenStayServer.Models.Review",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CozyHavenStayServer.Controllers.ReviewController",
+    "Method": "UpdateReviewAsync",
+    "RelativePath": "api/Review/UpdateReview",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "CozyHavenStayServer.Models.Review",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CozyHavenStayServer.Controllers.RoomController",
+    "Method": "CreateRoomAsync",
+    "RelativePath": "api/Room/CreateRoom",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "room",
+        "Type": "CozyHavenStayServer.Models.Room",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "CozyHavenStayServer.Models.Room",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CozyHavenStayServer.Controllers.RoomController",
+    "Method": "DeleteRoomAsync",
+    "RelativePath": "api/Room/DeleteRoom/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CozyHavenStayServer.Controllers.RoomController",
+    "Method": "GetAllRoomsAsync",
+    "RelativePath": "api/Room/GetAllRooms",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[CozyHavenStayServer.Models.Room, CozyHavenStayServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CozyHavenStayServer.Controllers.RoomController",
+    "Method": "GetRoomByIdAsync",
+    "RelativePath": "api/Room/GetRoomById/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "CozyHavenStayServer.Models.Room",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CozyHavenStayServer.Controllers.RoomController",
+    "Method": "UpdateRoomAsync",
+    "RelativePath": "api/Room/UpdateRoom",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "room",
+        "Type": "CozyHavenStayServer.Models.Room",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -377,32 +941,6 @@
   },
   {
     "ContainingType": "CozyHavenStayServer.Controllers.UserController",
-    "Method": "DeleteReviewAsync",
-    "RelativePath": "api/User/DeleteReview/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Boolean",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "CozyHavenStayServer.Controllers.UserController",
     "Method": "DeleteUserAsync",
     "RelativePath": "api/User/DeleteUser/{id}",
     "HttpMethod": "DELETE",
@@ -429,26 +967,6 @@
   },
   {
     "ContainingType": "CozyHavenStayServer.Controllers.UserController",
-    "Method": "GetAllReviewsAsync",
-    "RelativePath": "api/User/GetAllReviews",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.List\u00601[[CozyHavenStayServer.Models.Review, CozyHavenStayServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "CozyHavenStayServer.Controllers.UserController",
     "Method": "GetAllUsersAsync",
     "RelativePath": "api/User/GetAllUsers",
     "HttpMethod": "GET",
@@ -458,84 +976,6 @@
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.List\u00601[[CozyHavenStayServer.Models.User, CozyHavenStayServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "CozyHavenStayServer.Controllers.UserController",
-    "Method": "GetReviewByHotelIdAsync",
-    "RelativePath": "api/User/GetReviewByHotelId/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "CozyHavenStayServer.Models.Review",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "CozyHavenStayServer.Controllers.UserController",
-    "Method": "GetReviewByReviewIdAsync",
-    "RelativePath": "api/User/GetReviewByReviewId/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "CozyHavenStayServer.Models.Review",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "CozyHavenStayServer.Controllers.UserController",
-    "Method": "GetReviewByUserIdAsync",
-    "RelativePath": "api/User/GetReviewByUserId/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "CozyHavenStayServer.Models.Review",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -596,22 +1036,6 @@
         "StatusCode": 200
       }
     ]
-  },
-  {
-    "ContainingType": "CozyHavenStayServer.Controllers.UserController",
-    "Method": "UpdateReviewAsync",
-    "RelativePath": "api/User/UpdateReview",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "model",
-        "Type": "CozyHavenStayServer.Models.Review",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
   },
   {
     "ContainingType": "CozyHavenStayServer.Controllers.UserController",
@@ -679,32 +1103,6 @@
     "ContainingType": "CozyHavenStayServer.Controllers.AdminController",
     "Method": "DeleteAdminAsync",
     "RelativePath": "DeleteAdmin/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Boolean",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "CozyHavenStayServer.Controllers.HotelOwnerController",
-    "Method": "DeleteHotelOwnerAsync",
-    "RelativePath": "DeleteHotelOwner/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,

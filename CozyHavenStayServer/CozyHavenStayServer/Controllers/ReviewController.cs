@@ -1,6 +1,5 @@
 ﻿using CozyHavenStayServer.Interfaces;
 using CozyHavenStayServer.Models;
-using CozyHavenStayServer.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,27 +7,27 @@ namespace CozyHavenStayServer.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class HotelOwnerController : ControllerBase
+    public class ReviewController : ControllerBase
     {
-        private readonly IHotelOwnerServices _hotelOwnerServices;
-        private readonly ILogger<HotelOwnerController> _logger;
+        private readonly IUserServices _userServices;
+        private readonly ILogger<UserController> _logger;
 
-        public HotelOwnerController(ILogger<HotelOwnerController> logger, IHotelOwnerServices hotelOwnerServices)
+        public ReviewController(ILogger<UserController> logger, IUserServices userServices)
         {
             _logger = logger;
-            _hotelOwnerServices = hotelOwnerServices;
+            _userServices = userServices;
         }
 
-        //GetAll
+        //GetAllReviews
         [HttpGet]
-        [Route("GetAllHotelOwners")]
-        public async Task<ActionResult<List<HotelOwner>>> GetAllHotelOwnersAsync()
+        [Route("GetAllReviews")]
+        public async Task<ActionResult<List<Review>>> GetAllReviewsAsync()
         {
             try
             {
-                var hotelOwners = await _hotelOwnerServices.GetAllHotelOwnersAsync();
+                var reviews = await _userServices.GetAllReviewsAsync();
 
-                if (hotelOwners == null || hotelOwners.Count <= 0)
+                if (reviews == null || reviews.Count <= 0)
                 {
                     return NotFound(new
                     {
@@ -40,7 +39,7 @@ namespace CozyHavenStayServer.Controllers
                 return Ok(new
                 {
                     success = "True",
-                    data = hotelOwners
+                    data = reviews
                 });
             }
             catch (Exception ex)
@@ -49,16 +48,15 @@ namespace CozyHavenStayServer.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
                     success = "False",
-                    error = "An error occurred while fetching hotelOwners."
+                    error = "An error occurred while fetching reviews."
                 });
             }
         }
 
-
-        //GetHotelOwnerById
+        //GetReviewByReviewId
         [HttpGet]
-        [Route("GetHotelOwnerById/{id}", Name = "GetHotelOwnerById")]
-        public async Task<ActionResult<HotelOwner>> GetHotelOwnerByIdAsync(int id)
+        [Route("GetReviewByReviewId/{id}", Name = "GetReviewByReviewId")]
+        public async Task<ActionResult<Review>> GetReviewByReviewIdAsync(int id)
         {
             try
             {
@@ -68,26 +66,25 @@ namespace CozyHavenStayServer.Controllers
                     return BadRequest(new
                     {
                         success = "False",
-                        message = "Invalid HotelOwner Id"
+                        message = "Invalid Review Id"
                     });
                 }
-                var hotelOwner = await _hotelOwnerServices.GetHotelOwnerByIdAsync(id);
+                var review = await _userServices.GetReviwByReviewIdAsync(id);
 
-
-                if (hotelOwner == null)
+                if (review == null)
                 {
-                    _logger.LogError("HotelOwner not found with given Id");
+                    _logger.LogError("User not found with given Id");
                     return NotFound(new
                     {
                         success = "False",
-                        message = $"The 'hotelOwner' with Id: {id} not found"
+                        message = $"The 'Review' with Id: {id} not found"
                     });
                 }
 
                 return Ok(new
                 {
                     success = "True",
-                    data = hotelOwner
+                    data = review
                 });
             }
             catch (Exception ex)
@@ -96,45 +93,44 @@ namespace CozyHavenStayServer.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
                     success = "False",
-                    error = "An error occurred while fetching hotelOwner."
+                    error = "An error occurred while fetching review."
                 });
             }
         }
 
 
-        //GetHotelOwnerByName
+        //GetReviewByUserId
         [HttpGet]
-        [Route("GetHotelOwnerByEmail/{email}")]
-        public async Task<ActionResult<HotelOwner>> GetHotelOwnerByEmailAsync(string email)
+        [Route("GetReviewByUserId/{id}", Name = "GetReviewByUserId")]
+        public async Task<ActionResult<Review>> GetReviewByUserIdAsync(int id)
         {
             try
             {
-                if (string.IsNullOrEmpty(email))
+                if (id <= 0)
                 {
                     _logger.LogWarning("Bad Request");
                     return BadRequest(new
                     {
                         success = "False",
-                        message = "Invalid HotelOwner Email"
+                        message = "Invalid user Id"
                     });
                 }
+                var review = await _userServices.GetReviewByUserIdAsync(id);
 
-                var hotelOwner = await _hotelOwnerServices.GetHotelOwnerByEmailAsync(email);
-
-                if (hotelOwner == null)
+                if (review == null)
                 {
-                    _logger.LogError("HotelOwner not found with given email");
+                    _logger.LogError("User not found with given Id");
                     return NotFound(new
                     {
                         success = "False",
-                        message = $"The 'hotelOwner' with Email: {email} not found"
+                        message = $"The 'Review' with Id: {id} not found"
                     });
                 }
 
                 return Ok(new
                 {
                     success = "True",
-                    data = hotelOwner
+                    data = review
                 });
             }
             catch (Exception ex)
@@ -143,15 +139,61 @@ namespace CozyHavenStayServer.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
                     success = "False",
-                    error = "An error occurred while fetching hotelOwner."
+                    error = "An error occurred while fetching review."
                 });
             }
         }
 
-        //CreateHotelOwner
+        //GetReviewByUserId
+        [HttpGet]
+        [Route("GetReviewByHotelId/{id}", Name = "GetReviewByHotelId")]
+        public async Task<ActionResult<Review>> GetReviewByHotelIdAsync(int id)
+        {
+            try
+            {
+                if (id <= 0)
+                {
+                    _logger.LogWarning("Bad Request");
+                    return BadRequest(new
+                    {
+                        success = "False",
+                        message = "Invalid Hotel Id"
+                    });
+                }
+                var review = await _userServices.GetReviewByHotelIdAsync(id);
+
+                if (review == null)
+                {
+                    _logger.LogError("User not found with given Id");
+                    return NotFound(new
+                    {
+                        success = "False",
+                        message = $"The 'Review' with Id: {id} not found"
+                    });
+                }
+
+                return Ok(new
+                {
+                    success = "True",
+                    data = review
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = "False",
+                    error = "An error occurred while fetching review."
+                });
+            }
+        }
+
+
+        //CreateReview
         [HttpPost]
-        [Route("CreateHotelOwner")]
-        public async Task<ActionResult<HotelOwner>> CreateHotelOwnerAsync([FromBody] HotelOwner model)
+        [Route("AddReview")]
+        public async Task<ActionResult<Review>> AddReviewAsync([FromBody] Review model)
         {
             try
             {
@@ -165,12 +207,14 @@ namespace CozyHavenStayServer.Controllers
                     });
                 }
 
-                var createdHotelOwner = await _hotelOwnerServices.CreateHotelOwnerAsync(model);
+                var createdReview = await _userServices.AddReviewAsync(model);
+
+                //return CreatedAtRoute("GetStudentById", new { id = createdUser.UserId }, User);
 
                 return Ok(new
                 {
                     success = "True",
-                    data = createdHotelOwner
+                    data = createdReview
                 });
             }
             catch (Exception ex)
@@ -179,20 +223,20 @@ namespace CozyHavenStayServer.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
                     success = "False",
-                    error = "An error occurred while creating hotelOwner."
+                    error = "An error occurred while creating review."
                 });
             }
         }
 
 
-        //UpdateHotelOwner
+        //Updatereview
         [HttpPut]
-        [Route("UpdateHotelOwner")]
-        public async Task<ActionResult> UpdateHotelOwnerAsync([FromBody] HotelOwner model)
+        [Route("UpdateReview")]
+        public async Task<ActionResult> UpdateReviewAsync([FromBody] Review model)
         {
             try
             {
-                if (model == null || model.OwnerId <= 0)
+                if (model == null || model.UserId <= 0)
                 {
                     _logger.LogWarning("Bad Request");
                     return BadRequest(new
@@ -202,14 +246,14 @@ namespace CozyHavenStayServer.Controllers
                     });
                 }
 
-                var updateStatus = await _hotelOwnerServices.UpdateHotelOwnerAsync(model);
+                var updateStatus = await _userServices.UpdateReviewAsync(model);
 
                 if (updateStatus)
                 {
                     return Ok(new
                     {
                         success = "True",
-                        message = "HotelOwner updated successfully"
+                        message = "Review updated successfully"
                     });
                 }
                 else
@@ -217,9 +261,9 @@ namespace CozyHavenStayServer.Controllers
                     return NotFound(new
                     {
                         success = "False",
-                        message = "HotelOwner not found"
+                        message = "Review not found"
                     });
-                }               
+                }
 
             }
             catch (Exception ex)
@@ -228,16 +272,16 @@ namespace CozyHavenStayServer.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
                     success = "False",
-                    error = "An error occurred while updating hotelOwner."
+                    error = "An error occurred while updating Review."
                 });
             }
         }
 
 
-        //DeleteHotelOwner
+        //DeleteReview
         [HttpDelete]
-        [Route("DeleteHotelOwner/{id}")]
-        public async Task<ActionResult<bool>> DeleteHotelOwnerAsync(int id)
+        [Route("DeleteReview/{id}")]
+        public async Task<ActionResult<bool>> DeleteReviewAsync(int id)
         {
             try
             {
@@ -247,18 +291,18 @@ namespace CozyHavenStayServer.Controllers
                     return BadRequest(new
                     {
                         success = "False",
-                        message = "Invalid HotelOwner Id"
+                        message = "Invalid Review Id"
                     });
                 }
 
-                var deleteStatus = await _hotelOwnerServices.DeleteHotelOwnerAsync(id);
+                var deleteStatus = await _userServices.DeleteReviewAsync(id);
 
                 if (deleteStatus)
                 {
                     return Ok(new
                     {
                         success = "True",
-                        message = "User deleted successfully"
+                        message = "Review deleted successfully"
                     });
                 }
                 else
@@ -266,9 +310,10 @@ namespace CozyHavenStayServer.Controllers
                     return NotFound(new
                     {
                         success = "False",
-                        message = "User Not found"
+                        message = "Review Not found"
                     });
                 }
+
             }
             catch (Exception ex)
             {
@@ -276,7 +321,7 @@ namespace CozyHavenStayServer.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
                     success = "False",
-                    error = "An error occurred while deleting hotelOwner."
+                    error = "An error occurred while deleting Review."
                 });
             }
         }

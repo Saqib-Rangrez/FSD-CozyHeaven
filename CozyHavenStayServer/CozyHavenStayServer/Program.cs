@@ -58,6 +58,11 @@ builder.Services.AddScoped<IAuthServices, AuthServices>();
 builder.Services.AddScoped<IAccountServices, AccountServices>();
 builder.Services.AddScoped<IAdminServices, AdminServices>();
 builder.Services.AddScoped<IHotelOwnerServices, HotelOwnerServices>();
+builder.Services.AddScoped<IHotelServices, HotelServices>();
+builder.Services.AddScoped<IRoomServices, RoomServices>();
+builder.Services.AddScoped<IBookingServices, BookingServices>();
+
+
 
 builder.Services.AddScoped<ICloudinaryService>(serviceProvider =>
 {
