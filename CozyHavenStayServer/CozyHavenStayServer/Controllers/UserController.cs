@@ -651,5 +651,403 @@ namespace CozyHavenStayServer.Controllers
             }
         }
 
+
+        // Get booking by ID
+        [HttpGet]
+        [Route("GetBookingById/{id}")]
+        public async Task<ActionResult<Booking>> GetBookingByIdAsync(int id)
+        {
+            try
+            {
+                var booking = await _userServices.GetBookingByIdAsync(id);
+                if (booking == null)
+                {
+                    return NotFound(new
+                    {
+                        success = false,
+                        message = $"Booking with ID {id} not found"
+                    });
+                }
+                return Ok(new
+                {
+                    success = true,
+                    data = booking
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    error = "An error occurred while retrieving booking by ID"
+                });
+            }
+        }
+
+        // Create booking
+        [HttpPost]
+        [Route("CreateBooking")]
+        public async Task<ActionResult<Booking>> CreateBookingAsync([FromBody] Booking booking)
+        {
+            try
+            {
+                var createdBooking = await _userServices.CreateBookingAsync(booking);
+                if (createdBooking == null)
+                {
+                    return BadRequest(new
+                    {
+                        success = false,
+                        error = "Failed to create booking"
+                    });
+                }
+                return Ok(new
+                {
+                    success = true,
+                    data = createdBooking
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    error = "An error occurred while creating booking"
+                });
+            }
+        }
+
+        // Update booking
+        [HttpPut]
+        [Route("UpdateBooking")]
+        public async Task<ActionResult<bool>> UpdateBookingAsync([FromBody] Booking booking)
+        {
+            try
+            {
+                var success = await _userServices.UpdateBookingAsync(booking);
+                if (!success)
+                {
+                    return BadRequest(new
+                    {
+                        success = false,
+                        error = "Failed to update booking"
+                    });
+                }
+                return Ok(new
+                {
+                    success = true,
+                    message = "Booking updated successfully"
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    error = "An error occurred while updating booking"
+                });
+            }
+        }
+
+        // Delete booking
+        [HttpDelete]
+        [Route("DeleteBooking/{id}")]
+        public async Task<ActionResult<bool>> DeleteBookingAsync(int id)
+        {
+            try
+            {
+                var success = await _userServices.DeleteBookingAsync(id);
+                if (!success)
+                {
+                    return BadRequest(new
+                    {
+                        success = false,
+                        error = "Failed to delete booking"
+                    });
+                }
+                return Ok(new
+                {
+                    success = true,
+                    message = "Booking deleted successfully"
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    error = "An error occurred while deleting booking"
+                });
+            }
+        }
+
+
+
+        // Get all rooms
+        [HttpGet]
+        [Route("GetAllRooms")]
+        public async Task<ActionResult<List<Room>>> GetAllRoomsAsync()
+        {
+            try
+            {
+                var rooms = await _userServices.GetAllRoomsAsync();
+                if (rooms == null)
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, new
+                    {
+                        success = false,
+                        error = "An error occurred while retrieving all rooms"
+                    });
+                }
+                return Ok(new
+                {
+                    success = true,
+                    data = rooms
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    error = "An error occurred while retrieving all rooms"
+                });
+            }
+        }
+
+        // Get room by ID
+        [HttpGet]
+        [Route("GetRoomById/{id}")]
+        public async Task<ActionResult<Room>> GetRoomByIdAsync(int id)
+        {
+            try
+            {
+                var room = await _userServices.GetRoomByIdAsync(id);
+                if (room == null)
+                {
+                    return NotFound(new
+                    {
+                        success = false,
+                        message = $"Room with ID {id} not found"
+                    });
+                }
+                return Ok(new
+                {
+                    success = true,
+                    data = room
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    error = "An error occurred while retrieving room by ID"
+                });
+            }
+        }
+
+        // Create room
+        [HttpPost]
+        [Route("CreateRoom")]
+        public async Task<ActionResult<Room>> CreateRoomAsync([FromBody] Room room)
+        {
+            try
+            {
+                var createdRoom = await _userServices.CreateRoomAsync(room);
+                if (createdRoom == null)
+                {
+                    return BadRequest(new
+                    {
+                        success = false,
+                        error = "Failed to create room"
+                    });
+                }
+                return Ok(new
+                {
+                    success = true,
+                    data = createdRoom
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    error = "An error occurred while creating room"
+                });
+            }
+        }
+
+        // Update room
+        [HttpPut]
+        [Route("UpdateRoom")]
+        public async Task<ActionResult<bool>> UpdateRoomAsync([FromBody] Room room)
+        {
+            try
+            {
+                var success = await _userServices.UpdateRoomAsync(room);
+                if (!success)
+                {
+                    return BadRequest(new
+                    {
+                        success = false,
+                        error = "Failed to update room"
+                    });
+                }
+                return Ok(new
+                {
+                    success = true,
+                    message = "Room updated successfully"
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    error = "An error occurred while updating room"
+                });
+            }
+        }
+
+        // Delete room
+        [HttpDelete]
+        [Route("DeleteRoom/{id}")]
+        public async Task<ActionResult<bool>> DeleteRoomAsync(int id)
+        {
+            try
+            {
+                var success = await _userServices.DeleteRoomAsync(id);
+                if (!success)
+                {
+                    return BadRequest(new
+                    {
+                        success = false,
+                        error = "Failed to delete room"
+                    });
+                }
+                return Ok(new
+                {
+                    success = true,
+                    message = "Room deleted successfully"
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    error = "An error occurred while deleting room"
+                });
+            }
+        }
+
+        // Get all hotels
+        [HttpGet]
+        [Route("GetAllHotels")]
+        public async Task<ActionResult<List<Hotel>>> GetAllHotelsAsync()
+        {
+            try
+            {
+                var hotels = await _userServices.GetAllHotelsAsync();
+                if (hotels == null)
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, new
+                    {
+                        success = false,
+                        error = "An error occurred while retrieving all hotels"
+                    });
+                }
+                return Ok(new
+                {
+                    success = true,
+                    data = hotels
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    error = "An error occurred while retrieving all hotels"
+                });
+            }
+        }
+
+        // Get hotel by ID
+        [HttpGet]
+        [Route("GetHotelById/{id}")]
+        public async Task<ActionResult<Hotel>> GetHotelByIdAsync(int id)
+        {
+            try
+            {
+                var hotel = await _userServices.GetHotelByIdAsync(id);
+                if (hotel == null)
+                {
+                    return NotFound(new
+                    {
+                        success = false,
+                        message = $"Hotel with ID {id} not found"
+                    });
+                }
+                return Ok(new
+                {
+                    success = true,
+                    data = hotel
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    error = "An error occurred while retrieving hotel by ID"
+                });
+            }
+        }
+
+        // Get hotel by name
+        [HttpGet]
+        [Route("GetHotelByName/{name}")]
+        public async Task<ActionResult<Hotel>> GetHotelByNameAsync(string name)
+        {
+            try
+            {
+                var hotel = await _userServices.GetHotelByNameAsync(name);
+                if (hotel == null)
+                {
+                    return NotFound(new
+                    {
+                        success = false,
+                        message = $"Hotel with name {name} not found"
+                    });
+                }
+                return Ok(new
+                {
+                    success = true,
+                    data = hotel
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    error = "An error occurred while retrieving hotel by name"
+                });
+            }
+        }
     }
 }
