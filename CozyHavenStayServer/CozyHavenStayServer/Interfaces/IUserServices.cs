@@ -2,7 +2,7 @@
 
 namespace CozyHavenStayServer.Interfaces
 {
-    public interface IUserServices:IHotelServices,IBookingServices
+    public interface IUserServices
     {
         public Task<List<User>> GetAllUsersAsync(); 
         public Task<User> GetUserByIdAsync(int id);

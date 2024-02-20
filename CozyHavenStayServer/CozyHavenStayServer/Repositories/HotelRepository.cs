@@ -66,7 +66,7 @@ namespace CozyHavenStayServer.Repositories
             // Implement logic to search for available hotel rooms based on location, dates, and number of rooms
             var availableRooms = await _context.Rooms
                 .Include(r => r.Hotel)
-                .Where(r => r.Hotel.Location.Contains(location))
+                .Where(predicate: r => r.Hotel.Location.Contains(location))
                 .ToListAsync();
 
             // Filter available rooms based on availability for the specified dates

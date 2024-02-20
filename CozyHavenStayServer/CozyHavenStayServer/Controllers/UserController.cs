@@ -11,11 +11,14 @@ namespace CozyHavenStayServer.Controllers
     {
         private readonly IUserServices _userServices;
         private readonly ILogger<UserController> _logger;
+        private readonly IHotelServices _hotelServices;
 
-        public UserController(ILogger<UserController> logger, IUserServices userServices)
+
+        public UserController(ILogger<UserController> logger, IUserServices userServices, IHotelServices hotelServices)
         {
             _logger = logger;
             _userServices = userServices;
+            _hotelServices = hotelServices;
         }
 
 
@@ -267,7 +270,7 @@ namespace CozyHavenStayServer.Controllers
         {
             try
             {
-                var hotels = await _userServices.SearchHotelsAsync(location, amenities);
+                var hotels = await _hotelServices.SearchHotelsAsync(location, amenities);
 
                 return Ok(new
                 {
@@ -302,7 +305,7 @@ namespace CozyHavenStayServer.Controllers
         {
             try
             {
-                var hotelRooms = await _userServices.SearchHotelRoomsAsync(location, checkInDate, checkOutDate, numberOfRooms);
+                var hotelRooms = await _hotelServices.SearchHotelRoomsAsync(location, checkInDate, checkOutDate, numberOfRooms);
 
                 return Ok(new
                 {

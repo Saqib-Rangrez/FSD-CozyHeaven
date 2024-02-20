@@ -9,9 +9,9 @@ namespace CozyHavenStayServer.Services
     {
         private readonly IRepository<HotelOwner> _hotelOwnerRepository;
         private readonly ILogger<HotelOwnerController> _logger;
-        private readonly IHotelServices _hotelRepository;
+        private readonly HotelRepository _hotelRepository;
 
-        public HotelOwnerServices(IRepository<HotelOwner> hotelOwnerRepository, ILogger<HotelOwnerController> logger, IHotelServices hotelRepository)
+        public HotelOwnerServices(IRepository<HotelOwner> hotelOwnerRepository, ILogger<HotelOwnerController> logger, HotelRepository hotelRepository)
         {
             _hotelOwnerRepository = hotelOwnerRepository;
             _logger = logger;
