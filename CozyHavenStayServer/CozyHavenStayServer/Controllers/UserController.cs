@@ -207,13 +207,24 @@ namespace CozyHavenStayServer.Controllers
                     });
                 }
 
-                var user = await _userServices.UpdateUserAsync(model);                
+                var updateStatus = await _userServices.UpdateUserAsync(model);
 
-                return Ok(new
+                if (updateStatus)
                 {
-                    success = "True",
-                    message = "User updated successfully"
-                });
+                    return Ok(new
+                    {
+                        success = "True",
+                        message = "User updated successfully"
+                    });
+                }
+                else
+                {
+                    return NotFound(new
+                    {
+                        success = "False",
+                        message = "User not found"
+                    });
+                }               
 
             }
             catch (Exception ex)
