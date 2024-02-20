@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\FSD Project\\CozyHavenStayServer\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C12F4CBC-6DC4-4A5D-A545-075F1CE5CA04}|CozyHavenStayServer\\CozyHavenStayServer.csproj|c:\\fsd project\\cozyhavenstayserver\\cozyhavenstayserver\\interfaces\\iuserservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C12F4CBC-6DC4-4A5D-A545-075F1CE5CA04}|CozyHavenStayServer\\CozyHavenStayServer.csproj|solutionrelative:cozyhavenstayserver\\interfaces\\iuserservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C12F4CBC-6DC4-4A5D-A545-075F1CE5CA04}|CozyHavenStayServer\\CozyHavenStayServer.csproj|c:\\fsd project\\cozyhavenstayserver\\cozyhavenstayserver\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C12F4CBC-6DC4-4A5D-A545-075F1CE5CA04}|CozyHavenStayServer\\CozyHavenStayServer.csproj|solutionrelative:cozyhavenstayserver\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C12F4CBC-6DC4-4A5D-A545-075F1CE5CA04}|CozyHavenStayServer\\CozyHavenStayServer.csproj|c:\\fsd project\\cozyhavenstayserver\\cozyhavenstayserver\\services\\userservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C12F4CBC-6DC4-4A5D-A545-075F1CE5CA04}|CozyHavenStayServer\\CozyHavenStayServer.csproj|solutionrelative:cozyhavenstayserver\\services\\userservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C12F4CBC-6DC4-4A5D-A545-075F1CE5CA04}|CozyHavenStayServer\\CozyHavenStayServer.csproj|c:\\fsd project\\cozyhavenstayserver\\cozyhavenstayserver\\services\\cloudinaryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -13,14 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{C12F4CBC-6DC4-4A5D-A545-075F1CE5CA04}|CozyHavenStayServer\\CozyHavenStayServer.csproj|c:\\fsd project\\cozyhavenstayserver\\cozyhavenstayserver\\interfaces\\icloudinaryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C12F4CBC-6DC4-4A5D-A545-075F1CE5CA04}|CozyHavenStayServer\\CozyHavenStayServer.csproj|solutionrelative:cozyhavenstayserver\\interfaces\\icloudinaryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C12F4CBC-6DC4-4A5D-A545-075F1CE5CA04}|CozyHavenStayServer\\CozyHavenStayServer.csproj|c:\\fsd project\\cozyhavenstayserver\\cozyhavenstayserver\\interfaces\\iuserservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C12F4CBC-6DC4-4A5D-A545-075F1CE5CA04}|CozyHavenStayServer\\CozyHavenStayServer.csproj|solutionrelative:cozyhavenstayserver\\interfaces\\iuserservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C12F4CBC-6DC4-4A5D-A545-075F1CE5CA04}|CozyHavenStayServer\\CozyHavenStayServer.csproj|c:\\fsd project\\cozyhavenstayserver\\cozyhavenstayserver\\services\\userservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C12F4CBC-6DC4-4A5D-A545-075F1CE5CA04}|CozyHavenStayServer\\CozyHavenStayServer.csproj|solutionrelative:cozyhavenstayserver\\services\\userservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C12F4CBC-6DC4-4A5D-A545-075F1CE5CA04}|CozyHavenStayServer\\CozyHavenStayServer.csproj|c:\\fsd project\\cozyhavenstayserver\\cozyhavenstayserver\\repositories\\reviewrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -250,27 +250,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "CloudinaryService.cs",
-              "DocumentMoniker": "C:\\FSD Project\\CozyHavenStayServer\\CozyHavenStayServer\\Services\\CloudinaryService.cs",
-              "RelativeDocumentMoniker": "CozyHavenStayServer\\Services\\CloudinaryService.cs",
-              "ToolTip": "C:\\FSD Project\\CozyHavenStayServer\\CozyHavenStayServer\\Services\\CloudinaryService.cs",
-              "RelativeToolTip": "CozyHavenStayServer\\Services\\CloudinaryService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAfAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-20T07:58:14.493Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\FSD Project\\CozyHavenStayServer\\CozyHavenStayServer\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "CozyHavenStayServer\\Controllers\\UserController.cs",
               "ToolTip": "C:\\FSD Project\\CozyHavenStayServer\\CozyHavenStayServer\\Controllers\\UserController.cs",
               "RelativeToolTip": "CozyHavenStayServer\\Controllers\\UserController.cs",
-              "ViewState": "AQIAAG0AAAAAAAAAAAAgwMIAAAAdAAAA",
+              "ViewState": "AQIAABwDAAAAAAAAAAAuwP0DAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-02-19T07:03:34.221Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "IUserServices.cs",
+              "DocumentMoniker": "C:\\FSD Project\\CozyHavenStayServer\\CozyHavenStayServer\\Interfaces\\IUserServices.cs",
+              "RelativeDocumentMoniker": "CozyHavenStayServer\\Interfaces\\IUserServices.cs",
+              "ToolTip": "C:\\FSD Project\\CozyHavenStayServer\\CozyHavenStayServer\\Interfaces\\IUserServices.cs",
+              "RelativeToolTip": "CozyHavenStayServer\\Interfaces\\IUserServices.cs",
+              "ViewState": "AQIAAB0AAAAAAAAAAAAAACcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-19T05:28:56.345Z",
               "EditorCaption": ""
             },
             {
@@ -287,27 +287,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "UserServices.cs",
               "DocumentMoniker": "C:\\FSD Project\\CozyHavenStayServer\\CozyHavenStayServer\\Services\\UserServices.cs",
               "RelativeDocumentMoniker": "CozyHavenStayServer\\Services\\UserServices.cs",
               "ToolTip": "C:\\FSD Project\\CozyHavenStayServer\\CozyHavenStayServer\\Services\\UserServices.cs",
               "RelativeToolTip": "CozyHavenStayServer\\Services\\UserServices.cs",
-              "ViewState": "AQIAAIkAAAAAAAAAAADwv9gAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-19T05:29:32.942Z"
+              "WhenOpened": "2024-02-19T05:29:32.942Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "IUserServices.cs",
-              "DocumentMoniker": "C:\\FSD Project\\CozyHavenStayServer\\CozyHavenStayServer\\Interfaces\\IUserServices.cs",
-              "RelativeDocumentMoniker": "CozyHavenStayServer\\Interfaces\\IUserServices.cs",
-              "ToolTip": "C:\\FSD Project\\CozyHavenStayServer\\CozyHavenStayServer\\Interfaces\\IUserServices.cs",
-              "RelativeToolTip": "CozyHavenStayServer\\Interfaces\\IUserServices.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAA5AAAA",
+              "Title": "CloudinaryService.cs",
+              "DocumentMoniker": "C:\\FSD Project\\CozyHavenStayServer\\CozyHavenStayServer\\Services\\CloudinaryService.cs",
+              "RelativeDocumentMoniker": "CozyHavenStayServer\\Services\\CloudinaryService.cs",
+              "ToolTip": "C:\\FSD Project\\CozyHavenStayServer\\CozyHavenStayServer\\Services\\CloudinaryService.cs",
+              "RelativeToolTip": "CozyHavenStayServer\\Services\\CloudinaryService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-19T05:28:56.345Z"
+              "WhenOpened": "2024-02-20T07:58:14.493Z"
             },
             {
               "$type": "Document",
@@ -323,7 +324,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "ICloudinaryService.cs",
               "DocumentMoniker": "C:\\FSD Project\\CozyHavenStayServer\\CozyHavenStayServer\\Interfaces\\ICloudinaryService.cs",
               "RelativeDocumentMoniker": "CozyHavenStayServer\\Interfaces\\ICloudinaryService.cs",
