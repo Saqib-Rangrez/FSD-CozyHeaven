@@ -240,11 +240,22 @@ namespace CozyHavenStayServer.Controllers
 
                 var deleteStatus = await _adminServices.DeleteAdminAsync(id);
 
-                return Ok(new
+                if (deleteStatus)
                 {
-                    success = "True",
-                    message = "Admin deleted successfully"
-                });
+                    return Ok(new
+                    {
+                        success = "True",
+                        message = "User deleted successfully"
+                    });
+                }
+                else
+                {
+                    return NotFound(new
+                    {
+                        success = "False",
+                        message = "User Not found"
+                    });
+                }
             }
             catch (Exception ex)
             {

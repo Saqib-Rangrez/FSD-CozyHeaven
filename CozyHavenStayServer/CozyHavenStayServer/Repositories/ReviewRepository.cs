@@ -2,6 +2,7 @@
 using CozyHavenStayServer.Interfaces;
 using CozyHavenStayServer.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace CozyHavenStayServer.Repositories
@@ -14,29 +15,39 @@ namespace CozyHavenStayServer.Repositories
             _context = context;
         }
 
-        public Task<Review> CreateAsync(Review dbRecord)
+        public async Task<Review> CreateAsync(Review dbRecord)
         {
-            throw new NotImplementedException();
+            _context.Reviews.Add(dbRecord);
+            await _context.SaveChangesAsync();
+            return dbRecord;
         }
 
-        public Task<bool> DeleteAsync(Review dbRecord)
+        public async Task<bool> DeleteAsync(Review dbRecord)
         {
-            throw new NotImplementedException();
+            _context.Reviews.Remove(dbRecord);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
-        public Task<List<Review>> GetAllAsync()
+        public async Task<List<Review>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Reviews.ToListAsync();
         }
 
-        public Task<Review> GetAsync(Expression<Func<Review, bool>> filter, bool useNoTracking = false)
+        public async Task<Review> GetAsync(Expression<Func<Review, bool>> filter, bool useNoTracking = false)
         {
-            throw new NotImplementedException();
+            if (useNoTracking)
+                return await _context.Reviews.AsNoTracking().Where(filter).FirstOrDefaultAsync();
+            else
+                return await _context.Reviews.Where(filter).FirstOrDefaultAsync();
         }
 
-        public Task<Review> UpdateAsync(Review dbRecord)
+        
+        public async Task<Review> UpdateAsync(Review dbRecord)
         {
-            throw new NotImplementedException();
+            _context.Reviews.Update(dbRecord);
+            await _context.SaveChangesAsync();
+            return dbRecord;
         }
     }
 }

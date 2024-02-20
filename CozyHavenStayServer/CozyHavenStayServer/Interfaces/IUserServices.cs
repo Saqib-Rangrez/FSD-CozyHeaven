@@ -1,4 +1,5 @@
-﻿using CozyHavenStayServer.Models;
+﻿using CloudinaryDotNet.Actions;
+using CozyHavenStayServer.Models;
 
 namespace CozyHavenStayServer.Interfaces
 {
@@ -10,6 +11,13 @@ namespace CozyHavenStayServer.Interfaces
         public Task<User> CreateUserAsync(User user);
         public Task<bool> UpdateUserAsync(User user);
         public Task<bool> DeleteUserAsync(int id);
-
+        public Task<ImageUploadResult> UploadDisplayPicture(int id, IFormFile file);
+        public Task<List<Review>> GetAllReviewsAsync();
+        public Task<Review> GetReviwByReviewIdAsync(int id);
+        public Task<List<Review>> GetReviewByHotelIdAsync(int id);
+        public Task<List<Review>> GetReviewByUserIdAsync(int id);
+        public Task<Review> AddReviewAsync(Review model);
+        public Task<bool> UpdateReviewAsync(Review model);
+        public Task<bool> DeleteReviewAsync(int id);
     }
 }

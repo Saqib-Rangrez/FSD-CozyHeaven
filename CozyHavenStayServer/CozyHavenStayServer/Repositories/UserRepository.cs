@@ -15,14 +15,14 @@ namespace CozyHavenStayServer.Repositories
 
         public async Task<User> CreateAsync(User dbRecord)
         {
-            _context.Add(dbRecord);
+            _context.Users.Add(dbRecord);
             await _context.SaveChangesAsync();
             return dbRecord;
         }
 
         public async Task<bool> DeleteAsync(User dbRecord)
         {
-            _context.Remove(dbRecord);
+            _context.Users.Remove(dbRecord);
             await _context.SaveChangesAsync();
             return true;
         }
@@ -33,6 +33,14 @@ namespace CozyHavenStayServer.Repositories
         }
 
         public async Task<User> GetAsync(Expression<Func<User, bool>> filter, bool useNoTracking = false)
+        {
+            if (useNoTracking)
+                return await _context.Users.AsNoTracking().Where(filter).FirstOrDefaultAsync();
+            else
+                return await _context.Users.Where(filter).FirstOrDefaultAsync();
+        }
+
+        public async Task<User> GetAsyncByName(Expression<Func<User, bool>> filter, bool useNoTracking = false)
         {
             if (useNoTracking)
                 return await _context.Users.AsNoTracking().Where(filter).FirstOrDefaultAsync();

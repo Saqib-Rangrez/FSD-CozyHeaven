@@ -15,6 +15,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<CozyHeavenStayContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString")));
 
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -55,6 +58,16 @@ builder.Services.AddScoped<IAuthServices, AuthServices>();
 builder.Services.AddScoped<IAccountServices, AccountServices>();
 builder.Services.AddScoped<IAdminServices, AdminServices>();
 builder.Services.AddScoped<IHotelOwnerServices, HotelOwnerServices>();
+
+builder.Services.AddScoped<ICloudinaryService>(serviceProvider =>
+{
+    var cloudinarySettings = builder.Configuration.GetSection("CloudinarySettings");
+    var cloudName = cloudinarySettings["CloudName"];
+    var apiKey = cloudinarySettings["ApiKey"];
+    var apiSecret = cloudinarySettings["ApiSecret"];
+
+    return new CloudinaryService(cloudName, apiKey, apiSecret);
+});
 #endregion
 
 builder.Services.AddSwaggerGen(opt =>

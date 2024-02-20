@@ -15,7 +15,7 @@ namespace CozyHavenStayServer.Mappers
             admin.Email = registerUser.Email;
             admin.Role = "Admin";
             admin.Password = registerUser.Password;
-            admin.ProfileImage = $"https://api.dicebear.com/5.x/initials/svg?seed={registerUser.FirstName} {registerUser.LastName}";
+            admin.ProfileImage = $"https://api.dicebear.com/5.x/initials/svg?seed={registerUser.FirstName}{registerUser.LastName}";
         }
 
         public Admin GetUser()

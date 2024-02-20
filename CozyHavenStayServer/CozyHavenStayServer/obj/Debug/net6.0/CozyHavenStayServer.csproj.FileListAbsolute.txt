@@ -203,3 +203,5 @@ F:\c sharp program\CaseStudy\FSD-CozyHeaven\CozyHavenStayServer\CozyHavenStaySer
 F:\c sharp program\CaseStudy\FSD-CozyHeaven\CozyHavenStayServer\CozyHavenStayServer\obj\Debug\net6.0\CozyHavenStayServer.genruntimeconfig.cache
 F:\c sharp program\CaseStudy\FSD-CozyHeaven\CozyHavenStayServer\CozyHavenStayServer\obj\Debug\net6.0\ref\CozyHavenStayServer.dll
 C:\FSD Project\CozyHavenStayServer\CozyHavenStayServer\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\FSD Project\CozyHavenStayServer\CozyHavenStayServer\bin\Debug\net6.0\CloudinaryDotNet.dll
+C:\FSD Project\CozyHavenStayServer\CozyHavenStayServer\bin\Debug\net6.0\Newtonsoft.Json.dll

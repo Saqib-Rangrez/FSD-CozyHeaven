@@ -18,7 +18,7 @@ namespace CozyHavenStayServer.Mappers
             owner.Role = "Owner";
             owner.Password = registerUser.Password;
             owner.Gender = registerUser.Gender;
-            owner.ProfileImage = $"https://api.dicebear.com/5.x/initials/svg?seed={registerUser.FirstName} {registerUser.LastName}";
+            owner.ProfileImage = $"https://api.dicebear.com/5.x/initials/svg?seed={registerUser.FirstName}{registerUser.LastName}";
         }
 
         public HotelOwner GetUser()
