@@ -10,10 +10,10 @@ namespace CozyHavenStayServer.Controllers
     [ApiController]
     public class HotelOwnerController : ControllerBase
     {
-        private readonly IHotelOwnerServices _hotelOwnerServices;
+        private readonly HotelOwnerServices _hotelOwnerServices;
         private readonly ILogger<HotelOwnerController> _logger;
 
-        public HotelOwnerController(ILogger<HotelOwnerController> logger, IHotelOwnerServices hotelOwnerServices)
+        public HotelOwnerController(ILogger<HotelOwnerController> logger, HotelOwnerServices hotelOwnerServices)
         {
             _logger = logger;
             _hotelOwnerServices = hotelOwnerServices;
@@ -324,6 +324,172 @@ namespace CozyHavenStayServer.Controllers
                 {
                     success = "False",
                     error = "An error occurred while searching hotel rooms."
+                });
+            }
+        }
+
+
+        // Get booking by ID
+        [HttpGet]
+        [Route("GetBookingById/{id}")]
+        public async Task<ActionResult<Booking>> GetBookingByIdAsync(int id)
+        {
+            try
+            {
+                var booking = await _hotelOwnerServices.GetBookingByIdAsync(id);
+                if (booking == null)
+                {
+                    return NotFound(new
+                    {
+                        success = false,
+                        message = $"Booking with ID {id} not found"
+                    });
+                }
+                return Ok(new
+                {
+                    success = true,
+                    data = booking
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    error = "An error occurred while retrieving booking by ID"
+                });
+            }
+        }
+
+        // Create booking
+        [HttpPost]
+        [Route("CreateBooking")]
+        public async Task<ActionResult<Booking>> CreateBookingAsync([FromBody] Booking booking)
+        {
+            try
+            {
+                var createdBooking = await _hotelOwnerServices.CreateBookingAsync(booking);
+                if (createdBooking == null)
+                {
+                    return BadRequest(new
+                    {
+                        success = false,
+                        error = "Failed to create booking"
+                    });
+                }
+                return Ok(new
+                {
+                    success = true,
+                    data = createdBooking
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    error = "An error occurred while creating booking"
+                });
+            }
+        }
+
+        // Update booking
+        [HttpPut]
+        [Route("UpdateBooking")]
+        public async Task<ActionResult<bool>> UpdateBookingAsync([FromBody] Booking booking)
+        {
+            try
+            {
+                var success = await _hotelOwnerServices.UpdateBookingAsync(booking);
+                if (!success)
+                {
+                    return BadRequest(new
+                    {
+                        success = false,
+                        error = "Failed to update booking"
+                    });
+                }
+                return Ok(new
+                {
+                    success = true,
+                    message = "Booking updated successfully"
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    error = "An error occurred while updating booking"
+                });
+            }
+        }
+
+        // Delete booking
+        [HttpDelete]
+        [Route("DeleteBooking/{id}")]
+        public async Task<ActionResult<bool>> DeleteBookingAsync(int id)
+        {
+            try
+            {
+                var success = await _hotelOwnerServices.DeleteBookingAsync(id);
+                if (!success)
+                {
+                    return BadRequest(new
+                    {
+                        success = false,
+                        error = "Failed to delete booking"
+                    });
+                }
+                return Ok(new
+                {
+                    success = true,
+                    message = "Booking deleted successfully"
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    error = "An error occurred while deleting booking"
+                });
+            }
+        }
+
+
+        [HttpGet]
+        [Route("GetAllBookings")]
+        public async Task<ActionResult<List<Booking>>> GetAllBookingsAsync()
+        {
+            try
+            {
+                var bookings = await _hotelOwnerServices.GetAllBookingsAsync();
+                if (bookings == null)
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, new
+                    {
+                        success = false,
+                        error = "An error occurred while retrieving all bookings"
+                    });
+                }
+                return Ok(new
+                {
+                    success = true,
+                    data = bookings
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    error = "An error occurred while retrieving all bookings"
                 });
             }
         }

@@ -1,5 +1,6 @@
 ﻿using CozyHavenStayServer.Interfaces;
 using CozyHavenStayServer.Models;
+using CozyHavenStayServer.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,16 +10,16 @@ namespace CozyHavenStayServer.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserServices _userServices;
+        private readonly UserServices _userServices;
         private readonly ILogger<UserController> _logger;
-        private readonly IHotelServices _hotelServices;
+        
 
 
-        public UserController(ILogger<UserController> logger, IUserServices userServices, IHotelServices hotelServices)
+        public UserController(ILogger<UserController> logger, UserServices userServices)
         {
             _logger = logger;
             _userServices = userServices;
-            _hotelServices = hotelServices;
+          
         }
 
 
@@ -270,7 +271,7 @@ namespace CozyHavenStayServer.Controllers
         {
             try
             {
-                var hotels = await _hotelServices.SearchHotelsAsync(location, amenities);
+                var hotels = await _userServices.SearchHotelsAsync(location, amenities);
 
                 return Ok(new
                 {
@@ -305,7 +306,7 @@ namespace CozyHavenStayServer.Controllers
         {
             try
             {
-                var hotelRooms = await _hotelServices.SearchHotelRoomsAsync(location, checkInDate, checkOutDate, numberOfRooms);
+                var hotelRooms = await _userServices.SearchHotelRoomsAsync(location, checkInDate, checkOutDate, numberOfRooms);
 
                 return Ok(new
                 {
@@ -333,5 +334,137 @@ namespace CozyHavenStayServer.Controllers
             }
         }
 
+
+        // Get booking by ID
+        [HttpGet]
+        [Route("GetBookingById/{id}")]
+        public async Task<ActionResult<Booking>> GetBookingByIdAsync(int id)
+        {
+            try
+            {
+                var booking = await _userServices.GetBookingByIdAsync(id);
+                if (booking == null)
+                {
+                    return NotFound(new
+                    {
+                        success = false,
+                        message = $"Booking with ID {id} not found"
+                    });
+                }
+                return Ok(new
+                {
+                    success = true,
+                    data = booking
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    error = "An error occurred while retrieving booking by ID"
+                });
+            }
+        }
+
+        // Create booking
+        [HttpPost]
+        [Route("CreateBooking")]
+        public async Task<ActionResult<Booking>> CreateBookingAsync([FromBody] Booking booking)
+        {
+            try
+            {
+                var createdBooking = await _userServices.CreateBookingAsync(booking);
+                if (createdBooking == null)
+                {
+                    return BadRequest(new
+                    {
+                        success = false,
+                        error = "Failed to create booking"
+                    });
+                }
+                return Ok(new
+                {
+                    success = true,
+                    data = createdBooking
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    error = "An error occurred while creating booking"
+                });
+            }
+        }
+
+        // Update booking
+        [HttpPut]
+        [Route("UpdateBooking")]
+        public async Task<ActionResult<bool>> UpdateBookingAsync([FromBody] Booking booking)
+        {
+            try
+            {
+                var success = await _userServices.UpdateBookingAsync(booking);
+                if (!success)
+                {
+                    return BadRequest(new
+                    {
+                        success = false,
+                        error = "Failed to update booking"
+                    });
+                }
+                return Ok(new
+                {
+                    success = true,
+                    message = "Booking updated successfully"
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    error = "An error occurred while updating booking"
+                });
+            }
+        }
+
+        // Delete booking
+        [HttpDelete]
+        [Route("DeleteBooking/{id}")]
+        public async Task<ActionResult<bool>> DeleteBookingAsync(int id)
+        {
+            try
+            {
+                var success = await _userServices.DeleteBookingAsync(id);
+                if (!success)
+                {
+                    return BadRequest(new
+                    {
+                        success = false,
+                        error = "Failed to delete booking"
+                    });
+                }
+                return Ok(new
+                {
+                    success = true,
+                    message = "Booking deleted successfully"
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    error = "An error occurred while deleting booking"
+                });
+            }
+        }
     }
 }

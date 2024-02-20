@@ -163,20 +163,7 @@ namespace CozyHavenStayServer.Services
             }
         }
 
-        public async Task<List<Booking>> GetAllBookingsAsync()
-        {
-            try
-            {
-                var bookings = await _bookingRepository.GetAllAsync();
-                return bookings;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex.Message);
-                return null;
-            }
-        }
-
+    
         public async Task<Booking> GetBookingByIdAsync(int id)
         {
             try
