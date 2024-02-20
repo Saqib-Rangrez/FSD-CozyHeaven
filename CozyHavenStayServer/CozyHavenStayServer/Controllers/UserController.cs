@@ -12,8 +12,6 @@ namespace CozyHavenStayServer.Controllers
     {
         private readonly UserServices _userServices;
         private readonly ILogger<UserController> _logger;
-        
-
 
         public UserController(ILogger<UserController> logger, UserServices userServices)
         {
@@ -463,6 +461,173 @@ namespace CozyHavenStayServer.Controllers
                 {
                     success = false,
                     error = "An error occurred while deleting booking"
+                });
+            }
+        }
+
+
+
+        // Get all rooms
+        [HttpGet]
+        [Route("GetAllRooms")]
+        public async Task<ActionResult<List<Room>>> GetAllRoomsAsync()
+        {
+            try
+            {
+                var rooms = await _userServices.GetAllRoomsAsync();
+                if (rooms == null)
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, new
+                    {
+                        success = false,
+                        error = "An error occurred while retrieving all rooms"
+                    });
+                }
+                return Ok(new
+                {
+                    success = true,
+                    data = rooms
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    error = "An error occurred while retrieving all rooms"
+                });
+            }
+        }
+
+        // Get room by ID
+        [HttpGet]
+        [Route("GetRoomById/{id}")]
+        public async Task<ActionResult<Room>> GetRoomByIdAsync(int id)
+        {
+            try
+            {
+                var room = await _userServices.GetRoomByIdAsync(id);
+                if (room == null)
+                {
+                    return NotFound(new
+                    {
+                        success = false,
+                        message = $"Room with ID {id} not found"
+                    });
+                }
+                return Ok(new
+                {
+                    success = true,
+                    data = room
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    error = "An error occurred while retrieving room by ID"
+                });
+            }
+        }
+
+        // Create room
+        [HttpPost]
+        [Route("CreateRoom")]
+        public async Task<ActionResult<Room>> CreateRoomAsync([FromBody] Room room)
+        {
+            try
+            {
+                var createdRoom = await _userServices.CreateRoomAsync(room);
+                if (createdRoom == null)
+                {
+                    return BadRequest(new
+                    {
+                        success = false,
+                        error = "Failed to create room"
+                    });
+                }
+                return Ok(new
+                {
+                    success = true,
+                    data = createdRoom
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    error = "An error occurred while creating room"
+                });
+            }
+        }
+
+        // Update room
+        [HttpPut]
+        [Route("UpdateRoom")]
+        public async Task<ActionResult<bool>> UpdateRoomAsync([FromBody] Room room)
+        {
+            try
+            {
+                var success = await _userServices.UpdateRoomAsync(room);
+                if (!success)
+                {
+                    return BadRequest(new
+                    {
+                        success = false,
+                        error = "Failed to update room"
+                    });
+                }
+                return Ok(new
+                {
+                    success = true,
+                    message = "Room updated successfully"
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    error = "An error occurred while updating room"
+                });
+            }
+        }
+
+        // Delete room
+        [HttpDelete]
+        [Route("DeleteRoom/{id}")]
+        public async Task<ActionResult<bool>> DeleteRoomAsync(int id)
+        {
+            try
+            {
+                var success = await _userServices.DeleteRoomAsync(id);
+                if (!success)
+                {
+                    return BadRequest(new
+                    {
+                        success = false,
+                        error = "Failed to delete room"
+                    });
+                }
+                return Ok(new
+                {
+                    success = true,
+                    message = "Room deleted successfully"
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    error = "An error occurred while deleting room"
                 });
             }
         }

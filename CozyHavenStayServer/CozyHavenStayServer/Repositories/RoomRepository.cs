@@ -2,6 +2,7 @@
 using CozyHavenStayServer.Interfaces;
 using CozyHavenStayServer.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace CozyHavenStayServer.Repositories
@@ -14,29 +15,63 @@ namespace CozyHavenStayServer.Repositories
             _context = context;
         }
 
-        public Task<Room> CreateAsync(Room dbRecord)
+        public async Task<Room> CreateAsync(Room dbRecord)
         {
-            throw new NotImplementedException();
+            _context.Add(dbRecord);
+            await _context.SaveChangesAsync();
+            return dbRecord;
         }
 
-        public Task<bool> DeleteAsync(Room dbRecord)
+        public async Task<bool> DeleteAsync(Room dbRecord)
         {
-            throw new NotImplementedException();
+            _context.Remove(dbRecord);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
-        public Task<List<Room>> GetAllAsync()
+        public async Task<List<Room>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Rooms.ToListAsync();
         }
 
-        public Task<Room> GetAsync(Expression<Func<Room, bool>> filter, bool useNoTracking = false)
+        public async Task<Room> GetAsync(Expression<Func<Room, bool>> filter, bool useNoTracking = false)
         {
-            throw new NotImplementedException();
+            if (useNoTracking)
+                return await _context.Rooms.AsNoTracking().Where(filter).FirstOrDefaultAsync();
+            else
+                return await _context.Rooms.Where(filter).FirstOrDefaultAsync();
         }
 
-        public Task<Room> UpdateAsync(Room dbRecord)
+        public async Task<Room> UpdateAsync(Room dbRecord)
         {
-            throw new NotImplementedException();
+            _context.Rooms.Update(dbRecord);
+            await _context.SaveChangesAsync();
+            return dbRecord;
+        }
+
+
+        public async Task<List<Room>> SearchHotelRoomsAsync(string location, DateTime checkInDate, DateTime checkOutDate, int numberOfRooms)
+        {
+            // Implement logic to search for available hotel rooms based on location, dates, and number of rooms
+            var availableRooms = await _context.Rooms
+                .Include(r => r.Hotel)
+                .Where(predicate: r => r.Hotel.Location.Contains(location))
+                .ToListAsync();
+
+            // Filter available rooms based on availability for the specified dates
+            var bookedRoomIds = await _context.Bookings
+                .Where(b => (checkInDate >= b.CheckInDate && checkInDate < b.CheckOutDate) ||
+                            (checkOutDate > b.CheckInDate && checkOutDate <= b.CheckOutDate))
+                .Select(b => b.RoomId)
+                .ToListAsync();
+
+            availableRooms = availableRooms.Where(r => !bookedRoomIds.Contains(r.RoomId)).ToList();
+
+            // Filter available rooms based on the number of rooms required
+            availableRooms = availableRooms.Take(numberOfRooms).ToList();
+
+            return availableRooms;
+
         }
     }
 }
