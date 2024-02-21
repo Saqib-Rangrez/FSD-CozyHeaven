@@ -32,14 +32,14 @@ namespace CozyHavenStayServer.Controllers
                 {
                     return NotFound(new
                     {
-                        success = "False",
+                        success = false,
                         message = "No data found"
                     });
                 }
 
                 return Ok(new
                 {
-                    success = "True",
+                    success = true,
                     data = hotelOwners
                 });
             }
@@ -48,7 +48,7 @@ namespace CozyHavenStayServer.Controllers
                 _logger.LogError(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
-                    success = "False",
+                    success = false,
                     error = "An error occurred while fetching hotelOwners."
                 });
             }
@@ -67,7 +67,7 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogWarning("Bad Request");
                     return BadRequest(new
                     {
-                        success = "False",
+                        success = false,
                         message = "Invalid HotelOwner Id"
                     });
                 }
@@ -79,14 +79,14 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogError("HotelOwner not found with given Id");
                     return NotFound(new
                     {
-                        success = "False",
+                        success = false,
                         message = $"The 'hotelOwner' with Id: {id} not found"
                     });
                 }
 
                 return Ok(new
                 {
-                    success = "True",
+                    success = true,
                     data = hotelOwner
                 });
             }
@@ -95,7 +95,7 @@ namespace CozyHavenStayServer.Controllers
                 _logger.LogError(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
-                    success = "False",
+                    success = false,
                     error = "An error occurred while fetching hotelOwner."
                 });
             }
@@ -114,7 +114,7 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogWarning("Bad Request");
                     return BadRequest(new
                     {
-                        success = "False",
+                        success = false,
                         message = "Invalid HotelOwner Email"
                     });
                 }
@@ -126,14 +126,14 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogError("HotelOwner not found with given email");
                     return NotFound(new
                     {
-                        success = "False",
+                        success = false,
                         message = $"The 'hotelOwner' with Email: {email} not found"
                     });
                 }
 
                 return Ok(new
                 {
-                    success = "True",
+                    success = true,
                     data = hotelOwner
                 });
             }
@@ -142,7 +142,7 @@ namespace CozyHavenStayServer.Controllers
                 _logger.LogError(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
-                    success = "False",
+                    success = false,
                     error = "An error occurred while fetching hotelOwner."
                 });
             }
@@ -160,16 +160,23 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogWarning("Bad Request");
                     return BadRequest(new
                     {
-                        success = "False",
+                        success = false,
                         message = "Null Object"
                     });
                 }
 
                 var createdHotelOwner = await _hotelOwnerServices.CreateHotelOwnerAsync(model);
-
+                if(createdHotelOwner == null)
+                {
+                    return BadRequest(new
+                    {
+                        success = false,
+                        message = "Failed to create hotel owner"
+                    });
+                }
                 return Ok(new
                 {
-                    success = "True",
+                    success = true,
                     data = createdHotelOwner
                 });
             }
@@ -178,7 +185,7 @@ namespace CozyHavenStayServer.Controllers
                 _logger.LogError(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
-                    success = "False",
+                    success = false,
                     error = "An error occurred while creating hotelOwner."
                 });
             }
@@ -197,7 +204,7 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogWarning("Bad Request");
                     return BadRequest(new
                     {
-                        success = "False",
+                        success = false,
                         message = "Invalid Data"
                     });
                 }
@@ -208,7 +215,7 @@ namespace CozyHavenStayServer.Controllers
                 {
                     return Ok(new
                     {
-                        success = "True",
+                        success = true,
                         message = "HotelOwner updated successfully"
                     });
                 }
@@ -216,7 +223,7 @@ namespace CozyHavenStayServer.Controllers
                 {
                     return NotFound(new
                     {
-                        success = "False",
+                        success = false,
                         message = "HotelOwner not found"
                     });
                 }               
@@ -227,7 +234,7 @@ namespace CozyHavenStayServer.Controllers
                 _logger.LogError(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
-                    success = "False",
+                    success = false,
                     error = "An error occurred while updating hotelOwner."
                 });
             }
@@ -246,7 +253,7 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogWarning("Bad Request");
                     return BadRequest(new
                     {
-                        success = "False",
+                        success = false,
                         message = "Invalid HotelOwner Id"
                     });
                 }
@@ -257,7 +264,7 @@ namespace CozyHavenStayServer.Controllers
                 {
                     return Ok(new
                     {
-                        success = "True",
+                        success = true,
                         message = "User deleted successfully"
                     });
                 }
@@ -265,7 +272,7 @@ namespace CozyHavenStayServer.Controllers
                 {
                     return NotFound(new
                     {
-                        success = "False",
+                        success = false,
                         message = "User Not found"
                     });
                 }
@@ -275,7 +282,7 @@ namespace CozyHavenStayServer.Controllers
                 _logger.LogError(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
-                    success = "False",
+                    success = false,
                     error = "An error occurred while deleting hotelOwner."
                 });
             }

@@ -18,9 +18,9 @@
         public string Amenities { get; set; }
 
         public virtual HotelOwner? Owner { get; set; }
-        public virtual List<Booking> Bookings { get; set; }
-        public virtual List<HotelImage> HotelImages { get; set; }
-        public virtual List<Review> Reviews { get; set; }
-        public virtual List<Room> Rooms { get; set; }
+        public virtual List<Booking>? Bookings { get; set; }
+        public virtual List<HotelImage>? HotelImages { get; set; }
+        public virtual List<Review>? Reviews { get; set; }
+        public virtual List<Room>? Rooms { get; set; }
     }
 }

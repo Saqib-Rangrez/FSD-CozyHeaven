@@ -30,7 +30,7 @@ namespace CozyHavenStayServer.Controllers
                 var rooms = await _roomServices.GetAllRoomsAsync();
                 if (rooms == null || rooms.Count <= 0)
                 {
-                    return StatusCode(StatusCodes.Status500InternalServerError, new
+                    return NotFound( new
                     {
                         success = false,
                         error = "No data found"
@@ -133,7 +133,7 @@ namespace CozyHavenStayServer.Controllers
                     return BadRequest(new
                     {
                         success = false,
-                        error = "Failed to update room"
+                        error = "Failed to update room, Room with given room id not found"
                     });
                 }
                 return Ok(new

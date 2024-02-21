@@ -30,7 +30,7 @@ namespace CozyHavenStayServer.Controllers
                 var bookings = await _bookingServices.GetAllBookingsAsync();
                 if (bookings == null || bookings.Count <= 0)
                 {
-                    return StatusCode(StatusCodes.Status500InternalServerError, new
+                    return NotFound( new
                     {
                         success = false,
                         error = "No data found"

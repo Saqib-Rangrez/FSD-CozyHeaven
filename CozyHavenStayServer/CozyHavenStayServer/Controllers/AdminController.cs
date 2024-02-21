@@ -32,14 +32,14 @@ namespace CozyHavenStayServer.Controllers
                 {
                     return NotFound(new
                     {
-                        success = "False",
+                        success = false,
                         message = "No data found"
                     });
                 }
 
                 return Ok(new
                 {
-                    success = "True",
+                    success = true,
                     data = admins
                 });
             }
@@ -48,7 +48,7 @@ namespace CozyHavenStayServer.Controllers
                 _logger.LogError(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
-                    success = "False",
+                    success = false,
                     error = "An error occurred while fetching Admins."
                 });
             }
@@ -66,7 +66,7 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogWarning("Bad Request");
                     return BadRequest(new
                     {
-                        success = "False",
+                        success = false,
                         message = "Invalid Admin Id"
                     });
                 }
@@ -78,14 +78,14 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogError("Admin not found with given Id");
                     return NotFound(new
                     {
-                        success = "False",
+                        success = false,
                         message = $"The 'admin' with Id: {id} not found"
                     });
                 }
 
                 return Ok(new
                 {
-                    success = "True",
+                    success = true,
                     data = admin
                 });
             }
@@ -94,7 +94,7 @@ namespace CozyHavenStayServer.Controllers
                 _logger.LogError(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
-                    success = "False",
+                    success = false,
                     error = "An error occurred while fetching admin."
                 });
             }
@@ -112,7 +112,7 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogWarning("Bad Request");
                     return BadRequest(new
                     {
-                        success = "False",
+                        success = false,
                         message = "Invalid Admin Email"
                     });
                 }
@@ -124,14 +124,14 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogError("Admin not found with given email");
                     return NotFound(new
                     {
-                        success = "False",
+                        success = false,
                         message = $"The 'admin' with Email: {email} not found"
                     });
                 }
 
                 return Ok(new
                 {
-                    success = "True",
+                    success = true,
                     data = admin
                 });
             }
@@ -140,7 +140,7 @@ namespace CozyHavenStayServer.Controllers
                 _logger.LogError(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
-                    success = "False",
+                    success = false,
                     error = "An error occurred while fetching admin."
                 });
             }
@@ -158,16 +158,24 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogWarning("Bad Request");
                     return BadRequest(new
                     {
-                        success = "False",
+                        success = false,
                         message = "Null Object"
                     });
                 }
 
                 var createdAdmin = await _adminServices.CreateAdminAsync(model);
                 
+                if(createdAdmin == null)
+                {
+                    return BadRequest(new
+                    {
+                        success = false,
+                        message = "Failed to create admin"
+                    });
+                }
                 return Ok(new
                 {
-                    success = "True",
+                    success = true,
                     data = createdAdmin
                 });
             }
@@ -176,7 +184,7 @@ namespace CozyHavenStayServer.Controllers
                 _logger.LogError(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
-                    success = "False",
+                    success = false,
                     error = "An error occurred while creating admin."
                 });
             }
@@ -195,7 +203,7 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogWarning("Bad Request");
                     return BadRequest(new
                     {
-                        success = "False",
+                        success = false,
                         message = "Invalid Data"
                     });
                 }
@@ -204,7 +212,7 @@ namespace CozyHavenStayServer.Controllers
 
                 return Ok(new
                 {
-                    success = "True",
+                    success = true,
                     message = "Admin updated successfully"
                 });
 
@@ -214,7 +222,7 @@ namespace CozyHavenStayServer.Controllers
                 _logger.LogError(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
-                    success = "False",
+                    success = false,
                     error = "An error occurred while updating admin."
                 });
             }
@@ -233,7 +241,7 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogWarning("Bad Request");
                     return BadRequest(new
                     {
-                        success = "False",
+                        success = false,
                         message = "Invalid Admin Id"
                     });
                 }
@@ -244,7 +252,7 @@ namespace CozyHavenStayServer.Controllers
                 {
                     return Ok(new
                     {
-                        success = "True",
+                        success = true,
                         message = "User deleted successfully"
                     });
                 }
@@ -252,7 +260,7 @@ namespace CozyHavenStayServer.Controllers
                 {
                     return NotFound(new
                     {
-                        success = "False",
+                        success = false,
                         message = "User Not found"
                     });
                 }
@@ -262,7 +270,7 @@ namespace CozyHavenStayServer.Controllers
                 _logger.LogError(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
-                    success = "False",
+                    success = false,
                     error = "An error occurred while deleting admin."
                 });
             }

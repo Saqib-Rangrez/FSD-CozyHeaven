@@ -151,8 +151,12 @@ namespace CozyHavenStayServer.Services
         {
             try
             {
-                var createdUser = await _reviewRepository.CreateAsync(model);
-                return createdUser;
+                var createdReview = await _reviewRepository.CreateAsync(model);
+                if(createdReview == null)
+                {
+                    return null;
+                }
+                return createdReview;
             }
             catch (Exception ex)
             {

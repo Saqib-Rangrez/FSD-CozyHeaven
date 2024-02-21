@@ -23,6 +23,11 @@ namespace CozyHavenStayServer.Services
             try
             {
                 var createdAdmin = await _adminRepository.CreateAsync(admin);
+                if(createdAdmin == null)
+                {
+                    _logger.LogError("Failed to add Admin");
+                    return null;
+                }
                 return createdAdmin;
             }
             catch (Exception ex)

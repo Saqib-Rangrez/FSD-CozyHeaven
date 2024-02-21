@@ -67,6 +67,11 @@ namespace CozyHavenStayServer.Services
             try
             {
                 var createdHotel = await _hotelRepository.CreateAsync(hotel);
+                if(createdHotel == null)
+                {
+                    _logger.LogError("Failed to add Hotel");
+                    return null;
+                }
                 return createdHotel;
             }
             catch (Exception ex)

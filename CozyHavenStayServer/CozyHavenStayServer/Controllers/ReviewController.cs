@@ -31,14 +31,14 @@ namespace CozyHavenStayServer.Controllers
                 {
                     return NotFound(new
                     {
-                        success = "False",
+                        success = false,
                         message = "No data found"
                     });
                 }
 
                 return Ok(new
                 {
-                    success = "True",
+                    success = true,
                     data = reviews
                 });
             }
@@ -47,7 +47,7 @@ namespace CozyHavenStayServer.Controllers
                 _logger.LogError(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
-                    success = "False",
+                    success = false,
                     error = "An error occurred while fetching reviews."
                 });
             }
@@ -65,7 +65,7 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogWarning("Bad Request");
                     return BadRequest(new
                     {
-                        success = "False",
+                        success = false,
                         message = "Invalid Review Id"
                     });
                 }
@@ -76,14 +76,14 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogError("User not found with given Id");
                     return NotFound(new
                     {
-                        success = "False",
+                        success = false,
                         message = $"The 'Review' with Id: {id} not found"
                     });
                 }
 
                 return Ok(new
                 {
-                    success = "True",
+                    success = true,
                     data = review
                 });
             }
@@ -92,7 +92,7 @@ namespace CozyHavenStayServer.Controllers
                 _logger.LogError(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
-                    success = "False",
+                    success = false,
                     error = "An error occurred while fetching review."
                 });
             }
@@ -111,7 +111,7 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogWarning("Bad Request");
                     return BadRequest(new
                     {
-                        success = "False",
+                        success = false,
                         message = "Invalid user Id"
                     });
                 }
@@ -122,14 +122,14 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogError("User not found with given Id");
                     return NotFound(new
                     {
-                        success = "False",
+                        success = false,
                         message = $"The 'Review' with Id: {id} not found"
                     });
                 }
 
                 return Ok(new
                 {
-                    success = "True",
+                    success = true,
                     data = review
                 });
             }
@@ -138,7 +138,7 @@ namespace CozyHavenStayServer.Controllers
                 _logger.LogError(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
-                    success = "False",
+                    success = false,
                     error = "An error occurred while fetching review."
                 });
             }
@@ -156,7 +156,7 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogWarning("Bad Request");
                     return BadRequest(new
                     {
-                        success = "False",
+                        success = false,
                         message = "Invalid Hotel Id"
                     });
                 }
@@ -167,14 +167,14 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogError("User not found with given Id");
                     return NotFound(new
                     {
-                        success = "False",
+                        success = false,
                         message = $"The 'Review' with Id: {id} not found"
                     });
                 }
 
                 return Ok(new
                 {
-                    success = "True",
+                    success = true,
                     data = review
                 });
             }
@@ -183,7 +183,7 @@ namespace CozyHavenStayServer.Controllers
                 _logger.LogError(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
-                    success = "False",
+                    success = false,
                     error = "An error occurred while fetching review."
                 });
             }
@@ -202,7 +202,7 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogWarning("Bad Request");
                     return BadRequest(new
                     {
-                        success = "False",
+                        success = false,
                         message = "Null Object"
                     });
                 }
@@ -210,19 +210,29 @@ namespace CozyHavenStayServer.Controllers
                 var createdReview = await _userServices.AddReviewAsync(model);
 
                 //return CreatedAtRoute("GetStudentById", new { id = createdUser.UserId }, User);
-
-                return Ok(new
+                if(createdReview != null)
                 {
-                    success = "True",
-                    data = createdReview
-                });
+                    return Ok(new
+                    {
+                        success = true,
+                        data = createdReview
+                    });
+                }
+                else
+                {
+                    return BadRequest( new
+                    {
+                        success = false,
+                        message = "Failed to create review"
+                    });
+                }                
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
-                    success = "False",
+                    success = false,
                     error = "An error occurred while creating review."
                 });
             }
@@ -241,7 +251,7 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogWarning("Bad Request");
                     return BadRequest(new
                     {
-                        success = "False",
+                        success = false,
                         message = "Invalid Data"
                     });
                 }
@@ -252,7 +262,7 @@ namespace CozyHavenStayServer.Controllers
                 {
                     return Ok(new
                     {
-                        success = "True",
+                        success = true,
                         message = "Review updated successfully"
                     });
                 }
@@ -260,7 +270,7 @@ namespace CozyHavenStayServer.Controllers
                 {
                     return NotFound(new
                     {
-                        success = "False",
+                        success = false,
                         message = "Review not found"
                     });
                 }
@@ -271,7 +281,7 @@ namespace CozyHavenStayServer.Controllers
                 _logger.LogError(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
-                    success = "False",
+                    success = false,
                     error = "An error occurred while updating Review."
                 });
             }
@@ -290,7 +300,7 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogWarning("Bad Request");
                     return BadRequest(new
                     {
-                        success = "False",
+                        success = false,
                         message = "Invalid Review Id"
                     });
                 }
@@ -301,7 +311,7 @@ namespace CozyHavenStayServer.Controllers
                 {
                     return Ok(new
                     {
-                        success = "True",
+                        success = true,
                         message = "Review deleted successfully"
                     });
                 }
@@ -309,7 +319,7 @@ namespace CozyHavenStayServer.Controllers
                 {
                     return NotFound(new
                     {
-                        success = "False",
+                        success = false,
                         message = "Review Not found"
                     });
                 }
@@ -320,7 +330,7 @@ namespace CozyHavenStayServer.Controllers
                 _logger.LogError(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
-                    success = "False",
+                    success = false,
                     error = "An error occurred while deleting Review."
                 });
             }

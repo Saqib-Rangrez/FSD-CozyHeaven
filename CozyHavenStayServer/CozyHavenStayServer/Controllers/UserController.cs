@@ -36,14 +36,14 @@ namespace CozyHavenStayServer.Controllers
                 {
                     return NotFound(new
                     {
-                        success = "False",
+                        success = false,
                         message = "No data found"
                     });
                 }
 
                 return Ok(new
                 {
-                    success = "True",
+                    success = true,
                     data = users 
                 });
             }
@@ -52,7 +52,7 @@ namespace CozyHavenStayServer.Controllers
                 _logger.LogError(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
-                    success = "False",
+                    success = false,
                     error = "An error occurred while fetching users."
                 });
             }
@@ -71,7 +71,7 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogWarning("Bad Request");
                     return BadRequest(new
                     {
-                        success = "False",
+                        success = false,
                         message = "Invalid User Id"
                     });
                 }
@@ -83,14 +83,14 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogError("User not found with given Id");
                     return NotFound(new
                     {
-                        success = "False",
+                        success = false,
                         message = $"The 'user' with Id: {id} not found"
                     });
                 }
 
                 return Ok(new
                 {
-                    success ="True",
+                    success =true,
                     data = user
                 });
             }
@@ -99,7 +99,7 @@ namespace CozyHavenStayServer.Controllers
                 _logger.LogError(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
-                    success = "False",
+                    success = false,
                     error = "An error occurred while fetching user."
                 });
             }
@@ -118,7 +118,7 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogWarning("Bad Request");
                     return BadRequest(new
                     {
-                        success = "False",
+                        success = false,
                         message = "Invalid User Email"
                     });
                 }
@@ -130,14 +130,14 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogError("User not found with given name");
                     return NotFound(new
                     {
-                        success = "False",
+                        success = false,
                         message = $"The 'user' with Email: {email} not found"
                     });
                 }
 
                 return Ok(new
                 {
-                    success = "True",
+                    success = true,
                     data = user
                 });
             }
@@ -146,7 +146,7 @@ namespace CozyHavenStayServer.Controllers
                 _logger.LogError(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
-                    success = "False",
+                    success = false,
                     error = "An error occurred while fetching user."
                 });
             }
@@ -164,7 +164,7 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogWarning("Bad Request");
                     return BadRequest(new
                     {
-                        success = "False",
+                        success = false,
                         message = "Null Object"
                     });
                 }
@@ -172,10 +172,17 @@ namespace CozyHavenStayServer.Controllers
                 var createdUser = await _userServices.CreateUserAsync(model);
 
                 //return CreatedAtRoute("GetStudentById", new { id = createdUser.UserId }, User);
-
+                if (createdUser == null)
+                {
+                    return BadRequest( new
+                    {
+                        success = false,
+                        message = "Failed to create User"
+                    });
+                }
                 return Ok(new
                 {
-                    success = "True",
+                    success = true,
                     data = createdUser
                 });
             }
@@ -184,7 +191,7 @@ namespace CozyHavenStayServer.Controllers
                 _logger.LogError(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
-                    success = "False",
+                    success = false,
                     error = "An error occurred while creating user."
                 });
             }
@@ -203,7 +210,7 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogWarning("Bad Request");
                     return BadRequest(new
                     {
-                        success = "False",
+                        success = false,
                         message = "Invalid Data"
                     });
                 }
@@ -214,7 +221,7 @@ namespace CozyHavenStayServer.Controllers
                 {
                     return Ok(new
                     {
-                        success = "True",
+                        success = true,
                         message = "User updated successfully"
                     });
                 }
@@ -222,7 +229,7 @@ namespace CozyHavenStayServer.Controllers
                 {
                     return NotFound(new
                     {
-                        success = "False",
+                        success = false,
                         message = "User not found"
                     });
                 }               
@@ -233,7 +240,7 @@ namespace CozyHavenStayServer.Controllers
                 _logger.LogError(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
-                    success = "False",
+                    success = false,
                     error = "An error occurred while updating user."
                 });
             }
@@ -252,7 +259,7 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogWarning("Bad Request");
                     return BadRequest(new
                     {
-                        success = "False",
+                        success = false,
                         message = "Invalid User Id"
                     });
                 }
@@ -263,7 +270,7 @@ namespace CozyHavenStayServer.Controllers
                 {
                     return Ok(new
                     {
-                        success = "True",
+                        success = true,
                         message = "User deleted successfully"
                     });
                 }
@@ -271,7 +278,7 @@ namespace CozyHavenStayServer.Controllers
                 {
                     return NotFound(new
                     {
-                        success = "False",
+                        success = false,
                         message = "User Not found"
                     });
                 }
@@ -282,7 +289,7 @@ namespace CozyHavenStayServer.Controllers
                 _logger.LogError(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
-                    success = "False",
+                    success = false,
                     error = "An error occurred while deleting user."
                 });
             }
@@ -302,7 +309,7 @@ namespace CozyHavenStayServer.Controllers
                     _logger.LogWarning("Bad Request");
                     return BadRequest(new
                     {
-                        success = "False",
+                        success = false,
                         message = "Invalid User Id"
                     });
                 }
@@ -328,7 +335,7 @@ namespace CozyHavenStayServer.Controllers
                 {
                     return Ok(new
                     {
-                        success = "True",
+                        success = true,
                         message = "Image Uploaded Successfully",
                         data = user,
                         imgRes = result
@@ -338,18 +345,17 @@ namespace CozyHavenStayServer.Controllers
                 {
                     return NotFound(new
                     {
-                        success = "False",
+                        success = false,
                         message = "User Not found"
                     });
                 }
-
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
-                    success = "False",
+                    success = false,
                     error = "An error occurred while deleting user."
                 });
             }
