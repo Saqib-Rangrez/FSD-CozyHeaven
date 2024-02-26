@@ -9,5 +9,7 @@ namespace CozyHavenStayServer.Interfaces
         public Task<Room> CreateRoomAsync(Room room);
         public Task<bool> UpdateRoomAsync(Room room);
         public Task<bool> DeleteRoomAsync(int id);
+        public Task<RoomImage> AddRoomImageAsync(RoomImage roomImage);
+
     }
 }

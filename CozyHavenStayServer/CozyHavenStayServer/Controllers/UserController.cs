@@ -15,15 +15,19 @@ namespace CozyHavenStayServer.Controllers
     {
         private readonly IUserServices _userServices;
         private readonly ILogger<UserController> _logger;
+        private readonly ICloudinaryService _cloudinaryService;
 
-        public UserController(ILogger<UserController> logger, IUserServices userServices)
+
+        public UserController(ILogger<UserController> logger, IUserServices userServices, ICloudinaryService cloudinaryService)
         {
             _logger = logger;
             _userServices = userServices;
+            _cloudinaryService = cloudinaryService;
         }
 
 
         //GetAllUsers
+        [Authorize]
         [HttpGet]
         [Route("GetAllUsers")]
         public async Task<ActionResult<List<User>>> GetAllUsersAsync()
@@ -328,7 +332,7 @@ namespace CozyHavenStayServer.Controllers
                     return BadRequest("No file uploaded.");
                 }
 
-                var result = await _userServices.UploadDisplayPicture(id, file); 
+                var result = await _cloudinaryService.UploadImageAsync(file); 
                 user.ProfileImage = result.SecureUrl.ToString();
 
                 if (result != null)
@@ -356,7 +360,7 @@ namespace CozyHavenStayServer.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
                     success = false,
-                    error = "An error occurred while deleting user."
+                    error = "An error occurred while adding user dp."
                 });
             }
         }

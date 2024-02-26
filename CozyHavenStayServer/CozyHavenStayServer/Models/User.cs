@@ -27,7 +27,7 @@ namespace CozyHavenStayServer.Models
         [NotMapped]
         public string? Token {  get; set; }
 
-        public virtual List<Booking> Bookings { get; set; }
-        public virtual List<Review> Reviews { get; set; }
+        public virtual List<Booking>? Bookings { get; set; }
+        public virtual List<Review>? Reviews { get; set; }
     }
 }

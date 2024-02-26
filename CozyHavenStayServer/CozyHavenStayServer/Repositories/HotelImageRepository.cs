@@ -2,6 +2,7 @@
 using CozyHavenStayServer.Interfaces;
 using CozyHavenStayServer.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace CozyHavenStayServer.Repositories
@@ -14,29 +15,38 @@ namespace CozyHavenStayServer.Repositories
             _context = context;
         }
 
-        public Task<HotelImage> CreateAsync(HotelImage dbRecord)
+        public async Task<HotelImage> CreateAsync(HotelImage dbRecord)
         {
-            throw new NotImplementedException();
+            _context.HotelImages.Add(dbRecord);
+            await _context.SaveChangesAsync();
+            return dbRecord;
         }
 
-        public Task<bool> DeleteAsync(HotelImage dbRecord)
+        public async Task<bool> DeleteAsync(HotelImage dbRecord)
         {
-            throw new NotImplementedException();
+            _context.HotelImages.Remove(dbRecord);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
-        public Task<List<HotelImage>> GetAllAsync()
+        public async Task<List<HotelImage>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.HotelImages.ToListAsync();
         }
 
-        public Task<HotelImage> GetAsync(Expression<Func<HotelImage, bool>> filter, bool useNoTracking = false)
+        public async Task<HotelImage> GetAsync(Expression<Func<HotelImage, bool>> filter, bool useNoTracking = false)
         {
-            throw new NotImplementedException();
+            if (useNoTracking)
+                return await _context.HotelImages.AsNoTracking().Where(filter).FirstOrDefaultAsync();
+            else
+                return await _context.HotelImages.Where(filter).FirstOrDefaultAsync();
         }
 
-        public Task<HotelImage> UpdateAsync(HotelImage dbRecord)
+        public async Task<HotelImage> UpdateAsync(HotelImage dbRecord)
         {
-            throw new NotImplementedException();
+            _context.HotelImages.Update(dbRecord);
+            await _context.SaveChangesAsync();
+            return dbRecord;
         }
     }
 }

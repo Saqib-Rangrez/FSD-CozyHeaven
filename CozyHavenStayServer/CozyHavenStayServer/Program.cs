@@ -4,10 +4,15 @@ using CozyHavenStayServer.Models;
 using CozyHavenStayServer.Repositories;
 using CozyHavenStayServer.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json;
 using System.Text;
+using System.Text.Json.Serialization;
+using CozyHavenStayServer.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,14 +20,34 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<CozyHeavenStayContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString")));
 
+// Configure form options to allow large files and multipart requests
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = long.MaxValue;
+    options.MemoryBufferThreshold = int.MaxValue;
+    options.ValueLengthLimit = int.MaxValue;
+});
+
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+{
+    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+    options.SerializerSettings.ContractResolver = new DefaultContractResolver
+    {
+        NamingStrategy = new CamelCaseNamingStrategy()
+    };
+})
+.AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+});
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 
 builder.Services.AddAuthentication(options =>
 {
@@ -61,7 +86,8 @@ builder.Services.AddScoped<IHotelOwnerServices, HotelOwnerServices>();
 builder.Services.AddScoped<IHotelServices, HotelServices>();
 builder.Services.AddScoped<IRoomServices, RoomServices>();
 builder.Services.AddScoped<IBookingServices, BookingServices>();
-
+builder.Services.AddSingleton<ITokenBlacklistService, TokenBlacklistService>();
+builder.Services.AddHostedService<TokenCleanUpService>();
 
 
 builder.Services.AddScoped<ICloudinaryService>(serviceProvider =>
@@ -107,7 +133,6 @@ builder.Services.AddSwaggerGen(opt =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -115,10 +140,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseMiddleware<TokenValidationMiddleware>();
 app.MapControllers();
 
 app.Run();

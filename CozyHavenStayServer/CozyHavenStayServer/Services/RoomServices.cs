@@ -8,11 +8,13 @@ namespace CozyHavenStayServer.Services
     {
         private readonly ILogger<RoomServices> _logger;
         private readonly IRepository<Room> _roomRepository;
+        private readonly IRepository<RoomImage> _roomImageRepository;
 
-        public RoomServices(ILogger<RoomServices> logger, IRepository<Room> roomRepository)
+        public RoomServices(ILogger<RoomServices> logger, IRepository<Room> roomRepository, IRepository<RoomImage> roomImageRepository)
         {
             _logger = logger;
             _roomRepository = roomRepository;
+            _roomImageRepository = roomImageRepository;
         }
 
         public async Task<List<Room>> GetAllRoomsAsync()
@@ -110,5 +112,25 @@ namespace CozyHavenStayServer.Services
                 return false;
             }
         }
+
+        public async Task<RoomImage> AddRoomImageAsync(RoomImage roomImage)
+        {
+            try
+            {
+                var createdImage = await _roomImageRepository.CreateAsync(roomImage);
+                if (createdImage == null)
+                {
+                    _logger.LogError("Failed to add Image");
+                    return null;
+                }
+                return createdImage;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return null;
+            }
+        }
+
     }
 }

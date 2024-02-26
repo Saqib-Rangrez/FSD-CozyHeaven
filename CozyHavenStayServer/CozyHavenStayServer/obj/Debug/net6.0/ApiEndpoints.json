@@ -179,6 +179,16 @@
   },
   {
     "ContainingType": "CozyHavenStayServer.Controllers.AuthController",
+    "Method": "Logout",
+    "RelativePath": "api/Auth/Logout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CozyHavenStayServer.Controllers.AuthController",
     "Method": "UserLogin",
     "RelativePath": "api/Auth/User/Login",
     "HttpMethod": "POST",
@@ -342,9 +352,34 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "hotel",
-        "Type": "CozyHavenStayServer.Models.Hotel",
-        "IsRequired": true
+        "Name": "OwnerId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Location",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Amenities",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Files",
+        "Type": "System.Collections.Generic.List\u00601[[Microsoft.AspNetCore.Http.IFormFile, Microsoft.AspNetCore.Http.Features, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [
@@ -448,6 +483,32 @@
     "ReturnTypes": [
       {
         "Type": "CozyHavenStayServer.Models.Hotel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CozyHavenStayServer.Controllers.HotelController",
+    "Method": "SearchHotelsAsync",
+    "RelativePath": "api/Hotel/SearchHotels",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "searchHotelDTO",
+        "Type": "CozyHavenStayServer.Models.DTO.SearchHotelDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[CozyHavenStayServer.Models.Hotel, CozyHavenStayServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -798,9 +859,44 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "room",
-        "Type": "CozyHavenStayServer.Models.Room",
-        "IsRequired": true
+        "Name": "HotelId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "RoomType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "MaxOccupancy",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "BedType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "BaseFare",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "RoomSize",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Acstatus",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Files",
+        "Type": "System.Collections.Generic.List\u00601[[Microsoft.AspNetCore.Http.IFormFile, Microsoft.AspNetCore.Http.Features, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [

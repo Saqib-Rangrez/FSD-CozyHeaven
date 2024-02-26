@@ -17,8 +17,6 @@ namespace CozyHavenStayServer.Services
         private readonly ICloudinaryService _cloudinaryService;
         private readonly IConfiguration _configuration;
 
-
-
         public UserServices(IRepository<User> userRepository, ILogger<UserController> logger, ICloudinaryService cloudinaryService, IConfiguration configuration, IRepository<Review> reviewRepository)
         {
             _reviewRepository = reviewRepository;
@@ -66,7 +64,8 @@ namespace CozyHavenStayServer.Services
 
         public async Task<User> GetUserByEmailAsync(string email)
         {
-            var user = await _userRepository.GetAsync(user => user.Email == email, false);
+            var emailLower = email.ToLower();
+            var user = await _userRepository.GetAsync(user => user.Email.ToLower() == emailLower, false);
 
             if (user == null)
             {
@@ -132,15 +131,6 @@ namespace CozyHavenStayServer.Services
                 _logger.LogError(ex.Message);
                 return false;
             }
-        }
-
-        public async Task<ImageUploadResult> UploadDisplayPicture(int id, IFormFile file)
-        {
-
-            var folder = _configuration["FolderName"];
-
-            var uploadResult = await _cloudinaryService.UploadImageAsync(file, folder);
-            return uploadResult;
         }
 
         #endregion

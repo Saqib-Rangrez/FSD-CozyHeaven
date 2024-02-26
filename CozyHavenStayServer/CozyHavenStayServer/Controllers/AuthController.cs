@@ -322,5 +322,23 @@ namespace CozyHavenStayServer.Controllers
             }
 
         }
+
+        [HttpPost]
+        [Route("Logout")]
+        public IActionResult Logout([FromServices] ITokenBlacklistService tokenBlacklistService)
+        {
+            string token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+
+            if (string.IsNullOrEmpty(token))
+            {
+                return BadRequest(new { message = "Token is missing in the request header" });
+            }
+            DateTime expiryTime = DateTime.UtcNow.AddMinutes(30);
+
+            // Add token to the blacklist
+            tokenBlacklistService.AddTokenToBlacklist(token, expiryTime);
+
+            return Ok(new { message = "Logout successful" });
+        }
     }
 }

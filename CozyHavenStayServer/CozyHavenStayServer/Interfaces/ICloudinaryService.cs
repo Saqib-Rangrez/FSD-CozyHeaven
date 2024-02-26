@@ -4,6 +4,7 @@ namespace CozyHavenStayServer.Interfaces
 {
     public interface ICloudinaryService
     {
-        public Task<ImageUploadResult> UploadImageAsync(IFormFile file, string folder, int? height = null, int? quality = null);
+        public Task<ImageUploadResult> UploadImageAsync(IFormFile file, int? height = null, int? quality = null);
+
     }
 }

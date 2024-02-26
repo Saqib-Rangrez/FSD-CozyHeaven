@@ -1,5 +1,7 @@
 ﻿using CozyHavenStayServer.Interfaces;
+using CozyHavenStayServer.Mappers;
 using CozyHavenStayServer.Models;
+using CozyHavenStayServer.Models.DTO;
 using CozyHavenStayServer.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,11 +14,13 @@ namespace CozyHavenStayServer.Controllers
     {
         private readonly IRoomServices _roomServices;
         private readonly ILogger<RoomController> _logger;
+        private readonly ICloudinaryService _cloudinaryService;
 
-        public RoomController(IRoomServices roomServices, ILogger<RoomController> logger)
+        public RoomController(IRoomServices roomServices, ILogger<RoomController> logger, ICloudinaryService cloudinaryService)
         {
             _roomServices = roomServices;
             _logger = logger;
+            _cloudinaryService = cloudinaryService;
         }
 
 
@@ -87,35 +91,111 @@ namespace CozyHavenStayServer.Controllers
         }
 
         // Create room
+        /*        [HttpPost]
+                [Route("CreateRoom")]
+                public async Task<ActionResult<Room>> CreateRoomAsync([FromBody] Room room)
+                {
+                    try
+                    {
+                        var createdRoom = await _roomServices.CreateRoomAsync(room);
+                        if (createdRoom == null)
+                        {
+                            return BadRequest(new
+                            {
+                                success = false,
+                                error = "Failed to create room"
+                            });
+                        }
+                        return Ok(new
+                        {
+                            success = true,
+                            message = "Room Added Successfully",
+                            data = createdRoom
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex.Message);
+                        return StatusCode(StatusCodes.Status500InternalServerError, new
+                        {
+                            success = false,
+                            error = "An error occurred while creating room"
+                        });
+                    }
+                }*/
+
         [HttpPost]
         [Route("CreateRoom")]
-        public async Task<ActionResult<Room>> CreateRoomAsync([FromBody] Room room)
+        public async Task<ActionResult<Room>> CreateRoomAsync([FromForm] RoomDTO model)
         {
             try
             {
-                var createdRoom = await _roomServices.CreateRoomAsync(room);
-                if (createdRoom == null)
+                if (model == null)
                 {
                     return BadRequest(new
                     {
                         success = false,
-                        error = "Failed to create room"
+                        message = "Error in details"
                     });
+                }
+
+
+                if (model.Files == null || model.Files.Count <= 0)
+                {
+                    return BadRequest("No file provided.");
+                }
+
+                RegisterToRoom registerToRoom = new RegisterToRoom(model);
+
+                var roomToAdd = registerToRoom.GetRoom();
+                var createdRoom = await _roomServices.CreateRoomAsync(roomToAdd);
+
+                if (createdRoom != null)
+                {
+                    foreach (var file in model.Files)
+                    {
+                        var uploadResult = await _cloudinaryService.UploadImageAsync(file);
+
+                        if (uploadResult != null)
+                        {
+                            RoomImageDTO roomImageDTO = new RoomImageDTO()
+                            {
+                                RoomId = createdRoom.RoomId,
+                                ImageUrl = uploadResult.SecureUrl.ToString(),
+                            };
+      
+                            RegisterToRoomImage registerToRoomImage = new RegisterToRoomImage(roomImageDTO);
+
+                            var imageToAdd = registerToRoomImage.GetRoomImage();
+                            var addedImage = await _roomServices.AddRoomImageAsync(imageToAdd);
+
+                            if (addedImage == null)
+                            {
+                                return StatusCode(500, new
+                                {
+                                    success = false,
+                                    message = "Error while adding image",
+                                    data = uploadResult.SecureUrl
+                                });
+                            }
+                        }
+                    }
                 }
                 return Ok(new
                 {
                     success = true,
-                    message = "Room Added Successfully",
+                    message = "Room Added Successfully.",
                     data = createdRoom
                 });
+
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
-                return StatusCode(StatusCodes.Status500InternalServerError, new
+                return StatusCode(500, new
                 {
                     success = false,
-                    error = "An error occurred while creating room"
+                    message = "Error, while adding room"
                 });
             }
         }

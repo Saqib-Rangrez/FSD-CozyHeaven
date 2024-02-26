@@ -18,7 +18,7 @@
         public string Acstatus { get; set; }
 
         public virtual Hotel? Hotel { get; set; }
-        public virtual List<Booking> Bookings { get; set; }
-        public virtual List<RoomImage> RoomImages { get; set; }
+        public virtual List<Booking>? Bookings { get; set; }
+        public virtual List<RoomImage>? RoomImages { get; set; }
     }
 }

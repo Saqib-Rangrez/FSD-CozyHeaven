@@ -12,8 +12,6 @@ namespace CozyHavenStayServer.Interfaces
         public Task<User> CreateUserAsync(User user);
         public Task<bool> UpdateUserAsync(User user);
         public Task<bool> DeleteUserAsync(int id);
-        public Task<ImageUploadResult> UploadDisplayPicture(int id, IFormFile file);
-
         //Reviws
         public Task<List<Review>> GetAllReviewsAsync();
         public Task<Review> GetReviwByReviewIdAsync(int id);

@@ -36,7 +36,7 @@ namespace CozyHavenStayServer.Services
             var tokenDescription = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Today.AddDays(1),
+                Expires = DateTime.UtcNow.AddMinutes(30),
                 SigningCredentials = cred
             };
 

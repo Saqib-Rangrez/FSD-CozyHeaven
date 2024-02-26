@@ -1,6 +1,9 @@
-﻿using CozyHavenStayServer.Controllers;
+﻿using CloudinaryDotNet.Actions;
+using CozyHavenStayServer.Controllers;
 using CozyHavenStayServer.Interfaces;
 using CozyHavenStayServer.Models;
+using CozyHavenStayServer.Models.DTO;
+using Microsoft.EntityFrameworkCore;
 
 namespace CozyHavenStayServer.Services
 {
@@ -8,11 +11,14 @@ namespace CozyHavenStayServer.Services
     {
         private readonly ILogger<HotelServices> _logger;
         private readonly IRepository<Hotel> _hotelRepository;
+        private readonly IRepository<HotelImage> _hotelImageRepository; 
 
-        public HotelServices(ILogger<HotelServices> logger, IRepository<Hotel> hotelRepository)
+
+        public HotelServices(ILogger<HotelServices> logger, IRepository<Hotel> hotelRepository, IRepository<HotelImage> hotelImageRepository)
         {
             _logger = logger;
             _hotelRepository = hotelRepository;
+            _hotelImageRepository = hotelImageRepository;
         }
 
         public async Task<List<Hotel>> GetAllHotelsAsync()
@@ -51,14 +57,14 @@ namespace CozyHavenStayServer.Services
 
         public async Task<Hotel> GetHotelByNameAsync(string name)
         {
-            var user = await _hotelRepository.GetAsync(hotel => hotel.Name.Contains(name), false);
+            var hotel = await _hotelRepository.GetAsync(hotel => hotel.Name.Equals(name , StringComparison.OrdinalIgnoreCase), false);
 
-            if (user == null)
+            if (hotel == null)
             {
                 _logger.LogError("Hotel not found with given name");
                 return null;
             }
-            return user;
+            return hotel;
         }
 
 
@@ -124,5 +130,77 @@ namespace CozyHavenStayServer.Services
                 return false;
             }
         }
+
+        public async Task<List<Hotel>> SearchHotelsAsync(SearchHotelDTO searchHotelDTO)
+        {
+            var allHotels = await _hotelRepository.GetAllAsync();
+            var filteredHotels = allHotels;
+            if (searchHotelDTO.Location != null)
+            {
+                filteredHotels = allHotels.Where(h => h.Location.Contains(searchHotelDTO.Location, StringComparison.OrdinalIgnoreCase)).ToList();
+            }
+          
+            if (filteredHotels == null || filteredHotels.Count <= 0)
+            {
+                return null;
+            }
+
+            if(searchHotelDTO.CheckInDate != null && searchHotelDTO.CheckOutDate != null)
+            {
+                filteredHotels = filteredHotels.Where(h => h.Rooms.Any(r =>
+                !r.Bookings.Any(b =>
+                    (searchHotelDTO.CheckInDate >= b.CheckInDate && searchHotelDTO.CheckInDate < b.CheckOutDate) ||
+                    (searchHotelDTO.CheckOutDate > b.CheckInDate && searchHotelDTO.CheckOutDate <= b.CheckOutDate)
+                ))).ToList();
+            }
+            
+            if (filteredHotels == null || filteredHotels.Count <= 0)
+            {
+                return null;
+            }
+
+            if (searchHotelDTO.NumberOfRooms != null)
+            {
+                filteredHotels = filteredHotels.Where(h => h.Rooms.Count >= searchHotelDTO.NumberOfRooms).ToList();
+            }
+            if (filteredHotels == null || filteredHotels.Count <= 0)
+            {
+                return null;
+            }
+
+            if(searchHotelDTO.NumberOfChildren != null && searchHotelDTO.NumberOfAdults != null)
+            {
+                int? totalPersons = searchHotelDTO.NumberOfAdults + searchHotelDTO.NumberOfChildren;
+                filteredHotels = filteredHotels.Where(h => h.Rooms.Any(r => r.MaxOccupancy >= totalPersons)).ToList();
+            }
+
+            if (filteredHotels == null || filteredHotels.Count <= 0)
+            {
+                return null;
+            }
+
+            return filteredHotels;
+        }
+
+        public async Task<HotelImage> AddHotelImageAsync(HotelImage hotelImage)
+        {
+            try
+            {
+                var createdImage = await _hotelImageRepository.CreateAsync(hotelImage);
+                if (createdImage == null)
+                {
+                    _logger.LogError("Failed to add Image");
+                    return null;
+                }
+                return createdImage;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return null;
+            }
+        }
+
+
     }
 }

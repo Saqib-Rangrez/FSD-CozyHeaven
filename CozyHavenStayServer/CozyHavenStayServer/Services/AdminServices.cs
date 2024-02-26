@@ -82,7 +82,8 @@ namespace CozyHavenStayServer.Services
 
         public async Task<Admin> GetAdminByEmailAsync(string email)
         {
-            var admin = await _adminRepository.GetAsync(admin => admin.Email == email, false);
+            var emailLower = email.ToLower();
+            var admin = await _adminRepository.GetAsync(user => user.Email.ToLower() == emailLower, false);
 
             if (admin == null)
             {

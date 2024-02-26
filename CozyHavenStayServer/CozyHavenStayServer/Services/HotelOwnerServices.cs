@@ -87,7 +87,7 @@ namespace CozyHavenStayServer.Services
 
         public async Task<HotelOwner> GetHotelOwnerByEmailAsync(string email)
         {
-            var hotelOwner = await _hotelOwnerRepository.GetAsync(hotelOwner => hotelOwner.Email == email, false);
+            var hotelOwner = await _hotelOwnerRepository.GetAsync(hotelOwner => hotelOwner.Email.ToLower() == email.ToLower(), false);
 
             if (hotelOwner == null)
             {

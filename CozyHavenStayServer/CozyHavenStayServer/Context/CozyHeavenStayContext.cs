@@ -33,5 +33,10 @@ namespace CozyHavenStayServer.Context
             modelBuilder.ApplyConfiguration(new RoomConfig());
             modelBuilder.ApplyConfiguration(new RoomImageConfig());
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLazyLoadingProxies(); 
+        }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using CozyHavenStayServer.Interfaces;
+using CozyHavenStayServer.Mappers;
 using CozyHavenStayServer.Models;
+using CozyHavenStayServer.Models.DTO;
 using CozyHavenStayServer.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,11 +14,13 @@ namespace CozyHavenStayServer.Controllers
     {
         private readonly ILogger<HotelController> _logger;
         private readonly IHotelServices _hotelServices;
+        private readonly ICloudinaryService _cloudinaryService;
 
-        public HotelController(ILogger<HotelController> logger, IHotelServices hotelServices)
+        public HotelController(ILogger<HotelController> logger, IHotelServices hotelServices, ICloudinaryService cloudinaryService)
         {
             _logger = logger;
             _hotelServices = hotelServices;
+            _cloudinaryService = cloudinaryService;
         }
 
         // Get all hotels
@@ -30,6 +34,40 @@ namespace CozyHavenStayServer.Controllers
                 if (hotels == null || hotels.Count <=0)
                 {
                     return NotFound( new
+                    {
+                        success = false,
+                        error = "No data found"
+                    });
+                }
+                return Ok(new
+                {
+                    success = true,
+                    data = hotels,
+                    size = hotels.Count
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    error = "An error occurred while retrieving all hotels"
+                });
+            }
+        }
+
+        // Get all hotels
+        [HttpPost]
+        [Route("SearchHotels")]
+        public async Task<ActionResult<List<Hotel>>> SearchHotelsAsync([FromBody] SearchHotelDTO searchHotelDTO)
+        {
+            try
+            {
+                var hotels = await _hotelServices.SearchHotelsAsync(searchHotelDTO);
+                if (hotels == null || hotels.Count <= 0)
+                {
+                    return NotFound(new
                     {
                         success = false,
                         error = "No data found"
@@ -71,7 +109,8 @@ namespace CozyHavenStayServer.Controllers
                 return Ok(new
                 {
                     success = true,
-                    data = hotel
+                    data = hotel,
+                    size = hotel.Rooms.Count
                 });
             }
             catch (Exception ex)
@@ -119,7 +158,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         // Create hotel
-        [HttpPost]
+        /*[HttpPost]
         [Route("CreateHotel")]
         public async Task<ActionResult<Hotel>> CreateHotelAsync([FromBody] Hotel hotel)
         {
@@ -148,6 +187,88 @@ namespace CozyHavenStayServer.Controllers
                 {
                     success = false,
                     error = "An error occurred while creating hotel"
+                });
+            }
+        }
+*/
+        [HttpPost]
+        [Route("CreateHotel")]
+        public async Task<ActionResult<Hotel>> CreateHotelAsync([FromForm] HotelDTO model)
+        {
+            try
+            {
+                if(model == null)
+                {
+                    return BadRequest(new
+                    {
+                        success = false,
+                        message = "Error in details"
+                    });
+                }
+                var hotelValid = await _hotelServices.GetHotelByNameAsync(model.Name);
+                if ( hotelValid != null )
+                {
+                    return BadRequest(new
+                    {
+                        success = false,
+                        message = "Hotel with given name already exist",
+                        data = hotelValid
+                    });
+                }
+
+                if (model.Files == null || model.Files.Count <= 0)
+                {
+                    return BadRequest("No file provided.");
+                }
+
+                RegisterToHotel registerToHotel = new RegisterToHotel(model);
+                var hotelToAdd = registerToHotel.GetHotel();
+                var createdHotel = await _hotelServices.CreateHotelAsync(hotelToAdd);
+
+                if (createdHotel != null)
+                {
+                    foreach (var file in model.Files)
+                    {
+                        var uploadResult = await _cloudinaryService.UploadImageAsync(file);
+                        
+                        if (uploadResult != null)
+                        {
+                            HotelImageDTO hotelImageDTO = new HotelImageDTO()
+                            {
+                                HotelId = createdHotel.HotelId,
+                                ImageUrl = uploadResult.SecureUrl.ToString(),
+                            };
+                            RegisterToHotelImage registerToHotelImage = new RegisterToHotelImage(hotelImageDTO);
+                            var imageToAdd = registerToHotelImage.GetHotelImage();
+                            var addedImage = await _hotelServices.AddHotelImageAsync(imageToAdd);
+
+                            if (addedImage == null)
+                            {
+                                return StatusCode(500, new
+                                {
+                                    success = false,
+                                    message = "Error while adding image",
+                                    data = uploadResult.SecureUrl
+                                });
+                            }
+                        }
+                    }
+                }
+                return Ok(new
+                {
+                    success = true,
+                    message = "Hotel Added Successfully.",
+                    data = createdHotel
+                });
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(500, new
+                {
+                    success = false,
+                    message = "Error, while adding hotel"
                 });
             }
         }

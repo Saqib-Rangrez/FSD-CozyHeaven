@@ -2,6 +2,7 @@
 using CozyHavenStayServer.Interfaces;
 using CozyHavenStayServer.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace CozyHavenStayServer.Repositories
@@ -14,29 +15,38 @@ namespace CozyHavenStayServer.Repositories
             _context = context;
         }
 
-        public Task<RoomImage> CreateAsync(RoomImage dbRecord)
+        public async Task<RoomImage> CreateAsync(RoomImage dbRecord)
         {
-            throw new NotImplementedException();
+            _context.RoomImages.Add(dbRecord);
+            await _context.SaveChangesAsync();
+            return dbRecord;
         }
 
-        public Task<bool> DeleteAsync(RoomImage dbRecord)
+        public async Task<bool> DeleteAsync(RoomImage dbRecord)
         {
-            throw new NotImplementedException();
+            _context.RoomImages.Remove(dbRecord);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
-        public Task<List<RoomImage>> GetAllAsync()
+        public async Task<List<RoomImage>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.RoomImages.ToListAsync();
         }
 
-        public Task<RoomImage> GetAsync(Expression<Func<RoomImage, bool>> filter, bool useNoTracking = false)
+        public async Task<RoomImage> GetAsync(Expression<Func<RoomImage, bool>> filter, bool useNoTracking = false)
         {
-            throw new NotImplementedException();
+            if (useNoTracking)
+                return await _context.RoomImages.AsNoTracking().Where(filter).FirstOrDefaultAsync();
+            else
+                return await _context.RoomImages.Where(filter).FirstOrDefaultAsync();
         }
 
-        public Task<RoomImage> UpdateAsync(RoomImage dbRecord)
+        public async Task<RoomImage> UpdateAsync(RoomImage dbRecord)
         {
-            throw new NotImplementedException();
+            _context.RoomImages.Update(dbRecord);
+            await _context.SaveChangesAsync();
+            return dbRecord;
         }
     }
 }
