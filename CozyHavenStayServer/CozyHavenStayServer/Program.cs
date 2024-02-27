@@ -79,6 +79,8 @@ builder.Services.AddScoped<IRepository<Review>, ReviewRepository>();
 builder.Services.AddScoped<IRepository<RoomImage>, RoomImageRepository>();
 builder.Services.AddScoped<IRepository<HotelImage>, HotelImageRepository>();
 builder.Services.AddScoped<IRepository<Booking>, BookingRepository>();
+builder.Services.AddScoped<IRepository<Payment>, PaymentRepository>();
+builder.Services.AddScoped<IRepository<Refund>, RefundRepository>();
 
 //-------Services
 builder.Services.AddScoped<IUserServices, UserServices>();
@@ -91,6 +93,8 @@ builder.Services.AddScoped<IRoomServices, RoomServices>();
 builder.Services.AddScoped<IBookingServices, BookingServices>();
 builder.Services.AddSingleton<ITokenBlacklistService, TokenBlacklistService>();
 builder.Services.AddHostedService<TokenCleanUpService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
+builder.Services.AddScoped<IRefundService, RefundService>();
 
 var emailConfig = builder.Configuration.GetSection("EmailConfig").Get<EmailConfiguration>();
 var emailService = new EmailService(emailConfig);

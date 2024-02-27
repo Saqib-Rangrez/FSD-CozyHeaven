@@ -21,6 +21,9 @@ namespace CozyHavenStayServer.Context
         public virtual DbSet<RoomImage> RoomImages { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
 
+        public virtual DbSet<Payment> Payments { get; set; } = null!;
+        public virtual DbSet<Refund> Refunds { get; set; } = null!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UserConfig());
@@ -32,6 +35,8 @@ namespace CozyHavenStayServer.Context
             modelBuilder.ApplyConfiguration(new ReviewConfig());
             modelBuilder.ApplyConfiguration(new RoomConfig());
             modelBuilder.ApplyConfiguration(new RoomImageConfig());
+            modelBuilder.ApplyConfiguration(new PaymentConfig());
+            modelBuilder.ApplyConfiguration(new RefundConfig());
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -6,6 +6,7 @@
         public int? UserId { get; set; }
         public int? RoomId { get; set; }
         public int? HotelId { get; set; }
+        public int? PaymentId { get; set; }
         public int NumberOfGuests { get; set; }
         public DateTime CheckInDate { get; set; }
         public DateTime CheckOutDate { get; set; }
@@ -14,5 +15,8 @@
         public virtual Room? Room { get; set; }
         public virtual Hotel? Hotel { get; set; }
         public virtual User? User { get; set; }
+        
+        public virtual Payment? Payment { get; set; }
+
     }
 }
