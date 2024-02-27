@@ -147,6 +147,22 @@
   },
   {
     "ContainingType": "CozyHavenStayServer.Controllers.AuthController",
+    "Method": "ForgetPasswordAsync",
+    "RelativePath": "api/Auth/ForgetPassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "CozyHavenStayServer.Models.DTO.ForgetPasswordDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CozyHavenStayServer.Controllers.AuthController",
     "Method": "HotelOwnerLogin",
     "RelativePath": "api/Auth/HotelOwner/Login",
     "HttpMethod": "POST",
@@ -185,6 +201,22 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CozyHavenStayServer.Controllers.AuthController",
+    "Method": "ResetPasswordAsync",
+    "RelativePath": "api/Auth/ResettPassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "CozyHavenStayServer.Models.DTO.ResetPasswordDTO",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {

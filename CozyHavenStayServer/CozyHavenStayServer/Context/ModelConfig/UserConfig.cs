@@ -22,6 +22,9 @@ namespace CozyHavenStayServer.Context.ModelConfig
             builder.Property(u => u.Address).HasColumnName("Address").HasColumnType("nvarchar(max)").IsRequired();
             builder.Property(u => u.Role).HasColumnName("Role").HasMaxLength(50).HasColumnType("nvarchar(50)").HasDefaultValue("Guest");
             builder.Property(u => u.ProfileImage).HasColumnName("ProfileImage").HasMaxLength(255).HasColumnType("nvarchar(255)").IsRequired();
+            builder.Property(x => x.Token).HasColumnName("Token").IsRequired(false);
+            builder.Property(x => x.ResetPasswordExpires).HasColumnName("ResetPasswordExpires").IsRequired(false);
+
         }
     }
 }

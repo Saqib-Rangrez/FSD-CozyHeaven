@@ -1,4 +1,5 @@
-﻿using CozyHavenStayServer.Interfaces;
+﻿using CloudinaryDotNet;
+using CozyHavenStayServer.Interfaces;
 using CozyHavenStayServer.Mappers;
 using CozyHavenStayServer.Models;
 using CozyHavenStayServer.Models.DTO;
@@ -19,8 +20,10 @@ namespace CozyHavenStayServer.Controllers
         private readonly IAdminServices _adminServices;
         private readonly IHotelOwnerServices _hotelOwnerServices;
         private readonly IAccountServices _accountServices;
+        private readonly IEmailService _emailService;
 
-        public AuthController(ILogger<AuthController> logger, IAuthServices authServices, IUserServices userServices, IAccountServices accountServices, IAdminServices adminServices, IHotelOwnerServices hotelOwnerServices)
+
+        public AuthController(ILogger<AuthController> logger, IAuthServices authServices, IUserServices userServices, IAccountServices accountServices, IAdminServices adminServices, IHotelOwnerServices hotelOwnerServices, IEmailService emailService)
         {
             _logger = logger;
             _authServices = authServices;
@@ -28,6 +31,7 @@ namespace CozyHavenStayServer.Controllers
             _accountServices = accountServices;
             _adminServices = adminServices;
             _hotelOwnerServices = hotelOwnerServices;
+            _emailService = emailService;
         }
 
 
@@ -335,10 +339,126 @@ namespace CozyHavenStayServer.Controllers
             }
             DateTime expiryTime = DateTime.UtcNow.AddMinutes(30);
 
-            // Add token to the blacklist
             tokenBlacklistService.AddTokenToBlacklist(token, expiryTime);
 
             return Ok(new { message = "Logout successful" });
+        }
+
+        //forget-password mail
+        [HttpPost]
+        [Route("ForgetPassword")]
+        public async Task<IActionResult> ForgetPasswordAsync([FromBody] ForgetPasswordDTO model)
+        {
+            dynamic user;
+            if(model == null)
+            {
+                return BadRequest();
+            }
+
+            if (model.Role == "User")
+            {
+                user = await _userServices.GetUserByEmailAsync(model.Email);
+            }
+            else if (model.Role == "Admin")
+            {
+                user = await _adminServices.GetAdminByEmailAsync(model.Email);
+            }
+            else
+            {
+                user = await _hotelOwnerServices.GetHotelOwnerByEmailAsync(model.Email);
+            }
+
+            if (user == null)
+            {
+                return NotFound(new
+                {
+                    success = false,
+                    message = $"User with email : {model.Email} does not exist"
+                });
+            }
+
+            var data = await _accountServices.ForgotPassAsync(user);
+
+            var origin = Request.Headers["Origin"];
+            string message;
+            if (!string.IsNullOrEmpty(origin))
+            {
+                var resetUrl = $"{origin}/account/reset-password?token={data.Token}";
+                message = $@"<p>Please click the below link to reset your password, the link will be valid for 6 hours:</p>
+                            <p><a href=""{resetUrl}"">{resetUrl}</a></p>";
+            }
+            else
+            {
+                var resetUrl = $"http://localhost:4200/account/reset-password?token{data.Token}";
+                message = $@"<p>Please click the below link to reset your password, the link will be valid for 6 hours:</p>
+                            <p><a href=""{resetUrl}"">{resetUrl}</a></p>";
+            }
+
+            var toEmail = model.Email;
+            var subject = "Reset Password";
+            var body = message;
+
+            var isEmailSent = _emailService.SendEmailAsync(toEmail, subject, body);
+            if (isEmailSent)
+            {
+                return Ok(new
+                {
+                    success = true,
+                    message = "Email sent successfully",
+                    user = data
+                });
+            }
+            else
+            {
+                return BadRequest("Failed to send email");
+            }
+        }
+
+
+        //reset-password 
+        [HttpPost]
+        [Route("ResetPassword")]
+        public async Task<IActionResult> ResetPasswordAsync([FromBody] ResetPasswordDTO model)
+        {
+            
+            if (model == null)
+            {
+                return BadRequest();
+            }
+            if (model.Password != model.ConfirmPassword)
+            {
+                return BadRequest(new { success = false, message = "Password mismatch" });
+            }
+
+            dynamic user = await _accountServices.ResetPassAsync(model);
+
+            if(user == null)
+            {
+                return BadRequest(new { success = false, message = "Token is expired. Please regenerate your token" });
+            }
+
+            string message = $@"<h1>Password Reset Successfull</h1><p>Your password has been changed successfully.</p>";
+ 
+
+
+            var toEmail = model.Email;
+            var subject = "Reset Password";
+            var body = message;
+
+            var isEmailSent = _emailService.SendEmailAsync(toEmail, subject, body);
+            if (isEmailSent)
+            {
+                return Ok(new
+                {
+                    success = true,
+                    message = "Password changed successfully.",
+                    data = user
+                });
+            }
+            else
+            {
+                return BadRequest("Failed to reset password");
+            }
         }
     }
 }

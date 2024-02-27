@@ -19,6 +19,8 @@ namespace CozyHavenStayServer.Context.ModelConfig
             builder.Property(a => a.Password).HasColumnName("Password").IsRequired().HasMaxLength(255);
             builder.Property(a => a.ProfileImage).HasColumnName("profileImage").IsRequired().HasMaxLength(255);
             builder.Property(a => a.Role).HasColumnName("Role").HasMaxLength(50).HasDefaultValue("Admin");
+            builder.Property(x => x.Token).HasColumnName("Token").IsRequired(false);
+            builder.Property(x => x.ResetPasswordExpires).HasColumnName("ResetPasswordExpires").IsRequired(false);
         }
     }
 }

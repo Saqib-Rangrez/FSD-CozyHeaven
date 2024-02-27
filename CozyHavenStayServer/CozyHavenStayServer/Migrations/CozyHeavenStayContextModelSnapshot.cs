@@ -61,12 +61,20 @@ namespace CozyHavenStayServer.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("profileImage");
 
+                    b.Property<DateTime?>("ResetPasswordExpires")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("ResetPasswordExpires");
+
                     b.Property<string>("Role")
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasDefaultValue("Admin")
                         .HasColumnName("Role");
+
+                    b.Property<string>("Token")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Token");
 
                     b.HasKey("AdminId");
 
@@ -170,8 +178,7 @@ namespace CozyHavenStayServer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ImageId"), 1L, 1);
 
-                    b.Property<int?>("HotelId")
-                        .IsRequired()
+                    b.Property<int>("HotelId")
                         .HasColumnType("int")
                         .HasColumnName("HotelId");
 
@@ -243,12 +250,20 @@ namespace CozyHavenStayServer.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("ProfileImage");
 
+                    b.Property<DateTime?>("ResetPasswordExpires")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("ResetPasswordExpires");
+
                     b.Property<string>("Role")
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasDefaultValue("Owner")
                         .HasColumnName("Role");
+
+                    b.Property<string>("Token")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Token");
 
                     b.HasKey("OwnerId");
 
@@ -269,8 +284,7 @@ namespace CozyHavenStayServer.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Comments");
 
-                    b.Property<int?>("HotelId")
-                        .IsRequired()
+                    b.Property<int>("HotelId")
                         .HasColumnType("int")
                         .HasColumnName("HotelId");
 
@@ -278,8 +292,7 @@ namespace CozyHavenStayServer.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Rating");
 
-                    b.Property<int?>("UserId")
-                        .IsRequired()
+                    b.Property<int>("UserId")
                         .HasColumnType("int")
                         .HasColumnName("UserId");
 
@@ -360,8 +373,7 @@ namespace CozyHavenStayServer.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("ImageUrl");
 
-                    b.Property<int?>("RoomId")
-                        .IsRequired()
+                    b.Property<int>("RoomId")
                         .HasColumnType("int")
                         .HasColumnName("RoomId");
 
@@ -428,12 +440,20 @@ namespace CozyHavenStayServer.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("ProfileImage");
 
+                    b.Property<DateTime?>("ResetPasswordExpires")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("ResetPasswordExpires");
+
                     b.Property<string>("Role")
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasDefaultValue("Guest")
                         .HasColumnName("Role");
+
+                    b.Property<string>("Token")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Token");
 
                     b.HasKey("UserId");
 

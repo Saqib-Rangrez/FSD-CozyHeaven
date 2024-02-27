@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using System.Text;
 using System.Text.Json.Serialization;
 using CozyHavenStayServer.Middleware;
+using CozyHavenStayServer.Mappers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,6 +43,8 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
 .AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+    //options.JsonSerializerOptions.PropertyNamingPolicy = null;
+    //options.JsonSerializerOptions.DictionaryKeyPolicy = null;
 });
 
 
@@ -89,6 +92,9 @@ builder.Services.AddScoped<IBookingServices, BookingServices>();
 builder.Services.AddSingleton<ITokenBlacklistService, TokenBlacklistService>();
 builder.Services.AddHostedService<TokenCleanUpService>();
 
+var emailConfig = builder.Configuration.GetSection("EmailConfig").Get<EmailConfiguration>();
+var emailService = new EmailService(emailConfig);
+builder.Services.AddSingleton<IEmailService>(emailService);
 
 builder.Services.AddScoped<ICloudinaryService>(serviceProvider =>
 {

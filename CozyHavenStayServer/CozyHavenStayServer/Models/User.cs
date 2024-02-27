@@ -24,8 +24,8 @@ namespace CozyHavenStayServer.Models
         public string Address { get; set; }
         public string? Role { get; set; }
         public string? ProfileImage { get; set; }
-        [NotMapped]
-        public string? Token {  get; set; }
+        public string? Token { get; set; }
+        public DateTime? ResetPasswordExpires { get; set; }
 
         public virtual List<Booking>? Bookings { get; set; }
         public virtual List<Review>? Reviews { get; set; }

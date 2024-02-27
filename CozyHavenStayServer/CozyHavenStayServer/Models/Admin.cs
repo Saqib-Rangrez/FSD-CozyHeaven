@@ -14,7 +14,8 @@ namespace CozyHavenStayServer.Models
         public string Password { get; set; }
         public string? ProfileImage { get; set; }
         public string? Role { get; set; }
-        [NotMapped]
         public string? Token { get; set; }
+
+        public DateTime? ResetPasswordExpires { get; set; }
     }
 }
