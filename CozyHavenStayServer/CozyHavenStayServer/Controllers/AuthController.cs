@@ -394,7 +394,7 @@ namespace CozyHavenStayServer.Controllers
                             <p><a href=""{resetUrl}"">{resetUrl}</a></p>";
             }
 
-            var toEmail = model.Email;
+            var toEmail = "deeprajchawda@gmail.com"; //model.Email;
             var subject = "Reset Password";
             var body = message;
 

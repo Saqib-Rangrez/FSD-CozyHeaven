@@ -16,6 +16,7 @@ namespace CozyHavenStayServer.Services
         {
             _emailConfig = emailConfig;
         }
+
         public bool SendEmailAsync(string toEmail, string subject, string body)
         {
             try
