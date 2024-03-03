@@ -21,6 +21,7 @@ namespace CozyHavenStayServer.Context.ModelConfig
             builder.Property(e => e.Status).HasMaxLength(30).IsRequired();
             builder.Property(e => e.RoomId).HasColumnType("int").IsRequired();
             builder.Property(e => e.UserId).HasColumnType("int").IsRequired();
+            builder.Property(e => e.PaymentId).HasColumnType("int").IsRequired(false);
 
             builder.HasOne(e => e.Room)
                 .WithMany(r => r.Bookings)

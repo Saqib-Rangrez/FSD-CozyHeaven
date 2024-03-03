@@ -27,6 +27,7 @@ namespace CozyHavenStayServer.Controllers
 
 
         //GetAllUsers
+        [Authorize]
         [HttpGet]
         [Route("GetAllUsers")]
         public async Task<ActionResult<List<User>>> GetAllUsersAsync()
