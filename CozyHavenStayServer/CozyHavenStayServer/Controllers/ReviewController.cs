@@ -69,7 +69,7 @@ namespace CozyHavenStayServer.Controllers
                         message = "Invalid Review Id"
                     });
                 }
-                var review = await _userServices.GetReviwByReviewIdAsync(id);
+                var review = await _userServices.GetReviewByReviewIdAsync(id);
 
                 if (review == null)
                 {
