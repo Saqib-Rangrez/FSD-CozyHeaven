@@ -1,0 +1,324 @@
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\CoverletSourceRootsMapping
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\obj\Debug\net6.0\NunitTesting.csproj.AssemblyReference.cache
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\obj\Debug\net6.0\NunitTesting.GeneratedMSBuildEditorConfig.editorconfig
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\obj\Debug\net6.0\NunitTesting.AssemblyInfoInputs.cache
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\obj\Debug\net6.0\NunitTesting.AssemblyInfo.cs
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\obj\Debug\net6.0\NunitTesting.csproj.CoreCompileInputs.cache
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\obj\Debug\net6.0\NunitTesting.sourcelink.json
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\testhost.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\CozyHavenStayServer.deps.json
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\CozyHavenStayServer.runtimeconfig.json
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\appsettings.Development.json
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\appsettings.json
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\CozyHavenStayServer.exe
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\testhost.exe
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\NUnit3.TestAdapter.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\NUnit3.TestAdapter.pdb
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\nunit.engine.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\nunit.engine.api.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\nunit.engine.core.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\testcentric.engine.metadata.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\NunitTesting.deps.json
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\NunitTesting.runtimeconfig.json
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\NunitTesting.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\NunitTesting.pdb
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Castle.Core.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\CloudinaryDotNet.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\MailKit.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.VisualStudio.CodeCoverage.Shim.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Proxies.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.OpenApi.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.TestPlatform.CoreUtilities.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.TestPlatform.PlatformAbstractions.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.TestPlatform.CommunicationUtilities.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.TestPlatform.CrossPlatEngine.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.TestPlatform.Utilities.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.VisualStudio.TestPlatform.Common.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\MimeKit.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Moq.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Newtonsoft.Json.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\NuGet.Frameworks.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\nunit.framework.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\System.Drawing.Common.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\System.Formats.Asn1.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\System.Net.Mail.Abstractions.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\System.Runtime.Caching.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\System.Security.Permissions.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\System.Text.Encoding.CodePages.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\System.Windows.Extensions.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\cs\Microsoft.TestPlatform.CoreUtilities.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\cs\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\de\Microsoft.TestPlatform.CoreUtilities.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\de\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\es\Microsoft.TestPlatform.CoreUtilities.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\es\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\fr\Microsoft.TestPlatform.CoreUtilities.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\fr\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\it\Microsoft.TestPlatform.CoreUtilities.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\it\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ja\Microsoft.TestPlatform.CoreUtilities.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ja\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ko\Microsoft.TestPlatform.CoreUtilities.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ko\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\pl\Microsoft.TestPlatform.CoreUtilities.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\pl\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\pt-BR\Microsoft.TestPlatform.CoreUtilities.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\pt-BR\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ru\Microsoft.TestPlatform.CoreUtilities.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ru\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\tr\Microsoft.TestPlatform.CoreUtilities.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\tr\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\zh-Hans\Microsoft.TestPlatform.CoreUtilities.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\zh-Hans\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\zh-Hant\Microsoft.TestPlatform.CoreUtilities.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\zh-Hant\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\cs\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\cs\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\cs\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\de\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\de\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\de\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\es\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\es\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\es\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\fr\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\fr\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\fr\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\it\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\it\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\it\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ja\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ja\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ja\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ko\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ko\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ko\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\pl\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\pl\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\pl\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\pt-BR\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\pt-BR\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\pt-BR\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ru\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ru\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ru\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\tr\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\tr\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\tr\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\zh-Hans\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\zh-Hans\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\zh-Hans\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\zh-Hant\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\zh-Hant\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\CozyHavenStayServer.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\CozyHavenStayServer.pdb
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\obj\Debug\net6.0\NunitTesting.csproj.CopyComplete
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\obj\Debug\net6.0\NunitTesting.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\obj\Debug\net6.0\refint\NunitTesting.dll
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\obj\Debug\net6.0\NunitTesting.pdb
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\obj\Debug\net6.0\NunitTesting.genruntimeconfig.cache
+F:\c sharp program\casestudy1\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\obj\Debug\net6.0\ref\NunitTesting.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\CoverletSourceRootsMapping
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\obj\Debug\net6.0\NunitTesting.csproj.AssemblyReference.cache
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\obj\Debug\net6.0\NunitTesting.GeneratedMSBuildEditorConfig.editorconfig
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\obj\Debug\net6.0\NunitTesting.AssemblyInfoInputs.cache
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\obj\Debug\net6.0\NunitTesting.AssemblyInfo.cs
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\obj\Debug\net6.0\NunitTesting.csproj.CoreCompileInputs.cache
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\obj\Debug\net6.0\NunitTesting.sourcelink.json
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\obj\Debug\net6.0\NunitTesting.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\obj\Debug\net6.0\refint\NunitTesting.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\obj\Debug\net6.0\NunitTesting.pdb
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\testhost.exe
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\testhost.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\NUnit3.TestAdapter.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\NUnit3.TestAdapter.pdb
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\nunit.engine.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\nunit.engine.api.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\nunit.engine.core.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\testcentric.engine.metadata.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\CozyHavenStayServer.deps.json
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\CozyHavenStayServer.runtimeconfig.json
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\appsettings.Development.json
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\appsettings.json
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\CozyHavenStayServer.exe
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\NunitTesting.deps.json
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\NunitTesting.runtimeconfig.json
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\NunitTesting.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\NunitTesting.pdb
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Castle.Core.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\CloudinaryDotNet.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\MailKit.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.VisualStudio.CodeCoverage.Shim.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Proxies.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.OpenApi.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.TestPlatform.CoreUtilities.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.TestPlatform.PlatformAbstractions.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.TestPlatform.CommunicationUtilities.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.TestPlatform.CrossPlatEngine.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.TestPlatform.Utilities.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.VisualStudio.TestPlatform.Common.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\MimeKit.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Moq.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Newtonsoft.Json.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\NuGet.Frameworks.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\nunit.framework.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\System.Drawing.Common.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\System.Formats.Asn1.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\System.Net.Mail.Abstractions.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\System.Runtime.Caching.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\System.Security.Permissions.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\System.Text.Encoding.CodePages.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\System.Windows.Extensions.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\cs\Microsoft.TestPlatform.CoreUtilities.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\cs\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\de\Microsoft.TestPlatform.CoreUtilities.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\de\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\es\Microsoft.TestPlatform.CoreUtilities.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\es\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\fr\Microsoft.TestPlatform.CoreUtilities.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\fr\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\it\Microsoft.TestPlatform.CoreUtilities.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\it\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ja\Microsoft.TestPlatform.CoreUtilities.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ja\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ko\Microsoft.TestPlatform.CoreUtilities.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ko\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\pl\Microsoft.TestPlatform.CoreUtilities.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\pl\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\pt-BR\Microsoft.TestPlatform.CoreUtilities.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\pt-BR\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ru\Microsoft.TestPlatform.CoreUtilities.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ru\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\tr\Microsoft.TestPlatform.CoreUtilities.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\tr\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\zh-Hans\Microsoft.TestPlatform.CoreUtilities.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\zh-Hans\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\zh-Hant\Microsoft.TestPlatform.CoreUtilities.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\zh-Hant\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\cs\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\cs\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\cs\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\de\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\de\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\de\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\es\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\es\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\es\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\fr\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\fr\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\fr\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\it\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\it\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\it\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ja\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ja\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ja\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ko\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ko\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ko\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\pl\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\pl\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\pl\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\pt-BR\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\pt-BR\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\pt-BR\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ru\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ru\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\ru\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\tr\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\tr\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\tr\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\zh-Hans\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\zh-Hans\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\zh-Hans\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\zh-Hant\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\zh-Hant\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\CozyHavenStayServer.dll
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\bin\Debug\net6.0\CozyHavenStayServer.pdb
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\obj\Debug\net6.0\NunitTesting.csproj.CopyComplete
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\obj\Debug\net6.0\NunitTesting.genruntimeconfig.cache
+F:\c sharp program\new czoy\FSD-CozyHeaven\CozyHavenStayServer\NunitTesting\obj\Debug\net6.0\ref\NunitTesting.dll

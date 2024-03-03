@@ -169,7 +169,7 @@ namespace CozyHavenStayServer.Services
             }
         }
 
-        public async Task<Review> GetReviwByReviewIdAsync(int id)
+        public async Task<Review> GetReviewByReviewIdAsync(int id)
         {
             try
             {

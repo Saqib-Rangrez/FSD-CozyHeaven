@@ -14,7 +14,7 @@ namespace CozyHavenStayServer.Interfaces
         public Task<bool> DeleteUserAsync(int id);
         //Reviws
         public Task<List<Review>> GetAllReviewsAsync();
-        public Task<Review> GetReviwByReviewIdAsync(int id);
+        public Task<Review> GetReviewByReviewIdAsync(int id);
         public Task<List<Review>> GetReviewByHotelIdAsync(int id);
         public Task<List<Review>> GetReviewByUserIdAsync(int id);
         public Task<Review> AddReviewAsync(Review model);
