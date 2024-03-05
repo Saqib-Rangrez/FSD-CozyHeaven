@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CozyHavenStayServer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7966c4a758e0c8683e6402c5f729f8fa0a11a174")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d4897765a74c384624b322eb7fd7b36a4bfbcfc6")]
 [assembly: System.Reflection.AssemblyProductAttribute("CozyHavenStayServer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CozyHavenStayServer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

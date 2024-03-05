@@ -1,0 +1,31 @@
+<div class="container">
+    <h2>Register Admin</h2>
+    <form [formGroup]="adminForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input type="text" class="form-control" id="firstName" formControlName="firstName" placeholder="Enter first name">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input type="text" class="form-control" id="lastName" formControlName="lastName" placeholder="Enter last name">
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter email">
+        <div *ngIf="adminForm.get('email').errors?.['email']" class="text-danger">Invalid email format</div>
+        <div *ngIf="adminForm.get('email').errors?.['required']" class="text-danger">Email is required</div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter password">
+        <div *ngIf="adminForm.get('password').errors?.['required']" class="text-danger">Password is required</div>
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirm password">
+        <div *ngIf="adminForm.get('confirmPassword').errors?.['required']" class="text-danger">Confirm password is required</div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="adminForm.invalid">Register</button>
+    </form>
+  </div>
+  

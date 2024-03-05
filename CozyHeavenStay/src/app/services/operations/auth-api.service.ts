@@ -8,6 +8,7 @@ import { RegisterUserDTO } from '../../models/DTO/RegisterUserDTO';
 import { RegisterAdminDTO } from '../../models/DTO/RegisterAdminDTO';
 import { User } from '../../models/User.Model';
 import { Router } from '@angular/router';
+import { Admin } from '../../models/Admin.Model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ import { Router } from '@angular/router';
 export class AuthAPIService {
 
   http: HttpClient = inject(HttpClient);
-  user = new BehaviorSubject<User>(null);
+  user = new BehaviorSubject<any>(null);
   toastr : ToastrService = inject(ToastrService);
   router : Router = inject(Router);
   private tokenExpiretimer : any;
@@ -95,7 +96,7 @@ export class AuthAPIService {
   }
 
 
-  login(email:string, password:string){
+  loginUser(email:string, password:string){
 
     const loadingToast = this.toastr.info("Logging in", "Please wait...", {
       disableTimeOut: true,
@@ -112,7 +113,7 @@ export class AuthAPIService {
         this.toastr.clear();
       }
       this.toastr.error('Failed to Login', 'Error');
-        
+      console.log(error);
       return throwError(() => error);
     }), tap((res) => {
         this.handleCreateUser(res)
@@ -123,28 +124,117 @@ export class AuthAPIService {
     }));
 }
 
+loginOwner(email:string, password:string){
+
+  const loadingToast = this.toastr.info("Logging in", "Please wait...", {
+    disableTimeOut: true,
+    closeButton: false,
+    positionClass: 'toast-top-center'
+  });
+
+  const data = {email: email, password: password};
+
+  return this.http.post(
+  endpoints.LOGIN_OWNER_API, data
+  ).pipe(catchError((error) => {
+    if (loadingToast) {
+      this.toastr.clear();
+    }
+    this.toastr.error('Failed to Login', 'Error');
+      
+    return throwError(() => error);
+  }), tap((res) => {
+      this.handleCreateUser(res)
+  }),finalize(() => {
+    if (loadingToast) {
+      this.toastr.clear();
+    }
+  }));
+}
+
+loginAdmin(email:string, password:string){
+
+  const loadingToast = this.toastr.info("Logging in", "Please wait...", {
+    disableTimeOut: true,
+    closeButton: false,
+    positionClass: 'toast-top-center'
+  });
+
+  const data = {email: email, password: password};
+
+  return this.http.post(
+  endpoints.LOGIN_ADMIN_API, data
+  ).pipe(catchError((error) => {
+    if (loadingToast) {
+      this.toastr.clear();
+    }
+    this.toastr.error('Failed to Login', 'Error');
+      
+    return throwError(() => error);
+  }), tap((res) => {
+      this.handleCreateUser(res)
+  }),finalize(() => {
+    if (loadingToast) {
+      this.toastr.clear();
+    }
+  }));
+}
+
   autoLogin () {
     const res = JSON.parse(localStorage.getItem('user'));
 
     if(!res){
         return;
     }
+    let user : any;
 
-    const user = new User();
-    user.userId = res.userId;
-    user.firstName = res.firstName;
-    user.lastName = res.lastName;
-    user.email = res.email;
-    user.address = res.address;
-    user.contactNumber = res.contactNumber;
-    user.password = res.password;
-    user.gender = res.gender;
-    user.profileImage = res.profileImage;
-    user.role = res.role;
-    user.token = res.token;
-    user.expiresIn = res.expiresIn;
-    user.resetPasswordExpires = res.resetPasswordExpires;
+    if(res.user.role == "Admin") {
 
+      user = new Admin(
+        res.adminId,
+        res.firstName,
+        res.lastName,
+        res.email,
+        res.password,
+        res.profileImage,
+        res.role,
+        res.token,
+        res.resetPasswordExpires,
+        res.expiresIn
+      )
+    }else if(res.user.role == "Owner"){
+      user = new User(
+        res.userId,
+        res.firstName,
+        res.lastName,
+        res.email,
+        res.password,
+        res.gender,
+        res.contactNumber,
+        res.address,
+        res.role,
+        res.profileImage,
+        res.token,
+        res.resetPasswordExpires,
+        res.expiresIn
+    );
+    }else{
+      user = new User(
+        res.userId,
+        res.firstName,
+        res.lastName,
+        res.email,
+        res.password,
+        res.gender,
+        res.contactNumber,
+        res.address,
+        res.role,
+        res.profileImage,
+        res.token,
+        res.resetPasswordExpires,
+        res.expiresIn  
+    );
+    }  
 
     if(user.token){
         this.user.next(user);
@@ -155,34 +245,12 @@ export class AuthAPIService {
 
   logout (token : string) {
 
-    const loadingToast = this.toastr.info("Logging out", "Please wait...", {
-      disableTimeOut: true,
-      closeButton: false,
-      positionClass: 'toast-top-center'
-    });
-
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}` 
       })
     };
-
-
-    this.http.post(endpoints.LOGOUT_API, null, httpOptions).pipe(
-      catchError(error => {
-        if (loadingToast) {
-          this.toastr.clear();
-        }
-        this.toastr.error('Failed to logout', 'Error');
-        
-        return throwError(() => error);
-      }), finalize(() => {
-        if(loadingToast){
-          this.toastr.clear();
-        }
-      })
-    )
 
     this.user.next(null);
     this.router.navigate(['/login']);
@@ -192,39 +260,82 @@ export class AuthAPIService {
         clearTimeout(this.tokenExpiretimer);
     }
     this.tokenExpiretimer = null;
+
+    return this.http.post(endpoints.LOGOUT_API, null, httpOptions).pipe(
+      catchError(error => {
+
+        this.toastr.error('Failed to logout', 'Error');
+        
+        return throwError(() => error);
+      }))
   }
 
   autoLogout(expireTime: number){
     const res = JSON.parse(localStorage.getItem('user'));
     this.tokenExpiretimer = setTimeout(() => {
-        this.logout(res.token);
+        this.logout(res?.token);
     }, expireTime);
   }
 
 
   private handleCreateUser(res){
-    const expiresInTs = new Date().getTime() + (3 * 60 * 60 * 1000);
+    const expiresInTs = new Date().getTime() + ((3 * 60 * 60) * 1000);
     const expiresIn = new Date(expiresInTs);
+    let user : any;
+    console.log(expiresIn)
 
-    const user = new User();
-    user.userId = res.userId;
-    user.firstName = res.firstName;
-    user.lastName = res.lastName;
-    user.email = res.email;
-    user.address = res.address;
-    user.contactNumber = res.contactNumber;
-    user.password = res.password;
-    user.gender = res.gender;
-    user.profileImage = res.profileImage;
-    user.role = res.role;
-    user.token = res.token;
-    user.expiresIn = expiresIn;
-    user.resetPasswordExpires = res.resetPasswordExpires;
+    if(res.user.role == "Admin") {
+      user = new Admin(
+        res.user.adminId,
+        res.user.firstName,
+        res.user.lastName,
+        res.user.email,
+        res.user.password,
+        res.user.profileImage,
+        res.user.role,
+        res.user.token,
+        res.user.resetPasswordExpires,
+        expiresIn
+      )
+    }else if(res.user.role == "Owner"){
+      user = new User(
+        res.user.userId,
+        res.user.firstName,
+        res.user.lastName,
+        res.user.email,
+        res.user.password,
+        res.user.gender,
+        res.user.contactNumber,
+        res.user.address,
+        res.user.role,
+        res.user.profileImage,
+        res.user.token,
+        res.user.resetPasswordExpires,
+        expiresIn
+    );
+    }else{
+      user = new User(
+        res.user.userId,
+        res.user.firstName,
+        res.user.lastName,
+        res.user.email,
+        res.user.password,
+        res.user.gender,
+        res.user.contactNumber,
+        res.user.address,
+        expiresIn,
+        res.user.role,
+        res.user.profileImage,
+        res.user.token,
+        res.user.resetPasswordExpires,
+    );
+    }
+      
     
     this.user.next(user);
     this.autoLogout(res.expiresIn * 1000);
 
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem("user" , JSON.stringify(user));
+    sessionStorage.setItem("user", JSON.stringify(user));
   }
-
 }
