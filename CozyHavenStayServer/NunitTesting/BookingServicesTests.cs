@@ -26,6 +26,7 @@ namespace NunitTesting
             _bookingRepositoryMock = new Mock<IRepository<Booking>>();
             _bookingServices = new BookingServices(_loggerMock.Object, _bookingRepositoryMock.Object);
         }
+
         [Test]
         public async Task GetAllBookingsAsync_ReturnsListOfBookings_WhenBookingsExist()
         {

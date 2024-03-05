@@ -231,7 +231,7 @@ namespace CozyHavenStayServer.Controllers
 
         //DeleteAdmin
         [HttpDelete]
-        [Route("/DeleteAdmin/{id}")]
+        [Route("DeleteAdmin/{id}")]
         public async Task<ActionResult<bool>> DeleteAdminAsync(int id)
         {
             try

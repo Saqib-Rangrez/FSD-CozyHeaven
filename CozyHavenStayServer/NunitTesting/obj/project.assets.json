@@ -2235,6 +2235,7 @@
           "Microsoft.EntityFrameworkCore.Analyzers": "6.0.13",
           "Microsoft.EntityFrameworkCore.Proxies": "6.0.13",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.13",
+          "Moq": "4.20.70",
           "Swashbuckle.AspNetCore": "6.5.0",
           "System.Net.Mail.Abstractions": "1.1.21"
         },
@@ -6786,19 +6787,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\PILR\\.nuget\\packages\\": {}
+    "C:\\Users\\saqui\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\c sharp program\\new czoy\\FSD-CozyHeaven\\CozyHavenStayServer\\NunitTesting\\NunitTesting.csproj",
+      "projectUniqueName": "C:\\FSD Project\\CozyHavenStayServer\\NunitTesting\\NunitTesting.csproj",
       "projectName": "NunitTesting",
-      "projectPath": "F:\\c sharp program\\new czoy\\FSD-CozyHeaven\\CozyHavenStayServer\\NunitTesting\\NunitTesting.csproj",
-      "packagesPath": "C:\\Users\\PILR\\.nuget\\packages\\",
-      "outputPath": "F:\\c sharp program\\new czoy\\FSD-CozyHeaven\\CozyHavenStayServer\\NunitTesting\\obj\\",
+      "projectPath": "C:\\FSD Project\\CozyHavenStayServer\\NunitTesting\\NunitTesting.csproj",
+      "packagesPath": "C:\\Users\\saqui\\.nuget\\packages\\",
+      "outputPath": "C:\\FSD Project\\CozyHavenStayServer\\NunitTesting\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\PILR\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\saqui\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6812,8 +6813,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "F:\\c sharp program\\new czoy\\FSD-CozyHeaven\\CozyHavenStayServer\\CozyHavenStayServer\\CozyHavenStayServer.csproj": {
-              "projectPath": "F:\\c sharp program\\new czoy\\FSD-CozyHeaven\\CozyHavenStayServer\\CozyHavenStayServer\\CozyHavenStayServer.csproj"
+            "C:\\FSD Project\\CozyHavenStayServer\\CozyHavenStayServer\\CozyHavenStayServer.csproj": {
+              "projectPath": "C:\\FSD Project\\CozyHavenStayServer\\CozyHavenStayServer\\CozyHavenStayServer.csproj"
             }
           }
         }
@@ -6822,6 +6823,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -6869,7 +6875,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }

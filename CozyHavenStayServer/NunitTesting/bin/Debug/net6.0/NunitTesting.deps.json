@@ -1321,6 +1321,7 @@
           "Microsoft.EntityFrameworkCore.Analyzers": "6.0.13",
           "Microsoft.EntityFrameworkCore.Proxies": "6.0.13",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.13",
+          "Moq": "4.20.70",
           "Swashbuckle.AspNetCore": "6.5.0",
           "System.Net.Mail.Abstractions": "1.1.21"
         },
