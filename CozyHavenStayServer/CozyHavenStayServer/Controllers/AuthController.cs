@@ -331,7 +331,7 @@ namespace CozyHavenStayServer.Controllers
         [Route("Logout")]
         public IActionResult Logout([FromServices] ITokenBlacklistService tokenBlacklistService)
         {
-            string token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+            string token = HttpContext.Request?.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
             if (string.IsNullOrEmpty(token))
             {

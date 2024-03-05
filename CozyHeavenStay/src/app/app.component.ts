@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { AuthAPIService } from './services/operations/auth-api.service';
 
 
 @Component({
@@ -8,23 +9,10 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'CozyHeavenStay';
-  constructor(private toastr: ToastrService) {}
-
+  toastr: ToastrService = inject(ToastrService);
+  authService : AuthAPIService = inject(AuthAPIService);
 
   ngOnInit() {
-    this.toastr.info('Loading...', 'Please wait', {
-      disableTimeOut: true,
-      closeButton: false,
-      positionClass: 'toast-top-center'
-    });
-
-    // Simulate loading delay (e.g., making HTTP request)
-    setTimeout(() => {
-      // Hide the loading toast
-      this.toastr.clear();
-      
-      // Display success or other type of toast
-      this.toastr.success('Data loaded successfully', 'Success');
-    }, 2000);   }
+    this.authService.autoLogin();
+  }
 }
