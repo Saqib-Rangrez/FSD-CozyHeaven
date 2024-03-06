@@ -11,7 +11,7 @@ export const endpoints = {
     LOGIN_OWNER_API: BASE_URL + "/Auth/HotelOwner/Login",
     LOGIN_USER_API: BASE_URL + "/Auth/User/Login",
     LOGOUT_API: BASE_URL + "/Auth/Logout",
-    RESETPASSTOKEN_API: BASE_URL + "/Auth/ForgetPassword",
+    FORGETPASSWORD_API: BASE_URL + "/Auth/ForgetPassword",
     RESETPASSWORD_API: BASE_URL + "/Auth/ResetPassword",
 }
 

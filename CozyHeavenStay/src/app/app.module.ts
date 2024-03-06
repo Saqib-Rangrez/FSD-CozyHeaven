@@ -7,9 +7,11 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './shared/navbar/navbar.component';
-import { LoginComponent } from './modules/login/login.component';
-import { SignupUserComponent } from './modules/signup-user/signup-user.component';
-import { SignupAdminComponent } from './modules/signup-admin/signup-admin.component';
+import { LoginComponent } from './modules/AuthModules/login/login.component';
+import { SignupUserComponent } from './modules/AuthModules/signup-user/signup-user.component';
+import { SignupAdminComponent } from './modules/AuthModules/signup-admin/signup-admin.component';
+import { ForgetPasswordComponent } from './modules/AuthModules/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './modules/AuthModules/reset-password/reset-password.component';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { SignupAdminComponent } from './modules/signup-admin/signup-admin.compon
     NavbarComponent,
     LoginComponent,
     SignupUserComponent,
-    SignupAdminComponent
+    SignupAdminComponent,
+    ForgetPasswordComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,

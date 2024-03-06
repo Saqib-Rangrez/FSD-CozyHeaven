@@ -9,6 +9,7 @@ import { RegisterAdminDTO } from '../../models/DTO/RegisterAdminDTO';
 import { User } from '../../models/User.Model';
 import { Router } from '@angular/router';
 import { Admin } from '../../models/Admin.Model';
+import { ResetPasswordDTO } from '../../models/DTO/ResetPasswordDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -113,7 +114,6 @@ export class AuthAPIService {
         this.toastr.clear();
       }
       this.toastr.error('Failed to Login', 'Error');
-      console.log(error);
       return throwError(() => error);
     }), tap((res) => {
         this.handleCreateUser(res)
@@ -172,6 +172,7 @@ loginAdmin(email:string, password:string){
       
     return throwError(() => error);
   }), tap((res) => {
+      localStorage.setItem("user" , JSON.stringify(res));
       this.handleCreateUser(res)
   }),finalize(() => {
     if (loadingToast) {
@@ -183,12 +184,12 @@ loginAdmin(email:string, password:string){
   autoLogin () {
     const res = JSON.parse(localStorage.getItem('user'));
 
-    if(!res){
+    if(res === null || res === undefined){
         return;
     }
     let user : any;
 
-    if(res.user.role == "Admin") {
+    if(res?.role == "Admin") {
 
       user = new Admin(
         res.adminId,
@@ -202,7 +203,7 @@ loginAdmin(email:string, password:string){
         res.resetPasswordExpires,
         res.expiresIn
       )
-    }else if(res.user.role == "Owner"){
+    }else if(res?.role == "Owner"){
       user = new User(
         res.userId,
         res.firstName,
@@ -238,7 +239,7 @@ loginAdmin(email:string, password:string){
 
     if(user.token){
         this.user.next(user);
-        const timerValue = user.expiresIn.getTime() - new Date().getTime();
+        const timerValue = user?.expiresIn.getTime - new Date().getTime();
         this.autoLogout(timerValue);
     }
   }
@@ -255,6 +256,7 @@ loginAdmin(email:string, password:string){
     this.user.next(null);
     this.router.navigate(['/login']);
     localStorage.removeItem('user');
+    sessionStorage.removeItem('user');
 
     if(this.tokenExpiretimer){
         clearTimeout(this.tokenExpiretimer);
@@ -277,12 +279,64 @@ loginAdmin(email:string, password:string){
     }, expireTime);
   }
 
+  forgetPassword(email:string){
+
+    const loadingToast = this.toastr.info("Sending Email", "Please wait...", {
+      disableTimeOut: true,
+      closeButton: false,
+      positionClass: 'toast-top-center'
+    });
+  
+    const data = {email: email};
+  
+    return this.http.post(
+    endpoints.FORGETPASSWORD_API, data
+    ).pipe(catchError((error) => {
+      if (loadingToast) {
+        this.toastr.clear();
+      }
+      this.toastr.error('Failed to sent email', 'Error');
+        
+      return throwError(() => error);
+    }), tap((res) => {
+        console.log(res);
+    }),finalize(() => {
+      if (loadingToast) {
+        this.toastr.clear();
+      }
+    }));
+  }
+
+  resetPassword(data : ResetPasswordDTO){
+
+    const loadingToast = this.toastr.info("Sending Email", "Please wait...", {
+      disableTimeOut: true,
+      closeButton: false,
+      positionClass: 'toast-top-center'
+    });
+    
+    return this.http.post(
+    endpoints.RESETPASSWORD_API, data
+    ).pipe(catchError((error) => {
+      if (loadingToast) {
+        this.toastr.clear();
+      }
+      this.toastr.error('Failed to reset password', 'Error');
+        
+      return throwError(() => error);
+    }), tap((res) => {
+        console.log(res);
+    }),finalize(() => {
+      if (loadingToast) {
+        this.toastr.clear();
+      }
+    }));
+  }
 
   private handleCreateUser(res){
     const expiresInTs = new Date().getTime() + ((3 * 60 * 60) * 1000);
     const expiresIn = new Date(expiresInTs);
     let user : any;
-    console.log(expiresIn)
 
     if(res.user.role == "Admin") {
       user = new Admin(
@@ -333,9 +387,8 @@ loginAdmin(email:string, password:string){
       
     
     this.user.next(user);
-    this.autoLogout(res.expiresIn * 1000);
+    this.autoLogout(user.expiresIn * 1000);
 
     localStorage.setItem("user" , JSON.stringify(user));
-    sessionStorage.setItem("user", JSON.stringify(user));
   }
 }

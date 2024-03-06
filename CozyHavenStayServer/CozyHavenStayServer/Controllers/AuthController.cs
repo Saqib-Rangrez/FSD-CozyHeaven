@@ -355,17 +355,30 @@ namespace CozyHavenStayServer.Controllers
                 return BadRequest();
             }
 
-            if (model.Role == "User")
+            // if (model.Role == "User")
+            // {
+            //     user = await _userServices.GetUserByEmailAsync(model.Email);
+            // }
+            // else if (model.Role == "Admin")
+            // {
+            //     user = await _adminServices.GetAdminByEmailAsync(model.Email);
+            // }
+            // else
+            // {
+            //     user = await _hotelOwnerServices.GetHotelOwnerByEmailAsync(model.Email);
+            // }
+
+            var users = await _userServices.GetAllUsersAsync();
+            user = users.Where(u => u.Email == model.Email).FirstOrDefault();
+            if(user == null)
             {
-                user = await _userServices.GetUserByEmailAsync(model.Email);
-            }
-            else if (model.Role == "Admin")
-            {
-                user = await _adminServices.GetAdminByEmailAsync(model.Email);
-            }
-            else
-            {
-                user = await _hotelOwnerServices.GetHotelOwnerByEmailAsync(model.Email);
+                var admins = await _adminServices.GetAllAdminsAsync();
+                user = admins.Where(u => u.Email == model.Email).FirstOrDefault();
+                if(user == null)
+                {
+                    var owners = await _hotelOwnerServices.GetAllHotelOwnersAsync();
+                    user = owners.Where(u => u.Token == model.Email).FirstOrDefault();
+                }
             }
 
             if (user == null)
@@ -394,7 +407,7 @@ namespace CozyHavenStayServer.Controllers
                             <p><a href=""{resetUrl}"">{resetUrl}</a></p>";
             }
 
-            var toEmail = "ronrohan557@gmail.com"; //model.Email;
+            var toEmail = model.Email;
             var subject = "Reset Password";
             var body = message;
 

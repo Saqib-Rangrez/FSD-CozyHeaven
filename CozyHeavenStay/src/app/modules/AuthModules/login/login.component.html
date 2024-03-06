@@ -1,0 +1,74 @@
+<section class="vh-xxl-100 w-100 mt-5">
+	<div class="container h-100 d-flex px-0 px-sm-4 w-100">
+		<div class="row justify-content-center align-items-center w-100 m-auto">
+			<div class="col-12">
+				<div class="bg-mode shadow rounded-3 overflow-hidden">
+					<div class="row g-0 d-flex flex-row justify-content-between">
+            <div class="col-lg-6 d-md-flex align-items-center order-2 order-lg-1">
+							<div class="p-3 p-lg-5">
+								<img src="../../../../assets/AuthImages/authimages1.svg" class="img-fluid"  alt="">
+							</div>
+							<!-- Divider -->
+							<div class="vr opacity-1 d-none d-lg-block" style="background-color: rgb(209, 202, 202);"></div>
+						</div>
+
+            <div class="col-lg-6 order-1" style="width: 45%; margin-top: 4rem; margin-right: 2rem;">
+							<div class="p-4 p-sm-6">
+								<!-- Logo -->
+								<a href="index.html">
+									<img class="h-50px mb-4" src="../../../../assets/AuthImages/authimages2.svg" height="70" width="60" alt="logo">
+								</a>
+								<!-- Title -->
+								<h1 class="mb-2 h3 fw-bolder">Create new account</h1>
+								<p class="mb-0">New member?<a class="text-primary" style="text-decoration: none;" routerLink="/signup-user" > SignUp</a></p>
+		
+								<!-- Form START -->
+								<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mt-4 text-start d-flex flex-column gap-2">
+
+                  <div class="">
+                    <label class="form-label text-secondary" for="accountType">Account Type</label>
+                    <select  class="form-select" formControlName="accountType" id="accountType">
+                      <option  class="text-secondary" disabled [defaultSelected]="true">Select Account Type</option>
+                      <option value="User">User</option>
+                      <option value="Owner">Hotel Owner</option>
+                      <option value="Admin">Admin</option>
+                    </select>
+                    <small *ngIf="loginForm.get('accountType').invalid && (loginForm.get('gender').dirty || loginForm.get('gender').touched)">
+                      <small *ngIf="loginForm.get('accountType').errors['required']">Account type is required.</small>
+                    </small>
+                  </div>
+
+                  <div>
+                    <label class="form-label" for="email">Email</label>
+                    <input placeholder="Enter email" class="form-control" type="email" formControlName="email" id="email">
+                    <small *ngIf="loginForm.get('email').invalid && (loginForm.get('email').dirty || loginForm.get('email').touched)">
+                      <small *ngIf="loginForm.get('email').errors['required']">Email is required.</small>
+                      <small *ngIf="loginForm.get('email').errors['email']">Invalid email format.</small>
+                    </small>
+                  </div>
+                
+                  <div class="position-relative">
+                    <label class="form-label text-secondary" for="password">Password</label>
+                    <input class="form-control fakepassword" placeholder="Enter password" [type]="showPassword ? 'text' : 'password'" formControlName="password" id="password">
+                    <span (click)="toggleShowPassword()" class="position-absolute top-50 end-0 translate-middle-y p-0 mt-3">
+                      <i class="fakepasswordicon bi bi-eye-fill cursor-pointer p-2" *ngIf="!showPassword"></i>
+                      <i class="fakepasswordicon bi bi-eye-slash cursor-pointer p-2" *ngIf="showPassword"></i>
+                    </span>
+                    <!-- <small *ngIf="registerForm.get('password').invalid && (registerForm.get('password').dirty || registerForm.get('password').touched)">
+                      <small *ngIf="registerForm.get('password').errors['required']">Password is required.</small>
+                    </small> -->
+                  </div>
+                
+                
+                  <button type="submit" class="btn btn-primary w-100 mb-0 mt-3" [disabled]="!loginForm.valid">Register</button>                
+                </form>
+								<!-- Form END -->
+							</div>		
+						</div>
+          </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+  
