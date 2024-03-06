@@ -55,3 +55,8 @@ html , body {
     color: red;
     font-weight: bold;
   }
+
+  .mand {
+    color : rgb(206, 33, 91);
+    font-size: 0.9rem;
+  }

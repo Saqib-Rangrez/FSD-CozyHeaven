@@ -11,7 +11,7 @@
         </div>
 				<div class="bg-mode shadow rounded-3 overflow-hidden">
           
-					<div class="row g-0 d-flex flex-row justify-content-between">
+					<div class="row g-0 d-flex flex-lg-row flex-column justify-content-between">
             <div class="col-lg-6 d-md-flex align-items-center order-2 order-lg-1">
               
 							<div class="p-3 p-lg-5">
@@ -36,7 +36,7 @@
 					
                   <div class="d-flex flex-row gap-2 w-100 justify-content-between align-items-center">
                     <div class="w-50" >
-                      <label class="form-label text-secondary" for="firstName">First Name</label>
+                      <label class="form-label text-secondary" for="firstName">First Name<sup class="mand">*</sup></label>
                       <input class="form-control" placeholder="Enter first name" type="text" formControlName="firstName" id="firstName">
                       <small *ngIf="registerForm.get('firstName').invalid && (registerForm.get('firstName').dirty || registerForm.get('firstName').touched)">
                         <small *ngIf="registerForm.get('firstName').errors['required']">First Name is required.</small>
@@ -44,7 +44,7 @@
                     </div>
                   
                     <div class="w-50">
-                      <label class="form-label text-secondary" for="lastName">Last Name</label>
+                      <label class="form-label text-secondary" for="lastName">Last Name<sup class="mand">*</sup></label>
                       <input class="form-control" placeholder="Enter last name" type="text" formControlName="lastName" id="lastName">
                       <small *ngIf="registerForm.get('lastName').invalid && (registerForm.get('lastName').dirty || registerForm.get('lastName').touched)">
                         <small *ngIf="registerForm.get('lastName').errors['required']">Last Name is required.</small>
@@ -54,7 +54,7 @@
                   
                 
                   <div>
-                    <label class="form-label text-secondary" for="email">Email</label>
+                    <label class="form-label text-secondary" for="email">Email<sup class="mand">*</sup></label>
                     <input class="form-control" placeholder="Enter name" type="email" formControlName="email" id="email">
                     <div *ngIf="registerForm.get('email').invalid && (registerForm.get('email').dirty || registerForm.get('email').touched)">
                       <small *ngIf="registerForm.get('email').errors['required']">Email is required.</small>
@@ -64,7 +64,7 @@
                 
                   <div class=" d-flex flex-row gap-2 w-100 justify-content-between align-items-center">
                     <div class="position-relative w-50">
-                      <label class="form-label text-secondary" for="password">Password</label>
+                      <label class="form-label text-secondary" for="password">Password<sup class="mand">*</sup></label>
                       <input class="form-control fakepassword" placeholder="Enter password" [type]="showPassword ? 'text' : 'password'" formControlName="password" id="password">
                       <span (click)="toggleShowPassword()" class="position-absolute top-50 end-0 translate-middle-y p-0 mt-3">
                         <i class="fakepasswordicon bi bi-eye-fill cursor-pointer p-2" *ngIf="!showPassword"></i>
@@ -76,8 +76,8 @@
                     </div>
                                 
                     <div class="position-relative w-50">
-                      <label class="form-label text-secondary" for="confirmPassword">Confirm Password</label>
-                      <input class="form-control fakepassword" placeholder="Enter confirm password" [type]="showConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword" id="confirmPassword">
+                      <label class="form-label text-secondary" for="confirmPassword">Confirm Password<sup class="mand">*</sup></label>
+                      <input class="form-control fakepassword" placeholder="Confirm password" [type]="showConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword" id="confirmPassword">
                       <span (click)="toggleShowConfirmPassword()" class="position-absolute top-50 end-0 translate-middle-y p-0 mt-3">
                         <i class="fakepasswordicon bi bi-eye-fill p-2" style="cursor: pointer;" *ngIf="!showConfirmPassword"></i>
                         <i class="fakepasswordicon bi bi-eye-slash p-2" style="cursor: pointer;" *ngIf="showConfirmPassword"></i>                      
@@ -91,7 +91,7 @@
                 
                   <div class="d-flex flex-row gap-2 w-100 justify-content-between align-items-center ">
                     <div class="w-50">
-                      <label class="form-label text-secondary" for="gender">Gender</label>
+                      <label class="form-label text-secondary" for="gender">Gender<sup class="mand">*</sup></label>
                       <select class="form-select " formControlName="gender" id="gender">
                         <option class="text-secondary" disabled [defaultSelected]="true">Select Gender</option>
                         <option value="male">Male</option>
@@ -104,7 +104,7 @@
                     </div>
   
                     <div class="w-50">
-                      <label class="form-label text-secondary" for="accountType">Account Type</label>
+                      <label class="form-label text-secondary" for="accountType">Account Type<sup class="mand">*</sup></label>
                       <select  class="form-select" formControlName="accountType" id="accountType">
                         <option  class="text-secondary" disabled [defaultSelected]="true">Select Account Type</option>
                         <option value="User">User</option>
@@ -118,7 +118,7 @@
                   
                 
                   <div>
-                    <label class="form-label text-secondary" for="contactNumber">Contact Number</label>
+                    <label class="form-label text-secondary" for="contactNumber">Contact Number<sup class="mand">*</sup></label>
                     <input class="form-control" placeholder="Enter contact number" type="text" formControlName="contactNumber" id="contactNumber">
                     <small *ngIf="registerForm.get('contactNumber').invalid && (registerForm.get('contactNumber').dirty || registerForm.get('contactNumber').touched)">
                       <small *ngIf="registerForm.get('contactNumber').errors['required']">Contact Number is required.</small>
@@ -126,7 +126,7 @@
                   </div>
                 
                   <div>
-                    <label class="form-label text-secondary" for="address">Address</label>
+                    <label class="form-label text-secondary" for="address">Address<sup class="mand">*</sup></label>
                     <textarea class="form-control" placeholder="Enter your address" formControlName="address" id="address"></textarea>
                     <small *ngIf="registerForm.get('address').invalid && (registerForm.get('address').dirty || registerForm.get('address').touched)">
                       <small *ngIf="registerForm.get('address').errors['required']">Address is required.</small>

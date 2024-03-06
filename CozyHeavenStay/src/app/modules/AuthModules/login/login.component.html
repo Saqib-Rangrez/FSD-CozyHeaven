@@ -4,7 +4,7 @@
 			<div class="col-12">
 				<div class="bg-mode shadow rounded-3 overflow-hidden">
 					<div class="row g-0 d-flex flex-row justify-content-between">
-            <div class="col-lg-6 d-md-flex align-items-center order-2 order-lg-1">
+            <div class="col-lg-6 d-md-flex align-items-center order-1 order-lg-1">
 							<div class="p-3 p-lg-5">
 								<img src="../../../../assets/AuthImages/authimages1.svg" class="img-fluid"  alt="">
 							</div>
@@ -12,7 +12,7 @@
 							<div class="vr opacity-1 d-none d-lg-block" style="background-color: rgb(209, 202, 202);"></div>
 						</div>
 
-            <div class="col-lg-6 order-1" style="width: 45%; margin-top: 3.5rem; margin-right: 2rem;">
+            <div class="col-lg-5 order-lg-2  order-2" style=" margin-top: 3.5rem; margin-right: 2rem;">
 							<div class="p-4 p-sm-6">
 								<!-- Logo -->
 								<a href="index.html">
@@ -26,7 +26,7 @@
 								<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mt-4 text-start d-flex flex-column gap-2">
 
                   <div class="">
-                    <label class="form-label text-secondary" for="accountType">Account Type</label>
+                    <label class="form-label text-secondary" for="accountType">Account Type<sup class="mand">*</sup></label>
                     <select  class="form-select" formControlName="accountType" id="accountType">
                       <option value="User" [defaultSelected]="true">User</option>
                       <option value="Owner">Hotel Owner</option>
@@ -38,7 +38,7 @@
                   </div>
 
                   <div>
-                    <label class="form-label" for="email">Email</label>
+                    <label class="form-label" for="email">Email<sup class="mand">*</sup></label>
                     <input placeholder="Enter email" class="form-control" type="email" formControlName="email" id="email">
                     <small *ngIf="loginForm.get('email').invalid && (loginForm.get('email').dirty || loginForm.get('email').touched)">
                       <small *ngIf="loginForm.get('email').errors['required']">Email is required.</small>
@@ -47,7 +47,7 @@
                   </div>
                 
                   <div class="position-relative">
-                    <label class="form-label text-secondary" for="password">Password</label>
+                    <label class="form-label text-secondary" for="password">Password<sup class="mand">*</sup></label>
                     <input class="form-control fakepassword" placeholder="Enter password" [type]="showPassword ? 'text' : 'password'" formControlName="password" id="password">
                     <span (click)="toggleShowPassword()" class="position-absolute top-50 end-0 translate-middle-y p-0 mt-3">
                       <i class="fakepasswordicon bi bi-eye-fill cursor-pointer p-2" *ngIf="!showPassword"></i>
@@ -58,7 +58,7 @@
                     </small> -->
                   </div>
                   <div class="d-flex flex-row gap-1 align-items-center justify-content-end text-end" style="font-size: 0.9rem;">
-                    <a class="text-end" [routerLink]="'/signup-admin'" style="text-decoration: none;"> Forget Password</a>
+                    <a class="text-end" [routerLink]="'/forget-password'" style="text-decoration: none;"> Forget Password</a>
                     <i class="bi bi-arrow-right"></i>            
                   </div>
                 

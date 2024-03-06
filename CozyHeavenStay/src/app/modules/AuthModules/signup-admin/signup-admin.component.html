@@ -27,18 +27,18 @@
 					
                   <div class=" d-flex flex-row gap-2 w-100 justify-content-between align-items-center">
                     <div class="form-group w-50">
-                      <label class="form-label text-secondary" for="firstName">First Name:</label>
+                      <label class="form-label text-secondary" for="firstName">First Name<sup class="mand">*</sup></label>
                       <input type="text" class="form-control" id="firstName" formControlName="firstName" placeholder="Enter first name">
                     </div>
               
                     <div class="form-group w-50">
-                      <label class="form-label text-secondary" for="lastName">Last Name:</label>
+                      <label class="form-label text-secondary" for="lastName">Last Name<sup class="mand">*</sup></label>
                       <input type="text" class="form-control" id="lastName" formControlName="lastName" placeholder="Enter last name">
                     </div>
                   </div>
                   
                   <div class="form-group">
-                    <label class="form-label text-secondary" for="email">Email:</label>
+                    <label class="form-label text-secondary" for="email">Email<sup class="mand">*</sup></label>
                     <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter email">
                     <div *ngIf="adminForm.get('email').invalid && (adminForm.get('email').dirty || adminForm.get('email').touched)">
                       <small *ngIf="adminForm.get('email').errors['required']">Email is required.</small>
@@ -48,7 +48,7 @@
             
                   <div class=" d-flex flex-row gap-2 w-100 justify-content-between align-items-center">
                     <div class="position-relative w-50">
-                      <label class="form-label text-secondary" for="password">Password</label>
+                      <label class="form-label text-secondary" for="password">Password<sup class="mand">*</sup></label>
                       <input class="form-control fakepassword" placeholder="Enter password" [type]="showPassword ? 'text' : 'password'" formControlName="password" id="password">
                       <span (click)="toggleShowPassword()" class="position-absolute top-50 end-0 translate-middle-y p-0 mt-3">
                         <i class="fakepasswordicon bi bi-eye-fill p-2" style="cursor: pointer;" *ngIf="!showPassword"></i>
@@ -60,7 +60,7 @@
                     </div>
                                 
                     <div class="position-relative w-50">
-                      <label class="form-label text-secondary" for="confirmPassword">Confirm Password</label>
+                      <label class="form-label text-secondary" for="confirmPassword">Confirm Password<sup class="mand">*</sup></label>
                       <input class="form-control fakepassword" placeholder="Confirm password" [type]="showConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword" id="confirmPassword">
                       <span (click)="toggleShowConfirmPassword()" class="position-absolute top-50 end-0 translate-middle-y p-0 mt-3">
                         <i class="fakepasswordicon bi bi-eye-fill p-2" style="cursor: pointer;" *ngIf="!showConfirmPassword"></i>
