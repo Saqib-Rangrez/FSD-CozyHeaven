@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthAPIService } from '../../../services/operations/auth-api.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,13 +13,14 @@ export class LoginComponent {
   loginForm: FormGroup;
   authService : AuthAPIService = inject(AuthAPIService);
   toastr : ToastrService = inject(ToastrService);
+  router : Router = inject(Router);
   showPassword: boolean = false;
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl (null, [Validators.required]),
-      // accountType : new FormControl(null, [Validators.required])
+      accountType : new FormControl("User", [Validators.required])
     });
   }
 
@@ -33,6 +35,7 @@ export class LoginComponent {
           next : (res) => {
             console.log(res);
             this.toastr.success("Login success")
+            this.router.navigate(['/home']);
           },
           error: (err) => {
             console.log(err);
@@ -44,7 +47,8 @@ export class LoginComponent {
         this.authService.loginUser(email, password).subscribe({
           next : (res) => {
             console.log(res);
-            this.toastr.success("Login success")
+            this.toastr.success("Login success");
+            this.router.navigate(['/home']);
           },
           error: (err) => {
             console.log(err);
@@ -57,10 +61,11 @@ export class LoginComponent {
           next : (res) => {
             console.log(res);
             this.toastr.success("Login success");
+            this.router.navigate(['/home']);
           },
           error: (err) => {
             console.log(err);
-            this.toastr.success("Login failed")
+            this.toastr.error("Login failed")
           }
         });
   

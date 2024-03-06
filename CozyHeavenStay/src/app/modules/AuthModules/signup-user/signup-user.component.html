@@ -1,10 +1,19 @@
-<section class="vh-xxl-100 w-100 mt-5">
+<section class="vh-xxl-100 w-100">
 	<div class="container h-100 d-flex px-0 px-sm-4 w-100">
 		<div class="row justify-content-center align-items-center w-100 m-auto">
 			<div class="col-12">
+        <div class="d-flex flex-row gap-1 align-items-center p-2 mt-2" style="margin-left: 1.5rem;">
+          <span style="font-size: 1.5rem; font-weight: 500;" >Register as an admin?</span>
+          <div class="d-flex flex-row gap-1 align-items-center" style="font-size: 1.2rem;">
+            <a class="" [routerLink]="'/signup-admin'" style="text-decoration: none;"> Click Here  </a>
+            <i class="bi bi-arrow-right"></i>            
+          </div>
+        </div>
 				<div class="bg-mode shadow rounded-3 overflow-hidden">
+          
 					<div class="row g-0 d-flex flex-row justify-content-between">
             <div class="col-lg-6 d-md-flex align-items-center order-2 order-lg-1">
+              
 							<div class="p-3 p-lg-5">
 								<img src="../../../../assets/AuthImages/authimages1.svg" class="img-fluid"  alt="">
 							</div>
@@ -19,8 +28,8 @@
 									<img class="h-50px mb-4" src="../../../../assets/AuthImages/authimages2.svg" height="70" width="60" alt="logo">
 								</a>
 								<!-- Title -->
-								<h1 class="mb-2 h3 fw-bolder">Create new account</h1>
-								<p class="mb-0">Already a member?<a class="text-primary" style="text-decoration: none;" routerLink="/login" > Log in</a></p>
+								<h1 class="mb-2 h3 fw-bolder" style="font-size: 3rem;">Create new account</h1>
+								<p class="mb-0" style="font-size: 1.2rem;">Already a member?<a class="text-primary" style="text-decoration: none;" routerLink="/login" > Log in</a></p>
 		
 								<!-- Form START -->
 								<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="mt-4 text-start d-flex flex-column gap-2">

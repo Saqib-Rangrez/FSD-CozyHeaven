@@ -276,7 +276,7 @@ loginAdmin(email:string, password:string){
     const res = JSON.parse(localStorage.getItem('user'));
     this.tokenExpiretimer = setTimeout(() => {
         this.logout(res?.token);
-    }, expireTime);
+    }, (3*60*60*1000));
   }
 
   forgetPassword(email:string){

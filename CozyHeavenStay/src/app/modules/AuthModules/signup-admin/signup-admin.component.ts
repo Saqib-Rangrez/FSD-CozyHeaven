@@ -37,7 +37,7 @@ export class SignupAdminComponent {
           console.log(res);
         },
         error : err => {
-          this.toastr.success("Registration failed")
+          this.toastr.error("Registration failed")
           console.log(err);
          }
       })

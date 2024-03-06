@@ -32,6 +32,7 @@ export class ForgetPasswordComponent {
           this.toastr.success("Email sent successfully")
         },
         error: (err) => {
+          this.toastr.error("Failed to send email");
           console.log(err);
         }
       });

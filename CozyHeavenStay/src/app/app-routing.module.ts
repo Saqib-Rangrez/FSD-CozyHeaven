@@ -6,9 +6,10 @@ import { SignupAdminComponent } from './modules/AuthModules/signup-admin/signup-
 import { LoginComponent } from './modules/AuthModules/login/login.component';
 import { ForgetPasswordComponent } from './modules/AuthModules/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './modules/AuthModules/reset-password/reset-password.component';
+import { HomeComponent } from './modules/HomeModules/home/home.component';
 
 const routes: Routes = [
-  //{path: "", component : },
+  {path: "home", component : HomeComponent},
   {path: "signup-user", component: SignupUserComponent},
   {path: "signup-admin", component: SignupAdminComponent},
   {path: "login", component: LoginComponent},

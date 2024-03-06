@@ -10,18 +10,10 @@
             <a class="nav-link active" [routerLink]="'/login'">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="'/signup-user'">Signup User</a>
+            <a class="nav-link" [routerLink]="'/signup-user'">Signup</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="'/signup-admin'">Signup Admin</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="'/forget-password'">Forget Password</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="'/reset-password/' + token"  >Reset Password</a>
-          </li>
-          <button (click)="logOut()">
+          
+          <button class="btn btn-secondary" (click)="logOut()">
             Logout
           </button>
 
