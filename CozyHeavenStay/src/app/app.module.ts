@@ -13,6 +13,8 @@ import { SignupAdminComponent } from './modules/AuthModules/signup-admin/signup-
 import { ForgetPasswordComponent } from './modules/AuthModules/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './modules/AuthModules/reset-password/reset-password.component';
 import { HomeComponent } from './modules/HomeModules/home/home.component';
+import { ErrorComponent } from './shared/error/error.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 
 @NgModule({
@@ -25,6 +27,8 @@ import { HomeComponent } from './modules/HomeModules/home/home.component';
     ForgetPasswordComponent,
     ResetPasswordComponent,
     HomeComponent,
+    ErrorComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

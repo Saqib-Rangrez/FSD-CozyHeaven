@@ -7,11 +7,11 @@ export class User {
     gender: string;
     contactNumber: string;
     address: string;
+    expiresIn: Date;
     role?: string | "null";
     profileImage?: string | "null";
     token?: string | "null";
     resetPasswordExpires?: Date | "null";
-    expiresIn: Date;
   
     constructor(
       userId: number,

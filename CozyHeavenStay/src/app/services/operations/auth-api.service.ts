@@ -10,6 +10,7 @@ import { User } from '../../models/User.Model';
 import { Router } from '@angular/router';
 import { Admin } from '../../models/Admin.Model';
 import { ResetPasswordDTO } from '../../models/DTO/ResetPasswordDTO';
+import { HotelOwner } from '../../models/hotel-owner.Model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,9 @@ import { ResetPasswordDTO } from '../../models/DTO/ResetPasswordDTO';
 export class AuthAPIService {
 
   http: HttpClient = inject(HttpClient);
-  user = new BehaviorSubject<any>(null);
+  user = new BehaviorSubject<User>(null);
+  admin = new BehaviorSubject<Admin>(null);
+  owner = new BehaviorSubject<User>(null);
   toastr : ToastrService = inject(ToastrService);
   router : Router = inject(Router);
   private tokenExpiretimer : any;
@@ -337,6 +340,7 @@ loginAdmin(email:string, password:string){
     const expiresInTs = new Date().getTime() + ((3 * 60 * 60) * 1000);
     const expiresIn = new Date(expiresInTs);
     let user : any;
+    console.log("from services handle...." ,res.user)
 
     if(res.user.role == "Admin") {
       user = new Admin(
@@ -351,9 +355,11 @@ loginAdmin(email:string, password:string){
         res.user.resetPasswordExpires,
         expiresIn
       )
+      this.admin.next(user);
+
     }else if(res.user.role == "Owner"){
       user = new User(
-        res.user.userId,
+        res.user.ownerId,
         res.user.firstName,
         res.user.lastName,
         res.user.email,
@@ -367,7 +373,10 @@ loginAdmin(email:string, password:string){
         res.user.resetPasswordExpires,
         expiresIn
     );
+    this.owner.next(user);
+
     }else{
+      console.log("sad")
       user = new User(
         res.user.userId,
         res.user.firstName,
@@ -383,10 +392,10 @@ loginAdmin(email:string, password:string){
         res.user.token,
         res.user.resetPasswordExpires,
     );
+    this.user.next(user);
     }
       
     
-    this.user.next(user);
     this.autoLogout(user.expiresIn * 1000);
 
     localStorage.setItem("user" , JSON.stringify(user));

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<!-- <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Navbar</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,6 +21,102 @@
       </div>
     </div>
   </nav>
-
+ -->
 
   
+ <header class="navbar-light header-sticky">
+	<!-- Logo Nav START -->
+	<nav class="navbar navbar-expand-xl">
+		<div class="container">
+			<!-- Logo START -->
+			<a class="navbar-brand" [routerLink]="'/home'">
+				<img class="light-mode-item navbar-brand-item" src="../../../assets/AuthImages/authimages2.svg" width="50" height="50" alt="logo">
+			</a>
+			<!-- Logo END -->
+			
+			<!-- Responsive navbar toggler -->
+			<button class="navbar-toggler ms-auto mx-3 me-md-0 p-0 p-sm-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-animation">
+					<span></span>
+					<span></span>
+					<span></span>
+				</span>
+			</button>
+
+			<!-- Main navbar START -->
+			<div class="navbar-collapse collapse" id="navbarCollapse">
+				<ul class="navbar-nav navbar-nav-scroll">
+
+          <li class="nav-item"><a class="nav-link" routerLink="/home">Home</a></li>
+
+					<!-- Nav item Listing -->
+          <li class="nav-item"><a class="nav-link" routerLink="/hotel">Hotels</a></li>
+					
+					<!-- Nav item Contact -->
+					<li class="nav-item"> <a class="nav-link" routerLink="/contact">Contact Us</a></li>
+				</ul>
+			</div>
+			<!-- Main navbar END -->
+
+			<!-- Profile and Notification START -->
+			<ul class="nav flex-row align-items-center list-unstyled ms-xl-auto">
+
+        <div class="d-lg-flex flex-lg-row align-items-center gap-2" *ngIf="!user">
+          <div class="nav-btn" (click)="moveToLogin()">Login
+          </div>
+          <div class="nav-btn" (click)="moveToSignup()">Signup
+          </div>
+        </div>
+				
+				<!-- Profile dropdown START -->
+				<li class="nav-item ms-3 dropdown d-lg-flex flex-lg-row align-items-center gap-2" *ngIf="user">
+          <div class="position-relative mt-1">
+            <i class="bi bi-cart2" style="font-size: 2rem; color: rgb(74, 74, 93); cursor: pointer;"></i>
+            <span class="position-absolute bg-primary p-2 text-center text-white d-flex 
+              justify-content-center align-items-center animate__animated animate__bounce rounded-circle top-0 end-0" 
+              style="margin-top: 15%; margin-right: -10%; width: 15px; height: 15px;">
+               5
+            </span>
+          </div>
+					<!-- Avatar -->
+					<div style="text-decoration: none;" class="avatar avatar-xs p-0" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+						<img class="avatar-img rounded-circle" [src]="user?.profileImage" width="35" height="35" alt="avatar">
+					</div>
+
+					<!-- Profile dropdown START -->
+					<ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" style="z-index: 1000;" aria-labelledby="profileDropdown">
+						<!-- Profile info -->
+						<li class="px-3 mb-3">
+							<div class="d-flex align-items-center">
+								<!-- Avatar -->
+								<div class="avatar me-3">
+									<img class="avatar-img rounded-circle shadow" [src]="user?.profileImage" width="40" height="40" alt="avatar">
+								</div>
+								<div>
+									<span class="h6 mt-2 mt-sm-0 fw-bold" href="#">{{user?.firstName}} {{user?.lastName}}</span>
+									<p class="small m-0 text-secondary">{{user?.email}}</p>
+								</div>
+							</div>
+						</li>
+
+						<!-- Links -->
+            <div class="text-secondary" style="padding-left: 5px; padding-right: 5px;">
+              <li> <hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item rounded-2 bg-hov" href="#"><i class="bi bi-bookmark-check fa-fw me-2"></i>My Bookings</a></li>
+              <li><a class="dropdown-item rounded-2 bg-hov" href="#"><i class="bi bi-heart fa-fw me-2"></i>My Wishlist</a></li>
+              <li><a class="dropdown-item rounded-2 bg-hov" href="#"><i class="bi bi-gear fa-fw me-2"></i>Settings</a></li>
+              <li><a class="dropdown-item rounded-2 bg-hov" href="#"><i class="bi bi-speedometer fa-fw me-2"></i>Dashboard</a></li>
+              <li><div (click)="logOut()" class="rounded-2 dropdown-item bg-danger-soft-hover" style="cursor: pointer;"><i class="bi bi-power fa-fw me-2"></i>Sign Out</div></li>       
+            </div>
+						
+					</ul>
+					<!-- Profile dropdown END -->
+				</li>
+				<!-- Profile dropdown END -->
+
+			</ul>
+		</div>
+	</nav>
+	<!-- Logo Nav END -->
+</header>
+<!-- Header END -->

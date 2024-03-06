@@ -7,8 +7,10 @@ import { LoginComponent } from './modules/AuthModules/login/login.component';
 import { ForgetPasswordComponent } from './modules/AuthModules/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './modules/AuthModules/reset-password/reset-password.component';
 import { HomeComponent } from './modules/HomeModules/home/home.component';
+import { ErrorComponent } from './shared/error/error.component';
 
 const routes: Routes = [
+  {path:"" , component: HomeComponent},
   {path: "home", component : HomeComponent},
   {path: "signup-user", component: SignupUserComponent},
   {path: "signup-admin", component: SignupAdminComponent},
@@ -16,7 +18,7 @@ const routes: Routes = [
   {path: "forget-password", component: ForgetPasswordComponent},
   {path: "reset-password/:token", component: ResetPasswordComponent},
 
-  //{path: "**", component: NotFoundComponent}
+  {path: "**", component: ErrorComponent}
 ];
 
 @NgModule({

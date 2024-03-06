@@ -1,0 +1,16 @@
+/* .bg-danger-soft-hover,
+.bg-hov {
+    color: gray;
+    transition-duration: 0.5s; 
+    transition-property: background-color, color; 
+}
+
+.bg-danger-soft-hover:hover {
+    background-color: rgba(218, 17, 17, 0.142);
+    color: #e40910;
+}
+
+.bg-hov:hover {
+    background-color: rgba(61, 17, 218, 0.142);
+    color: #3509e4;
+} */
