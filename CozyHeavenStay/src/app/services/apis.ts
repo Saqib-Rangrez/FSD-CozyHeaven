@@ -49,13 +49,13 @@ export const ownerEndpoints = {
 
 // REVIEW ENDPOINTS
 export const reviewEndpoints = {
-    ADD_REVIEW_API: BASE_URL + "/Riview/AddReview",
-    UPDATE_REVIEW_API: BASE_URL + "/Riview/UpdateReview",
-    DELETE_REVIEW_API: BASE_URL + "/Riview/DeleteReview/",
-    GET_ALL_REVIEWS_API: BASE_URL + "/Riview/GetAllReviews",
-    GET_REVIEW_BY_REVIEWID_API: BASE_URL + "/Riview/GetReviewByReviewId/",
-    GET_REVIEW_BY_USERID_API: BASE_URL + "/Riview/GetReviewByUserId/",
-    GET_REVIEW_BY_HOTELID_API: BASE_URL + "/Riview/GetReviewByHotelId/",
+    ADD_REVIEW_API: BASE_URL + "/Review/AddReview",
+    UPDATE_REVIEW_API: BASE_URL + "/Review/UpdateReview",
+    DELETE_REVIEW_API: BASE_URL + "/Review/DeleteReview/",
+    GET_ALL_REVIEWS_API: BASE_URL + "/Review/GetAllReviews",
+    GET_REVIEW_BY_REVIEWID_API: BASE_URL + "/Review/GetReviewByReviewId/",
+    GET_REVIEW_BY_USERID_API: BASE_URL + "/Review/GetReviewByUserId/",
+    GET_REVIEW_BY_HOTELID_API: BASE_URL + "/Review/GetReviewByHotelId/",
 }
 
 // BOOKINGS ENDPOINTS
