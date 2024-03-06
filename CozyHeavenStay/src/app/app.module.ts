@@ -15,7 +15,10 @@ import { ResetPasswordComponent } from './modules/AuthModules/reset-password/res
 import { HomeComponent } from './modules/HomeModules/home/home.component';
 import { ErrorComponent } from './shared/error/error.component';
 import { FooterComponent } from './shared/footer/footer.component';
-
+import { HotelComponent } from './modules/HotelModules/hotel/hotel.component';
+import { HotelcardComponent } from './modules/HotelModules/hotelcard/hotelcard.component';
+import {NgxTinySliderModule} from 'ngx-tiny-slider';
+import { RatingStarsComponent } from './shared/rating-stars/rating-stars.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,10 @@ import { FooterComponent } from './shared/footer/footer.component';
     HomeComponent,
     ErrorComponent,
     FooterComponent,
+    HotelComponent,
+    HotelcardComponent,
+    RatingStarsComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -36,8 +43,9 @@ import { FooterComponent } from './shared/footer/footer.component';
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,121 @@
+<!-- Card item START -->
+<div class="card shadow p-2">
+    <div class="row g-0">
+      <!-- Card img -->
+      <div class="col-md-5 position-relative">
+
+        
+        <div 
+            class="slider tiny-slider arrow-round arrow-xs arrow-dark overflow-hidden rounded-2">
+            <div class="tiny-slider-inner"
+                >
+                <!-- Image item -->
+                <ng-container *ngIf="card?.hotelImages?.length > 0">
+                <ng-container >
+                    <img *ngIf="card.hotelImages[0]?.imageUrl" [src]="card.hotelImages[0]?.imageUrl" alt="Card image" />
+                </ng-container>
+                </ng-container>
+            </div>
+        </div>
+
+        
+      </div>
+
+      <!-- Card body -->
+      <div class="col-md-7">
+        <div
+          class="card-body py-md-2 d-flex flex-column h-100 position-relative"
+        >
+          <!-- Rating and buttons -->
+          <div
+            class="d-flex justify-content-between align-items-center"
+          >
+            <ul class="list-inline mb-0">
+                <app-rating-stars [reviewCount]="avgRating" [starSize]="20"></app-rating-stars>
+            </ul>
+
+            <ul class="list-inline mb-0 z-index-2">
+              <!-- Heart icon -->
+              <li class="list-inline-item">
+                <a href="#" class="btn btn-sm btn-round btn-light"
+                  ><i class="fa-solid fa-fw fa-heart"></i
+                ></a>
+              </li>
+              <!-- Share icon -->
+              <!-- <li class="list-inline-item dropdown"> -->
+                <!-- Share button -->
+                <!-- <a
+                  href="#"
+                  class="btn btn-sm btn-round btn-light"
+                  role="button"
+                  id="dropdownShare"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="fa-solid fa-fw fa-share-alt"></i>
+                </a>
+              </li> -->
+            </ul>
+          </div>
+
+          <!-- Title -->
+          <h5 class="card-title mb-1">
+            <a href="hotel-detail.html"
+              >{{card?.name}}
+            </a>
+          </h5>
+          <small
+            ><i class="bi bi-geo-alt me-2"></i>
+            {{card?.location}}
+          </small
+          >
+          <!-- Amenities -->
+          <ul class="nav nav-divider mt-3">
+            <li class="nav-item">{{card?.amenities}}</li>
+            <li class="nav-item">Wifi</li>
+            <li class="nav-item">Kitchen</li>
+            <li class="nav-item">
+              <a href="#" class="mb-0 text-primary">More+</a>
+            </li>
+          </ul>
+
+          <!-- List -->
+          <ul
+            class="list-group list-group-borderless small mb-0 mt-2"
+          >
+            <li class="list-group-item d-flex text-success p-0">
+              <i class="bi bi-patch-check-fill me-2"></i>Flexible cancellation available until the specified date.
+              
+              
+            </li>
+            <li class="list-group-item d-flex text-success p-0">
+              <i class="bi bi-patch-check-fill me-2"></i>Complimentary breakfast included.
+            </li>
+          </ul>
+
+          <!-- Price and Button -->
+          <div
+            class="d-sm-flex justify-content-sm-between align-items-center mt-3 mt-md-auto"
+          >
+            <!-- Button -->
+            <div class="d-flex align-items-center">
+              <h5 class="fw-bold mb-0 me-1">₹{{card.rooms[0]?.baseFare || 750}}</h5>
+              <span class="mb-0 me-2">/day</span>
+              <span class="text-decoration-line-through mb-0"
+                >₹10000</span
+              >
+            </div>
+            <!-- Price -->
+            <div class="mt-3 mt-sm-0">
+              <a href="#" class="btn btn-sm btn-dark mb-0 w-100"
+                >Select Room</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <!-- Card item END -->

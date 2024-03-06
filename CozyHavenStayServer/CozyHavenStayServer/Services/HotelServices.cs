@@ -135,7 +135,7 @@ namespace CozyHavenStayServer.Services
         {
             var allHotels = await _hotelRepository.GetAllAsync();
             var filteredHotels = allHotels;
-            if (searchHotelDTO.Location != null)
+            if (!string.IsNullOrEmpty(searchHotelDTO.Location))
             {
                 filteredHotels = allHotels.Where(h => h.Location.Contains(searchHotelDTO.Location, StringComparison.OrdinalIgnoreCase)).ToList();
             }

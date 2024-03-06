@@ -13,8 +13,8 @@ export class HotelService {
 
   constructor(private http: HttpClient) { }
 
-  getAllHotels(): Observable<Hotel[]> { 
-    return this.http.get<Hotel[]>(hotelEndpoints.GET_ALL_HOTELS_API)
+  getAllHotels() { 
+    return this.http.get(hotelEndpoints.GET_ALL_HOTELS_API)
       .pipe(
         catchError(this.handleError)
       );
