@@ -9,11 +9,13 @@ namespace CozyHavenStayServer.Services
     {
         private readonly IRepository<HotelOwner> _hotelOwnerRepository;
         private readonly ILogger<HotelOwnerController> _logger;
+        private readonly IAuthServices _authServices;
 
-        public HotelOwnerServices(IRepository<HotelOwner> hotelOwnerRepository, ILogger<HotelOwnerController> logger)
+        public HotelOwnerServices(IRepository<HotelOwner> hotelOwnerRepository, ILogger<HotelOwnerController> logger, IAuthServices authServices)
         {
             _hotelOwnerRepository = hotelOwnerRepository;
             _logger = logger;
+            _authServices = authServices;
         }
         public async Task<HotelOwner> CreateHotelOwnerAsync(HotelOwner hotelOwner)
         {
@@ -108,6 +110,9 @@ namespace CozyHavenStayServer.Services
                     _logger.LogError("HotelOwner not found with given Id");
                     return false;
                 }
+
+                var hashedPassword = _authServices.HashPassword(hotelOwner.Password);
+                hotelOwner.Password = hashedPassword;
 
                 await _hotelOwnerRepository.UpdateAsync(hotelOwner);
                 return true;

@@ -10,11 +10,13 @@ namespace CozyHavenStayServer.Services
         
         private readonly IRepository<Admin> _adminRepository;
         private readonly ILogger<AdminController> _logger;
+        private readonly IAuthServices _authServices;
 
-        public AdminServices(IRepository<Admin> adminRepository, ILogger<AdminController> logger)
+        public AdminServices(IRepository<Admin> adminRepository, ILogger<AdminController> logger, IAuthServices authServices)
         {
             _adminRepository = adminRepository;
             _logger = logger;
+            _authServices = authServices;
         }
         
 
@@ -118,6 +120,9 @@ namespace CozyHavenStayServer.Services
                     _logger.LogError("Admin not found with given Id");
                     return false;
                 }
+
+                var hashedPassword = _authServices.HashPassword(admin.Password);
+                admin.Password = hashedPassword;
 
                 await _adminRepository.UpdateAsync(admin);
                 return true;

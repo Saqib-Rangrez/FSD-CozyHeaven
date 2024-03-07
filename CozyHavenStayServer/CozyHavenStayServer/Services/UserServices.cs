@@ -16,9 +16,11 @@ namespace CozyHavenStayServer.Services
         private readonly ILogger<UserController> _logger;
         private readonly ICloudinaryService _cloudinaryService;
         private readonly IConfiguration _configuration;
+        private readonly IAuthServices _authServices;
 
-        public UserServices(IRepository<User> userRepository, ILogger<UserController> logger, ICloudinaryService cloudinaryService, IConfiguration configuration, IRepository<Review> reviewRepository)
+        public UserServices(IRepository<User> userRepository, ILogger<UserController> logger, ICloudinaryService cloudinaryService, IConfiguration configuration, IRepository<Review> reviewRepository, IAuthServices authServices )
         {
+            _authServices = authServices;
             _reviewRepository = reviewRepository;
             _userRepository = userRepository;
             _cloudinaryService = cloudinaryService;
@@ -100,6 +102,10 @@ namespace CozyHavenStayServer.Services
                     _logger.LogError("User not found with given Id");
                     return false;
                 }
+
+                var hashedPassword = _authServices.HashPassword(model.Password);
+                model.Password = hashedPassword;
+
 
                 await _userRepository.UpdateAsync(model);
                 return true;

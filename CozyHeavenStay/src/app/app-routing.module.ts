@@ -14,6 +14,7 @@ const routes: Routes = [
   {path:"" , component: HomeComponent},
   {path: "home", component : HomeComponent},
   {path: "hotel", component : HotelComponent},
+  {path: "hoteldetail/:id", component : HotelComponent},
   {path: "signup-user", component: SignupUserComponent},
   {path: "signup-admin", component: SignupAdminComponent},
   {path: "login", component: LoginComponent},
