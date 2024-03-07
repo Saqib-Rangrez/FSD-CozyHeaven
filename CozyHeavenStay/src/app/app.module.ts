@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { LoginComponent } from './modules/AuthModules/login/login.component';
 import { SignupUserComponent } from './modules/AuthModules/signup-user/signup-user.component';
@@ -15,6 +15,7 @@ import { ResetPasswordComponent } from './modules/AuthModules/reset-password/res
 import { HomeComponent } from './modules/HomeModules/home/home.component';
 import { ErrorComponent } from './shared/error/error.component';
 import { FooterComponent } from './shared/footer/footer.component';
+
 
 
 @NgModule({
@@ -28,7 +29,7 @@ import { FooterComponent } from './shared/footer/footer.component';
     ResetPasswordComponent,
     HomeComponent,
     ErrorComponent,
-    FooterComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +37,8 @@ import { FooterComponent } from './shared/footer/footer.component';
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
