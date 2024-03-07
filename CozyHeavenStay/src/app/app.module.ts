@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { LoginComponent } from './modules/AuthModules/login/login.component';
 import { SignupUserComponent } from './modules/AuthModules/signup-user/signup-user.component';
@@ -19,6 +19,7 @@ import { HotelComponent } from './modules/HotelModules/hotel/hotel.component';
 import { HotelcardComponent } from './modules/HotelModules/hotelcard/hotelcard.component';
 import {NgxTinySliderModule} from 'ngx-tiny-slider';
 import { RatingStarsComponent } from './shared/rating-stars/rating-stars.component';
+import { HotelDetailComponent } from './modules/HotelModules/hotel-detail/hotel-detail.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { RatingStarsComponent } from './shared/rating-stars/rating-stars.compone
     HotelComponent,
     HotelcardComponent,
     RatingStarsComponent,
+    HotelDetailComponent,
     
   ],
   imports: [
