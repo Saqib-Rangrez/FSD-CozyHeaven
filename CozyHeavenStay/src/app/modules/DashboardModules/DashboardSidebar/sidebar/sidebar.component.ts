@@ -1,14 +1,15 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { AuthAPIService } from '../../services/operations/auth-api.service';
-import { ToastrService } from 'ngx-toastr';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthAPIService } from '../../../../services/operations/auth-api.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  selector: 'app-sidebar',
+  templateUrl: './sidebar.component.html',
+  styleUrl: './sidebar.component.css'
 })
-export class NavbarComponent implements OnInit {
+export class SidebarComponent {
+
   authService : AuthAPIService = inject(AuthAPIService);
   toastr : ToastrService = inject(ToastrService);
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
@@ -27,21 +28,7 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.activeRoute.paramMap.subscribe(params => {
-      this.token = params.get('token');
-    });    
-  }
-
-  ngDoCheck(){
+  ngAfterContentInit(){
     this.user = JSON.parse(localStorage.getItem('user'));
-  }
-
-  moveToLogin(){
-    this.router.navigate(['/login']);
-  }
-  
-  moveToSignup() {
-    this.router.navigate(['/signup-user']);
   }
 }

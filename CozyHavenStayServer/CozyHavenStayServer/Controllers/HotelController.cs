@@ -240,7 +240,9 @@ namespace CozyHavenStayServer.Controllers
                             };
                             RegisterToHotelImage registerToHotelImage = new RegisterToHotelImage(hotelImageDTO);
                             var imageToAdd = registerToHotelImage.GetHotelImage();
+                            _logger.LogCritical(imageToAdd.ToString());
                             var addedImage = await _hotelServices.AddHotelImageAsync(imageToAdd);
+                            _logger.LogCritical(addedImage.ToString());
 
                             if (addedImage == null)
                             {
@@ -251,6 +253,13 @@ namespace CozyHavenStayServer.Controllers
                                     data = uploadResult.SecureUrl
                                 });
                             }
+                        }else{
+                            return StatusCode(500, new
+                                {
+                                    success = false,
+                                    message = "Error while uploading image",
+                                    
+                                }); 
                         }
                     }
                 }

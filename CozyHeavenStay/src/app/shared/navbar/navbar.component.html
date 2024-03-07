@@ -102,10 +102,10 @@
 						<!-- Links -->
             <div class="text-secondary" style="padding-left: 5px; padding-right: 5px;">
               <li> <hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item rounded-2 bg-hov" href="#"><i class="bi bi-bookmark-check fa-fw me-2"></i>My Bookings</a></li>
-              <li><a class="dropdown-item rounded-2 bg-hov" href="#"><i class="bi bi-heart fa-fw me-2"></i>My Wishlist</a></li>
-              <li><a class="dropdown-item rounded-2 bg-hov" href="#"><i class="bi bi-gear fa-fw me-2"></i>Settings</a></li>
-              <li><a class="dropdown-item rounded-2 bg-hov" href="#"><i class="bi bi-speedometer fa-fw me-2"></i>Dashboard</a></li>
+              <li><a class="dropdown-item rounded-2 bg-hov" routerLink="/dashboard/bookings"><i class="bi bi-bookmark-check fa-fw me-2"></i>My Bookings</a></li>
+              <li><a class="dropdown-item rounded-2 bg-hov" routerLink="/dashboard/bookings"><i class="bi bi-heart fa-fw me-2"></i>My Wishlist</a></li>
+              <li><a class="dropdown-item rounded-2 bg-hov" routerLink="/dashboard/profile"><i class="bi bi-gear fa-fw me-2"></i>Profile</a></li>
+              <li><a class="dropdown-item rounded-2 bg-hov" routerLink="/dashboard/delete-profile"><i class="bi bi-speedometer fa-fw me-2"></i>Dashboard</a></li>
               <li><div (click)="logOut()" class="rounded-2 dropdown-item bg-danger-soft-hover" style="cursor: pointer;"><i class="bi bi-power fa-fw me-2"></i>Sign Out</div></li>       
             </div>
 						

@@ -20,6 +20,11 @@ import { HotelcardComponent } from './modules/HotelModules/hotelcard/hotelcard.c
 import {NgxTinySliderModule} from 'ngx-tiny-slider';
 import { RatingStarsComponent } from './shared/rating-stars/rating-stars.component';
 import { HotelDetailComponent } from './modules/HotelModules/hotel-detail/hotel-detail.component';
+import { SidebarComponent } from './modules/DashboardModules/DashboardSidebar/sidebar/sidebar.component';
+import { ProfileComponent } from './modules/DashboardModules/UserDashboard/profile/profile.component';
+import { BookingsComponent } from './modules/DashboardModules/UserDashboard/bookings/bookings.component';
+import { PaymnetHistoryComponent } from './modules/DashboardModules/UserDashboard/paymnet-history/paymnet-history.component';
+import { DeleteProfileComponent } from './modules/DashboardModules/UserDashboard/delete-profile/delete-profile.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +42,11 @@ import { HotelDetailComponent } from './modules/HotelModules/hotel-detail/hotel-
     HotelcardComponent,
     RatingStarsComponent,
     HotelDetailComponent,
+    SidebarComponent,
+    ProfileComponent,
+    BookingsComponent,
+    PaymnetHistoryComponent,
+    DeleteProfileComponent,
     
   ],
   imports: [

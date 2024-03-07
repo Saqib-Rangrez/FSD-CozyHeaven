@@ -57,7 +57,7 @@ namespace CozyHavenStayServer.Services
 
         public async Task<Hotel> GetHotelByNameAsync(string name)
         {
-            var hotel = await _hotelRepository.GetAsync(hotel => hotel.Name.Equals(name , StringComparison.OrdinalIgnoreCase), false);
+            var hotel = await _hotelRepository.GetAsync(hotel => hotel.Name.ToLower() == name.ToLower(), false);
 
             if (hotel == null)
             {
@@ -137,7 +137,7 @@ namespace CozyHavenStayServer.Services
             var filteredHotels = allHotels;
             if (!string.IsNullOrEmpty(searchHotelDTO.Location))
             {
-                filteredHotels = allHotels.Where(h => h.Location.Contains(searchHotelDTO.Location, StringComparison.OrdinalIgnoreCase)).ToList();
+                filteredHotels = allHotels.Where(h => h.Location.Contains(searchHotelDTO.Location.ToLower())).ToList();
             }
           
             if (filteredHotels == null || filteredHotels.Count <= 0)

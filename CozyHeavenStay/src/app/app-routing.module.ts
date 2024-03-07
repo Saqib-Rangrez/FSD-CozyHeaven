@@ -9,6 +9,11 @@ import { ResetPasswordComponent } from './modules/AuthModules/reset-password/res
 import { HomeComponent } from './modules/HomeModules/home/home.component';
 import { ErrorComponent } from './shared/error/error.component';
 import { HotelComponent } from './modules/HotelModules/hotel/hotel.component';
+import { SidebarComponent } from './modules/DashboardModules/DashboardSidebar/sidebar/sidebar.component';
+import { BookingsComponent } from './modules/DashboardModules/UserDashboard/bookings/bookings.component';
+import { ProfileComponent } from './modules/DashboardModules/UserDashboard/profile/profile.component';
+import { PaymnetHistoryComponent } from './modules/DashboardModules/UserDashboard/paymnet-history/paymnet-history.component';
+import { DeleteProfileComponent } from './modules/DashboardModules/UserDashboard/delete-profile/delete-profile.component';
 
 const routes: Routes = [
   {path:"" , component: HomeComponent},
@@ -20,6 +25,17 @@ const routes: Routes = [
   {path: "login", component: LoginComponent},
   {path: "forget-password", component: ForgetPasswordComponent},
   {path: "reset-password/:token", component: ResetPasswordComponent},
+  {
+    path: 'dashboard',
+    component: SidebarComponent,
+    children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'bookings', component: BookingsComponent },
+      { path: 'profile', component: ProfileComponent },
+      { path: 'payment-history', component: PaymnetHistoryComponent },
+      { path: 'delete-profile', component: DeleteProfileComponent },
+    ]
+  },
 
   {path: "**", component: ErrorComponent}
 ];
