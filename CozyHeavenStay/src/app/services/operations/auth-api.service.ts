@@ -216,11 +216,11 @@ loginAdmin(email:string, password:string){
         res.gender,
         res.contactNumber,
         res.address,
+        res.expiresIn,
         res.role,
         res.profileImage,
         res.token,
         res.resetPasswordExpires,
-        res.expiresIn
     );
     }else{
       user = new User(
@@ -232,11 +232,11 @@ loginAdmin(email:string, password:string){
         res.gender,
         res.contactNumber,
         res.address,
+        res.expiresIn,  
         res.role,
         res.profileImage,
         res.token,
         res.resetPasswordExpires,
-        res.expiresIn  
     );
     }  
 
@@ -257,9 +257,11 @@ loginAdmin(email:string, password:string){
     };
 
     this.user.next(null);
+    this.owner.next(null);
+    this.admin.next(null);
+
     this.router.navigate(['/login']);
     localStorage.removeItem('user');
-    sessionStorage.removeItem('user');
 
     if(this.tokenExpiretimer){
         clearTimeout(this.tokenExpiretimer);
@@ -376,7 +378,6 @@ loginAdmin(email:string, password:string){
     this.owner.next(user);
 
     }else{
-      console.log("sad")
       user = new User(
         res.user.userId,
         res.user.firstName,

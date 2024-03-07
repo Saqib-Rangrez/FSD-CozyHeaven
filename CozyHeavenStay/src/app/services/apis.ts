@@ -69,13 +69,13 @@ export const bookingsEndpoints = {
 
 // HOTEL ENDPOINTS
 export const hotelEndpoints = {
-    GET_ALL_HOTELS_API: BASE_URL + "Hotel/GetAllHotels",
-    SEARCH_HOTELS_API: BASE_URL + "Hotel/SearchHotels",
-    GET_HOTEL_BY_ID_API: BASE_URL + "Hotel/GetHotelById/",
-    GET_HOTEL_BY_NAME_API: BASE_URL + "Hotel/GetHotelByName/",
-    CREATE_HOTEL_API: BASE_URL + "Hotel/CreateHotel",
-    UPDATE_HOTEL_API: BASE_URL + "Hotel/UpdateHotel",
-    DELETE_HOTEL_API: BASE_URL + "Hotel/DeleteHotel/"
+    GET_ALL_HOTELS_API: BASE_URL + "/Hotel/GetAllHotels",
+    SEARCH_HOTELS_API: BASE_URL + "/Hotel/SearchHotels",
+    GET_HOTEL_BY_ID_API: BASE_URL + "/Hotel/GetHotelById/",
+    GET_HOTEL_BY_NAME_API: BASE_URL + "/Hotel/GetHotelByName/",
+    CREATE_HOTEL_API: BASE_URL + "/Hotel/CreateHotel",
+    UPDATE_HOTEL_API: BASE_URL + "/Hotel/UpdateHotel",
+    DELETE_HOTEL_API: BASE_URL + "/Hotel/DeleteHotel/"
 };
 
 // PAYMENT ENDPOINTS

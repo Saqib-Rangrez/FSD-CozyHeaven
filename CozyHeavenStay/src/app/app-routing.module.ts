@@ -8,10 +8,12 @@ import { ForgetPasswordComponent } from './modules/AuthModules/forget-password/f
 import { ResetPasswordComponent } from './modules/AuthModules/reset-password/reset-password.component';
 import { HomeComponent } from './modules/HomeModules/home/home.component';
 import { ErrorComponent } from './shared/error/error.component';
+import { HotelComponent } from './modules/HotelModules/hotel/hotel.component';
 
 const routes: Routes = [
   {path:"" , component: HomeComponent},
   {path: "home", component : HomeComponent},
+  {path: "hotel", component : HotelComponent},
   {path: "signup-user", component: SignupUserComponent},
   {path: "signup-admin", component: SignupAdminComponent},
   {path: "login", component: LoginComponent},
