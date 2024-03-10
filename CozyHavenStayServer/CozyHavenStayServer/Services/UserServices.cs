@@ -29,8 +29,6 @@ namespace CozyHavenStayServer.Services
         }
 
 
-
-
         #region User Actions
         public async Task<List<User>> GetAllUsersAsync()
         {

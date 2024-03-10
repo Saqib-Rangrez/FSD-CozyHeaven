@@ -1,5 +1,6 @@
 ﻿using CozyHavenStayServer.Interfaces;
 using CozyHavenStayServer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,7 @@ namespace CozyHavenStayServer.Controllers
             _paymentServices = paymentServices;
         }
 
+        [Authorize(Roles = "Admin, User, Owner")]
         [HttpGet]
         [Route("GetAllPayments")]
         public async Task<ActionResult<List<Payment>>> GetAllPaymentsAsync()
@@ -51,6 +53,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         // Get payment by ID
+        [Authorize(Roles = "Admin, User, Owner")]
         [HttpGet]
         [Route("GetPaymentById/{id}")]
         public async Task<ActionResult<Payment>> GetPaymentByIdAsync(int id)
@@ -82,8 +85,9 @@ namespace CozyHavenStayServer.Controllers
                 });
             }
         }
-        
+
         // Get payment by ID
+        [Authorize(Roles = "Admin, User, Owner")]
         [HttpGet]
         [Route("GetPaymentByBookingId/{id}")]
         public async Task<ActionResult<Payment>> GetPaymentByBookingIdAsync(int id)
@@ -117,6 +121,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         // Create payment
+        [Authorize(Roles = "User")]
         [HttpPost]
         [Route("CreatePayment")]
         public async Task<ActionResult<Payment>> CreatePaymentAsync([FromBody] Payment payment)
@@ -150,6 +155,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         // Update payment
+        [Authorize(Roles = "Admin, User, Owner")]
         [HttpPut]
         [Route("UpdatePayment")]
         public async Task<ActionResult<bool>> UpdatePaymentAsync([FromBody] Payment payment)
@@ -183,6 +189,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         // Delete payment
+        [Authorize(Roles = "Admin, Owner")]
         [HttpDelete]
         [Route("DeletePayment/{id}")]
         public async Task<ActionResult<bool>> DeletePaymentAsync(int id)

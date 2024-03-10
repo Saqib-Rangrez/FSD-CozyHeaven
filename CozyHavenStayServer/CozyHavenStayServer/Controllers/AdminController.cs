@@ -1,11 +1,13 @@
 ﻿using CozyHavenStayServer.Interfaces;
 using CozyHavenStayServer.Models;
 using CozyHavenStayServer.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CozyHavenStayServer.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class AdminController : ControllerBase

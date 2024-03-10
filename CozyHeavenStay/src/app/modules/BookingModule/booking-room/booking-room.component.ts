@@ -371,11 +371,6 @@ export class BookingRoomComponent {
     console.log("paid cancel");
     this.toastr.success("Payment Pending!!")
     this.CloseModel();
-    this.router.navigate(['/hotel']);
-  
+    this.router.navigate(['/dashboard/bookings']);  
   }
-
-  
-
-
 }

@@ -411,7 +411,7 @@ Page content START -->
                                 </div>
                                  <!-- Booked Button -->
                                  <div class="mt-3 hstack gap-4 flex-wrap align-items-center">
-                                    <button type="button" style="width: 100%; font-size: 100%;" class="btn btn-success-soft mb-0"  data-toggle="modal" data-target="#myModal" (click)="openModel()">Book Now</button>
+                                    <button *ngIf="user?.role === 'User'" type="button" style="width: 100%; font-size: 100%;" class="btn btn-success-soft mb-0"  data-toggle="modal" data-target="#myModal" (click)="openModel()">Book Now</button>
                                   </div>
                                   
                             </div>
@@ -429,7 +429,7 @@ Page content START -->
 Page content END -->
 
 <!-- The Modal -->
-<div class="modal" id="myModal">
+<div class="modal" id="myModal" *ngIf="user?.role === 'User'">
     <div class="modal-dialog">
       <div class="modal-content">
   

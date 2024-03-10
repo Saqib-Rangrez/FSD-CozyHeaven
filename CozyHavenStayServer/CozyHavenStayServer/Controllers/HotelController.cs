@@ -3,6 +3,7 @@ using CozyHavenStayServer.Mappers;
 using CozyHavenStayServer.Models;
 using CozyHavenStayServer.Models.DTO;
 using CozyHavenStayServer.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,6 +25,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         // Get all hotels
+        [Authorize(Roles = "Admin, User, Owner")]
         [HttpGet]
         [Route("GetAllHotels")]
         public async Task<ActionResult<List<Hotel>>> GetAllHotelsAsync()
@@ -58,6 +60,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         // Get all hotels
+        [Authorize(Roles = "Admin, User, Owner")]
         [HttpPost]
         [Route("SearchHotels")]
         public async Task<ActionResult<List<Hotel>>> SearchHotelsAsync([FromBody] SearchHotelDTO searchHotelDTO)
@@ -91,6 +94,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         // Get hotel by ID
+        [Authorize(Roles = "Admin, User, Owner")]
         [HttpGet]
         [Route("GetHotelById/{id}")]
         public async Task<ActionResult<Hotel>> GetHotelByIdAsync(int id)
@@ -125,6 +129,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         // Get hotel by name
+        [Authorize(Roles = "Admin, User, Owner")]
         [HttpGet]
         [Route("GetHotelByName/{name}")]
         public async Task<ActionResult<Hotel>> GetHotelByNameAsync(string name)
@@ -192,6 +197,8 @@ namespace CozyHavenStayServer.Controllers
             }
         }
 */
+
+        [Authorize(Roles = "Owner")]
         [HttpPost]
         [Route("CreateHotel")]
         public async Task<ActionResult<Hotel>> CreateHotelAsync([FromForm] HotelDTO model)
@@ -284,6 +291,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         // Update hotel
+        [Authorize(Roles = "Owner")]
         [HttpPut]
         [Route("UpdateHotel")]
         public async Task<ActionResult<bool>> UpdateHotelAsync([FromBody] Hotel hotel)
@@ -317,6 +325,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         // Delete hotel
+        [Authorize(Roles = "Admin, Owner")]
         [HttpDelete]
         [Route("DeleteHotel/{id}")]
         public async Task<ActionResult<bool>> DeleteHotelAsync(int id)

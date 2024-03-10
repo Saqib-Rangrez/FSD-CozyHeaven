@@ -33,6 +33,7 @@ namespace CozyHavenStayServer.Controllers
 
 
         //GetAllUsers
+        [Authorize(Roles = "Admin, User, Owner")]
         [HttpGet]
         [Route("GetAllUsers")]
         public async Task<ActionResult<List<User>>> GetAllUsersAsync()
@@ -69,6 +70,7 @@ namespace CozyHavenStayServer.Controllers
 
 
         //GetUserById
+        [Authorize(Roles = "Admin, User, Owner")]
         [HttpGet]
         [Route("GetUserById/{id}", Name = "GetUserById")]
         public async Task<ActionResult<User>> GetUserByIdAsync(int id)
@@ -116,6 +118,7 @@ namespace CozyHavenStayServer.Controllers
 
 
         //GetUserByName
+        [Authorize(Roles = "Admin, User, Owner")]
         [HttpGet]
         [Route("GetUserByEmail/{email}")]
         public async Task<ActionResult<User>> GetUserByNameAsync(string email)
@@ -162,6 +165,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         //CreateUser
+        [Authorize(Roles = "User")]
         [HttpPost]
         [Route("CreateUser")]
         public async Task<ActionResult<User>> CreateUserAsync([FromBody] User model)
@@ -208,6 +212,7 @@ namespace CozyHavenStayServer.Controllers
 
 
         //UpdateUser
+        [Authorize(Roles = "User")]
         [HttpPut]
         [Route("UpdateUser")]
         public async Task<ActionResult<User>> UpdateUserAsync([FromBody] User model)
@@ -258,6 +263,7 @@ namespace CozyHavenStayServer.Controllers
 
 
         //DeleteUser
+        [Authorize(Roles = "Admin, User")]
         [HttpDelete]
         [Route("DeleteUser/{id}")]
         public async Task<ActionResult<bool>> DeleteUserAsync(int id)
@@ -307,6 +313,7 @@ namespace CozyHavenStayServer.Controllers
 
 
         //UploadDisplay Picture
+        [Authorize(Roles = "Admin, User, Owner")]
         [HttpPost]
         [Route("UploadDisplayPicture")]
         public async Task<ActionResult> UploadDisplayPicture([FromForm] UploadPicDTO model)

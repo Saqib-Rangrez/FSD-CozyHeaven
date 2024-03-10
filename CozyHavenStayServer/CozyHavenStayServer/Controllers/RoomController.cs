@@ -3,6 +3,7 @@ using CozyHavenStayServer.Mappers;
 using CozyHavenStayServer.Models;
 using CozyHavenStayServer.Models.DTO;
 using CozyHavenStayServer.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,6 +26,7 @@ namespace CozyHavenStayServer.Controllers
 
 
         // Get all rooms
+        [Authorize(Roles = "Admin, User, Owner")]
         [HttpGet]
         [Route("GetAllRooms")]
         public async Task<ActionResult<List<Room>>> GetAllRoomsAsync()
@@ -58,6 +60,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         // Get room by ID
+        [Authorize(Roles = "Admin, User, Owner")]
         [HttpGet]
         [Route("GetRoomById/{id}")]
         public async Task<ActionResult<Room>> GetRoomByIdAsync(int id)
@@ -123,7 +126,7 @@ namespace CozyHavenStayServer.Controllers
                         });
                     }
                 }*/
-
+        [Authorize(Roles = "Owner")]
         [HttpPost]
         [Route("CreateRoom")]
         public async Task<ActionResult<Room>> CreateRoomAsync([FromForm] RoomDTO model)
@@ -201,6 +204,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         // Update room
+        [Authorize(Roles = "Owner")]
         [HttpPut]
         [Route("UpdateRoom")]
         public async Task<ActionResult<bool>> UpdateRoomAsync([FromBody] Room room)
@@ -234,6 +238,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         // Delete room
+        [Authorize(Roles = "Owner")]
         [HttpDelete]
         [Route("DeleteRoom/{id}")]
         public async Task<ActionResult<bool>> DeleteRoomAsync(int id)

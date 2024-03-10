@@ -1,6 +1,7 @@
 ﻿using CozyHavenStayServer.Interfaces;
 using CozyHavenStayServer.Models;
 using CozyHavenStayServer.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,7 +21,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
 
-
+        [Authorize(Roles = "Admin, User, Owner")]
         [HttpGet]
         [Route("GetAllBookings")]
         public async Task<ActionResult<List<Booking>>> GetAllBookingsAsync()
@@ -54,6 +55,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         // Get booking by ID
+        [Authorize(Roles = "Admin, User, Owner")]
         [HttpGet]
         [Route("GetBookingById/{id}")]
         public async Task<ActionResult<Booking>> GetBookingByIdAsync(int id)
@@ -87,6 +89,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         //Get all bookings of user
+        [Authorize(Roles = "Admin, User, Owner")]
         [HttpGet]
         [Route("GetBookingByUserId/{id}")]
         public async Task<ActionResult<List<Booking>>> GetBookingByUserId(int id)
@@ -120,6 +123,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         // Create booking
+        [Authorize(Roles = "User")]
         [HttpPost]
         [Route("CreateBooking")]
         public async Task<ActionResult<Booking>> CreateBookingAsync([FromBody] Booking booking)
@@ -153,6 +157,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         // Update booking
+        [Authorize(Roles = "Admin, User, Owner")]
         [HttpPut]
         [Route("UpdateBooking")]
         public async Task<ActionResult<Booking>> UpdateBookingAsync([FromBody] Booking booking)
@@ -187,6 +192,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         // Delete booking
+        [Authorize(Roles = "Admin, Owner")]
         [HttpDelete]
         [Route("DeleteBooking/{id}")]
         public async Task<ActionResult<bool>> DeleteBookingAsync(int id)
