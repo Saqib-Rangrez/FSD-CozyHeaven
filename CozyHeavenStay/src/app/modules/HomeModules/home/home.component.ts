@@ -1,14 +1,17 @@
 import { Component } from '@angular/core';
+import { HotelService } from '../../../services/hotel.service';
+import { toArray } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
-  selectedLocation:any;
-  selectedDateRange:"19 Sep to 28 Sep";
-  guestsRooms:"2 Guests 1 Room";
+export class HomeComponent{
+
+  constructor(private hotelService: HotelService){}
+
+  hotelList;
   
   offers: any[]= [
     { imagepath:"./assets/HomeImages/offers/01.jpg", title:"Daily 50 Lucky Winners get a Free Stay", des:"Valid till: 15 Nov", offerpage:"offer-detail.html"},
@@ -16,14 +19,10 @@ export class HomeComponent {
     { imagepath:"./assets/HomeImages/offers/03.jpg", title:"Book & Enjoy", des:"20% Off on the best available room rate", offerpage:"offer-detail.html"},
     { imagepath:"./assets/HomeImages/offers/02.jpg", title:"Hot Summer Nights", des:"Up to 3 nights free!", offerpage:"offer-detail.html"},
   ]
+  
 
-  hotels:any [] = [
-    {Image: "./assets/HomeImages/hotel/01.jpg", location:"New York", title:"Baga Comfort", detailpage:"hotel-detail.html", price:"$455", rating:"4.5" },
-    {Image: "./assets/HomeImages/hotel/02.jpg", location:"California", title:"New Apollo Hotel", detailpage:"hotel-detail.html", price:"$585", rating:"4.8" },
-    {Image: "./assets/HomeImages/hotel/03.jpg", location:"Los Angeles", title:"New Age Hotel", detailpage:"hotel-detail.html", price:"$385", rating:"4.6" },
-    {Image: "./assets/HomeImages/hotel/04.jpg", location:"Chicago", title:"Helios Beach Resort", detailpage:"hotel-detail.html", price:"$655", rating:"4.8" },
-    
-  ]
+  hotels:any [] = []
+  reviews;
 
   clientImagepaths = [
     "./assets/HomeImages/client/01.svg",
@@ -34,12 +33,7 @@ export class HomeComponent {
     "./assets/HomeImages/client/06.svg",
   ]
 
-  teams = [
-    {svgpath:"./assets/HomeImages/team/02.svg", imagepath:"./assets/HomeImages/team/01.jpg", content:"Moonlight newspaper up its enjoyment agreeable depending. Timed voice share led him to widen noisy young. At weddings believed in laughing", title:"Billy Vasquez", subtitle:"Ceo of Apple"},
-    
-    {svgpath:"./assets/HomeImages/team/03.svg", imagepath:"./assets/HomeImages/team/02.jpg", content:"Passage its ten led hearted removal cordial. Preference any astonished unreserved Mrs. understood the Preference unreserved.", title:"Carolyn Ortiz", subtitle:"Ceo of Google"},
-  ]
-
+  
   nearbycards = [
     {image:"./assets/HomeImages/hotel/nearby/01.jpg", location:"San Francisco", time:"13 min drive"},
     {image:"./assets/HomeImages/hotel/nearby/02.jpg", location:"Los Angeles", time:"25 min drive"},
@@ -57,4 +51,60 @@ export class HomeComponent {
   ]
 
 
+  ngOnInit():void{
+    this.hotelService.getAllHotels().subscribe({next:(res) => {
+      this.hotelList = res;
+      console.log(this.hotelList);
+      console.log("api response: " + res);
+      this.reviews = this.hotelList.data[0].reviews;
+      
+      for (let index = 0; index < Math.min(4, this.hotelList.data.length); index++) {
+        const h = this.hotelList.data[index];
+        console.log("Processing hotel:", h);
+        const avgrating = this.GetAvgRating(h.reviews);
+        const minPrice = this.GetMinPrice(h.rooms);
+        
+
+        this.hotels.push({ Image: h.hotelImages[0].imageUrl, location: h.location, title: h.name, detailpage: "/hoteldetail/"+h.hotelId, price: "Rs"+minPrice, rating: avgrating });
+      }
+      
+    },
+    error:error => {
+      console.log(error);
+    }
+  } 
+  )
+
+  
 }
+    
+  GetAvgRating(ratingArr) {
+      
+    if (ratingArr?.length === 0) return 0
+    let totalReviewCount = 0;
+    ratingArr?.forEach(element => {
+      totalReviewCount += element.rating
+    
+    });
+
+    const multiplier = Math.pow(10, 1)
+    const avgReviewCount =
+      Math.round((totalReviewCount / ratingArr?.length) * multiplier) / multiplier
+
+    return avgReviewCount
+  }
+
+  GetMinPrice(rooms){
+    const minPriceRoom = rooms.reduce((minRoom, currentRoom) => {
+      // If minRoom is null or the baseFare of currentRoom is less than minRoom's baseFare
+      if (!minRoom || currentRoom.baseFare < minRoom.baseFare) {
+        return currentRoom;
+      }
+      return minRoom;
+    }, null);
+    
+    // Now minPriceRoom will contain the room with the minimum price
+    return minPriceRoom.baseFare;
+  }
+}
+
