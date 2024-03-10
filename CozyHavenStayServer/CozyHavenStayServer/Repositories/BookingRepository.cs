@@ -31,15 +31,42 @@ namespace CozyHavenStayServer.Repositories
 
         public async Task<List<Booking>> GetAllAsync()
         {
-            return await _context.Bookings.ToListAsync();
+            return await _context.Bookings
+            .Include(b => b.Room)
+                .ThenInclude(r => r.RoomImages)
+            .Include(b => b.Hotel)
+                .ThenInclude(h => h.HotelImages)
+            .Include(b => b.User)
+                .ThenInclude(u => u.Reviews)
+            .Include(b => b.Payment)
+                .ThenInclude(p => p.Refund)
+            .ToListAsync();
         }
 
         public async Task<Booking> GetAsync(Expression<Func<Booking, bool>> filter, bool useNoTracking = false)
         {
             if (useNoTracking)
-                return await _context.Bookings.AsNoTracking().Where(filter).FirstOrDefaultAsync();
+                return await _context.Bookings.AsNoTracking().Where(filter)
+                .Include(b => b.Room)
+                    .ThenInclude(r => r.RoomImages)
+                .Include(b => b.Hotel)
+                    .ThenInclude(h => h.HotelImages)
+                .Include(b => b.User)
+                    .ThenInclude(u => u.Reviews)
+                .Include(b => b.Payment)
+                    .ThenInclude(p => p.Refund)
+                .FirstOrDefaultAsync();
             else
-                return await _context.Bookings.Where(filter).FirstOrDefaultAsync();
+                return await _context.Bookings.Where(filter)
+                .Include(b => b.Room)
+                    .ThenInclude(r => r.RoomImages)
+                .Include(b => b.Hotel)
+                    .ThenInclude(h => h.HotelImages)
+                .Include(b => b.User)
+                    .ThenInclude(u => u.Reviews)
+                .Include(b => b.Payment)
+                    .ThenInclude(p => p.Refund)
+                .FirstOrDefaultAsync();
         }
 
         public async Task<Booking> UpdateAsync(Booking dbRecord)

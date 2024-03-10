@@ -194,7 +194,7 @@ namespace CozyHavenStayServer.Controllers
         //UpdateAdmin
         [HttpPut]
         [Route("UpdateAdmin")]
-        public async Task<ActionResult> UpdateAdminAsync([FromBody] Admin model)
+        public async Task<ActionResult<Admin>> UpdateAdminAsync([FromBody] Admin model)
         {
             try
             {
@@ -210,11 +210,21 @@ namespace CozyHavenStayServer.Controllers
 
                 var admin = await _adminServices.UpdateAdminAsync(model);
 
-                return Ok(new
+                if(admin) {
+                   return Ok(new
+                    {
+                        success = true,
+                        message = "User updated successfully",
+                        user = model
+                    });
+                }
+
+                return BadRequest(new
                 {
-                    success = true,
-                    message = "Admin updated successfully"
+                    success = false,
+                    message = "Invalid Data"
                 });
+                
 
             }
             catch (Exception ex)

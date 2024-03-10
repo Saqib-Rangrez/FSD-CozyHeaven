@@ -1,0 +1,139 @@
+ <!-- Step 1 content START -->
+ <form [formGroup]="roomForm" (ngSubmit)="onSubmit()">
+    <div >
+        <h4 class="mb-0">Add Room Details</h4>
+
+        <div formArrayName="rooms">
+            <div *ngFor="let room of rooms.controls; let i = index" [formGroupName]="i">
+              <!-- Your room form controls -->
+
+              <!-- Main Form Data Start-->
+              <div class="vstack gap-4">
+                <!-- Title -->
+        
+                <!-- Listing category START -->
+                <div class="card shadow">
+                  
+                </div>
+                <!-- Listing category END -->
+        
+                <!-- Listing location START -->
+                <div class="card shadow">
+        
+                    <!-- Card body START -->
+                    <div class="card-body">
+                        <div class="row g-3">
+                                
+                            <div class="col-md-6">
+                                <label class="form-label">Room Type *</label>
+                                <select formControlName="roomType" class="form-select js-choice" data-search-enabled="true">
+                                    <option disabled>Select Room Type</option>
+                                    <option *ngFor="let item of roomConstants.roomTypes">{{item}}</option>
+                                </select>
+                            </div>
+        
+                            <div class="col-md-6">
+                                <label class="form-label">Bed Type *</label>
+                                <select formControlName="bedType" class="form-select js-choice" data-search-enabled="true">
+                                    <option disabled selected>Select Bed Type</option>
+                                    <option *ngFor="let item of roomConstants.bedSizes">{{item}}</option>
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label class="form-label">Room Size *</label>
+                                <select formControlName="roomSize" class="form-select js-choice" data-search-enabled="true">
+                                    <option disabled selected>Select Room Size</option>
+                                    <option *ngFor="let item of roomConstants.roomSizes">{{item}}</option>
+                                </select>
+                            </div>
+    
+                            <div class="col-md-6">
+                                <label class="form-label">AC Status *</label>
+                                <select formControlName="acstatus" class="form-select js-choice" data-search-enabled="true">
+                                    <option disabled selected>Select AC Status</option>
+                                    <option *ngFor="let item of roomConstants.acStatuses">{{item}}</option>
+                                </select>
+                            </div>
+    
+                            <div class="col-md-6">
+                                <label class="form-label">Max Occupancy *</label>
+                                <select formControlName="maxOccupancy" class="form-select js-choice" data-search-enabled="true">
+                                    <option disabled selected>Select Max. Occupancy</option>
+                                    <option *ngFor="let item of roomConstants.maxOccupancy">{{item}}</option>
+                                </select>
+                            </div>
+        
+                            <div class="col-6">
+                                <label class="form-label">Base Fare *</label>
+                                <input formControlName="baseFare" class="form-control" type="text" placeholder="Enter max occupancy">
+                            </div>    
+                       
+                        </div>
+                    </div>
+                    <!-- Card body END -->
+                </div>
+                <!-- Listing location END -->
+        
+                <!-- Upload image START -->
+                <div class="card shadow">
+                    <!-- Card header -->
+                    <div class="card-header border-bottom">
+                        <!-- Title -->
+                        <h5 class="mb-0">Upload Images</h5>
+                    </div>
+        
+                    <!-- Card body START -->
+                    <div class="card-body">
+                        <div class="row g-3">
+        
+                            <!-- Image Gallery -->
+                            <div class="col-12">
+                                <label class="form-label">Upload image gallery *</label>
+                                <div class="dropzone dropzone-custom d-flex justify-content-center align-items-center" style="min-height: 180px; min-width: 100%;">
+                                    <label *ngIf="imagePreviews[i]?.length <= 0" for="fileInput" class="upload-label d-flex justify-content-center align-items-center" style="min-height: 180px; min-width: 100%; cursor: pointer;">Click to select images
+      
+                                    <!-- Input element hidden from view -->
+                                        <input
+                                            type="file"
+                                            id="fileInput"
+                                            (change)="onFileChange($event, i)"
+                                            multiple
+                                            accept="image/*"
+                                            style="display: none; cursor: pointer;"                                    
+                                        />
+                                    </label>
+    
+                                    <div *ngIf="imagePreviews[i]?.length > 0" class="row row p-3">
+                                        <div   *ngFor="let file of imagePreviews[i]" class="file-preview col">
+                                            <img [src]="file" class="card-image rounded-2" alt="Image" (click)="removeImage(file)" style="width: 170px; height: 150px;">
+                                        </div>
+                                    </div>                              
+                                </div> 
+                                <p class="small mb-0 mt-2"><b>Note:</b> Only JPG, JPEG, and PNG. Our suggested dimensions are 600px * 450px. The larger image will be cropped to 4:3 to fit our thumbnails/previews.</p>
+                            </div>
+    
+                            
+                        </div>
+                    </div>
+                    <!-- Card body END -->
+                </div>
+                <!-- Upload image END -->	
+        
+                <button class="float-start mt-2 px-4 btn btn-primary-soft mb-0 btn-danger-soft" style="width: fit-content;" type="button" (click)="removeRoom(i)">Remove</button>
+
+                </div>
+              <!-- Main Form Data ENd -->
+              <!-- Remove Room -->
+            </div>
+        </div>    
+        
+        <button type="button" (click)="addRoom()" class="float-start mt-2 px-4 btn btn-primary-soft mb-0">Add Room</button>
+
+        <button type="submit" class="float-end mt-2 px-4 btn btn-primary-soft mb-0">Save Room Info</button>
+
+    </div>
+
+ </form>
+
+<!-- Step 1 content END -->

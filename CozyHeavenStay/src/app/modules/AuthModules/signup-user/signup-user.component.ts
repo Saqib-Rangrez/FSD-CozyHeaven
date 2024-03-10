@@ -3,6 +3,7 @@ import { RegisterUserDTO } from '../../../models/DTO/RegisterUserDTO';
 import {  FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthAPIService } from '../../../services/operations/auth-api.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup-user',
@@ -11,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SignupUserComponent {
   registerForm: FormGroup;
+  router : Router = inject(Router);
   toastr : ToastrService = inject(ToastrService);
   authService : AuthAPIService = inject(AuthAPIService);
   showConfirmPassword: boolean = false;
@@ -42,6 +44,7 @@ export class SignupUserComponent {
           next : (res) => {
               console.log(res);
               this.toastr.success("Registration success")
+              this.router.navigate(['/login'])
           },
           error : (err) => {
             this.toastr.error("Registration failed")
@@ -53,6 +56,8 @@ export class SignupUserComponent {
           next : (res) => {
             console.log(res);
             this.toastr.success("Registration success")
+            this.router.navigate(['/login'])
+
           },
           error : (err) => {
             console.log(err);
@@ -73,9 +78,9 @@ export class SignupUserComponent {
     this.showPassword = !this.showPassword;
   }
 
-  passwordMatchValidator(formGroup: FormGroup) {
-    const password = formGroup.get('password')?.value;
-    const confirmPassword = formGroup.get('confirmPassword')?.value;
+  passwordMatchValidator() {
+    const password = this?.registerForm.get('password')?.value;
+    const confirmPassword = this?.registerForm.get('confirmPassword')?.value;
     return password === confirmPassword ? null : { passwordMismatch: true };
   }
 }

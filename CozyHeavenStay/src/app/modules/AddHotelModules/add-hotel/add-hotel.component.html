@@ -1,0 +1,73 @@
+<!-- **************** MAIN CONTENT START **************** -->
+<main>	
+    <!-- =======================
+    Page Banner START -->
+    <section class="pb-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1 class="fs-2 mb-2">Add New Listing</h1>
+                    <p class="mb-0">Praise effects wish change way and any wanted. Lively use looked latter regard had.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- =======================
+    Page Banner END -->
+    
+    <!-- =======================
+    Steps START -->
+    <section>
+        <div class="container">
+            <div>
+                <!-- Step Buttons START -->
+			    <div class="d-flex flex-row justify-content-between align-items-center"  >
+                    <!-- Step 1 -->
+                    <ul class="nav nav-tabs nav-bottom-line nav-responsive nav-justified d-flex flex-row justify-content-between align-items-center w-100">
+                        <li  class="nav-item"> 
+                            <div class="nav-link mb-0 disabled" [ngClass]="{'active' : step === 1}" data-bs-toggle="tab" ><i class="fa fa-hotel fa-fw me-1"></i>Hotel Information</div> 
+                        </li>
+                        <li class="nav-item">
+                            <div class="nav-link mb-0 disabled" [ngClass]="{'active' : step === 2}" data-bs-toggle="tab" ><i class="fa fa-broom fa-fw me-1"></i>Room Information</div> 
+                            </li>
+                        <li class="nav-item"> 
+                            <div class="nav-link mb-0 disabled" [ngClass]="{'active' : step === 3}" data-bs-toggle="tab" ><i class="fa fa-check fa-fw me-1"></i>Publish</div> 
+                        </li>
+                    </ul>
+                </div>
+                <!-- Step Buttons END -->
+    
+                <!-- Step content START -->
+                <div class="bs-stepper-content p-0 pt-4 pt-md-5">
+                    <div class="row g-4">
+    
+                        <!-- Main content START -->
+                        <div class="col-12">
+                           <ng-container *ngIf="step === 1">
+                                <app-add-hotel-info></app-add-hotel-info>
+                            </ng-container>
+                           <ng-container *ngIf="step === 2">
+                                <app-add-room-info></app-add-room-info>
+                            </ng-container>
+                           <ng-container *ngIf="step === 3">
+                                <app-add-hr-final></app-add-hr-final>
+                            </ng-container>
+                        </div>
+                        <!-- Main content END -->
+    
+                    </div>						
+                </div>
+                <!-- Step content END -->
+                <div class="hstack gap-2 flex-wrap justify-content-between mt-5">
+                    <button *ngIf="step !== 1 " (click)="previous()" class="btn btn-secondary prev-btn mb-0">Previous</button>
+                    <button *ngIf="step !== 3 " (click)="next()" class="btn btn-primary next-btn mb-0">Next</button>
+                    <button *ngIf="step === 3" (click)="moveToListing()" class="btn btn-success mb-0">Add Listing</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- =======================
+    Steps END -->
+    
+    </main>
+    <!-- **************** MAIN CONTENT END **************** -->

@@ -19,12 +19,39 @@ import { HotelComponent } from './modules/HotelModules/hotel/hotel.component';
 import { HotelcardComponent } from './modules/HotelModules/hotelcard/hotelcard.component';
 import {NgxTinySliderModule} from 'ngx-tiny-slider';
 import { RatingStarsComponent } from './shared/rating-stars/rating-stars.component';
-import { HotelDetailComponent } from './modules/HotelModules/hotel-detail/hotel-detail.component';
 import { SidebarComponent } from './modules/DashboardModules/DashboardSidebar/sidebar/sidebar.component';
 import { ProfileComponent } from './modules/DashboardModules/UserDashboard/profile/profile.component';
 import { BookingsComponent } from './modules/DashboardModules/UserDashboard/bookings/bookings.component';
-import { PaymnetHistoryComponent } from './modules/DashboardModules/UserDashboard/paymnet-history/paymnet-history.component';
 import { DeleteProfileComponent } from './modules/DashboardModules/UserDashboard/delete-profile/delete-profile.component';
+import { BookingDetailComponent } from './modules/DashboardModules/UserDashboard/bookings/booking-detail/booking-detail.component';
+import { NodataComponent } from './modules/DashboardModules/UserDashboard/bookings/nodata/nodata.component';
+import { PaymentCardComponent } from './modules/DashboardModules/UserDashboard/payment-history/payment-card/payment-card.component';
+import { PaymentHistoryComponent } from './modules/DashboardModules/UserDashboard/payment-history/payment-history.component';
+import { AdBookingsComponent } from './modules/DashboardModules/AdminDashboard/AdminBookings/ad-bookings/ad-bookings.component';
+import { AdUsersComponent } from './modules/DashboardModules/AdminDashboard/AdminUsers/ad-users/ad-users.component';
+import { AdUserDetailComponent } from './modules/DashboardModules/AdminDashboard/AdminUsers/ad-user-detail/ad-user-detail.component';
+import { AdOwnersComponent } from './modules/DashboardModules/AdminDashboard/AdminOwners/ad-owners/ad-owners.component';
+import { AdOwnerDetailComponent } from './modules/DashboardModules/AdminDashboard/AdminOwners/ad-owner-detail/ad-owner-detail.component';
+import { AdReviewComponent } from './modules/DashboardModules/AdminDashboard/AdminUsers/ad-user-detail/ad-review/ad-review.component';
+import { HotelOwnComponent } from './modules/DashboardModules/AdminDashboard/AdminOwners/ad-owner-detail/hotel-own/hotel-own.component';
+import { AddHotelComponent } from './modules/AddHotelModules/add-hotel/add-hotel.component';
+import { AddHotelInfoComponent } from './modules/AddHotelModules/add-hotel-info/add-hotel-info.component';
+import { AddRoomInfoComponent } from './modules/AddHotelModules/add-room-info/add-room-info.component';
+import { AddHrFinalComponent } from './modules/AddHotelModules/add-hr-final/add-hr-final.component';
+import { OwnHotelListingComponent } from './modules/DashboardModules/OwnerDashboard/own-hotel-listing/own-hotel-listing.component';
+import { OwnListingDetailComponent } from './modules/DashboardModules/OwnerDashboard/own-listing-detail/own-listing-detail.component';
+import { BookingRoomComponent } from './modules/BookingModule/booking-room/booking-room.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommonModule } from '@angular/common';
+import { BookingConfirmComponent } from './modules/BookingModule/booking-confirm/booking-confirm.component';
+import { AboutComponent } from './modules/about/about.component';
+import { ContactComponent } from './modules/contact/contact.component';
+import { HotelDetailComponent } from './modules/HotelModules/hotel-detail/hotel-detail.component';
+
 
 @NgModule({
   declarations: [
@@ -41,13 +68,33 @@ import { DeleteProfileComponent } from './modules/DashboardModules/UserDashboard
     HotelComponent,
     HotelcardComponent,
     RatingStarsComponent,
-    HotelDetailComponent,
     SidebarComponent,
     ProfileComponent,
     BookingsComponent,
-    PaymnetHistoryComponent,
     DeleteProfileComponent,
-    
+    BookingDetailComponent,
+    NodataComponent,
+    PaymentHistoryComponent,
+    PaymentCardComponent,
+    AdBookingsComponent,
+    AdUsersComponent,
+    AdUserDetailComponent,
+    AdOwnersComponent,
+    AdOwnerDetailComponent,
+    AdReviewComponent,
+    HotelOwnComponent,
+    AddHotelComponent,
+    AddHotelInfoComponent,
+    AddRoomInfoComponent,
+    AddHrFinalComponent,
+    OwnHotelListingComponent,
+    OwnListingDetailComponent,
+    BookingRoomComponent,
+    BookingConfirmComponent,
+    AboutComponent,
+    ContactComponent,
+    HotelDetailComponent,
+ 
   ],
   imports: [
     BrowserModule,
@@ -56,6 +103,13 @@ import { DeleteProfileComponent } from './modules/DashboardModules/UserDashboard
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
+    BsDatepickerModule.forRoot(),
+    TimepickerModule.forRoot(),
+    MatDialogModule,
+    MatButtonModule,
+    NgbModule,
+    CommonModule,
   ],
 
   providers: [],

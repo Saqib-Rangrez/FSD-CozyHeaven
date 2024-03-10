@@ -31,15 +31,36 @@ namespace CozyHavenStayServer.Repositories
 
         public async Task<List<Review>> GetAllAsync()
         {
-            return await _context.Reviews.ToListAsync();
+            return await _context.Reviews
+            .Include(r => r.User)
+                .Include(r => r.Hotel)
+                    .ThenInclude(h => h.HotelImages)
+                .Include(r => r.Hotel)
+                    .ThenInclude(h => h.Rooms)
+                        .ThenInclude(r => r.RoomImages)
+            .ToListAsync();
         }
 
         public async Task<Review> GetAsync(Expression<Func<Review, bool>> filter, bool useNoTracking = false)
         {
             if (useNoTracking)
-                return await _context.Reviews.AsNoTracking().Where(filter).FirstOrDefaultAsync();
+                return await _context.Reviews.AsNoTracking().Where(filter)
+                .Include(r => r.User)
+                .Include(r => r.Hotel)
+                    .ThenInclude(h => h.HotelImages)
+                .Include(r => r.Hotel)
+                    .ThenInclude(h => h.Rooms)
+                        .ThenInclude(r => r.RoomImages)
+                .FirstOrDefaultAsync();
             else
-                return await _context.Reviews.Where(filter).FirstOrDefaultAsync();
+                return await _context.Reviews.Where(filter)
+                .Include(r => r.User)
+                .Include(r => r.Hotel)
+                    .ThenInclude(h => h.HotelImages)
+                .Include(r => r.Hotel)
+                    .ThenInclude(h => h.Rooms)
+                        .ThenInclude(r => r.RoomImages)
+                .FirstOrDefaultAsync();
         }
 
         

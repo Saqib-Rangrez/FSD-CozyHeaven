@@ -70,6 +70,7 @@ namespace CozyHavenStayServer.Services
 
         public async Task<Hotel> CreateHotelAsync(Hotel hotel)
         {
+            
             try
             {
                 var createdHotel = await _hotelRepository.CreateAsync(hotel);

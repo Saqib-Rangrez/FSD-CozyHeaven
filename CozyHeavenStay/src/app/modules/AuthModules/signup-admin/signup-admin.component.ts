@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { RegisterAdminDTO } from '../../../models/DTO/RegisterAdminDTO';
 import { AuthAPIService } from '../../../services/operations/auth-api.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup-admin',
@@ -11,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SignupAdminComponent {
   adminForm: FormGroup;
+  router : Router = inject(Router)
   toastr : ToastrService = inject(ToastrService);
   authService : AuthAPIService = inject(AuthAPIService);
   showConfirmPassword: boolean = false;
@@ -34,6 +36,7 @@ export class SignupAdminComponent {
       this.authService.signupAdmin(formData).subscribe({
         next: res => {
           this.toastr.success("Registration success")
+          this.router.navigate(['/login'])
           console.log(res);
         },
         error : err => {
@@ -54,9 +57,9 @@ export class SignupAdminComponent {
     this.showPassword = !this.showPassword;
   }
 
-  passwordMatchValidator(formGroup: FormGroup) {
-    const password = formGroup.get('password')?.value;
-    const confirmPassword = formGroup.get('confirmPassword')?.value;
+  passwordMatchValidator() {
+    const password = this?.adminForm.get('password')?.value;
+    const confirmPassword = this?.adminForm.get('confirmPassword')?.value;
     return password === confirmPassword ? null : { passwordMismatch: true };
   }
 }

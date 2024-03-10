@@ -195,7 +195,7 @@ namespace CozyHavenStayServer.Controllers
         //UpdateHotelOwner
         [HttpPut]
         [Route("UpdateHotelOwner")]
-        public async Task<ActionResult> UpdateHotelOwnerAsync([FromBody] HotelOwner model)
+        public async Task<ActionResult<HotelOwner>> UpdateHotelOwnerAsync([FromBody] HotelOwner model)
         {
             try
             {
@@ -216,7 +216,8 @@ namespace CozyHavenStayServer.Controllers
                     return Ok(new
                     {
                         success = true,
-                        message = "HotelOwner updated successfully"
+                        message = "HotelOwner updated successfully",
+                        user = model
                     });
                 }
                 else

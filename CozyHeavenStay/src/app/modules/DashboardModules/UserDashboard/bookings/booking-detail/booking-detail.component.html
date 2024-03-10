@@ -1,0 +1,57 @@
+<div class="card border mb-4">
+    <!-- Card header -->
+    <div class="card-header border-bottom d-md-flex justify-content-md-between align-items-center">
+        <!-- Icon and Title -->
+        <div class="d-flex align-items-center">
+            <div class="icon-lg bg-light rounded-circle flex-shrink-0"><i class="fa-solid fa-hotel"></i></div>	
+            <!-- Title -->
+            <div class="ms-2">
+                <h6 class="card-title mb-0">{{data?.hotel?.name}}</h6>
+                <ul class="nav nav-divider small">
+                    <li class="nav-item">Booking ID: {{data?.bookingId}}</li>
+                    <li class="nav-item">{{data?.room?.roomType}}</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Button -->
+        <div class="mt-2 mt-md-0 d-flex flex-row gap-2">
+            <div class="text-white p-2 rounded-2   " [ngClass]="{ 'bg-success': data?.status === 'Confirmed',
+        'bg-warning' : data?.status === 'Pending','bg-danger' : data?.status === 'Canceled'  }">
+                Booking {{data?.status}}</div>
+            <!-- <a href="#" *ngIf="data?.status === 'Pending'"  class="btn btn-primary-soft mb-0">Manage Booking</a> -->
+            <button (click)="cancelBooking()" *ngIf="data?.status === 'Pending' && user?.role !== 'Owner'"  class="btn btn-primary-soft mb-0">Cancel Booking</button>
+        </div>
+    </div>
+
+    <!-- Card body -->
+    <div class="card-body">
+        <div class="row g-3">
+            <div class="col-sm-6 col-md-3 text-center">
+                <span>CheckIn Date</span>
+                <h6 class="mb-0">{{data?.checkInDate | date}}</h6>
+            </div>
+
+            <div class="col-sm-6 col-md-3 text-center">
+                <span>CheckOut Date</span>
+                <h6 class="mb-0">{{data?.checkOutDate | date}}</h6>
+            </div>
+
+            <div class="col-md-2 text-center">
+                <span>Booked by</span>
+                <h6 class="mb-0">{{data?.user?.firstName}} {{data?.user?.lastName}}</h6>
+            </div>
+
+            <div class="col-md-2 text-center">
+                <span>No. of Guest</span>
+                <h6 class="mb-0">{{data?.numberOfGuests}} </h6>
+            </div>
+
+            <div class="col-md-2 text-center">
+                <span>Total Fare</span>
+                <h6 class="mb-0">{{data?.totalFare | currency : 'INR'}}</h6>
+            </div>
+
+        </div>
+    </div>
+</div>

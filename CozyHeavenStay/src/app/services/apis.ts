@@ -17,13 +17,13 @@ export const endpoints = {
 
 // USER ENDPOINTS
 export const userEndpoints = {
-    GET_ALL_USERS_API: BASE_URL + "User/GetAllUsers",
-    GET_USER_BY_ID_API: BASE_URL + "User/GetUserById/",
-    GET_USER_BY_EMAIL_API: BASE_URL + "User/GetUserByEmail/",
-    CREATE_USER_API: BASE_URL + "User/CreateUser",
-    UPDATE_USER_API: BASE_URL + "User/UpdateUser",
-    DELETE_USER_API: BASE_URL + "User/DeleteUser/",
-    UPLOAD_DISPLAY_PICTURE_API: BASE_URL + "User/UploadDisplayPicture/"    
+    GET_ALL_USERS_API: BASE_URL + "/User/GetAllUsers",
+    GET_USER_BY_ID_API: BASE_URL + "/User/GetUserById/",
+    GET_USER_BY_EMAIL_API: BASE_URL + "/User/GetUserByEmail/",
+    CREATE_USER_API: BASE_URL + "/User/CreateUser",
+    UPDATE_USER_API: BASE_URL + "/User/UpdateUser",
+    DELETE_USER_API: BASE_URL + "/User/DeleteUser/",
+    UPLOAD_DISPLAY_PICTURE_API: BASE_URL + "/User/UploadDisplayPicture"    
 }
 
 // ADMIN ENDPOINTS
@@ -65,6 +65,7 @@ export const bookingsEndpoints = {
     DELETE_BOOKING_API: BASE_URL + "/Booking/DeleteBooking/",
     GET_ALL_BOOKING_API: BASE_URL + "/Booking/GetAllBookings",
     GET_BOOKING_BY_BOOKINGID_API: BASE_URL + "/Booking/GetBookingById/",
+    GET_BOOKING_BY_USERID_API: BASE_URL + "/Booking/GetBookingByUserId/"
 }
 
 // HOTEL ENDPOINTS
@@ -80,12 +81,12 @@ export const hotelEndpoints = {
 
 // PAYMENT ENDPOINTS
 export const paymentEndpoints = {
-    GET_ALL_PAYMENTS_API: BASE_URL + "Payment/GetAllPayments",
-    GET_PAYMENT_BY_ID_API: BASE_URL + "Payment/GetPaymentById/",
-    GET_PAYMENT_BY_BOOKING_ID_API: BASE_URL + "Payment/GetPaymentByBookingId/",
-    CREATE_PAYMENT_API: BASE_URL + "Payment/CreatePayment",
-    UPDATE_PAYMENT_API: BASE_URL + "Payment/UpdatePayment",
-    DELETE_PAYMENT_API: BASE_URL + "Payment/DeletePayment/"
+    GET_ALL_PAYMENTS_API: BASE_URL + "/Payment/GetAllPayments",
+    GET_PAYMENT_BY_ID_API: BASE_URL + "/Payment/GetPaymentById/",
+    GET_PAYMENT_BY_BOOKING_ID_API: BASE_URL + "/Payment/GetPaymentByBookingId/",
+    CREATE_PAYMENT_API: BASE_URL + "/Payment/CreatePayment",
+    UPDATE_PAYMENT_API: BASE_URL + "/Payment/UpdatePayment",
+    DELETE_PAYMENT_API: BASE_URL + "/Payment/DeletePayment/"
 };
 
 // REFUND ENDPOINTS
@@ -102,9 +103,9 @@ export const refundEndpoints = {
 
 //ROOM ENDPOINTS
 export const roomEndpoints = {
-    GET_ALL_ROOMS_API: BASE_URL + "Room/GetAllRooms",
-    GET_ROOM_BY_ID_API: BASE_URL + "Room/GetRoomById/",
-    CREATE_ROOM_API: BASE_URL + "Room/CreateRoom",
-    UPDATE_ROOM_API: BASE_URL + "Room/UpdateRoom",
-    DELETE_ROOM_API: BASE_URL + "Room/DeleteRoom/"
+    GET_ALL_ROOMS_API: BASE_URL + "/Room/GetAllRooms",
+    GET_ROOM_BY_ID_API: BASE_URL + "/Room/GetRoomById/",
+    CREATE_ROOM_API: BASE_URL + "/Room/CreateRoom",
+    UPDATE_ROOM_API: BASE_URL + "/Room/UpdateRoom",
+    DELETE_ROOM_API: BASE_URL + "/Room/DeleteRoom/"
 };

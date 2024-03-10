@@ -1,1 +1,43 @@
-<p>delete-profile works!</p>
+<!-- Main content START -->
+<div class="w-100">
+    <!-- Offcanvas menu button -->
+    <div class="d-grid mb-0 d-lg-none w-100">
+        <button class="btn btn-primary mb-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+            <i class="fas fa-sliders-h"></i> Menu
+        </button>
+    </div>
+
+    <!-- Card START -->
+    <div class="card border">
+        <!-- Card header -->
+        <div class="card-header border-bottom">
+            <h4 class="card-header-title">Delete Account</h4>
+        </div>
+
+        <!-- Card body START -->
+        <div class="card-body w-100">
+            <h6>Before you go...</h6>
+            <ul>
+                <li>This account may contain important data. Deleting your account is
+                    permanent and will remove all the content associated with it.
+                </li>
+                <li>If you delete your account, you will lose your all data and access.</li>
+            </ul>
+            <form class="w-100 p-2" [formGroup]="deleteForm">
+                <div class="form-check form-check-md my-4">
+                    <input class="form-check-input" type="checkbox" [value]='false' formControlName="confirmChoice" id="deleteaccountCheck">
+                    <label class="form-check-label" for="deleteaccountCheck">Yes, I'd like to delete my account</label>
+                </div>
+                <div class="d-flex flex-row gap-2">
+                    <button  class="btn btn-success-soft btn-sm mb-2 mb-sm-0">Keep my account</button>
+                    <button  class="btn btn-danger btn-sm mb-0">Delete my account</button>
+                </div>
+            </form>
+            
+            
+        </div>
+        <!-- Card body END -->
+    </div>
+    <!-- Card END -->
+</div>
+<!-- Main content END -->

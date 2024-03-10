@@ -29,6 +29,8 @@ namespace CozyHavenStayServer.Services
         }
 
 
+
+
         #region User Actions
         public async Task<List<User>> GetAllUsersAsync()
         {
@@ -91,7 +93,7 @@ namespace CozyHavenStayServer.Services
             }            
         }               
 
-        public async Task<bool> UpdateUserAsync(User model)
+        public async Task<bool> UpdateUserAsync(User model, bool flag = true)
         {
             try
             {
@@ -103,11 +105,18 @@ namespace CozyHavenStayServer.Services
                     return false;
                 }
 
-                var hashedPassword = _authServices.HashPassword(model.Password);
-                model.Password = hashedPassword;
+                if(flag) {
+                    if(!string.IsNullOrEmpty(model.Password)) {
+                        var hashedPassword = _authServices.HashPassword(model.Password);
+                        model.Password = hashedPassword;
+                    }
+                    else{
+                        model.Password = user.Password;
+                    } 
+                }
+                             
 
-
-                await _userRepository.UpdateAsync(model);
+                var updateUser = await _userRepository.UpdateAsync(model);
                 return true;
             }
             catch(Exception ex)

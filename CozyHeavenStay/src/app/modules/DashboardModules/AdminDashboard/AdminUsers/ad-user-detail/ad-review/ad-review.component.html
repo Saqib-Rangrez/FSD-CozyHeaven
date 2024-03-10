@@ -1,0 +1,24 @@
+<div class="row g-3 g-lg-4 mb-3">
+                                                                    
+    <div class="col-md-12 col-xxl-12 d-flex flex-row align-items-center gap-md-3">
+        <!-- Rating -->
+        <div>
+            <img [src]="data?.hotel?.hotelImages[0].imageUrl" alt="hotel" class="card-image rounded-2" style="width: 250px; height: 150px;"  loading="lazy" />
+        </div>
+        <div>
+            <div class="d-flex flex-row gap-2 align-items-center">
+                <span class="text-black fw-bold">{{data?.rating}}</span>
+                <app-rating-stars [reviewCount]="data?.rating" [starSize]="20"></app-rating-stars>
+    
+            </div>
+    
+            <h6><span class="text-body fw-light">Review on:</span> {{data?.hotel?.name}}</h6>
+            <p>
+                Comments : <br/>
+                {{data?.comments}}
+            </p>   
+        </div>                     
+    </div>
+</div>
+
+<hr class="m-0"> 

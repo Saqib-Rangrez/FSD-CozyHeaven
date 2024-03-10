@@ -1,0 +1,142 @@
+<!-- Page content START -->
+<div *ngIf="!loading" class=" container p-xxl-4">
+	
+    <h2 class="text-primary">User Details</h2>
+
+    <!-- Page main content START -->
+    <div class="page-content-wrapper p-xxl-4">
+        
+        <div class="row g-4 mb-5">
+            <!-- Agent info START -->
+            <div class="col-md-3 ">
+                <div class="card bg-light">
+                   
+                    <!-- Card body -->
+                    <div class="card-body text-center">
+                        <!-- Avatar Image -->
+                        <div class="avatar avatar-xl flex-shrink-0 mb-3">
+                            <img class="avatar-img rounded-circle" [src]="user?.profileImage" alt="avatar">
+                        </div>
+                        <!-- Title -->
+                        <h5 class="mb-2">{{user?.firstName}} {{user?.lastName}} </h5>
+
+                    </div>
+                    <!-- Card footer -->
+                    <div class="card-footer bg-light border-top">
+                        <h6 class="mb-3">Contact Details</h6>
+                        <!-- Email id -->
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon-md bg-mode h6 mb-0 rounded-circle flex-shrink-0"><i class="bi bi-envelope-fill"></i></div>
+                            <div class="ms-2">
+                                <small>Email id</small>
+                                <h6 class="fw-normal small mb-0"><span href="#">{{user?.email}}</span></h6>
+                            </div>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon-md bg-mode h6 mb-0 rounded-circle flex-shrink-0"><i class="bi bi-telephone-fill"></i></div>
+                            <div class="ms-2">
+                                <small>Phone</small>
+                                <h6 class="fw-normal small mb-0"><span href="#">+91 {{user?.contactNumber}}</span></h6>
+                            </div>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon-md bg-mode h6 mb-0 rounded-circle flex-shrink-0"><i class="bi bi-geo-alt-fill"></i></div>
+                            <div class="ms-2">
+                                <small>Address</small>
+                                <h6 class="fw-normal small mb-0">{{user?.address}}</h6>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <button (click)="deleteUser()"   class="btn btn-danger btn-sm mb-0 mt-3 w-100">Delete User</button>
+
+            </div>
+            <!-- Agent info END -->
+
+            <div class="col-md-9">
+                <!-- Personal info START -->
+                <div class="card shadow">
+                    <!-- Card header -->
+                    <div class="card-header border-bottom">
+                        <h5 class="mb-0">Personal Information</h5>
+                    </div>
+                    <!-- Card body -->
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- Information item -->
+                            <div class="col-md-12">
+                                <div class="row px-2">
+                                    <div class="list-group-item mb-3 col-6">
+                                        <span>First Name:</span>
+                                        <span class="h6 fw-normal ms-1 mb-0">{{user?.firstName | titlecase}}</span>
+                                    </div>
+
+                                    <div class="list-group-item mb-3 col-6">
+                                        <span>Last Name:</span>
+                                        <span class="h6 fw-normal ms-1 mb-0">{{user?.lastName | titlecase}}</span>
+                                    </div>
+
+                                    <div class="list-group-item mb-3 col-6">
+                                        <span>Mobile Number:</span>
+                                        <span class="h6 fw-normal ms-1 mb-0"> +91 {{user?.contactNumber}} </span>
+                                    </div>
+
+                                    <div class="list-group-item mb-3 col-6">
+                                        <span>Email:</span>
+                                        <span class="h6 fw-normal ms-1 mb-0">{{user?.email }}</span>
+                                    </div>
+
+                                    <div class="list-group-item mb-3 col-6">
+                                        <span>Gender:</span>
+                                        <span class="h6 fw-normal ms-1 mb-0">{{user?.gender | titlecase}} </span>
+                                    </div>
+
+                                    <div class="list-group-item mb-3 col-6">
+                                        <span>Role:</span>
+                                        <span class="h6 fw-normal ms-1 mb-0">{{user?.role | titlecase}}</span>
+                                    </div>
+
+                                    <div class="list-group-item mb-3 col-12">
+                                        <span>Location:</span>
+                                        <span class="h6 fw-normal ms-1 mb-0">{{user?.address | titlecase}}</span>
+                                    </div>
+                                </div>
+                            
+                            </div>
+
+                            <!-- Information item -->
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <span mb-5>Reviews done by {{user?.firstName | titlecase}} {{user?.lastName | titlecase}} : </span>
+                                        <hr class="mt-2 mb-3 m-0">                                         
+
+                                        <ng-container *ngIf="user?.reviews.length > 0 ">
+                                            <app-ad-review [data]="item" *ngFor="let item of reviews"></app-ad-review>   
+                                        </ng-container>
+                                        
+                                        <div *ngIf="user?.reviews.length <= 0">No review done by this user.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Personal info END -->
+            </div>
+        </div> <!-- Row END -->
+
+    </div>
+    <!-- Page main content END -->
+</div>
+<!-- Page content END -->
+
+
+<div *ngIf="loading" class="d-flex justify-content-center align-content-center" style=" min-height: 80vh;">
+    <div  class="loader " style="height: fit-content; margin-top: 13rem;"></div>
+</div>

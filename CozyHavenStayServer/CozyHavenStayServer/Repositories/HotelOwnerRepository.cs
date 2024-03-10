@@ -13,6 +13,7 @@ namespace CozyHavenStayServer.Repositories
         public HotelOwnerRepository(CozyHeavenStayContext context)
         {
             _context = context;
+            
         }
 
         public async Task<HotelOwner> CreateAsync(HotelOwner dbRecord)
@@ -31,15 +32,39 @@ namespace CozyHavenStayServer.Repositories
 
         public async Task<List<HotelOwner>> GetAllAsync()
         {
-            return await _context.HotelOwners.ToListAsync();
+            return await _context.HotelOwners
+            .Include(u => u.Hotels)
+                    .ThenInclude(h => h.HotelImages)
+                .Include(u => u.Hotels)
+                    .ThenInclude(h => h.Rooms)
+                        .ThenInclude(r => r.RoomImages)
+                .Include(u => u.Hotels)
+                    .ThenInclude(h => h.Reviews).ThenInclude(r => r.User) 
+            .ToListAsync();
         }
 
         public async Task<HotelOwner> GetAsync(Expression<Func<HotelOwner, bool>> filter, bool useNoTracking = false)
         {
             if (useNoTracking)
-                return await _context.HotelOwners.AsNoTracking().Where(filter).FirstOrDefaultAsync();
+                return await _context.HotelOwners.AsNoTracking().Where(filter)
+                .Include(u => u.Hotels)
+                    .ThenInclude(h => h.HotelImages)
+                .Include(u => u.Hotels)
+                    .ThenInclude(h => h.Rooms)
+                        .ThenInclude(r => r.RoomImages)
+                .Include(u => u.Hotels)
+                    .ThenInclude(h => h.Reviews).ThenInclude(r => r.User) 
+                .FirstOrDefaultAsync();
             else
-                return await _context.HotelOwners.Where(filter).FirstOrDefaultAsync();
+                return await _context.HotelOwners.Where(filter)
+                .Include(u => u.Hotels)
+                    .ThenInclude(h => h.HotelImages)
+                .Include(u => u.Hotels)
+                    .ThenInclude(h => h.Rooms)
+                        .ThenInclude(r => r.RoomImages)
+                .Include(u => u.Hotels)
+                    .ThenInclude(h => h.Reviews).ThenInclude(r => r.User)
+                .FirstOrDefaultAsync();
         }
 
         public async Task<HotelOwner> UpdateAsync(HotelOwner dbRecord)

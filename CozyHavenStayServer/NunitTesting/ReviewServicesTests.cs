@@ -29,7 +29,7 @@ namespace NunitTesting
             _userRepositoryMock = new Mock<IRepository<User>>();
            
             _loggerMock = new Mock<ILogger<UserController>>();
-            _reviewServices = new UserServices(_userRepositoryMock.Object, _loggerMock.Object, null, null, _reviewRepositoryMock.Object);
+            _reviewServices = new UserServices(_userRepositoryMock.Object, _loggerMock.Object, null, null, _reviewRepositoryMock.Object,null);
         }
 
         [Test]

@@ -17,7 +17,17 @@ namespace CozyHavenStayServer.Repositories
 
         public async Task<Hotel> CreateAsync(Hotel dbRecord)
         {
-            _context.Add(dbRecord);
+            //_context.Add(dbRecord);
+            var existingRecord = await _context.Hotels.Where(h => h.HotelId == dbRecord.HotelId).FirstOrDefaultAsync();
+
+            if (existingRecord != null)
+            {
+                _context.Entry(existingRecord).CurrentValues.SetValues(dbRecord);
+            }
+            else
+            {
+                _context.Add(dbRecord); // Add new record
+            }
             await _context.SaveChangesAsync();
             return dbRecord;
         }
@@ -31,15 +41,30 @@ namespace CozyHavenStayServer.Repositories
 
         public async Task<List<Hotel>> GetAllAsync()
         {
-            return await _context.Hotels.ToListAsync();
+            return await _context.Hotels
+            .Include(h => h.Bookings).ThenInclude(b => b.User)
+            .Include(h => h.HotelImages)
+            .Include(h => h.Reviews).ThenInclude(r => r.User)
+            .Include(h => h.Rooms).ThenInclude(r => r.RoomImages)
+            .ToListAsync();
         }
 
         public async Task<Hotel> GetAsync(Expression<Func<Hotel, bool>> filter, bool useNoTracking = false)
         {
             if (useNoTracking)
-                return await _context.Hotels.AsNoTracking().Where(filter).FirstOrDefaultAsync();
+                return await _context.Hotels.AsNoTracking().Where(filter)
+                .Include(h => h.Bookings).ThenInclude(b => b.User)
+                .Include(h => h.HotelImages)
+                .Include(h => h.Reviews).ThenInclude(r => r.User)
+                .Include(h => h.Rooms).ThenInclude(r => r.RoomImages)
+                .FirstOrDefaultAsync();
             else
-                return await _context.Hotels.Where(filter).FirstOrDefaultAsync();
+                return await _context.Hotels.Where(filter)
+                .Include(h => h.Bookings).ThenInclude(b => b.User)
+                .Include(h => h.HotelImages)
+                .Include(h => h.Reviews).ThenInclude(r => r.User)
+                .Include(h => h.Rooms).ThenInclude(r => r.RoomImages)
+                .FirstOrDefaultAsync();
 
         }
 

@@ -12,15 +12,22 @@ export class BookingService {
   
   constructor(private http: HttpClient) { }
 
-  getAllBookings(): Observable<Booking[]> { 
-    return this.http.get<Booking[]>(bookingsEndpoints.GET_ALL_BOOKING_API)
+  getAllBookings(): Observable<any> { 
+    return this.http.get<any>(bookingsEndpoints.GET_ALL_BOOKING_API)
       .pipe(
         catchError(this.handleError)
       );
   }
 
   getBookingById(id: number): Observable<Booking> { 
-    return this.http.get<Booking>(`${bookingsEndpoints.GET_BOOKING_BY_BOOKINGID_API}/${id}`)
+    return this.http.get<Booking>(`${bookingsEndpoints.GET_BOOKING_BY_USERID_API}${id}`)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  getBookingByUserId(id: number): Observable<any> { 
+    return this.http.get<Booking>(`${bookingsEndpoints.GET_BOOKING_BY_USERID_API}${id}`)
       .pipe(
         catchError(this.handleError)
       );
@@ -41,7 +48,7 @@ export class BookingService {
   }
 
   deleteBooking(id: number): Observable<any> {
-    return this.http.delete<any>(`${bookingsEndpoints.DELETE_BOOKING_API}/${id}`)
+    return this.http.delete<any>(`${bookingsEndpoints.DELETE_BOOKING_API}${id}`)
       .pipe(
         catchError(this.handleError)
       );

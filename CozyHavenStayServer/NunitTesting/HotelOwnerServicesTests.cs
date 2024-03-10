@@ -19,13 +19,16 @@ namespace NunitTesting
         private Mock<IRepository<HotelOwner>> _hotelOwnerRepositoryMock;
         private Mock<ILogger<HotelOwnerController>> _loggerMock;
         private IHotelOwnerServices _hotelOwnerServices;
+        private Mock<IAuthServices> _authSevicesMock;
+
 
         [SetUp]
         public void Setup()
         {
             _hotelOwnerRepositoryMock = new Mock<IRepository<HotelOwner>>();
             _loggerMock = new Mock<ILogger<HotelOwnerController>>();
-            _hotelOwnerServices = new HotelOwnerServices(_hotelOwnerRepositoryMock.Object, _loggerMock.Object);
+            _authSevicesMock = new Mock<IAuthServices>();
+            _hotelOwnerServices = new HotelOwnerServices(_hotelOwnerRepositoryMock.Object, _loggerMock.Object,_authSevicesMock.Object);
         }
 
         [Test]

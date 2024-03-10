@@ -29,23 +29,37 @@ namespace CozyHavenStayServer.Repositories
 
         public async Task<List<User>> GetAllAsync()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Users
+            .Include(u => u.Bookings)
+            .Include(u => u.Reviews)
+            .ToListAsync();
         }
 
         public async Task<User> GetAsync(Expression<Func<User, bool>> filter, bool useNoTracking = false)
         {
             if (useNoTracking)
-                return await _context.Users.AsNoTracking().Where(filter).FirstOrDefaultAsync();
+                return await _context.Users.AsNoTracking().Where(filter)
+                .Include(u => u.Bookings)
+                .Include(u => u.Reviews)
+                .FirstOrDefaultAsync();
             else
-                return await _context.Users.Where(filter).FirstOrDefaultAsync();
+                return await _context.Users.Where(filter)
+                .Include(u => u.Bookings)
+                .Include(u => u.Reviews)
+                .FirstOrDefaultAsync();
         }
 
         public async Task<User> GetAsyncByName(Expression<Func<User, bool>> filter, bool useNoTracking = false)
         {
             if (useNoTracking)
-                return await _context.Users.AsNoTracking().Where(filter).FirstOrDefaultAsync();
+                return await _context.Users.AsNoTracking().Where(filter)
+                .Include(u => u.Bookings)
+                .Include(u => u.Reviews)
+                .FirstOrDefaultAsync();
             else
-                return await _context.Users.Where(filter).FirstOrDefaultAsync();
+                return await _context.Users.Where(filter)
+                .Include(u => u.Bookings)
+                .Include(u => u.Reviews).FirstOrDefaultAsync();
         }
 
         public async Task<User> UpdateAsync(User dbRecord)

@@ -157,6 +157,7 @@ namespace CozyHavenStayServer.Controllers
             }
         }
 
+
         // Create hotel
         /*[HttpPost]
         [Route("CreateHotel")]
@@ -206,6 +207,7 @@ namespace CozyHavenStayServer.Controllers
                     });
                 }
                 var hotelValid = await _hotelServices.GetHotelByNameAsync(model.Name);
+
                 if ( hotelValid != null )
                 {
                     return BadRequest(new
@@ -257,8 +259,7 @@ namespace CozyHavenStayServer.Controllers
                             return StatusCode(500, new
                                 {
                                     success = false,
-                                    message = "Error while uploading image",
-                                    
+                                    message = "Error while uploading image",                                    
                                 }); 
                         }
                     }

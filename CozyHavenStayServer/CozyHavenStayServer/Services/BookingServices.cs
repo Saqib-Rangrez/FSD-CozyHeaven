@@ -49,6 +49,31 @@ namespace CozyHavenStayServer.Services
             }
         }
 
+        public async Task<List<Booking>> GetBookingByUserIdAsync(int id){
+            try
+            {
+                var bookings = await _bookingRepository.GetAllAsync();
+                if(bookings == null ){
+                    return null;
+                }
+                var filteredBookings = bookings.Where(booking => booking.UserId == id).ToList();
+
+                if (filteredBookings == null)
+                {
+                    _logger.LogError("Booking not found with given Id");
+                    return null;
+                }
+                return filteredBookings;
+            }
+
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return null;
+            }
+        }
+
+
         public async Task<Booking> CreateBookingAsync(Booking booking)
         {
             try

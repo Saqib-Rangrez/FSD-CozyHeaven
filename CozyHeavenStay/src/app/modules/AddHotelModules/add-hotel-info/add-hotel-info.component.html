@@ -1,0 +1,146 @@
+ <!-- Step 1 content START -->
+ <form [formGroup]="hotelForm" (ngSubmit)="onSubmit()">
+    <div >
+        <div class="vstack gap-4">
+            <!-- Title -->
+            <h4 class="mb-0">Add Hotel Details</h4>
+    
+            <!-- Listing category START -->
+            <div class="card shadow">
+              
+                <!-- Card body START -->
+                <div class="card-body">
+                    <div class="row g-4">
+    
+                        <!-- Listing Name -->
+                        <div class="col-12">
+                            <label class="form-label">Hotel name *</label>
+                            <input class="form-control" type="text" formControlName="name" placeholder="Enter hotel name">
+                            <small>A catchy name usually includes: Hotel name - A tourist destination</small>
+                        </div>
+    
+                        <!-- Short description -->
+                        <div class="col-12">
+                            <label class="form-label">Short description *</label>
+                            <textarea class="form-control" rows="2" formControlName="description" placeholder="Enter keywords"></textarea>
+                        </div>
+
+                        <!-- Ammenties -->
+                        <div class="col-12">
+                            <label class="form-label">Amenities *</label>
+                            <textarea class="form-control" rows="2" formControlName="amenities" placeholder="Enter keywords"></textarea>
+                            <small>Provide all your amenities and separete it using commas</small>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card body END -->
+            </div>
+            <!-- Listing category END -->
+    
+            <!-- Listing location START -->
+            <div class="card shadow">
+                <!-- Card header -->
+                <div class="card-header border-bottom">
+                    <h5 class="mb-0">Hotel Location</h5>
+                </div>
+    
+                <!-- Card body START -->
+                <div class="card-body">
+                    <div class="row g-3">
+                        <!-- Country type -->
+                        <div class="col-md-6">
+                            <label class="form-label">Country/Region *</label>
+                            <select formControlName="country" class="form-select js-choice">
+                                <option value="">Select Country</option>
+                                <option>India</option>
+                                <option>Usa</option>
+                                <option>Japan</option>
+                                <option>United Kingdom</option>
+                            </select>
+                        </div>
+    
+                        <!-- State -->
+                        <div class="col-md-6">
+                            <label class="form-label">State *</label>
+                            <select formControlName="state" class="form-select js-choice" data-search-enabled="true">
+                                <option disabled>Select state</option>
+                                <option *ngFor="let item of states">{{item}}</option>
+                            </select>
+                        </div>
+    
+                        <!-- City -->
+                        <div class="col-md-6">
+                            <label class="form-label">City *</label>
+                            <input formArrayName="city" class="form-control" type="text" placeholder="Enter city">
+                        </div>
+    
+                        <!-- Postal number -->
+                        <div class="col-md-6">
+                            <label class="form-label">Postal number *</label>
+                            <input formControlName="pincode" class="form-control" type="text" placeholder="Enter postal number">
+                        </div>
+    
+                        <!-- Street -->
+                        <div class="col-12">
+                            <label class="form-label">Street *</label>
+                            <input formArrayName="street" class="form-control" type="text" placeholder="Enter street">
+                        </div>    
+                   
+                    </div>
+                </div>
+                <!-- Card body END -->
+            </div>
+            <!-- Listing location END -->
+    
+            <!-- Upload image START -->
+            <div class="card shadow">
+                <!-- Card header -->
+                <div class="card-header border-bottom">
+                    <!-- Title -->
+                    <h5 class="mb-0">Upload Images</h5>
+                </div>
+    
+                <!-- Card body START -->
+                <div class="card-body">
+                    <div class="row g-3">
+    
+                        <!-- Image Gallery -->
+                        <div class="col-12">
+                            <label class="form-label">Upload image gallery *</label>
+                            <div class="dropzone dropzone-custom d-flex justify-content-center align-items-center" style="min-height: 180px; min-width: 100%;">
+                                <label *ngIf="imagePreviews?.length <= 0" for="fileInput" class="upload-label d-flex justify-content-center align-items-center" style="min-height: 180px; min-width: 100%; cursor: pointer;">Click to select images
+  
+                                <!-- Input element hidden from view -->
+                                    <input
+                                        type="file"
+                                        id="fileInput"
+                                        (change)="onFileChange($event)"
+                                        multiple
+                                        accept="image/*"
+                                        style="display: none; cursor: pointer;"                                    
+                                    />
+                                </label>
+
+                                <div *ngIf="imagePreviews?.length > 0" class="row row p-3">
+                                    <div   *ngFor="let file of imagePreviews" class="file-preview col">
+                                        <img [src]="file" class="card-image rounded-2" alt="Image" (click)="removeImage(file)" style="width: 170px; height: 150px;">
+                                    </div>
+                                </div>                              
+                            </div> 
+                            <p class="small mb-0 mt-2"><b>Note:</b> Only JPG, JPEG, and PNG. Our suggested dimensions are 600px * 450px. The larger image will be cropped to 4:3 to fit our thumbnails/previews.</p>
+                        </div>
+
+                        
+                    </div>
+                </div>
+                <!-- Card body END -->
+            </div>
+            <!-- Upload image END -->	
+    
+        </div>
+    </div>
+
+    <button type="submit" class="float-end mt-2 px-4 btn btn-primary-soft mb-0">Save Hotel Info</button>
+ </form>
+
+<!-- Step 1 content END -->

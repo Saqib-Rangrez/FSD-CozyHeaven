@@ -14,10 +14,11 @@ export class Booking {
   checkOutDate: Date;
   totalFare: number;
   status: string;
-  room?: Room;
-  hotel?: Hotel;
-  user?: User;
-  payment?: Payment;
+  // room?: Room;
+  // hotel?: Hotel;
+  // user?: User;
+  // payment?: Payment;
+
 
   constructor(
     bookingId: number,
@@ -30,10 +31,10 @@ export class Booking {
     roomId?: number,
     hotelId?: number,
     paymentId?: number,
-    room?: Room,
-    hotel?: Hotel,
-    user?: User,
-    payment?: Payment
+    // room?: Room,
+    // hotel?: Hotel,
+    // user?: User,
+    // payment?: Payment
   ) {
     this.bookingId = bookingId;
     this.userId = userId;
@@ -45,9 +46,9 @@ export class Booking {
     this.checkOutDate = checkOutDate;
     this.totalFare = totalFare;
     this.status = status;
-    this.room = room;
-    this.hotel = hotel;
-    this.user = user;
-    this.payment = payment;
+    // this.room = room;
+    // this.hotel = hotel;
+    // this.user = user;
+    // this.payment = payment;
   }
 }

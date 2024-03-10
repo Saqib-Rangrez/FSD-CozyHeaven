@@ -30,15 +30,24 @@ namespace CozyHavenStayServer.Repositories
 
         public async Task<List<Payment>> GetAllAsync()
         {
-            return await _context.Payments.ToListAsync();
+            return await _context.Payments
+            .Include(p => p.Refund)
+            .Include(p => p.Booking)
+            .ToListAsync();
         }
 
         public async Task<Payment> GetAsync(Expression<Func<Payment, bool>> filter, bool useNoTracking = false)
         {
             if (useNoTracking)
-                return await _context.Payments.AsNoTracking().Where(filter).FirstOrDefaultAsync();
+                return await _context.Payments.AsNoTracking().Where(filter)
+                .Include(p => p.Refund)
+                .Include(p => p.Booking)
+                .FirstOrDefaultAsync();
             else
-                return await _context.Payments.Where(filter).FirstOrDefaultAsync();
+                return await _context.Payments.Where(filter)
+                .Include(p => p.Refund)
+                .Include(p => p.Booking)
+                .FirstOrDefaultAsync();
 
         }
 

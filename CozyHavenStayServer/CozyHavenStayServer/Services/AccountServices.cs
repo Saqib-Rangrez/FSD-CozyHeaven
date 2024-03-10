@@ -18,6 +18,10 @@ namespace CozyHavenStayServer.Services
         private readonly IUserServices _userServices;
         private readonly IHotelOwnerServices _hotelOwnerServices;
         private readonly IAdminServices _adminServices;
+        private readonly IRepository<User> _userRepository;
+        private readonly IRepository<Admin> _adminRepository;
+        private readonly IRepository<HotelOwner> _hotelOwnerRepository;
+        
 
         public AccountServices(ILogger<AccountServices> logger, IAuthServices authServices, IUserServices userServices, IHotelOwnerServices hotelOwnerServices, IAdminServices adminServices)
         {
@@ -124,18 +128,19 @@ namespace CozyHavenStayServer.Services
 
             string hashedPassword = _authServices.HashPassword(model.Password);
             user.Password = hashedPassword;
+            
 
             if (user.Role == "User")
             {
-                user = await _userServices.UpdateUserAsync(user);
+                user = await _userServices.UpdateUserAsync(user, false);
             }
             else if (user.Role == "Admin")
             {
-                user = await _adminServices.UpdateAdminAsync(user);
+                user = await _adminServices.UpdateAdminAsync(user, false);
             }
             else
             {
-                user = await _hotelOwnerServices.UpdateHotelOwnerAsync(user);
+                user = await _hotelOwnerServices.UpdateHotelOwnerAsync(user, false);
             }
 
             return user;

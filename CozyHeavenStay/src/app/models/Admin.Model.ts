@@ -1,5 +1,5 @@
 export class Admin {
-    userId: number;
+    adminId: number;
     firstName: string;
     lastName: string;
     email: string;
@@ -8,10 +8,10 @@ export class Admin {
     role?: string;
     token?: string;
     resetPasswordExpires?: Date | null;
-    expiresIn : Date
+    //expiresIn : Date
   
-    constructor(adminId: number, firstName: string, lastName: string, email: string, password: string, profileImage?: string, role?: string, token?: string,resetPasswordExpires?: Date, expiresIn?: Date) {
-      this.userId = adminId;
+    constructor(adminId: number, firstName: string, lastName: string, email: string, password: string, profileImage?: string, role?: string, token?: string,resetPasswordExpires?: Date) {
+      this.adminId = adminId;
       this.firstName = firstName;
       this.lastName = lastName;
       this.email = email;
@@ -20,7 +20,7 @@ export class Admin {
       this.role = role;
       this.token = token;
       this.resetPasswordExpires = resetPasswordExpires;
-      this.expiresIn = expiresIn;
+      //this.expiresIn = expiresIn;
     }
   }
   

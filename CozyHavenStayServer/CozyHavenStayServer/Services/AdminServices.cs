@@ -109,7 +109,7 @@ namespace CozyHavenStayServer.Services
             }
         }
 
-        public async Task<bool> UpdateAdminAsync(Admin admin)
+        public async Task<bool> UpdateAdminAsync(Admin admin, bool flag = true)
         {
             try
             {
@@ -120,11 +120,18 @@ namespace CozyHavenStayServer.Services
                     _logger.LogError("Admin not found with given Id");
                     return false;
                 }
+                if(flag) {
+                    if(!string.IsNullOrEmpty(admin.Password)) {
+                        var hashedPassword = _authServices.HashPassword(admin.Password);
+                        admin.Password = hashedPassword;
+                    }
+                    else{
+                        admin.Password = adminUser.Password;
+                    } 
+                }
+                
 
-                var hashedPassword = _authServices.HashPassword(admin.Password);
-                admin.Password = hashedPassword;
-
-                await _adminRepository.UpdateAsync(admin);
+                var updatedAdmin = await _adminRepository.UpdateAsync(admin);
                 return true;
             }
             catch (Exception ex)

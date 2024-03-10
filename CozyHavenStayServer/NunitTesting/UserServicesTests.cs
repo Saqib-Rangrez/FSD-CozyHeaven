@@ -2,12 +2,15 @@
 using CozyHavenStayServer.Interfaces;
 using CozyHavenStayServer.Models;
 using CozyHavenStayServer.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,7 +22,10 @@ namespace NunitTesting
         private Mock<IRepository<User>> _userRepositoryMock;
         private Mock<IRepository<Review>> _reviewRepositoryMock;
         private Mock<ILogger<UserController>> _loggerMock;
-        private IUserServices _userServices;
+        private Mock<IAuthServices> _authSevicesMock;
+        private UserServices _userServices;
+        private Mock<ICloudinaryService> _cloudinaryService;
+        private Mock<IConfiguration> _configuration;
 
         [SetUp]
         public void Setup()
@@ -27,7 +33,10 @@ namespace NunitTesting
             _userRepositoryMock = new Mock<IRepository<User>>();
             _reviewRepositoryMock = new Mock<IRepository<Review>>();
             _loggerMock = new Mock<ILogger<UserController>>();
-            _userServices = new UserServices(_userRepositoryMock.Object, _loggerMock.Object, null, null, _reviewRepositoryMock.Object);
+            _authSevicesMock = new Mock<IAuthServices>();
+            _cloudinaryService = new Mock<ICloudinaryService>();
+            _configuration = new Mock<IConfiguration>();
+            _userServices = new UserServices(_userRepositoryMock.Object, _loggerMock.Object, _cloudinaryService.Object, _configuration.Object, _reviewRepositoryMock.Object, _authSevicesMock.Object);
         }
 
         [Test]
@@ -108,12 +117,15 @@ namespace NunitTesting
         }
 
         [Test]
-        public async Task UpdateUserAsync_ReturnsTrue_WhenUserUpdatedSuccessfully()
+        public async Task UpdateUserAsync_ReturnsUpdatedUser_WhenUserExists()
         {
             // Arrange
             int userId = 1;
             var user = new User { UserId = userId, FirstName = "John", LastName = "Doe", Email = "john.doe@example.com" };
-            _userRepositoryMock.Setup(repo => repo.GetAsync(It.IsAny<Expression<Func<User, bool>>>(), true)).ReturnsAsync(user);
+
+            // Set up the mock repository to return the user when UserId matches
+            _userRepositoryMock.Setup(repo => repo.GetAsync(It.IsAny<Expression<Func<User, bool>>>(), true))
+                               .ReturnsAsync(user);
 
             // Act
             var result = await _userServices.UpdateUserAsync(user);
@@ -121,6 +133,7 @@ namespace NunitTesting
             // Assert
             Assert.IsTrue(result);
         }
+
 
         [Test]
         public async Task DeleteUserAsync_ReturnsTrue_WhenUserDeletedSuccessfully()

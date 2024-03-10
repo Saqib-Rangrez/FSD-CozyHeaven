@@ -377,7 +377,7 @@ namespace CozyHavenStayServer.Controllers
                 if(user == null)
                 {
                     var owners = await _hotelOwnerServices.GetAllHotelOwnersAsync();
-                    user = owners.Where(u => u.Token == model.Email).FirstOrDefault();
+                    user = owners.Where(u => u.Email == model.Email).FirstOrDefault();
                 }
             }
 

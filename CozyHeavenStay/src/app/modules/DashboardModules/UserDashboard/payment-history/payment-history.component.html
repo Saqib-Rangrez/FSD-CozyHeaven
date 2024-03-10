@@ -1,0 +1,44 @@
+<!-- Main content START -->
+<div class="w-100 ps-xl-5" *ngIf="!loading">
+
+    <div class="card border bg-transparent">
+        <!-- Card header -->
+        <div class="card-header bg-transparent border-bottom">
+            <h4 class="card-header-title">My Payment History</h4>
+        </div>
+
+        <!-- Card body START -->
+        <div class="card-body p-0">
+
+            <!-- Tabs -->
+            <ul class="nav nav-tabs nav-bottom-line nav-responsive nav-justified">
+                <li class="nav-item"> 
+                    <a class="nav-link mb-0 active text-center" data-bs-toggle="tab" href="#tab-1"><i class="bi bi-briefcase-fill fa-fw me-1"></i> Payment History</a> 
+                </li>
+            </ul>
+
+            <!-- Tabs content START -->
+            <div class="tab-content p-2 p-sm-4" id="nav-tabContent">
+
+                <!-- Tab content item START -->
+                <div class="tab-pane fade show active" id="tab-1" >
+                    <h6> Payment Records - {{paymentRecords?.length}}</h6>
+                    <ng-container *ngIf="paymentRecords.length > 0">
+                        <app-payment-card *ngFor="let data of paymentRecords" [data]="data"></app-payment-card>
+                    </ng-container>
+                    <app-nodata *ngIf="paymentRecords?.length <= 0"></app-nodata>                  
+                </div>
+                <!-- Tabs content item END -->
+            </div>
+
+        </div>
+        <!-- Card body END -->
+    </div>
+
+</div>
+<!-- Main content END -->
+<!-- **************** MAIN CONTENT END **************** -->
+
+<div class="d-flex justify-content-center align-content-center" style="margin-top: 8rem;">
+    <div *ngIf="loading" class="loader"></div>
+</div>

@@ -1,0 +1,50 @@
+<!-- Hotel list START -->
+<div class="row g-4">
+    
+    <!-- Hotel item -->
+    <div class="col-lg-12">
+        <div class="card shadow p-3">
+            <div class="row g-2">
+                <!-- Card img -->
+                <div class="col-sm-4">
+                    <img [src]="data?.hotelImages[0]?.imageUrl" class="rounded-2" alt="Card image" style="height: 100px; width: 100%;">
+                </div>
+
+                <!-- Card body -->
+                <div class="col-sm-8">
+                    <div class="card-body position-relative d-flex flex-column p-0 h-100">
+
+                        <!-- Buttons -->
+                        <div class="list-inline-item dropdown position-absolute top-0 end-0">
+                            <!-- Share button -->
+                            <a href="#" class="btn btn-sm btn-round btn-light" role="button" id="dropdownAction1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </a>
+                            <!-- dropdown button -->
+                            <ul class="dropdown-menu dropdown-menu-end min-w-auto shadow rounded" aria-labelledby="dropdownAction1">
+                                <!-- <li><a class="dropdown-item" href="#"><i class="bi bi-info-circle me-1"></i>Report</a></li> -->
+                                <li><div (click)="deleteHotel(data?.hotelId)" class="dropdown-item" href="#"><i class="bi bi-slash-circle me-1"></i>Delete</div></li>
+                            </ul>
+                        </div>
+
+                        <!-- Title -->
+                        <h5 class="card-title mb-0 me-5"><a href="hotel-detail.html">{{data?.name | titlecase}}</a></h5>
+                        <small><i class="bi bi-geo-alt me-2"></i>{{data?.location | titlecase}}</small>
+
+                        <!-- Price and Button -->
+                        <div class="d-flex justify-content-between align-items-center mt-3 mt-md-auto">
+                            <!-- Price -->
+                            <div class="d-flex align-items-center">
+                                <h5 class="fw-bold mb-0 me-1">{{(data.rooms[0]?.baseFare | currency : 'INR' )|| (999 | currency : 'INR')}}</h5>
+                                <span class="mb-0 me-2">/day</span>
+                            </div>
+                            <!-- Button -->
+                            <a href="#" class="btn btn-sm btn-primary px-2 mb-0"><i class="bi bi-eye fa-fw me-1"></i>View</a>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Hotel list END -->

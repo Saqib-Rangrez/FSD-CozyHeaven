@@ -20,21 +20,21 @@ export class ReviewService {
   }
 
   getReviewById(id: number): Observable<Review> {
-    return this.http.get<Review>(`${reviewEndpoints.GET_REVIEW_BY_REVIEWID_API}/${id}`)
+    return this.http.get<Review>(`${reviewEndpoints.GET_REVIEW_BY_REVIEWID_API}${id}`)
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  getReviewByUserId(userId: number): Observable<Review[]> {
-    return this.http.get<Review[]>(`${reviewEndpoints.GET_REVIEW_BY_USERID_API}/${userId}`)
+  getReviewByUserId(userId: number): Observable<any> {
+    return this.http.get<any>(`${reviewEndpoints.GET_REVIEW_BY_USERID_API}${userId}`)
       .pipe(
         catchError(this.handleError)
       );
   }
 
   getReviewByHotelId(hotelId: number): Observable<Review[]> {
-    return this.http.get<Review[]>(`${reviewEndpoints.GET_REVIEW_BY_HOTELID_API}/${hotelId}`)
+    return this.http.get<Review[]>(`${reviewEndpoints.GET_REVIEW_BY_HOTELID_API}${hotelId}`)
       .pipe(
         catchError(this.handleError)
       );
@@ -55,7 +55,7 @@ export class ReviewService {
   }
 
   deleteReview(id: number): Observable<any> {
-    return this.http.delete<any>(`${reviewEndpoints.DELETE_REVIEW_API}/${id}`)
+    return this.http.delete<any>(`${reviewEndpoints.DELETE_REVIEW_API}${id}`)
       .pipe(
         catchError(this.handleError)
       );

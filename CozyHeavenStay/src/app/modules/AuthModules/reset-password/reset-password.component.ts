@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ResetPasswordDTO } from '../../../models/DTO/ResetPasswordDTO';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthAPIService } from '../../../services/operations/auth-api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -15,6 +15,7 @@ export class ResetPasswordComponent {
   authService : AuthAPIService = inject(AuthAPIService);
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
   toastr : ToastrService = inject(ToastrService);
+  router : Router = inject(Router);
   showConfirmPassword: boolean = false;
   showPassword: boolean = false;
 
@@ -29,12 +30,16 @@ export class ResetPasswordComponent {
   onSubmit() {
     if (this.resetForm.valid) {
       const formData: ResetPasswordDTO = this.resetForm.value;
-      formData.token = this.activeRoute.snapshot.paramMap.get("token");
+      this.activeRoute.params.subscribe((params) => {
+        formData.token = params['token'];        
+      });     
       console.log(formData);
       // Do something with formData, like sending it to the server
       this.authService.resetPassword(formData).subscribe({
         next : (res) => {
           console.log(res);
+          this.toastr.success('Your Password has been successfully changed!','Success');     
+          this.router.navigate(['/login']);     
         },
         error : (err) => {
           console.log(err);

@@ -31,15 +31,27 @@ namespace CozyHavenStayServer.Repositories
 
         public async Task<List<Room>> GetAllAsync()
         {
-            return await _context.Rooms.ToListAsync();
+            return await _context.Rooms
+            .Include(r => r.Bookings).ThenInclude(b => b.User)
+            .Include(r => r.RoomImages)
+            .Include(r => r.Hotel).ThenInclude(h => h.HotelImages)
+            .ToListAsync();
         }
 
         public async Task<Room> GetAsync(Expression<Func<Room, bool>> filter, bool useNoTracking = false)
         {
             if (useNoTracking)
-                return await _context.Rooms.AsNoTracking().Where(filter).FirstOrDefaultAsync();
+                return await _context.Rooms.AsNoTracking().Where(filter)
+                .Include(r => r.Bookings).ThenInclude(b => b.User)
+                .Include(r => r.RoomImages)
+                .Include(r => r.Hotel).ThenInclude(h => h.HotelImages)
+                .FirstOrDefaultAsync();
             else
-                return await _context.Rooms.Where(filter).FirstOrDefaultAsync();
+                return await _context.Rooms.Where(filter)
+                .Include(r => r.Bookings).ThenInclude(b => b.User)
+                .Include(r => r.RoomImages)
+                .Include(r => r.Hotel).ThenInclude(h => h.HotelImages)
+                .FirstOrDefaultAsync();
         }
 
         public async Task<Room> UpdateAsync(Room dbRecord)
@@ -47,9 +59,6 @@ namespace CozyHavenStayServer.Repositories
             _context.Rooms.Update(dbRecord);
             await _context.SaveChangesAsync();
             return dbRecord;
-        }
-
-
-        
+        }        
     }
 }

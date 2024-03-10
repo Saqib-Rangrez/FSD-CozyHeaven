@@ -6,6 +6,7 @@ using CozyHavenStayServer.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using CozyHavenStayServer.Models.DTO;
 
 namespace CozyHavenStayServer.Controllers
 {
@@ -14,12 +15,17 @@ namespace CozyHavenStayServer.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserServices _userServices;
+        private readonly IAdminServices _adminServices;
+        private readonly IHotelOwnerServices _hotelOwnerServices;
         private readonly ILogger<UserController> _logger;
         private readonly ICloudinaryService _cloudinaryService;
 
 
-        public UserController(ILogger<UserController> logger, IUserServices userServices, ICloudinaryService cloudinaryService)
+        public UserController(ILogger<UserController> logger, IUserServices userServices, ICloudinaryService cloudinaryService, 
+        IAdminServices adminServices, IHotelOwnerServices hotelOwnerServices)
         {
+            _hotelOwnerServices = hotelOwnerServices;
+            _adminServices = adminServices;
             _logger = logger;
             _userServices = userServices;
             _cloudinaryService = cloudinaryService;
@@ -27,7 +33,6 @@ namespace CozyHavenStayServer.Controllers
 
 
         //GetAllUsers
-        [Authorize]
         [HttpGet]
         [Route("GetAllUsers")]
         public async Task<ActionResult<List<User>>> GetAllUsersAsync()
@@ -205,7 +210,7 @@ namespace CozyHavenStayServer.Controllers
         //UpdateUser
         [HttpPut]
         [Route("UpdateUser")]
-        public async Task<ActionResult> UpdateUserAsync([FromBody] User model)
+        public async Task<ActionResult<User>> UpdateUserAsync([FromBody] User model)
         {
             try
             {
@@ -226,7 +231,8 @@ namespace CozyHavenStayServer.Controllers
                     return Ok(new
                     {
                         success = true,
-                        message = "User updated successfully"
+                        message = "User updated successfully",
+                        user = model
                     });
                 }
                 else
@@ -302,13 +308,13 @@ namespace CozyHavenStayServer.Controllers
 
         //UploadDisplay Picture
         [HttpPost]
-        [Route("UploadDisplayPicture/{id}")]
-        public async Task<ActionResult> UploadDisplayPicture(int id,[FromForm] IFormFile file)
+        [Route("UploadDisplayPicture")]
+        public async Task<ActionResult> UploadDisplayPicture([FromForm] UploadPicDTO model)
         {
             try
             {
 
-                if (id <= 0)
+                if (model.id <= 0)
                 {
                     _logger.LogWarning("Bad Request");
                     return BadRequest(new
@@ -317,7 +323,14 @@ namespace CozyHavenStayServer.Controllers
                         message = "Invalid User Id"
                     });
                 }
-                var user = await _userServices.GetUserByIdAsync(id);  
+                dynamic user;
+                if(model.Role == "User"){
+                user = await _userServices.GetUserByIdAsync(model.id);  
+                }else if(model.Role == "Admin"){
+                    user = await _adminServices.GetAdminByIdAsync(model.id);
+                }else{
+                    user = await _hotelOwnerServices.GetHotelOwnerByIdAsync(model.id);
+                }
                 if (user == null)
                 {
                     return NotFound(new
@@ -327,21 +340,29 @@ namespace CozyHavenStayServer.Controllers
                     });
                 }
 
-                if (file == null || file.Length == 0)
+                if (model.file == null || model.file.Length == 0)
                 {
                     return BadRequest("No file uploaded.");
                 }
 
-                var result = await _cloudinaryService.UploadImageAsync(file); 
+                var result = await _cloudinaryService.UploadImageAsync(model.file); 
                 user.ProfileImage = result.SecureUrl.ToString();
+                var status = false;
+                if(model.Role == "User"){
+                    status =await _userServices.UpdateUserAsync(user,false);  
+                }else if(model.Role == "Admin"){
+                    status =await _adminServices.UpdateAdminAsync(user,false);
+                }else{
+                    status = await _hotelOwnerServices.UpdateHotelOwnerAsync(user,false);
+                }
 
-                if (result != null)
+                if (status)
                 {
                     return Ok(new
                     {
                         success = true,
                         message = "Image Uploaded Successfully",
-                        data = user,
+                        user,
                         imgRes = result
                     });
                 }

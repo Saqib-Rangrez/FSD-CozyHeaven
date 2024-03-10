@@ -66,11 +66,12 @@ namespace CozyHavenStayServer.Services
             }
         }
 
-        public async Task<Payment> GetPaymentByIdAsync(int id)
+        public async Task<List<Payment>> GetPaymentByIdAsync(int id)
         {
             try
             {
-                var payment = await _paymentRepository.GetAsync(p => p.PaymentId == id);
+                var payment = await _paymentRepository.GetAllAsync();
+                var paymentList = payment.Where(p => p?.Booking?.UserId == id).ToList();
                 if (payment == null)
                 {
                     _logger.LogError("Payment not found with given Id");

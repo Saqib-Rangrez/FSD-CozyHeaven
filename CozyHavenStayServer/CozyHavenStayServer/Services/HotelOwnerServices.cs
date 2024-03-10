@@ -99,7 +99,7 @@ namespace CozyHavenStayServer.Services
             return hotelOwner;
         }
 
-        public async Task<bool> UpdateHotelOwnerAsync(HotelOwner hotelOwner)
+        public async Task<bool> UpdateHotelOwnerAsync(HotelOwner hotelOwner, bool flag = true)
         {
             try
             {
@@ -110,11 +110,17 @@ namespace CozyHavenStayServer.Services
                     _logger.LogError("HotelOwner not found with given Id");
                     return false;
                 }
-
-                var hashedPassword = _authServices.HashPassword(hotelOwner.Password);
-                hotelOwner.Password = hashedPassword;
-
-                await _hotelOwnerRepository.UpdateAsync(hotelOwner);
+                if(flag) {
+                    if(!string.IsNullOrEmpty(hotelOwner.Password)) {
+                        var hashedPassword = _authServices.HashPassword(hotelOwner.Password);
+                        hotelOwner.Password = hashedPassword;
+                    }
+                    else{
+                        hotelOwner.Password = hotelOwnerUser.Password;
+                    } 
+                }
+                
+                var updatedOwner = await _hotelOwnerRepository.UpdateAsync(hotelOwner);
                 return true;
             }
             catch (Exception ex)

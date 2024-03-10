@@ -1,0 +1,88 @@
+<!-- Page main content START -->
+<div *ngIf="!loading" class="w-100 p-xxl-4">
+	
+    <!-- Title -->
+    <div class="row">
+        <div class="col-12 mb-4 mb-sm-5">
+            <div class="d-sm-flex justify-content-between align-items-center">
+                <h1 class="h3 mb-3 mb-sm-0">Guests Data</h1>
+                <div class="d-grid"><div class="btn btn-primary mb-0"><i class="bi bi-people me-2"></i>Total Users : {{userList?.data?.length}} </div>	</div>					
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Guest list START -->
+    <div class="card shadow">
+        <!-- Card body START -->
+        <div class="card-body text-center">
+            <!-- Table head -->
+            <div class="bg-light rounded px-2 py-3 d-none d-lg-block">
+                <div class="row g-4">
+                    <div class="col"><h6 class="mb-0">Guest ID</h6></div>
+                    <div class="col-2"><h6 class="mb-0">Guest</h6></div>
+                    <div class="col"><h6 class="mb-0">Gender</h6></div>
+                    <div class="col"><h6 class="mb-0">Contact</h6></div>
+                    <div class="col-3"><h6 class="mb-0">Email</h6></div>
+                    <div class="col"><h6 class="mb-0">Bookings</h6></div>
+                    <!-- <div class="col"><h6 class="mb-0">Room No</h6></div>
+                    <div class="col"><h6 class="mb-0">Status</h6></div> -->
+                    <div class="col"><h6 class="mb-0">Action</h6></div>
+                </div>
+            </div>
+
+            <!-- Table data -->
+            <div *ngFor="let item of userList?.data" class="row row-cols-xl-7 align-items-lg-center border-bottom g-4 px-2 py-4">
+                <!-- Data item -->
+                <div class="col">
+                    <h6 class="mb-0 fw-normal"> {{item?.userId}} </h6>
+                </div>
+
+                <!-- Data item -->
+                <div class="col-3">
+                    <!-- <small class="d-block d-lg-none">Booked by:</small> -->
+                    <div class="d-flex align-items-center">
+                        <!-- Avatar -->
+                        <div class="avatar avatar-xs flex-shrink-0">
+                            <img class="avatar-img rounded-circle" [src]="item?.profileImage" alt="avatar">
+                        </div>
+                        <!-- Info -->
+                        <div class="ms-2">
+                            <h6 class="mb-0 fw-light">{{item?.firstName}} {{item?.lastName}}</h6>
+                        </div>
+                    </div>
+                </div>	
+
+                <!-- Data item -->
+                <div class="col">
+                    <h6 class="mb-0 fw-normal"> {{item?.gender}} </h6>
+                </div>
+
+                <!-- Data item -->
+                <div class="col">
+                    <h6 class="mb-0 fw-normal">{{item?.contactNumber}}</h6>
+                </div>
+
+                <!-- Data item -->
+                <div class="col-3">
+                    <h6 class="mb-0 fw-normal">{{item?.email}}</h6>
+                </div>
+
+                <!-- Data item -->
+                <div class="col">
+                    <h6 class="mb-0 fw-normal inline">{{item?.bookings.length}}</h6>
+                </div>
+
+                <!-- Data item -->
+                <div class="col"><a [routerLink]="'/manage-users/detail/' + item?.userId" class="btn btn-sm btn-light mb-0">View</a></div>
+            </div>
+
+           
+    </div>
+    <!-- Guest list END -->
+</div>
+<!-- Page main content END -->
+
+<div *ngIf="loading" class="d-flex justify-content-center align-content-center" style="margin-top: 8rem;">
+    <div *ngIf="loading" class="loader"></div>
+</div>

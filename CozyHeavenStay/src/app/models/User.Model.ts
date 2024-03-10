@@ -7,7 +7,7 @@ export class User {
     gender: string;
     contactNumber: string;
     address: string;
-    expiresIn: Date;
+    //expiresIn: Date;
     role?: string | "null";
     profileImage?: string | "null";
     token?: string | "null";
@@ -22,7 +22,7 @@ export class User {
       gender: string,
       contactNumber: string,
       address: string,
-      expiresIn: Date,
+      //expiresIn: Date,
       role?: string,
       profileImage?: string,
       token?: string,
@@ -40,7 +40,10 @@ export class User {
       this.profileImage = profileImage;
       this.token = token;
       this.resetPasswordExpires = resetPasswordExpires;
-      this.expiresIn = expiresIn ;
+      //this.expiresIn = expiresIn ;
     }
+
+
+  
   }
   

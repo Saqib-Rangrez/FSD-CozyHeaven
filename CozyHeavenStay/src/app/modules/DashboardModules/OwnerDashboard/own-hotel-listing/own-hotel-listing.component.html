@@ -1,0 +1,43 @@
+<section *ngIf="!loading" >
+	<div>
+		<div class="card rounded-3 border p-3 pb-2">
+			<!-- Avatar and info START -->
+			<div class="d-sm-flex align-items-center">
+				<div class="avatar avatar-xl mb-2 mb-sm-0">
+					<img class="avatar-img rounded-circle" [src]="user.profileImage" alt="profilepic">
+				</div>
+				<h4 class="mb-2 mb-sm-0 ms-sm-3"><span class="fw-light">Hi</span> {{user.firstName}} {{user.lastName}}</h4>
+				<a routerLink="/add-hotel" class="btn btn-sm btn-primary-soft mb-0 ms-auto flex-shrink-0"><i class="bi bi-plus-lg fa-fw me-2"></i>Add New Listing</a>
+			</div>
+			<!-- Avatar and info START -->
+			
+
+		</div>
+	</div>
+</section>
+
+
+
+<!-- Listing table START -->
+<div class="row">
+    <div class="col-12">
+
+        <div class="card border">
+            <!-- Card header -->
+            <div class="card-header border-bottom">
+                <h5 class="card-header-title">My Listings <span class="badge bg-primary bg-opacity-10 text-primary ms-2">{{hotelList?.length}} Hotel</span></h5>
+            </div>
+
+            <!-- Card body START -->
+            <div *ngIf="hotelList?.length > 0" class="card-body vstack gap-3">
+                <app-own-listing-detail (dataDeleted)="onDelete($event)" [data]="item" *ngFor="let item of hotelList"></app-own-listing-detail>                
+            </div>
+            <!-- Card body END -->
+        </div>
+    </div>
+</div>
+<!-- Listing table END -->
+
+<div *ngIf="loading" class="d-flex justify-content-center align-content-center" style=" min-height: 80vh;">
+    <div  class="loader " style="height: fit-content; margin-top: 13rem;"></div>
+</div>

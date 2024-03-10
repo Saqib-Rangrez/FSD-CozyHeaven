@@ -86,6 +86,39 @@ namespace CozyHavenStayServer.Controllers
             }
         }
 
+        //Get all bookings of user
+        [HttpGet]
+        [Route("GetBookingByUserId/{id}")]
+        public async Task<ActionResult<List<Booking>>> GetBookingByUserId(int id)
+        {
+            try
+            {
+                var booking = await _bookingServices.GetBookingByUserIdAsync(id);
+                if (booking == null)
+                {
+                    return NotFound(new
+                    {
+                        success = false,
+                        message = $"Booking with ID {id} not found"
+                    });
+                }
+                return Ok(new
+                {
+                    success = true,
+                    data = booking
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    success = false,
+                    error = "An error occurred while retrieving booking by ID"
+                });
+            }
+        }
+
         // Create booking
         [HttpPost]
         [Route("CreateBooking")]
@@ -122,7 +155,7 @@ namespace CozyHavenStayServer.Controllers
         // Update booking
         [HttpPut]
         [Route("UpdateBooking")]
-        public async Task<ActionResult<bool>> UpdateBookingAsync([FromBody] Booking booking)
+        public async Task<ActionResult<Booking>> UpdateBookingAsync([FromBody] Booking booking)
         {
             try
             {
@@ -132,13 +165,14 @@ namespace CozyHavenStayServer.Controllers
                     return BadRequest(new
                     {
                         success = false,
-                        error = "Failed to update booking"
+                        error = "Failed to update booking"                        
                     });
                 }
                 return Ok(new
                 {
                     success = true,
-                    message = "Booking updated successfully"
+                    message = "Booking updated successfully",
+                    data  = booking
                 });
             }
             catch (Exception ex)

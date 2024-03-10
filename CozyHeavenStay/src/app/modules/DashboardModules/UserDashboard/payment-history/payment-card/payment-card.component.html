@@ -1,0 +1,54 @@
+<div class="card border mb-4">
+    <!-- Card header -->
+    <div class="card-header border-bottom d-md-flex justify-content-md-between align-items-center">
+        <!-- Icon and Title -->
+        <div class="d-flex align-items-center">
+            <div class="icon-lg bg-light rounded-circle flex-shrink-0"><i class="fa-solid fa-money-bill"></i></div>	
+            <!-- Title -->
+            <div class="ms-2">
+                <h6 class="card-title mb-0">{{data?.hotel?.name}}</h6>
+                <ul class="nav nav-divider small">
+                    <li class="nav-item">{{data?.room?.roomType}}</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Button -->
+        <div class="mt-2 mt-md-0 d-flex flex-row gap-2">
+            <span class="form-label mt-2">Payment Status : </span>
+            <div class="text-white p-2 rounded-2"  [ngClass]="{ 'bg-success': data?.status === 'paid', 'bg-warning' : data?.status === 'unpaid' }"> {{data?.status | titlecase }}</div>
+            <a href="#" *ngIf="data?.status !== 'paid'"  class="btn btn-primary-soft mb-0">Manage Payment</a>
+        </div>
+    </div>
+
+    <!-- Card body -->
+    <div class="card-body">
+        <div class="row g-3">
+            <div class="col-sm-6 col-md-2 text-center">
+                <span>Payment Id</span>
+                <h6 class="mb-0">{{data?.paymentId}}</h6>
+            </div>
+
+            <div class="col-sm-6 col-md-2 text-center">
+                <span>Booking Id</span>
+                <h6 class="mb-0">{{data?.bookingId}}</h6>
+            </div>
+
+            <div class="col-md-2 text-center">
+                <span>Amount</span>
+                <h6 class="mb-0">{{data?.amount | currency : 'INR'}}</h6>
+            </div>
+
+            <div class="col-md-4 text-center">
+                <span>Payment Mode</span>
+                <h6 class="mb-0">{{data?.paymentMode}} </h6>
+            </div>
+
+            <div class="col-md-2 text-center">
+                <span>Payment Date</span>
+                <h6 class="mb-0">{{data?.paymentDate | date }}</h6>
+            </div>
+
+        </div>
+    </div>
+</div>

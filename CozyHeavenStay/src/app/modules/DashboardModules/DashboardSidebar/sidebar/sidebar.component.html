@@ -25,9 +25,9 @@
     
                                 <!-- Edit profile button -->
                                 <div class="position-absolute top-0 end-0 p-3">
-                                    <a href="#" class="text-primary-hover" data-bs-toggle="tooltip" data-bs-title="Edit profile">
+                                    <div style="cursor: pointer;" (click)="toggleEdit()" class="text-primary-hover" data-bs-toggle="tooltip" data-bs-title="Edit profile">
                                         <i class="bi bi-pencil-square"></i>
-                                    </a>
+                                    </div>
                                 </div>
     
                                 <!-- Card body START -->
@@ -36,24 +36,42 @@
                                     <div class="text-center mb-3">
                                         <!-- Avatar -->
                                         <div class="avatar avatar-xl mb-2">
-                                            <img class="avatar-img rounded-circle border border-2 border-white" src="assets/images/avatar/01.jpg" alt="">
+                                            <img class="avatar-img rounded-circle border border-2 border-white" [src]="user?.profileImage" alt="profilePic">
                                         </div>
-                                        <h6 class="mb-0">Jacqueline Miller</h6>
-                                        <a href="#" class="text-reset text-primary-hover small">hellogmail.com</a>
+                                        <h6 class="mb-0">{{user?.firstName}} {{user?.lastName}}</h6>
+                                        <a href="#" class="text-reset text-primary-hover small">{{user?.email}}</a>
                                         <hr>
                                     </div>
     
                                     <!-- Sidebar menu item START -->
                                     <ul class="nav nav-pills-primary-soft flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link active" routerLink="/dashboard/profile"><i class="bi bi-person fa-fw me-2"></i>My Profile</a>
+                                            <a class="nav-link " routerLinkActive="active" routerLink="/dashboard/profile"><i class="bi bi-person fa-fw me-2"></i>My Profile</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" routerLink="/dashboard/bookings"><i class="bi bi-ticket-perforated fa-fw me-2"></i>My Bookings</a>
+                                        <li *ngIf="user?.role === 'User'" class="nav-item">
+                                            <a class="nav-link" routerLinkActive="active" routerLink="/dashboard/bookings"><i class="bi bi-ticket-perforated fa-fw me-2"></i>My Bookings</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" routerLink="/dashboard/payment-history"><i class="bi bi-people fa-fw me-2"></i>Payment History</a>
+                                        <li *ngIf="user?.role === 'User'" class="nav-item">
+                                            <a class="nav-link" routerLinkActive="active" routerLink="/dashboard/payment-history"><i class="bi bi-cash fa-fw me-2"></i>Payment History</a>
                                         </li>
+                                        <li *ngIf="user?.role !== 'User'" class="nav-item">
+                                            <a class="nav-link" routerLinkActive="active" routerLink="/dashboard/manage-bookings"><i class="bi bi-record fa-fw me-2"></i>Manage Bookings</a>
+                                        </li>
+                                        <li *ngIf="user?.role === 'Owner'" class="nav-item">
+                                            <a class="nav-link" routerLinkActive="active" routerLink="/dashboard/my-listings"><i class="fa fa-list fa-fw me-2"></i>My Listings</a>
+                                        </li>
+                                        <li *ngIf="user?.role === 'Owner'" class="nav-item">
+                                            <a class="nav-link" routerLinkActive="active" routerLink="/add-hotel"><i class="fa fa-hotel fa-fw me-2"></i>Add Hotel</a>
+                                        </li>
+                                        <li *ngIf="user?.role === 'Admin'" class="nav-item">
+                                            <a class="nav-link" routerLinkActive="active" routerLink="/dashboard/manage-users"><i class="bi bi-people fa-fw me-2"></i>Manage Users</a>
+                                        </li>
+                                        <li *ngIf="user?.role === 'Admin'" class="nav-item">
+                                            <a class="nav-link" routerLinkActive="active" routerLink="/dashboard/manage-owners"><i class="bi bi-people-fill fa-fw me-2"></i>Manage Owners</a>
+                                        </li>
+                                  
+
+
                                         <!-- <li class="nav-item">
                                             <a class="nav-link" href="account-payment-details.html"><i class="bi bi-wallet fa-fw me-2"></i>Payment Details</a>
                                         </li>
@@ -64,7 +82,7 @@
                                             <a class="nav-link" href="account-settings.html"><i class="bi bi-gear fa-fw me-2"></i>Settings</a>
                                         </li> -->
                                         <li class="nav-item">
-                                            <a class="nav-link" routerLink="/dashboard/delete-profile"><i class="bi bi-trash fa-fw me-2"></i>Delete Profile</a>
+                                            <a class="nav-link" routerLinkActive="active" routerLink="/dashboard/delete-profile"><i class="bi bi-trash fa-fw me-2"></i>Delete Profile</a>
                                         </li>
                                         <li class="nav-item">
                                             <div class="nav-link text-danger bg-danger-soft-hover" (click)="logOut()"><i class="fas fa-sign-out-alt fa-fw me-2"></i>Sign Out</div>
@@ -94,5 +112,4 @@
     <!-- **************** MAIN CONTENT END **************** -->
     
   </div>
-  <!-- Child router outlet -->
   

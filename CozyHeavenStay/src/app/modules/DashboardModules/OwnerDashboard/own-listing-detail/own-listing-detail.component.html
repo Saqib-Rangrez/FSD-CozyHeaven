@@ -1,0 +1,34 @@
+<!-- Listing item START -->
+<div class="card border p-2">
+    <div class="row g-4">
+        <!-- Card img -->
+        <div class="col-md-3 col-lg-2">
+            <img [src]="data?.hotelImages[0]?.imageUrl" style="width: 500px; height: 100px;" class="card-img rounded-2" alt="Card image">
+        </div>
+
+        <!-- Card body -->
+        <div class="col-md-9 col-lg-10">
+            <div class="card-body position-relative d-flex flex-column p-0 h-100">
+
+                <!-- Title -->
+                <h5 class="card-title mb-0 me-5"><a href="hotel-detail.html">{{data?.name | titlecase}}</a></h5>
+                <small><i class="bi bi-geo-alt me-2"></i>{{data?.location | titlecase}}</small>
+
+                <!-- Price and Button -->
+                <div class="d-sm-flex justify-content-sm-between align-items-center mt-3 mt-md-auto">
+                    <!-- Button -->
+                    <div class="d-flex align-items-center">
+                        <h5 class="fw-bold mb-0 me-1">{{data?.rooms[0]?.baseFare | currency : 'INR'}}</h5>
+                        <span class="mb-0 me-2">/day</span>
+                    </div>
+                    <!-- Price -->
+                    <div class="hstack gap-2 mt-3 mt-sm-0">
+                        <button href="#" class="btn btn-sm btn-primary mb-0"><i class="bi bi-pencil-square fa-fw me-1"></i>Edit</button>    
+                        <button (click)="deleteHotel(data?.hotelId)" class="btn btn-sm btn-danger mb-0"><i class="bi bi-trash3 fa-fw me-1"></i>Delete</button>    
+                    </div>                  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Listing item END -->

@@ -19,8 +19,8 @@ export class HotelOwnerService {
       );
   }
 
-  getHotelOwnerById(id: number): Observable<HotelOwner> { 
-    return this.http.get<HotelOwner>(`${ownerEndpoints.GET_HOTEL_OWNER_BY_ID_API}/${id}`)
+  getHotelOwnerById(id: number): Observable<any> { 
+    return this.http.get<any>(`${ownerEndpoints.GET_HOTEL_OWNER_BY_ID_API}${id}`)
       .pipe(
         catchError(this.handleError)
       );
@@ -41,7 +41,8 @@ export class HotelOwnerService {
   }
 
   deleteHotelOwner(id: number): Observable<any> {
-    return this.http.delete<any>(`${ownerEndpoints.DELETE_HOTEL_OWNER_API}/${id}`)
+    console.log(id)
+    return this.http.delete<any>(`${ownerEndpoints.DELETE_HOTEL_OWNER_API}${id}`)
       .pipe(
         catchError(this.handleError)
       );

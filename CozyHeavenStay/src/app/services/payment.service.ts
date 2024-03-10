@@ -19,15 +19,15 @@ export class PaymentService {
       );
   }
 
-  getPaymentById(id: number): Observable<Payment> { 
-    return this.http.get<Payment>(`${paymentEndpoints.GET_PAYMENT_BY_ID_API}/${id}`)
+  getPaymentById(id: number): Observable<any> { 
+    return this.http.get<any>(`${paymentEndpoints.GET_PAYMENT_BY_ID_API}${id}`)
       .pipe(
         catchError(this.handleError)
       );
   }
 
   getPaymentByBookingId(id: number): Observable<Payment> { 
-    return this.http.get<Payment>(`${paymentEndpoints.GET_PAYMENT_BY_BOOKING_ID_API}/${id}`)
+    return this.http.get<Payment>(`${paymentEndpoints.GET_PAYMENT_BY_BOOKING_ID_API}${id}`)
       .pipe(
         catchError(this.handleError)
       );
@@ -48,7 +48,7 @@ export class PaymentService {
   }
 
   deletePayment(id: number): Observable<any> {
-    return this.http.delete<any>(`${paymentEndpoints.DELETE_PAYMENT_API}/${id}`)
+    return this.http.delete<any>(`${paymentEndpoints.DELETE_PAYMENT_API}${id}`)
       .pipe(
         catchError(this.handleError)
       );

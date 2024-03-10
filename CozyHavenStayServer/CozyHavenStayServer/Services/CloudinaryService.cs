@@ -30,5 +30,4 @@ public class CloudinaryService : ICloudinaryService
         var imageUploadResponse = await _cloudinary.UploadAsync(uploadParams);
         return imageUploadResponse;
     }
-
 }

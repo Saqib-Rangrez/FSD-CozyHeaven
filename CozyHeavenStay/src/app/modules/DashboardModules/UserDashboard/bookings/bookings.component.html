@@ -1,0 +1,73 @@
+<!-- Main content START -->
+<div *ngIf="!loading" class="w-100 ps-xl-5">
+
+    <div class="card border bg-transparent">
+        <!-- Card header -->
+        <div class="card-header bg-transparent border-bottom">
+            <h4 class="card-header-title">My Bookings</h4>
+        </div>
+
+        <!-- Card body START -->
+        <div class="card-body p-0">
+
+            <!-- Tabs -->
+            <ul class="nav nav-tabs nav-bottom-line nav-responsive nav-justified">
+                <li (click)="filterHotel('pending')" class="nav-item"> 
+                    <a class="nav-link mb-0 active" data-bs-toggle="tab" href="#tab-1"><i class="bi bi-briefcase-fill fa-fw me-1"></i>Pending Booking</a> 
+                </li>
+                <li (click)="filterHotel('canceled')" class="nav-item">
+                    <a class="nav-link mb-0" data-bs-toggle="tab" href="#tab-2"><i class="bi bi-x-octagon fa-fw me-1"></i>Canceled Booking</a> 
+                    </li>
+                <li (click)="filterHotel('confirmed')" class="nav-item"> 
+                    <a class="nav-link mb-0" data-bs-toggle="tab" href="#tab-3"><i class="bi bi-patch-check fa-fw me-1"></i>Completed Booking</a> 
+                </li>
+            </ul>
+
+            <!-- Tabs content START -->
+            <div class="tab-content p-2 p-sm-4" id="nav-tabContent">
+
+                <!-- Tab content item START -->
+                <div class="tab-pane fade show active" id="tab-1" *ngIf="!loading">
+                    <h6> Pending Bookings - {{filterBookings?.length}}</h6>
+                    <ng-container *ngIf="filterBookings.length > 0">
+                        <app-booking-detail *ngFor="let data of filterBookings" [data]="data"></app-booking-detail>
+                    </ng-container>
+                    <app-nodata *ngIf="filterBookings?.length <= 0"></app-nodata>                  
+                </div>
+                <!-- Tabs content item END -->
+
+                <!-- Tab content item START -->
+                <div class="tab-pane fade" id="tab-2">
+                    <h6>Cancelled Bookings - {{filterBookings?.length}} </h6>
+
+                    <ng-container *ngIf="filterBookings.length > 0">
+                        <app-booking-detail *ngFor="let data of filterBookings" [data]="data"></app-booking-detail>
+                    </ng-container>
+                    <app-nodata *ngIf="filterBookings?.length <= 0"></app-nodata>
+
+                </div>
+                <!-- Tabs content item END -->
+
+                <!-- Tab content item START -->
+                <div class="tab-pane fade" id="tab-3">
+                    <h6>Completed Bookings - {{filterBookings?.length}} </h6>
+
+                    <ng-container *ngIf="bookings.length > 0">
+                        <app-booking-detail *ngFor="let data of filterBookings" [data]="data"></app-booking-detail>
+                    </ng-container>
+                    <app-nodata  *ngIf="filterBookings?.length <= 0 "></app-nodata>             
+                </div>
+                <!-- Tabs content item END -->
+            </div>
+
+        </div>
+        <!-- Card body END -->
+    </div>
+
+</div>
+<!-- Main content END -->
+<!-- **************** MAIN CONTENT END **************** -->
+
+<div class="d-flex justify-content-center align-content-center" style="margin-top: 8rem;">
+    <div *ngIf="loading" class="loader"></div>
+</div>

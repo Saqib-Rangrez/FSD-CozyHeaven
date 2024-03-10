@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Room } from '../models/room.Model';
@@ -20,14 +20,16 @@ export class RoomService {
   }
 
   getRoomById(id: number): Observable<Room> { 
-    return this.http.get<Room>(`${roomEndpoints.GET_ROOM_BY_ID_API}/${id}`)
+    return this.http.get<Room>(`${roomEndpoints.GET_ROOM_BY_ID_API}${id}`)
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  createRoom(room: Room): Observable<Room> { 
-    return this.http.post<Room>(roomEndpoints.CREATE_ROOM_API, room)
+  createRoom(room: any): Observable<any> { 
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    return this.http.post<any>(roomEndpoints.CREATE_ROOM_API, room , { headers: headers })
       .pipe(
         catchError(this.handleError)
       );
@@ -41,7 +43,7 @@ export class RoomService {
   }
 
   deleteRoom(id: number): Observable<any> {
-    return this.http.delete<any>(`${roomEndpoints.DELETE_ROOM_API}/${id}`)
+    return this.http.delete<any>(`${roomEndpoints.DELETE_ROOM_API}${id}`)
       .pipe(
         catchError(this.handleError)
       );

@@ -8,7 +8,7 @@ namespace CozyHavenStayServer.Interfaces
         public Task<HotelOwner> GetHotelOwnerByIdAsync(int id);
         public Task<HotelOwner> GetHotelOwnerByEmailAsync(string email);
         public Task<HotelOwner> CreateHotelOwnerAsync(HotelOwner hotelOwner);
-        public Task<bool> UpdateHotelOwnerAsync(HotelOwner hotelOwner);
+        public Task<bool> UpdateHotelOwnerAsync(HotelOwner hotelOwner, bool flag = true);
         public Task<bool> DeleteHotelOwnerAsync(int id);
 
     }

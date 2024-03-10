@@ -1,15 +1,21 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, finalize, tap } from 'rxjs/operators';
 import { Hotel } from '../models/hotel.Model';
 import { hotelEndpoints } from './apis';
 import { SearchHotelDTO } from '../models/DTO/search-hotel-dto.Model';
+import { HotelDTO } from '../models/DTO/HotelDTO.Model';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HotelService {
+  toastr : ToastrService = inject(ToastrService);
+  hotelInfo;
+  edit : boolean = false;
+  step : number = 1;
 
   constructor(private http: HttpClient) { }
 
@@ -21,23 +27,50 @@ export class HotelService {
   }
 
   getHotelById(id: number): Observable<Hotel> { 
-    return this.http.get<Hotel>(`${hotelEndpoints.GET_HOTEL_BY_ID_API}/${id}`)
+    return this.http.get<Hotel>(`${hotelEndpoints.GET_HOTEL_BY_ID_API}${id}`)
       .pipe(
         catchError(this.handleError)
       );
   }
 
   getHotelByName(name: string): Observable<Hotel> { 
-    return this.http.get<Hotel>(`${hotelEndpoints.GET_HOTEL_BY_NAME_API}/${name}`)
+    return this.http.get<Hotel>(`${hotelEndpoints.GET_HOTEL_BY_NAME_API}${name}`)
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  createHotel(hotel: Hotel): Observable<Hotel> { 
-    return this.http.post<Hotel>(hotelEndpoints.CREATE_HOTEL_API, hotel)
+  createHotel(formData): Observable<any> { 
+    const loadingToast = this.toastr.info('Signing up...', 'Please wait', {
+      disableTimeOut: true,
+      closeButton: false,
+      positionClass: 'toast-top-center'
+    });
+
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+
+    return this.http.post<any>(hotelEndpoints.CREATE_HOTEL_API, formData,{ headers: headers })
       .pipe(
-        catchError(this.handleError)
+        catchError(error => {
+          if (loadingToast) {
+            this.toastr.clear();
+          }
+          this.toastr.error('Failed to sign up', 'Error');
+          
+          return throwError(() => error);
+        }),        
+        tap((res) => {
+          console.log(res);
+          if(loadingToast){
+            this.toastr.clear();
+          }
+        }),
+        finalize(() => {
+          if (loadingToast) {
+            this.toastr.clear();
+          }
+        }),         
       );
   }
 
@@ -49,7 +82,7 @@ export class HotelService {
   }
 
   deleteHotel(id: number): Observable<any> {
-    return this.http.delete<any>(`${hotelEndpoints.DELETE_HOTEL_API}/${id}`)
+    return this.http.delete<any>(`${hotelEndpoints.DELETE_HOTEL_API}${id}`)
       .pipe(
         catchError(this.handleError)
       );

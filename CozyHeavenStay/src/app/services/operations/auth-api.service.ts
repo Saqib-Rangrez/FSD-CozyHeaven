@@ -175,7 +175,7 @@ loginAdmin(email:string, password:string){
       
     return throwError(() => error);
   }), tap((res) => {
-      localStorage.setItem("user" , JSON.stringify(res));
+      console.log(res);
       this.handleCreateUser(res)
   }),finalize(() => {
     if (loadingToast) {
@@ -204,7 +204,7 @@ loginAdmin(email:string, password:string){
         res.role,
         res.token,
         res.resetPasswordExpires,
-        res.expiresIn
+        //res.expiresIn
       )
     }else if(res?.role == "Owner"){
       user = new User(
@@ -216,7 +216,7 @@ loginAdmin(email:string, password:string){
         res.gender,
         res.contactNumber,
         res.address,
-        res.expiresIn,
+        //res.expiresIn,
         res.role,
         res.profileImage,
         res.token,
@@ -236,13 +236,13 @@ loginAdmin(email:string, password:string){
         res.role,
         res.profileImage,
         res.token,
-        res.resetPasswordExpires,
+        //res.resetPasswordExpires,
     );
     }  
 
     if(user.token){
         this.user.next(user);
-        const timerValue = user?.expiresIn.getTime - new Date().getTime();
+        const timerValue =  (3*60*60*1000) //user?.expiresIn.getTime - new Date().getTime() ||;
         this.autoLogout(timerValue);
     }
   }
@@ -355,7 +355,7 @@ loginAdmin(email:string, password:string){
         res.user.role,
         res.user.token,
         res.user.resetPasswordExpires,
-        expiresIn
+        //expiresIn
       )
       this.admin.next(user);
 
@@ -373,7 +373,7 @@ loginAdmin(email:string, password:string){
         res.user.profileImage,
         res.user.token,
         res.user.resetPasswordExpires,
-        expiresIn
+        //expiresIn
     );
     this.owner.next(user);
 
@@ -387,7 +387,7 @@ loginAdmin(email:string, password:string){
         res.user.gender,
         res.user.contactNumber,
         res.user.address,
-        expiresIn,
+        //expiresIn,
         res.user.role,
         res.user.profileImage,
         res.user.token,
@@ -397,7 +397,7 @@ loginAdmin(email:string, password:string){
     }
       
     
-    this.autoLogout(user.expiresIn * 1000);
+    this.autoLogout(1000);
 
     localStorage.setItem("user" , JSON.stringify(user));
   }

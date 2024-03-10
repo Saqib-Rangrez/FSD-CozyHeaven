@@ -62,22 +62,22 @@
 			<ul class="nav flex-row align-items-center list-unstyled ms-xl-auto">
 
         <div class="d-lg-flex flex-lg-row align-items-center gap-2" *ngIf="!user">
-          <div class="nav-btn" (click)="moveToLogin()">Login
+          <div class="btn btn-primary-soft mb-0" (click)="moveToLogin()">Login
           </div>
-          <div class="nav-btn" (click)="moveToSignup()">Signup
+          <div class="btn btn-primary-soft mb-0" (click)="moveToSignup()">SignUp
           </div>
         </div>
 				
 				<!-- Profile dropdown START -->
-				<li class="nav-item ms-3 dropdown d-lg-flex flex-lg-row align-items-center gap-2" *ngIf="user">
-          <div class="position-relative mt-1">
-            <i class="bi bi-cart2" style="font-size: 2rem; color: rgb(74, 74, 93); cursor: pointer;"></i>
-            <span class="position-absolute bg-primary p-2 text-center text-white d-flex 
-              justify-content-center align-items-center animate__animated animate__bounce rounded-circle top-0 end-0" 
-              style="margin-top: 15%; margin-right: -10%; width: 15px; height: 15px;">
-               5
-            </span>
-          </div>
+			<li class="nav-item ms-3 dropdown d-lg-flex flex-lg-row align-items-center gap-2" *ngIf="user">
+					<di routerLink="/dashboard/bookings" *ngIf="user?.role==='User'" class="position-relative mt-1">
+						<i class="bi bi-cart2" style="font-size: 2rem; color: rgb(74, 74, 93); cursor: pointer;"></i>
+						<span class="position-absolute bg-primary p-2 text-center text-white d-flex 
+						justify-content-center align-items-center animate__animated animate__bounce rounded-circle top-0 end-0" 
+						style="margin-top: 15%; margin-right: -10%; width: 15px; height: 15px;">
+						5
+						</span>
+					</di>
 					<!-- Avatar -->
 					<div style="text-decoration: none;" class="avatar avatar-xs p-0" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
 						<img class="avatar-img rounded-circle" [src]="user?.profileImage" width="35" height="35" alt="avatar">
@@ -100,14 +100,19 @@
 						</li>
 
 						<!-- Links -->
-            <div class="text-secondary" style="padding-left: 5px; padding-right: 5px;">
-              <li> <hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item rounded-2 bg-hov" routerLink="/dashboard/bookings"><i class="bi bi-bookmark-check fa-fw me-2"></i>My Bookings</a></li>
-              <li><a class="dropdown-item rounded-2 bg-hov" routerLink="/dashboard/bookings"><i class="bi bi-heart fa-fw me-2"></i>My Wishlist</a></li>
-              <li><a class="dropdown-item rounded-2 bg-hov" routerLink="/dashboard/profile"><i class="bi bi-gear fa-fw me-2"></i>Profile</a></li>
-              <li><a class="dropdown-item rounded-2 bg-hov" routerLink="/dashboard/delete-profile"><i class="bi bi-speedometer fa-fw me-2"></i>Dashboard</a></li>
-              <li><div (click)="logOut()" class="rounded-2 dropdown-item bg-danger-soft-hover" style="cursor: pointer;"><i class="bi bi-power fa-fw me-2"></i>Sign Out</div></li>       
-            </div>
+						<div class="text-secondary" style="padding-left: 5px; padding-right: 5px;">
+							<li> <hr class="dropdown-divider"></li>
+							<li *ngIf="user?.role === 'User'"><a class="dropdown-item rounded-2 bg-hov" routerLink="/dashboard/bookings"><i class="bi bi-bookmark-check fa-fw me-2"></i>My Bookings</a></li>
+							<li *ngIf="user?.role === 'User'"><a class="dropdown-item rounded-2 bg-hov" routerLink="/dashboard/payment-history"><i class="bi bi-clock-history fa-fw me-2"></i>Payment History</a></li>
+							<li *ngIf="user?.role === 'Admin'"><a class="dropdown-item rounded-2 bg-hov" routerLink="/dashboard/manage-bookings"><i class="bi bi-record fa-fw me-2"></i>Manage Bookings</a></li>
+							<li *ngIf="user?.role === 'Admin'"><a class="dropdown-item rounded-2 bg-hov" routerLink="/dashboard/manage-users"><i class="bi bi-people fa-fw me-2"></i>Manage Users</a></li>
+							<li *ngIf="user?.role === 'Admin'"><a class="dropdown-item rounded-2 bg-hov" routerLink="/dashboard/manage-owners"><i class="bi bi-peace-fill fa-fw me-2"></i>Manage Owners</a></li>
+							<li *ngIf="user?.role === 'Owner'"><a class="dropdown-item rounded-2 bg-hov" routerLink="/add-hotel"><i class="fa fa-hotel fa-fw me-2"></i>Add Hotel</a></li>
+							<li *ngIf="user?.role === 'Owner'"><a class="dropdown-item rounded-2 bg-hov" routerLink="/dashboard/my-listings"><i class="fa fa-list fa-fw me-2"></i>My Listings</a></li>
+							<li><a class="dropdown-item rounded-2 bg-hov" routerLink="/dashboard/profile"><i class="bi bi-gear fa-fw me-2"></i>Profile</a></li>
+							<!-- <li><a class="dropdown-item rounded-2 bg-hov" routerLink="/dashboard/delete-profile"><i class="bi bi-speedometer fa-fw me-2"></i>Dashboard</a></li> -->
+							<li><div (click)="logOut()" class="rounded-2 dropdown-item bg-danger-soft-hover" style="cursor: pointer;"><i class="bi bi-power fa-fw me-2"></i>Sign Out</div></li>       
+						</div>
 						
 					</ul>
 					<!-- Profile dropdown END -->

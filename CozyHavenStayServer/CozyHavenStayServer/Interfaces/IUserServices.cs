@@ -10,7 +10,7 @@ namespace CozyHavenStayServer.Interfaces
         public Task<User> GetUserByIdAsync(int id);
         public Task<User> GetUserByEmailAsync(string name);
         public Task<User> CreateUserAsync(User user);
-        public Task<bool> UpdateUserAsync(User user);
+        public Task<bool> UpdateUserAsync(User user, bool flag = true);
         public Task<bool> DeleteUserAsync(int id);
         //Reviws
         public Task<List<Review>> GetAllReviewsAsync();
