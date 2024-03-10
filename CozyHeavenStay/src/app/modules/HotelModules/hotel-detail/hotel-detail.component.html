@@ -33,7 +33,7 @@ Image gallery START -->
 			<!-- Image -->
 			<div class="col-md-6">
                 
-				<a data-glightbox data-gallery="gallery" href={{hotel?.hotelImages[0].imageUrl}}>
+				<a data-glightbox data-gallery="gallery" href={{hotel?.hotelImages[0]?.imageUrl}}>
                     
 					<div class="card card-grid-lg card-element-hover card-overlay-hover overflow-hidden" [style.background-image]="'url(' + hotel?.hotelImages[0].imageUrl + ')'" style="background-position: center left; background-size: cover;">
 						<!-- Card hover element -->
@@ -49,8 +49,8 @@ Image gallery START -->
 				<div class="row g-2"> 
 					<!-- Image -->
 					<div class="col-12">
-						<a data-glightbox data-gallery="gallery" href={{hotel?.hotelImages[1].imageUrl}}>
-							<div class="card card-grid-sm card-element-hover card-overlay-hover overflow-hidden" [style.background-image]="'url(' + hotel?.hotelImages[1].imageUrl + ')'" style="background-position: center left; background-size: cover;">
+						<a data-glightbox data-gallery="gallery" href={{hotel?.hotelImages[1]?.imageUrl}}>
+							<div class="card card-grid-sm card-element-hover card-overlay-hover overflow-hidden" [style.background-image]="'url(' + hotel?.hotelImages[1]?.imageUrl + ')'" style="background-position: center left; background-size: cover;">
 								<!-- Card hover element -->
 								<div class="hover-element position-absolute w-100 h-100">
 									<i class="bi bi-fullscreen fs-6 text-white position-absolute top-50 start-50 translate-middle bg-dark rounded-1 p-2 lh-1"></i>
@@ -61,8 +61,8 @@ Image gallery START -->
 
 					<!-- Image -->
 					<div class="col-md-6">
-						<a data-glightbox data-gallery="gallery" href={{hotel?.hotelImages[2].imageUrl}}>
-							<div class="card card-grid-sm card-element-hover card-overlay-hover overflow-hidden" [style.background-image]="'url(' + hotel?.hotelImages[2].imageUrl + ')'" style="background-position: center left; background-size: cover;">
+						<a data-glightbox data-gallery="gallery" href={{hotel?.hotelImages[2]?.imageUrl}}>
+							<div class="card card-grid-sm card-element-hover card-overlay-hover overflow-hidden" [style.background-image]="'url(' + hotel?.hotelImages[2]?.imageUrl + ')'" style="background-position: center left; background-size: cover;">
 								<!-- Card hover element -->
 								<div class="hover-element position-absolute w-100 h-100">
 									<i class="bi bi-fullscreen fs-6 text-white position-absolute top-50 start-50 translate-middle bg-dark rounded-1 p-2 lh-1"></i>
@@ -72,8 +72,8 @@ Image gallery START -->
 					</div>
                     <!-- Image -->
 					<div class="col-md-6">
-						<a data-glightbox data-gallery="gallery" href={{hotel?.hotelImages[3].imageUrl}}>
-							<div class="card card-grid-sm card-element-hover card-overlay-hover overflow-hidden" [style.background-image]="'url(' + hotel?.hotelImages[2].imageUrl + ')'" style="background-position: center left; background-size: cover;">
+						<a data-glightbox data-gallery="gallery" href={{hotel?.hotelImages[3]?.imageUrl}}>
+							<div class="card card-grid-sm card-element-hover card-overlay-hover overflow-hidden" [style.background-image]="'url(' + hotel?.hotelImages[3]?.imageUrl + ')'" style="background-position: center left; background-size: cover;">
 								<!-- Card hover element -->
 								<div class="hover-element position-absolute w-100 h-100">
 									<i class="bi bi-fullscreen fs-6 text-white position-absolute top-50 start-50 translate-middle bg-dark rounded-1 p-2 lh-1"></i>
@@ -286,7 +286,7 @@ About hotel START -->
                         <div class="tiny-slider arrow-round arrow-xs arrow-dark overflow-hidden rounded-2">
                             <div class="tiny-slider-inner" data-autoplay="true" data-arrow="true" data-dots="false" data-items="1">
                                 <!-- Image item -->
-                                <div><img src={{room.roomImages[0].imageUrl}} alt="Card image"></div>
+                                <div><img src={{room.roomImages[0]?.imageUrl}} alt="Card image"></div>
                             </div>
                         </div>
                         <!-- Slider END -->
@@ -584,3 +584,7 @@ About hotel START -->
 </section>
 <!-- =======================
 About hotel END -->
+
+<!-- <div class="d-flex justify-content-center align-content-center" style="margin-top: 8rem;">
+    <div *ngIf="loading" class="loader"></div>
+</div> -->

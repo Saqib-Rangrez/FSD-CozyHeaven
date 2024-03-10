@@ -1,25 +1,25 @@
 export class Booking {
-    location: string | null;
-    checkInDate: Date | null;
-    checkOutDate: Date | null;
-    numberOfRooms: number | null;
-    numberOfAdults: number | null;
-    numberOfChildren: number | null;
+    Location: string | null;
+    CheckInDate: Date | null;
+    CheckOutDate: Date | null;
+    NumberOfRooms: number | null;
+    NumberOfAdults: number | null;
+    NumberOfChildren: number | null;
   
     constructor(
-      location: string | null,
-      checkInDate: Date | null,
-      checkOutDate: Date | null,
-      numberOfRooms: number | null,
-      numberOfAdults: number | null,
-      numberOfChildren: number | null
+      Location: string | null,
+      CheckInDate: Date | null,
+      CheckOutDate: Date | null,
+      NumberOfRooms: number | null,
+      NumberOfAdults: number | null,
+      NumberOfChildren: number | null
     ) {
-      this.location = location;
-      this.checkInDate = checkInDate;
-      this.checkOutDate = checkOutDate;
-      this.numberOfRooms = numberOfRooms;
-      this.numberOfAdults = numberOfAdults;
-      this.numberOfChildren = numberOfChildren;
+      this.Location = Location;
+      this.CheckInDate = CheckInDate;
+      this.CheckOutDate = CheckOutDate;
+      this.NumberOfRooms = NumberOfRooms;
+      this.NumberOfAdults = NumberOfAdults;
+      this.NumberOfChildren = NumberOfChildren;
     }
   }
   

@@ -176,7 +176,7 @@ export class BookingRoomComponent {
 
   createGuestForm(): void {
     this.guestForm = this.fb.group({
-      title: [(this.user?.gender.toLowerCase() === 'male') ? 'Mr' : 'Mrs', Validators.required],
+      title: [(this.user?.gender?.toLowerCase() === 'male') ? 'Mr' : 'Mrs', Validators.required],
       firstName: [this.user?.firstName, Validators.required],
       lastName: [this.user?.lastName, Validators.required]
     });

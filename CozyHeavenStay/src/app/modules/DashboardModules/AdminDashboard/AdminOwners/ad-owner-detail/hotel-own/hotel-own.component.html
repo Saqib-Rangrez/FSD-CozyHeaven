@@ -23,12 +23,12 @@
                             <!-- dropdown button -->
                             <ul class="dropdown-menu dropdown-menu-end min-w-auto shadow rounded" aria-labelledby="dropdownAction1">
                                 <!-- <li><a class="dropdown-item" href="#"><i class="bi bi-info-circle me-1"></i>Report</a></li> -->
-                                <li><div (click)="deleteHotel(data?.hotelId)" class="dropdown-item" href="#"><i class="bi bi-slash-circle me-1"></i>Delete</div></li>
+                                <li><div (click)="deleteHotel(data?.hotelId)" class="dropdown-item"><i class="bi bi-slash-circle me-1"></i>Delete</div></li>
                             </ul>
                         </div>
 
                         <!-- Title -->
-                        <h5 class="card-title mb-0 me-5"><a href="hotel-detail.html">{{data?.name | titlecase}}</a></h5>
+                        <h5 class="card-title mb-0 me-5"><a routerLink="/hoteldetail/{{data.hotelId}}">{{data?.name | titlecase}}</a></h5>
                         <small><i class="bi bi-geo-alt me-2"></i>{{data?.location | titlecase}}</small>
 
                         <!-- Price and Button -->
@@ -39,7 +39,7 @@
                                 <span class="mb-0 me-2">/day</span>
                             </div>
                             <!-- Button -->
-                            <a href="#" class="btn btn-sm btn-primary px-2 mb-0"><i class="bi bi-eye fa-fw me-1"></i>View</a>    
+                            <a routerLink="/hoteldetail/{{data.hotelId}}" class="btn btn-sm btn-primary px-2 mb-0"><i class="bi bi-eye fa-fw me-1"></i>View</a>    
                         </div>
                     </div>
                 </div>

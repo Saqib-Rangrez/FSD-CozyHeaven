@@ -25,7 +25,7 @@
 
         <!-- Booking form START -->
         <form
-          [formGroup]="bookingForm"
+          [formGroup]="searchForm"
           (ngSubmit)="onSubmit()"
           class="bg-mode shadow rounded-3 position-relative p-4 pe-md-5 pb-5 pb-md-4 mb-4"
         >
@@ -62,7 +62,7 @@
                       <input
                         type="text"
                         class="form-guest-selector form-control selection-result"
-                        value="2 Guests 1 Room"
+                        value="{{(searchForm.get('numberOfAdults').value + searchForm.get('numberOfChildren').value)}}  Guests  & {{searchForm.get('numberOfRooms').value}} Room"
                         id="dropdownGuest"
                         data-bs-auto-close="outside"
                         data-bs-toggle="dropdown"
@@ -76,7 +76,7 @@
                         <li class="d-flex justify-content-between">
                           <div>
                             <h6 class="mb-0">Adults</h6>
-                            <small>Ages 13 or above</small>
+                            <small>Ages 14 or above</small>
                           </div>
                           <div class="hstack gap-1 align-items-center">
                             <button (click)="addAdult(false)"
@@ -85,7 +85,7 @@
                             >
                               <i class="bi bi-dash-circle fs-5 fa-fw"></i>
                             </button>
-                            <h6 class="guest-selector-count mb-0 adults">{{bookingForm.get('numberOfAdults').value}}</h6>
+                            <h6 class="guest-selector-count mb-0 adults">{{searchForm.get('numberOfAdults').value}}</h6>
                             <button (click)="addAdult(true)"
                               type="button"
                               class="btn btn-link adult-add p-0 mb-0"
@@ -100,7 +100,7 @@
                         <li class="d-flex justify-content-between">
                           <div>
                             <h6 class="mb-0">Child</h6>
-                            <small>Ages 13 below</small>
+                            <small>Ages 14 below</small>
                           </div>
                           <div class="hstack gap-1 align-items-center">
                             <button (click)="noOfChildren(false)"
@@ -109,7 +109,7 @@
                             >
                               <i class="bi bi-dash-circle fs-5 fa-fw"></i>
                             </button>
-                            <h6 class="guest-selector-count mb-0 child">{{bookingForm.get('numberOfChildren').value}}</h6>
+                            <h6 class="guest-selector-count mb-0 child">{{searchForm.get('numberOfChildren').value}}</h6>
                             <button (click)="noOfChildren(true)"
                               type="button"
                               class="btn btn-link child-add p-0 mb-0"
@@ -133,7 +133,7 @@
                             >
                               <i class="bi bi-dash-circle fs-5 fa-fw"></i>
                             </button>
-                            <h6 class="guest-selector-count mb-0 rooms">{{bookingForm.get('numberOfRooms').value}}</h6>
+                            <h6 class="guest-selector-count mb-0 rooms">{{searchForm.get('numberOfRooms').value}}</h6>
                             <button (click)="noOfRooms(true)"
                               type="button"
                               class="btn btn-link room-add p-0 mb-0"
@@ -148,29 +148,24 @@
                 </div>
               </div>  
 
-            <div class="col-lg-6">
-                <div class="d-flex">
-                    <!-- Icon -->
-                    <i class="bi bi-calendar fs-3 me-2 mt-2"></i>
-                    <!-- Check-in Date input -->
-                    <div class="form-control-border form-control-transparent form-fs-md">
-                        <label class="form-label">Check-in Date</label>
-                        <input type="date" class="form-control" formControlName="checkInDate">
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-lg-6">
-                <div class="d-flex">
-                    <!-- Icon -->
-                    <i class="bi bi-calendar fs-3 me-2 mt-2"></i>
-                    <!-- Check-out Date input -->
-                    <div class="form-control-border form-control-transparent form-fs-md">
-                        <label class="form-label">Check-out Date</label>
-                        <input type="date" class="form-control" formControlName="checkOutDate">
-                    </div>
-                </div>
-            </div>
+            <!-- Date Range -->
+            <div class="col-lg-12">
+              <div
+                  class="form-control-border form-control form-fs-md d-flex bg-light py-3 px-4 rounded-3">
+                  <!-- Icon -->
+                  <i class="bi bi-calendar fs-3 me-2 mt-2"></i>
+                  <!-- Date input -->
+                  <div class="w-100">
+                      <label class="form-label fw-light small mb-1">Check-in and Check-out
+                          Date</label>
+                      <input type="text" name="selectedDate"
+                          class="form-control flatpickr" bsDaterangepicker
+                          formControlName="selectedDates"
+                          [bsConfig]="{ isAnimated: true, containerClass: 'theme-dark-blue', dateInputFormat: 'YYYY-MM-DD', minDate: minDate}"
+                          required>
+                  </div>
+              </div>
+          </div>
                     
             
                       

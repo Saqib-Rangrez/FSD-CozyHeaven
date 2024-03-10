@@ -17,7 +17,7 @@ import { ErrorComponent } from './shared/error/error.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HotelComponent } from './modules/HotelModules/hotel/hotel.component';
 import { HotelcardComponent } from './modules/HotelModules/hotelcard/hotelcard.component';
-import {NgxTinySliderModule} from 'ngx-tiny-slider';
+// import {NgxTinySliderModule} from 'ngx-tiny-slider';
 import { RatingStarsComponent } from './shared/rating-stars/rating-stars.component';
 import { SidebarComponent } from './modules/DashboardModules/DashboardSidebar/sidebar/sidebar.component';
 import { ProfileComponent } from './modules/DashboardModules/UserDashboard/profile/profile.component';

@@ -20,14 +20,14 @@ export class RefundService {
   }
 
   getRefundById(id: number): Observable<Refund> {
-    return this.http.get<Refund>(`${refundEndpoints.GET_REFUND_BY_ID_API}/${id}`)
+    return this.http.get<Refund>(`${refundEndpoints.GET_REFUND_BY_ID_API}${id}`)
       .pipe(
         catchError(this.handleError)
       );
   }
 
   getRefundByPaymentId(paymentId: number): Observable<Refund> {
-    return this.http.get<Refund>(`${refundEndpoints.GET_REFUND_BY_PAYMENT_ID_API}/${paymentId}`)
+    return this.http.get<Refund>(`${refundEndpoints.GET_REFUND_BY_PAYMENT_ID_API}${paymentId}`)
       .pipe(
         catchError(this.handleError)
       );
@@ -48,14 +48,14 @@ export class RefundService {
   }
 
   deleteRefund(id: number): Observable<any> {
-    return this.http.delete<any>(`${refundEndpoints.DELETE_REFUND_API}/${id}`)
+    return this.http.delete<any>(`${refundEndpoints.DELETE_REFUND_API}${id}`)
       .pipe(
         catchError(this.handleError)
       );
   }
 
   approveRefund(refundId: number): Observable<any> {
-    return this.http.post<any>(`${refundEndpoints.APPROVE_REFUND_API}/${refundId}`, {})
+    return this.http.post<any>(`${refundEndpoints.APPROVE_REFUND_API}${refundId}`, {})
       .pipe(
         catchError(this.handleError)
       );

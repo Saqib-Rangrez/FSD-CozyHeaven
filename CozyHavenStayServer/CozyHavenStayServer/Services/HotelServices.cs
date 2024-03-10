@@ -136,11 +136,13 @@ namespace CozyHavenStayServer.Services
         {
             var allHotels = await _hotelRepository.GetAllAsync();
             var filteredHotels = allHotels;
+            _logger.LogCritical(searchHotelDTO.Location);
             if (!string.IsNullOrEmpty(searchHotelDTO.Location))
             {
-                filteredHotels = allHotels.Where(h => h.Location.Contains(searchHotelDTO.Location.ToLower())).ToList();
+                filteredHotels = allHotels.Where(h => h.Location.Trim().ToLower().Contains(searchHotelDTO.Location.Trim().ToLower())).ToList();
             }
-          
+           _logger.LogCritical(filteredHotels.Count.ToString());
+           _logger.LogCritical(allHotels.Count.ToString());
             if (filteredHotels == null || filteredHotels.Count <= 0)
             {
                 return null;

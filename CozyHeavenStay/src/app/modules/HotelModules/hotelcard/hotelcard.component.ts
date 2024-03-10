@@ -1,5 +1,5 @@
 import { Component, Input, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
-import {NgxTinySliderSettingsInterface} from 'ngx-tiny-slider';
+// import {NgxTinySliderSettingsInterface} from 'ngx-tiny-slider';
 
 @Component({
   selector: 'app-hotelcard',
@@ -8,7 +8,7 @@ import {NgxTinySliderSettingsInterface} from 'ngx-tiny-slider';
 })
 export class HotelcardComponent {
 @Input() card;
-tinySliderConfig: NgxTinySliderSettingsInterface; 
+// tinySliderConfig: NgxTinySliderSettingsInterface; 
 avgRating : number = 0;
 
 ngOnInit() {
