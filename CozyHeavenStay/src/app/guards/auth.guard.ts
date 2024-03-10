@@ -1,26 +1,26 @@
-// import { Injectable, inject } from '@angular/core';
-// import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
-// import { JwtHelperService } from '@auth0/angular-jwt';
+import { Injectable, inject } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class AuthGuard implements CanActivate  {
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthGuard implements CanActivate  {
 
-//   constructor(private router:Router, private jwtHelper: JwtHelperService){}
+  constructor(private router:Router, private jwtHelper: JwtHelperService){}
   
-//   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-//     const token = localStorage.getItem("jwt");
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    const user = JSON.parse(localStorage.getItem("user"));
 
-//     if (token && !this.jwtHelper.isTokenExpired(token)){
-//       console.log(this.jwtHelper.decodeToken(token))
-//       return true;
-//     }
+    if (user?.token && !this.jwtHelper.isTokenExpired(user?.token)){
+      console.log(this.jwtHelper.decodeToken(user?.token));
+      return true;
+    }
 
-//     this.router.navigate(["login"]);
-//     return false;
-//   }
-// }
+    this.router.navigate(["/login"]);
+    return false;
+  }
+}
 
 // export const CanActivate = () => {
 //     const authService = inject(AuthService);
@@ -31,9 +31,7 @@
 //     }else{
 //         router.navigate(['/Login']);
 //         return false;
-//     }
-
-    
+//     }    
 // }
 
 // export const CanActivateChild = () => {
