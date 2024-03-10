@@ -36,7 +36,7 @@ export class BookingDetailComponent {
 
 
   cancelData.status = 'Canceled';
-  this.bookingService.updateBooking(cancelData).subscribe({
+  this.bookingService.updateBooking(cancelData,this.user.token).subscribe({
     next : res => {
       console.log(res);
       this.toaster.success("Booking Cancelled Successfully");

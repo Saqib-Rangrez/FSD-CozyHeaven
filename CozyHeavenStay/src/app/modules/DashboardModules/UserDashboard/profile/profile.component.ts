@@ -143,7 +143,7 @@ export class ProfileComponent {
         this.userForm.value.resetPasswordExpires
       );
 
-      this.ownerService.updateHotelOwner(this.ownerToUpdate).subscribe({
+      this.ownerService.updateHotelOwner(this.ownerToUpdate,this.user.token).subscribe({
         next : (res) => {
           this.toastr.success("User updated successfully")
         },

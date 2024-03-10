@@ -15,14 +15,15 @@ toaster : ToastrService = inject(ToastrService);
 router : Router = inject(Router);
 activatedRoute : ActivatedRoute = inject(ActivatedRoute);
 ownerId : number;
+user;
 
 deleteHotel(id:number) {
 
   this.activatedRoute.params.subscribe(params => {
     this.ownerId= params['id'];
   });
-
-  this.hotelService.deleteHotel(id).subscribe({
+  this.user = JSON.parse(localStorage.getItem("user"));
+  this.hotelService.deleteHotel(id,this.user.token).subscribe({
     next: data => {
       this.toaster.success('Hotel deleted successfully');
       console.log(data)

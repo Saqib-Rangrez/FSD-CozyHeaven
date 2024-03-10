@@ -92,7 +92,7 @@ export class AddHotelInfoComponent {
       formData.append('files', files[i]);
     }
 
-    this.hotelService.createHotel(formData).subscribe({
+    this.hotelService.createHotel(formData,this.user.token).subscribe({
       next : (res) => {
         console.log(res);
         this.toaster.success("Hotel added successfully");

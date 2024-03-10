@@ -49,7 +49,7 @@ export class DeleteProfileComponent {
           }
         });
       }else{
-        this.ownerService.deleteHotelOwner(this.user.id).subscribe({
+        this.ownerService.deleteHotelOwner(this.user.id,this.user.token).subscribe({
           next: (res) => {
             this.toastr.success("User deleted successfully")
           },

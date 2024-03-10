@@ -17,7 +17,7 @@ export class AdOwnersComponent {
     console.log("Admin..", this.user);
 
     this.loading = true;
-    this.ownerService.getAllHotelOwners().subscribe({
+    this.ownerService.getAllHotelOwners(this.user.token).subscribe({
       next : res => {
         this.ownerList = res;
         this.ownerList = this.ownerList.data;

@@ -21,7 +21,7 @@ owner ;
 deleteHotel(id:number) {
 
   this.owner = JSON.parse(localStorage.getItem('user'));
-  this.hotelService.deleteHotel(id).subscribe({
+  this.hotelService.deleteHotel(id,this.owner.token).subscribe({
     next: data => {
       this.toaster.success('Hotel deleted successfully');
       console.log(data)

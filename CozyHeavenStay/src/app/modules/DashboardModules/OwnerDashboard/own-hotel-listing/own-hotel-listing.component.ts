@@ -15,7 +15,7 @@ export class OwnHotelListingComponent {
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
     this.loading = true;
-    this.ownerService.getHotelOwnerById(this.user?.userId).subscribe({
+    this.ownerService.getHotelOwnerById(this.user?.userId,this.user.token).subscribe({
       next : res => {
         this.hotelList = res.data.hotels;
         console.log(this.hotelList)

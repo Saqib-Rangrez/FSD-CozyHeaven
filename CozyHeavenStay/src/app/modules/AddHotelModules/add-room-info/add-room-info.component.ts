@@ -145,8 +145,8 @@ processFiles(files: FileList, roomIndex: number) {
           }
         });
         formData.append('hotelId', '1');
-  
-        this.roomService.createRoom(formData).subscribe({
+        this.user = JSON.parse(localStorage.getItem("user"))
+        this.roomService.createRoom(formData,this.user.token).subscribe({
           next : (res) => {
             console.log(res);
             this.hotelService.hotelInfo = res.data;

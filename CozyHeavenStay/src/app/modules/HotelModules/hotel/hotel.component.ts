@@ -15,6 +15,7 @@ export class HotelComponent {
   hotelService : HotelService = inject(HotelService);
   hotelList;
   minDate: Date; 
+  user;
 
   ngOnInit(): void {
     this.searchForm = new FormGroup({
@@ -26,8 +27,9 @@ export class HotelComponent {
     });
     this.minDate = new Date();
 
+    this.user = JSON.parse(localStorage.getItem('user'));
 
-    this.hotelService.getAllHotels().subscribe(
+    this.hotelService.getAllHotels(this.user.token).subscribe(
       (res) => {
         this.hotelList = res;
         console.log(this.hotelList)
@@ -50,7 +52,7 @@ export class HotelComponent {
       this.searchForm.get('numberOfChildren').value
     );
     console.log(searchData);
-    this.hotelService.searchHotels(searchData).subscribe({
+    this.hotelService.searchHotels(searchData,this.user.token).subscribe({
       next : (res) => {
         console.log(res);
         this.hotelList = res;

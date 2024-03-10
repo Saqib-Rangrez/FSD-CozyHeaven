@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Payment } from '../models/payment.Model';
@@ -12,43 +12,53 @@ export class PaymentService {
   
   constructor(private http: HttpClient) { }
 
-  getAllPayments(): Observable<Payment[]> { 
-    return this.http.get<Payment[]>(paymentEndpoints.GET_ALL_PAYMENTS_API)
+  setToken(token: string ){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` 
+      })
+    };
+    return httpOptions;
+  }
+  
+  getAllPayments(token: string): Observable<Payment[]> { 
+    return this.http.get<Payment[]>(paymentEndpoints.GET_ALL_PAYMENTS_API,this.setToken(token))
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  getPaymentById(id: number): Observable<any> { 
-    return this.http.get<any>(`${paymentEndpoints.GET_PAYMENT_BY_ID_API}${id}`)
+  getPaymentById(id: number,token: string): Observable<any> { 
+    return this.http.get<any>(`${paymentEndpoints.GET_PAYMENT_BY_ID_API}${id}`,this.setToken(token))
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  getPaymentByBookingId(id: number): Observable<Payment> { 
-    return this.http.get<Payment>(`${paymentEndpoints.GET_PAYMENT_BY_BOOKING_ID_API}${id}`)
+  getPaymentByBookingId(id: number,token: string): Observable<Payment> { 
+    return this.http.get<Payment>(`${paymentEndpoints.GET_PAYMENT_BY_BOOKING_ID_API}${id}`,this.setToken(token))
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  createPayment(payment: Payment): Observable<Payment> { 
-    return this.http.post<Payment>(paymentEndpoints.CREATE_PAYMENT_API, payment)
+  createPayment(payment: Payment,token: string): Observable<Payment> { 
+    return this.http.post<Payment>(paymentEndpoints.CREATE_PAYMENT_API, payment,this.setToken(token))
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  updatePayment(payment: Payment): Observable<any> { 
-    return this.http.put<any>(paymentEndpoints.UPDATE_PAYMENT_API, payment)
+  updatePayment(payment: Payment,token: string): Observable<any> { 
+    return this.http.put<any>(paymentEndpoints.UPDATE_PAYMENT_API, payment,this.setToken(token))
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  deletePayment(id: number): Observable<any> {
-    return this.http.delete<any>(`${paymentEndpoints.DELETE_PAYMENT_API}${id}`)
+  deletePayment(id: number,token: string): Observable<any> {
+    return this.http.delete<any>(`${paymentEndpoints.DELETE_PAYMENT_API}${id}`,this.setToken(token))
       .pipe(
         catchError(this.handleError)
       );

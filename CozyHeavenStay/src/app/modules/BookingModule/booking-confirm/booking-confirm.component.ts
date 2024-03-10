@@ -3,6 +3,7 @@ import { ActivatedRoute} from '@angular/router';
 import { BookingService } from '../../../services/booking.service';
 import { Booking } from '../../../models/booking.Model';
 import { ToastrService } from 'ngx-toastr';
+import { User } from '../../../models/User.Model';
 
 @Component({
   selector: 'app-booking-confirm',
@@ -13,6 +14,7 @@ export class BookingConfirmComponent {
 
   bookingId:number;
   response;
+  user: any;
   booking: Booking;
   toastr : ToastrService = inject(ToastrService); 
 
@@ -28,8 +30,8 @@ export class BookingConfirmComponent {
     this.bookingId = this.activatedRoute.snapshot.params['bookingid'];
     console.log(this.bookingId);
 
-
-    this.bookingService.getBookingById(this.bookingId).subscribe({
+    this.user = JSON.parse(localStorage.getItem("user"))
+    this.bookingService.getBookingById(this.bookingId,this.user.token).subscribe({
       next : (res) => {
       
         this.response = res;

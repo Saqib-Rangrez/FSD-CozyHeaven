@@ -18,6 +18,7 @@ export class AdUserDetailComponent {
   reviewService : ReviewService = inject(ReviewService);
   user;
   reviews;
+  userdata;
   loading : boolean = false;
 
   ngOnInit(): void {
@@ -27,6 +28,7 @@ export class AdUserDetailComponent {
       console.log('ID:', this.id); 
     });
 
+    this.userdata = JSON.parse(localStorage.getItem('user'));
     this.userService.getUserById(this.id).subscribe({
       next : res => {
         this.user = res.data;
@@ -40,7 +42,7 @@ export class AdUserDetailComponent {
       }
     });
 
-    this.reviewService.getReviewByUserId(this.id).subscribe({
+    this.reviewService.getReviewByUserId(this.id,this.userdata.token).subscribe({
       next : res => {
         this.reviews = res.data;
         console.log(this.reviews);

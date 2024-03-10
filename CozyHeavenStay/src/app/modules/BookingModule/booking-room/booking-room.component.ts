@@ -73,7 +73,7 @@ export class BookingRoomComponent {
     console.log(this.user);
     this.createGuestForm();
     
-    this.roomService.getRoomById(this.roomId).subscribe({
+    this.roomService.getRoomById(this.roomId,this.user.token).subscribe({
       next : (res) => {
       
         this.response = res;
@@ -271,13 +271,15 @@ export class BookingRoomComponent {
     );
     
     console.log(this.payment);
-    this.paymentService.createPayment(this.payment).subscribe(
+    this.paymentService.createPayment(this.payment,this.user.token).subscribe(
       {
       next: (res) => {
         this.response = res;
         this.paymentCreated = this.response.data;
+        
+        this.updateBookingPayment(this.paymentCreated.paymentId);
        
-        console.log(this.paymentCreated);
+        console.log("created",this.paymentCreated);
       },
       error: (err) => {
         console.error(err);
@@ -301,7 +303,8 @@ export class BookingRoomComponent {
       null
     );
     console.log(this.booking);
-    this.bookingService.createBooking(this.booking).subscribe({
+
+    this.bookingService.createBooking(this.booking,this.user.token).subscribe({
       next: (res) => {
         this.response = res;
         this.createdBooking = this.response.data;
@@ -333,7 +336,7 @@ export class BookingRoomComponent {
     this.createdBooking.paymentId = paymentId;
 
     // Call the BookingService to update the booking
-    this.bookingService.updateBooking(this.createdBooking).subscribe(
+    this.bookingService.updateBooking(this.createdBooking,this.user.token).subscribe(
       {
         next: (res) => {
           this.response = res;
@@ -355,8 +358,7 @@ export class BookingRoomComponent {
 
   PayNow(){
     this.createPay("Online","Paid");
-    //update paymentid
-    this.updateBookingPayment(this.paymentCreated.paymentId);
+    
     console.log("paid...")
     this.toastr.success("Payment Success !!")
     this.CloseModel();
@@ -365,8 +367,7 @@ export class BookingRoomComponent {
 
   PayLater(){
     this.createPay("None", "Pending");
-    //update paymentid
-    this.updateBookingPayment(this.paymentCreated.paymentId);
+    
     console.log("paid cancel");
     this.toastr.success("Payment Pending!!")
     this.CloseModel();

@@ -19,7 +19,7 @@ export class AdBookingsComponent {
     this.user = JSON.parse(localStorage.getItem('user'));
     console.log(this.user)
     this.loading = true;
-    this.bookingService.getAllBookings().subscribe({
+    this.bookingService.getAllBookings(this.user.token).subscribe({
       next : res => {
         this.bookings = res.data;        
         this.toastr.success("Data Fetched Successfully");

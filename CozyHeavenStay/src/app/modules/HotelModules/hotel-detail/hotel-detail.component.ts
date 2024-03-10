@@ -12,6 +12,7 @@ export class HotelDetailComponent {
   hoteId;
   hotelname;
   response;
+  user;
   minPriceRoom:number = 0;
   hotel:Hotel;
   avgRating : number = 0;
@@ -21,10 +22,11 @@ export class HotelDetailComponent {
   constructor(private hotelService:HotelService, private activatedRoute:ActivatedRoute, private router: Router){}
 
   ngOnInit():void{
+    this.user = JSON.parse(localStorage.getItem('user'));
     this.hoteId = this.activatedRoute.snapshot.params['id'];
     console.log(this.hoteId);
 
-    this.hotelService.getHotelById(this.hoteId).subscribe({
+    this.hotelService.getHotelById(this.hoteId,this.user.token).subscribe({
       next : (res) => {
       
         this.response = res;

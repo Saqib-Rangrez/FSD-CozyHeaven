@@ -8,7 +8,7 @@ import { toArray } from 'rxjs';
   styleUrl: './home.component.css'
 })
 export class HomeComponent{
-
+  user;
   constructor(private hotelService: HotelService){}
 
   hotelList;
@@ -52,7 +52,8 @@ export class HomeComponent{
 
 
   ngOnInit():void{
-    this.hotelService.getAllHotels().subscribe({next:(res) => {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.hotelService.getAllHotels(this.user.token).subscribe({next:(res) => {
       this.hotelList = res;
       console.log(this.hotelList);
       console.log("api response: " + res);

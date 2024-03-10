@@ -12,38 +12,49 @@ export class RoomService {
   
   constructor(private http: HttpClient) { }
 
-  getAllRooms(): Observable<Room[]> { 
-    return this.http.get<Room[]>(roomEndpoints.GET_ALL_ROOMS_API)
+  setToken(token: string ){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` 
+      })
+    };
+    return httpOptions;
+  }
+
+  getAllRooms(token: string): Observable<Room[]> { 
+    return this.http.get<Room[]>(roomEndpoints.GET_ALL_ROOMS_API,this.setToken(token))
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  getRoomById(id: number): Observable<Room> { 
-    return this.http.get<Room>(`${roomEndpoints.GET_ROOM_BY_ID_API}${id}`)
+  getRoomById(id: number,token: string): Observable<Room> { 
+    return this.http.get<Room>(`${roomEndpoints.GET_ROOM_BY_ID_API}${id}`,this.setToken(token))
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  createRoom(room: any): Observable<any> { 
+  createRoom(room: any,token: string): Observable<any> { 
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Authorization', `Bearer ${token}`);
     return this.http.post<any>(roomEndpoints.CREATE_ROOM_API, room , { headers: headers })
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  updateRoom(room: Room): Observable<any> { 
-    return this.http.put<any>(roomEndpoints.UPDATE_ROOM_API, room)
+  updateRoom(room: Room,token: string): Observable<any> { 
+    return this.http.put<any>(roomEndpoints.UPDATE_ROOM_API, room,this.setToken(token))
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  deleteRoom(id: number): Observable<any> {
-    return this.http.delete<any>(`${roomEndpoints.DELETE_ROOM_API}${id}`)
+  deleteRoom(id: number,token: string): Observable<any> {
+    return this.http.delete<any>(`${roomEndpoints.DELETE_ROOM_API}${id}`,this.setToken(token))
       .pipe(
         catchError(this.handleError)
       );

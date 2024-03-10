@@ -24,8 +24,8 @@ export class AdOwnerDetailComponent {
       this.id = params['id'];
       console.log('ID:', this.id); 
     });
-
-    this.ownerService.getHotelOwnerById(this.id).subscribe({
+    this.user = JSON.parse(localStorage.getItem("user"));
+    this.ownerService.getHotelOwnerById(this.id,this.user.token).subscribe({
       next : res => {
         this.user = res;
         this.user = this.user.data;
@@ -44,7 +44,7 @@ export class AdOwnerDetailComponent {
   }
 
   deleteUser(id) {
-    this.ownerService.deleteHotelOwner(id).subscribe({
+    this.ownerService.deleteHotelOwner(id,this.user.token).subscribe({
       next: (res) => {
         this.router.navigate(['/dashboard/manage-owners']);
         this.toastr.success("User deleted successfully")
