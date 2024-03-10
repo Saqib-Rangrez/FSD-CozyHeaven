@@ -53,7 +53,7 @@ export class HomeComponent{
 
   ngOnInit():void{
     this.user = JSON.parse(localStorage.getItem('user'));
-    this.hotelService.getAllHotels(this.user.token).subscribe({next:(res) => {
+    this.hotelService.getAllHotels('').subscribe({next:(res) => {
       this.hotelList = res;
       console.log(this.hotelList);
       console.log("api response: " + res);

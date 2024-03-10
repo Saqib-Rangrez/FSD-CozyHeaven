@@ -51,6 +51,12 @@ import { BookingConfirmComponent } from './modules/BookingModule/booking-confirm
 import { AboutComponent } from './modules/about/about.component';
 import { ContactComponent } from './modules/contact/contact.component';
 import { HotelDetailComponent } from './modules/HotelModules/hotel-detail/hotel-detail.component';
+import { AuthGuard } from './guards/auth.guard';
+import { JwtModule } from "@auth0/angular-jwt";
+
+export function tokenGetter() { 
+  return  JSON.parse(localStorage.getItem("user")).token; 
+}
 
 
 @NgModule({
@@ -110,9 +116,16 @@ import { HotelDetailComponent } from './modules/HotelModules/hotel-detail/hotel-
     MatButtonModule,
     NgbModule,
     CommonModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ['*'],
+        disallowedRoutes: []
+      }
+    })
   ],
 
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

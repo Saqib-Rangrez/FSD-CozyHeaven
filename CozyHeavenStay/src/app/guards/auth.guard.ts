@@ -23,15 +23,14 @@ export class AuthGuard implements CanActivate  {
 }
 
 // export const CanActivate = () => {
-//     const authService = inject(AuthService);
+//     const user = JSON.parse(localStorage.getItem("user"));
 //     const router = inject(Router);
 
-//     if(authService.IsAuthenticated()){
+//     if (user?.token){
 //         return true;
-//     }else{
-//         router.navigate(['/Login']);
-//         return false;
-//     }    
+//     }
+//     router.navigate(["/login"]);
+//     return false;  
 // }
 
 // export const CanActivateChild = () => {

@@ -30,21 +30,21 @@ import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {path:"" , component: HomeComponent},
-  {path: "home", component : HomeComponent, canActivate : [AuthGuard]},
-  {path: "hotel", component : HotelComponent, canActivate : [AuthGuard]},
-  {path: "hoteldetail/:id", component : HotelDetailComponent,canActivate : [AuthGuard]},
-  {path: "roombooking/:roomid", component: BookingRoomComponent,canActivate : [AuthGuard]},
-  {path: "confirm/:bookingid", component: BookingConfirmComponent,canActivate : [AuthGuard]},
-  {path: "contact", component: ContactComponent , canActivate : [AuthGuard]},
-  {path: "about", component: AboutComponent , canActivate : [AuthGuard]},
-  {path: "signup-user", component: SignupUserComponent , canActivate : [AuthGuard]},
-  {path: "signup-admin", component: SignupAdminComponent , canActivate : [AuthGuard]},
-  {path: "login", component: LoginComponent , canActivate : [AuthGuard]},
-  {path: "forget-password", component: ForgetPasswordComponent , canActivate : [AuthGuard]},
-  {path: "reset-password/:token", component: ResetPasswordComponent , canActivate : [AuthGuard]},
+  {path: "home", component : HomeComponent},
+  {path: "hotel", component : HotelComponent, canActivate: [AuthGuard]},
+  {path: "hoteldetail/:id", component : HotelDetailComponent , canActivate: [AuthGuard]},
+  {path: "roombooking/:roomid", component: BookingRoomComponent , canActivate: [AuthGuard]},
+  {path: "confirm/:bookingid", component: BookingConfirmComponent , canActivate: [AuthGuard]},
+  {path: "contact", component: ContactComponent },
+  {path: "about", component: AboutComponent },
+  {path: "signup-user", component: SignupUserComponent},
+  {path: "signup-admin", component: SignupAdminComponent},
+  {path: "login", component: LoginComponent },
+  {path: "forget-password", component: ForgetPasswordComponent},
+  {path: "reset-password/:token", component: ResetPasswordComponent},
   {
     path: 'dashboard',
-    component: SidebarComponent, canActivate : [AuthGuard],
+    component: SidebarComponent, canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'bookings', component: BookingsComponent },
@@ -57,9 +57,9 @@ const routes: Routes = [
       { path: 'my-listings', component: OwnHotelListingComponent },
     ]
   },
-  { path: 'manage-owners/detail/:id', component: AdOwnerDetailComponent , canActivate : [AuthGuard] },
-  { path: 'manage-users/detail/:id', component: AdUserDetailComponent , canActivate : [AuthGuard] },
-  { path: 'add-hotel', component: AddHotelComponent , canActivate : [AuthGuard] },
+  { path: 'manage-owners/detail/:id', component: AdOwnerDetailComponent , canActivate: [AuthGuard] },
+  { path: 'manage-users/detail/:id', component: AdUserDetailComponent , canActivate: [AuthGuard] },
+  { path: 'add-hotel', component: AddHotelComponent, canActivate: [AuthGuard]},
   {path: "**", component: ErrorComponent}
 ];
 

@@ -25,7 +25,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         // Get all hotels
-        [Authorize(Roles = "Admin, User, Owner")]
+        [AllowAnonymous]
         [HttpGet]
         [Route("GetAllHotels")]
         public async Task<ActionResult<List<Hotel>>> GetAllHotelsAsync()
