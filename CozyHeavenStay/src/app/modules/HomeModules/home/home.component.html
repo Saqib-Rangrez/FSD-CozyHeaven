@@ -455,7 +455,7 @@ Featured Hotels START -->
 					<!-- Image and overlay -->
 					<div class="card-img-scale-wrapper rounded-3">
 						<!-- Image -->
-						<img src={{hotel.Image}} class="card-img" alt="hotel image">
+						<img style="width: 100%;height: 30em;" src={{hotel.Image}} class="card-img" alt="hotel image">
 						<!-- Badge -->
 						<div class="position-absolute bottom-0 start-0 p-3">
 							<div class="badge text-bg-dark fs-6 rounded-pill stretched-link"><i class="bi bi-geo-alt me-2"></i>{{hotel.location}}</div>
@@ -465,7 +465,7 @@ Featured Hotels START -->
 					<!-- Card body -->
 					<div class="card-body px-2">
 						<!-- Title -->
-						<h5 class="card-title"><a href={{hotel.detailpage}} class="stretched-link">{{hotel.title}}</a></h5>
+						<h5 class="card-title"><a routerLink={{hotel.detailpage}} class="stretched-link">{{hotel.title}}</a></h5>
 						<!-- Price and rating -->
 						<div class="d-flex justify-content-between align-items-center">
 							<h6 class="text-success mb-0">{{hotel.price}} <small class="fw-light">/starting at</small> </h6>
@@ -513,13 +513,13 @@ Testimonials START -->
 					<div class="tiny-slider-inner" data-edge="2" data-items="1">
 
 						<!-- Slide item START -->
-						<div *ngFor="let t of teams" class="px-4 px-md-5">
+						<div *ngFor="let t of reviews" class="px-4 px-md-5" style="margin: 0.5em;">
 							<div class="row justify-content-between align-items-center">
 								
 								<div class="col-md-6 col-lg-5 position-relative">
 									<!-- Element -->
 									<div class="position-absolute top-0 start-0 translate-middle z-index-9 mt-7 ms-4">
-										<img src={{t.svgpath}} class="h-60px bg-orange rounded p-2" alt="">
+										<img src="./assets/HomeImages/team/03.svg" class="h-60px bg-orange rounded p-2" alt="">
 									</div>
 
 									<!-- Svg decoration -->
@@ -531,25 +531,20 @@ Testimonials START -->
 									</figure>
 
 									<!-- Image -->
-									<img src={{t.imagepath}} class="rounded-3 position-relative" alt="">
+									<img src={{t.user.profileImage}} class="rounded-3 position-relative" alt="">
 								</div>
 
 								<div class="col-md-6 col-lg-6">
 									<!-- Quote -->
 									<span class="display-3 mb-0 text-primary"><i class="bi bi-quote"></i></span>
 									<!-- Content -->
-									<h5 class="fw-light">{{t.content}}</h5>
+									<h5 class="fw-light">{{t.comments}}</h5>
 									<!-- Rating -->
-									<ul class="list-inline small mb-2">
-										<li class="list-inline-item me-0"><i class="fa-solid fa-star text-warning"></i></li>
-										<li class="list-inline-item me-0"><i class="fa-solid fa-star text-warning"></i></li>
-										<li class="list-inline-item me-0"><i class="fa-solid fa-star text-warning"></i></li>
-										<li class="list-inline-item me-0"><i class="fa-solid fa-star text-warning"></i></li>
-										<li class="list-inline-item"><i class="fa-solid fa-star-half-alt text-warning"></i></li>
-									</ul>
+									<app-rating-stars [reviewCount]="t.rating" [starSize]="20"></app-rating-stars>
+									
 									<!-- Title -->
-									<h6 class="mb-0">{{t.title}}</h6>
-									<span>{{t.subtitle}}</span>
+									<h6 class="mb-0">{{t.user.firstName + " "+t.user.lastName}}</h6>
+									
 								</div>
 							</div>
 						</div>
