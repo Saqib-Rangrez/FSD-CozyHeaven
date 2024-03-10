@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, finalize, tap } from 'rxjs/operators';
 import { User } from '../../models/User.Model';
@@ -14,37 +14,45 @@ export class AdminService {
     toastr : ToastrService = inject(ToastrService);
     http: HttpClient = inject(HttpClient);
 
+    setToken(token: string ){
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}` 
+        })
+      };
+      return httpOptions;
+    }
 
-
-  getAllAdmin(): Observable<Admin[]> { 
-    return this.http.get<Admin[]>(adminEndpoints.GET_ALL_ADMINS_API)
+  getAllAdmin(token : string): Observable<Admin[]> { 
+    return this.http.get<Admin[]>(adminEndpoints.GET_ALL_ADMINS_API, this.setToken(token))
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  getAdminById(id: number): Observable<any> { 
-    return this.http.get<any>(`${adminEndpoints.GET_ADMIN_BY_ID_API}${id}`)
+  getAdminById(id: number, token : string): Observable<any> { 
+    return this.http.get<any>(`${adminEndpoints.GET_ADMIN_BY_ID_API}${id}`, this.setToken(token))
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  createUser(admin: Admin): Observable<Admin> { 
-    return this.http.post<Admin>(adminEndpoints.CREATE_ADMIN_API, admin)
+  createUser(admin: Admin, token : string): Observable<Admin> { 
+    return this.http.post<Admin>(adminEndpoints.CREATE_ADMIN_API, admin, this.setToken(token))
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  updateAdmin(admin: Admin): Observable<any> { 
+  updateAdmin(admin: Admin, token : string): Observable<any> { 
     const loadingToast = this.toastr.info('Updating User...', 'Please wait', {
         disableTimeOut: true,
         closeButton: false,
         positionClass: 'toast-top-center'
       });
 
-    return this.http.put<any>(`${adminEndpoints.UPDATE_ADMIN_API}`, admin)
+    return this.http.put<any>(`${adminEndpoints.UPDATE_ADMIN_API}`, admin, this.setToken(token))
       .pipe(
         tap((res) => {
             this.toastr.clear();
@@ -66,14 +74,14 @@ export class AdminService {
       );
   }
 
-  deleteUser(id: number): Observable<any> {
+  deleteUser(id: number, token : string): Observable<any> {
     const loadingToast = this.toastr.info('Updating User...', 'Please wait', {
       disableTimeOut: true,
       closeButton: false,
       positionClass: 'toast-top-center'
     });
 
-    return this.http.delete<any>(`${adminEndpoints.DELETE_ADMIN_API}${id}`)
+    return this.http.delete<any>(`${adminEndpoints.DELETE_ADMIN_API}${id}`, this.setToken(token))
       .pipe(
         tap((res) => {
           this.toastr.clear();

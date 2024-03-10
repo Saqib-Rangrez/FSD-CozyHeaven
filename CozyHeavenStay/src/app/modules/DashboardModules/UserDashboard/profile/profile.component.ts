@@ -94,7 +94,7 @@ export class ProfileComponent {
         this.userForm.value.resetPasswordExpires
       );
 
-      this.userService.updateUser(this.userToUpdate).subscribe({
+      this.userService.updateUser(this.userToUpdate, this.user.token).subscribe({
         next : (res) => {
           this.toastr.success("User updated successfully")
         },
@@ -118,7 +118,7 @@ export class ProfileComponent {
       );
       console.log(this.adminToUpdate)
 
-      this.adminService.updateAdmin(this.adminToUpdate).subscribe({
+      this.adminService.updateAdmin(this.adminToUpdate, this.user.token).subscribe({
         next : (res) => {
           this.toastr.success("User updated successfully")
         },
@@ -196,7 +196,7 @@ export class ProfileComponent {
         formData.append('Role', this.user?.role);
       }
 
-      this.userService.uploadDisplayPicture(formData).subscribe({
+      this.userService.uploadDisplayPicture(formData, this.user.token).subscribe({
         next : (res) => {
           console.log(res);
           this.toastr.success("Image Uploaded Successfully");

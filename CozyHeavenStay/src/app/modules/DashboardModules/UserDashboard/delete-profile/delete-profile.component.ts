@@ -29,7 +29,7 @@ export class DeleteProfileComponent {
   onSubmit() {
     if (this.deleteForm.valid){
       if(this.user?.role === 'User'){
-        this.userService.deleteUser(this.user.id).subscribe({
+        this.userService.deleteUser(this.user.userId, this.user.token).subscribe({
           next: (res) => {
             this.toastr.success("User deleted successfully")
           },
@@ -39,7 +39,7 @@ export class DeleteProfileComponent {
           }
         });
       }else if(this.user?.role === 'Admin'){
-        this.adminService.deleteUser(this.user.id).subscribe({
+        this.adminService.deleteUser(this.user.adminId, this.user.token).subscribe({
           next: (res) => {
             this.toastr.success("User deleted successfully")
           },
@@ -49,7 +49,7 @@ export class DeleteProfileComponent {
           }
         });
       }else{
-        this.ownerService.deleteHotelOwner(this.user.id,this.user.token).subscribe({
+        this.ownerService.deleteHotelOwner(this.user.userId,this.user.token).subscribe({
           next: (res) => {
             this.toastr.success("User deleted successfully")
           },

@@ -26,7 +26,7 @@ import { BookingConfirmComponent } from './modules/BookingModule/booking-confirm
 import { ContactComponent } from './modules/contact/contact.component';
 import { AboutComponent } from './modules/about/about.component';
 import { HotelDetailComponent } from './modules/HotelModules/hotel-detail/hotel-detail.component';
-import { AuthGuard } from './guards/auth.guard';
+import { AuthGuard, OpenRoute } from './guards/auth.guard';
 
 const routes: Routes = [
   {path:"" , component: HomeComponent},
@@ -37,11 +37,11 @@ const routes: Routes = [
   {path: "confirm/:bookingid", component: BookingConfirmComponent , canActivate: [AuthGuard]},
   {path: "contact", component: ContactComponent },
   {path: "about", component: AboutComponent },
-  {path: "signup-user", component: SignupUserComponent},
-  {path: "signup-admin", component: SignupAdminComponent},
-  {path: "login", component: LoginComponent },
-  {path: "forget-password", component: ForgetPasswordComponent},
-  {path: "reset-password/:token", component: ResetPasswordComponent},
+  {path: "signup-user", component: SignupUserComponent, canActivate:[OpenRoute]},
+  {path: "signup-admin", component: SignupAdminComponent, canActivate:[OpenRoute]},
+  {path: "login", component: LoginComponent, canActivate:[OpenRoute]},
+  {path: "forget-password", component: ForgetPasswordComponent, canActivate:[OpenRoute]},
+  {path: "reset-password/:token", component: ResetPasswordComponent, canActivate:[OpenRoute]},
   {
     path: 'dashboard',
     component: SidebarComponent, canActivate: [AuthGuard],

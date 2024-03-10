@@ -29,7 +29,7 @@ export class AdUserDetailComponent {
     });
 
     this.userdata = JSON.parse(localStorage.getItem('user'));
-    this.userService.getUserById(this.id).subscribe({
+    this.userService.getUserById(this.id, this.user.token).subscribe({
       next : res => {
         this.user = res.data;
         console.log(this.user);
@@ -58,7 +58,7 @@ export class AdUserDetailComponent {
   }
 
   deleteUser() {
-    this.userService.deleteUser(this.user?.userId).subscribe({
+    this.userService.deleteUser(this.user?.userId, this.user.token).subscribe({
       next: (res) => {
         this.router.navigate(['/dashboard/manage-users']);
         this.toastr.success("User deleted successfully")

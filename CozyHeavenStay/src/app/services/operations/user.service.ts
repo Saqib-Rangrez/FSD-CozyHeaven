@@ -20,45 +20,45 @@ export class UserService {
     this.dynamicDataSubject.next(data);
   }
 
-  getAllUsers(token:string): Observable<User[]> { 
-
+  setToken(token: string ){
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}` 
       })
     };
-    console.log(token)
+    return httpOptions;
+  }
 
-    
-    return this.http.get<User[]>(userEndpoints.GET_ALL_USERS_API,httpOptions)
+  getAllUsers(token:string): Observable<User[]> {     
+    return this.http.get<User[]>(userEndpoints.GET_ALL_USERS_API,this.setToken(token))
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  getUserById(id: number): Observable<any> { 
-    return this.http.get<any>(`${userEndpoints.GET_USER_BY_ID_API}${id}`)
+  getUserById(id: number, token : string): Observable<any> { 
+    return this.http.get<any>(`${userEndpoints.GET_USER_BY_ID_API}${id}`, this.setToken(token))
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  createUser(User: User): Observable<User> { 
-    return this.http.post<User>(userEndpoints.CREATE_USER_API, User)
+  createUser(User: User, token : string): Observable<User> { 
+    return this.http.post<User>(userEndpoints.CREATE_USER_API, User, this.setToken(token))
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  updateUser(User: User): Observable<any> { 
+  updateUser(User: User, token : string): Observable<any> { 
     const loadingToast = this.toastr.info('Updating User...', 'Please wait', {
         disableTimeOut: true,
         closeButton: false,
         positionClass: 'toast-top-center'
       });
 
-    return this.http.put<any>(`${userEndpoints.UPDATE_USER_API}`, User)
+    return this.http.put<any>(`${userEndpoints.UPDATE_USER_API}`, User, this.setToken(token))
       .pipe(
         tap((res) => {
             this.toastr.clear();
@@ -80,14 +80,14 @@ export class UserService {
       );
   }
 
-  deleteUser(id: number): Observable<any> {
+  deleteUser(id: number, token : string): Observable<any> {
     const loadingToast = this.toastr.info('Updating User...', 'Please wait', {
       disableTimeOut: true,
       closeButton: false,
       positionClass: 'toast-top-center'
     });
 
-    return this.http.delete<any>(`${userEndpoints.DELETE_USER_API}${id}`)
+    return this.http.delete<any>(`${userEndpoints.DELETE_USER_API}${id}`, this.setToken(token))
       .pipe(
         tap((res) => {
           this.toastr.clear();
@@ -108,14 +108,14 @@ export class UserService {
       );
   }
 
-  uploadDisplayPicture(formData: FormData): Observable<any> {
+  uploadDisplayPicture(formData: FormData, token : string): Observable<any> {
 
     const loadingToast = this.toastr.info('Uploading Image...', 'Please wait', {
         disableTimeOut: true,
         closeButton: false,
         positionClass: 'toast-top-center'
       });
-    return this.http.post<any>(`${userEndpoints.UPLOAD_DISPLAY_PICTURE_API}`, formData)
+    return this.http.post<any>(`${userEndpoints.UPLOAD_DISPLAY_PICTURE_API}`, formData, this.setToken(token))
     .pipe(
         catchError(error => {
           if (loadingToast) {
