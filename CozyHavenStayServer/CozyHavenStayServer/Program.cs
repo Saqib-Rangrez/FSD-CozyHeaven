@@ -14,7 +14,6 @@ using System.Text;
 using System.Text.Json.Serialization;
 using CozyHavenStayServer.Middleware;
 using CozyHavenStayServer.Mappers;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -113,12 +112,13 @@ builder.Services.AddScoped<ICloudinaryService>(serviceProvider =>
 
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(builder =>
-    {
-        builder.AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader();
-    });
+    options.AddPolicy("AllowAny",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
 });
 
 builder.Services.AddSwaggerGen(opt =>
@@ -162,10 +162,9 @@ if (app.Environment.IsDevelopment())
 
 
 app.UseHttpsRedirection();
-app.UseCors();
+app.UseCors("AllowAny");
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseMiddleware<TokenValidationMiddleware>();
 app.MapControllers();
-
 app.Run();

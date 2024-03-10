@@ -1,5 +1,6 @@
 ﻿using CozyHavenStayServer.Interfaces;
 using CozyHavenStayServer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,7 @@ namespace CozyHavenStayServer.Controllers
             _refundServices = refundServices;
         }
 
+        [Authorize(Roles = "Admin, User, Owner")]
         [HttpGet]
         [Route("GetAllRefunds")]
         public async Task<ActionResult<List<Refund>>> GetAllRefundsAsync()
@@ -51,6 +53,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         // Get refund by Id
+        [Authorize(Roles = "Admin, User, Owner")]
         [HttpGet]
         [Route("GetRefundById/{id}")]
         public async Task<ActionResult<Refund>> GetRefundByIdAsync(int id)
@@ -83,8 +86,9 @@ namespace CozyHavenStayServer.Controllers
             }
         }
 
-        
+
         // Get refund by PaymentID
+        [Authorize(Roles = "Admin, User, Owner")]
         [HttpGet]
         [Route("GetRefundByPaymentId/{id}")]
         public async Task<ActionResult<Refund>> GetRefundByPaymentIdAsync(int id)
@@ -118,6 +122,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         // Create refund
+        [Authorize(Roles = "Admin, User, Owner")]
         [HttpPost]
         [Route("CreateRefund")]
         public async Task<ActionResult<Refund>> CreateRefundAsync([FromBody] Refund refund)
@@ -151,6 +156,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         // Update refund
+        [Authorize(Roles = "Admin, User, Owner")]
         [HttpPut]
         [Route("UpdateRefund")]
         public async Task<ActionResult<bool>> UpdateRefundAsync([FromBody] Refund refund)
@@ -184,6 +190,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         // Delete refund
+        [Authorize(Roles = "Admin, User, Owner")]
         [HttpDelete]
         [Route("DeleteRefund/{id}")]
         public async Task<ActionResult<bool>> DeleteRefundAsync(int id)
@@ -217,6 +224,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         // POST: api/ApproveRefund/{refundId}
+        [Authorize(Roles = "Owner")]
         [HttpPost]
         [Route("ApproveRefund/{refundId}")]
         public async Task<ActionResult> ApproveRefundAsync(int refundId)

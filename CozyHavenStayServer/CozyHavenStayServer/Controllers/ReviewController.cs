@@ -1,10 +1,12 @@
 ﻿using CozyHavenStayServer.Interfaces;
 using CozyHavenStayServer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CozyHavenStayServer.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class ReviewController : ControllerBase
@@ -19,6 +21,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         //GetAllReviews
+        [Authorize(Roles = "Admin, User, Owner")]
         [HttpGet]
         [Route("GetAllReviews")]
         public async Task<ActionResult<List<Review>>> GetAllReviewsAsync()
@@ -54,6 +57,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         //GetReviewByReviewId
+        [Authorize(Roles = "Admin, User, Owner")]
         [HttpGet]
         [Route("GetReviewByReviewId/{id}", Name = "GetReviewByReviewId")]
         public async Task<ActionResult<Review>> GetReviewByReviewIdAsync(int id)
@@ -100,6 +104,7 @@ namespace CozyHavenStayServer.Controllers
 
 
         //GetReviewByUserId
+        [Authorize(Roles = "Admin, User, Owner")]
         [HttpGet]
         [Route("GetReviewByUserId/{id}", Name = "GetReviewByUserId")]
         public async Task<ActionResult<Review>> GetReviewByUserIdAsync(int id)
@@ -145,6 +150,7 @@ namespace CozyHavenStayServer.Controllers
         }
 
         //GetReviewByUserId
+        [Authorize(Roles = "Admin, User, Owner")]
         [HttpGet]
         [Route("GetReviewByHotelId/{id}", Name = "GetReviewByHotelId")]
         public async Task<ActionResult<Review>> GetReviewByHotelIdAsync(int id)
@@ -191,6 +197,7 @@ namespace CozyHavenStayServer.Controllers
 
 
         //CreateReview
+        [Authorize(Roles = "User")]
         [HttpPost]
         [Route("AddReview")]
         public async Task<ActionResult<Review>> AddReviewAsync([FromBody] Review model)
@@ -240,6 +247,7 @@ namespace CozyHavenStayServer.Controllers
 
 
         //Updatereview
+        [Authorize(Roles = "User")]
         [HttpPut]
         [Route("UpdateReview")]
         public async Task<ActionResult> UpdateReviewAsync([FromBody] Review model)
@@ -289,6 +297,7 @@ namespace CozyHavenStayServer.Controllers
 
 
         //DeleteReview
+        [Authorize(Roles = "Admin, User")]
         [HttpDelete]
         [Route("DeleteReview/{id}")]
         public async Task<ActionResult<bool>> DeleteReviewAsync(int id)

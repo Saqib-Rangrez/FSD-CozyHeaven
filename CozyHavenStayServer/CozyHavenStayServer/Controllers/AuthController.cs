@@ -4,6 +4,7 @@ using CozyHavenStayServer.Mappers;
 using CozyHavenStayServer.Models;
 using CozyHavenStayServer.Models.DTO;
 using CozyHavenStayServer.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography;
@@ -11,6 +12,7 @@ using System.Security.Cryptography;
 namespace CozyHavenStayServer.Controllers
 {
     [Route("api/[controller]")]
+    [AllowAnonymous]
     [ApiController]
     public class AuthController : ControllerBase
     {
