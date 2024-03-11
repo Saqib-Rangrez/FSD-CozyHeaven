@@ -309,13 +309,18 @@ About hotel START -->
                             <!-- List -->
                         <ul class="nav small nav-divider mb-0">
                             <li class="nav-item mb-0">
-                                <i class="fa-regular fa-square me-1"></i>{{room.roomSize}}
+                                <i class="fa-regular fa-square me-1"></i>{{room?.roomSize}}
                             </li>
                             <li class="nav-item mb-0">
                                 <i class="fa-solid fa-table-cells-large me-1"></i>City view
                             </li>
                             <li class="nav-item mb-0">
-                                <i class="fa-solid fa-bed me-1"></i>{{room.bedType}} Bed
+                                <i class="fa-solid fa-bed me-1"></i>{{room?.bedType}} Bed
+                            </li>
+                        </ul>
+                        <ul class="nav small nav-divider mb-0">
+                            <li class="nav-item mb-0">
+                                <i class="fa-solid fa-person me-1"></i>{{room?.maxOccupancy}} persons Occupancy
                             </li>
                         </ul>
 
@@ -348,6 +353,25 @@ About hotel START -->
     <!-- Card body END -->
 </div>
 <!-- Room END -->
+<form [formGroup]="reviewForm" (ngSubmit)="submitReview()">
+    <!-- Rating -->
+    <div class="form-control-bg-light mb-3">
+      <select class="form-select js-choice" formControlName="rating">
+        <option value="5">★★★★★ (5/5)</option>
+        <option value="4">★★★★☆ (4/5)</option>
+        <option value="3">★★★☆☆ (3/5)</option>
+        <option value="2">★★☆☆☆ (2/5)</option>
+        <option value="1">★☆☆☆☆ (1/5)</option>
+      </select>
+    </div>
+    <!-- Message -->
+    <div class="form-control-bg-light mb-3">
+      <textarea class="form-control" formControlName="reviewMessage" placeholder="Your review" rows="3"></textarea>
+    </div> 
+    <!-- Button -->
+    <button type="submit" class="btn btn-lg btn-primary mb-0" [disabled]="!reviewForm.valid">Post review <i class="bi fa-fw bi-arrow-right ms-2"></i></button>
+  </form>
+  
 
 <!-- Customer Review START -->
 <div class="card bg-transparent">
@@ -455,10 +479,10 @@ About hotel START -->
 
 
         <!-- Review item START -->
-        <div *ngFor="let review of hotel?.reviews.slice(0, 5)" class="d-md-flex my-6">
+        <div *ngFor="let review of hotel?.reviews.reverse().slice(0, reviewlength)" class="d-md-flex my-6">
             <!-- Avatar -->
             <div class="avatar avatar-lg me-3 flex-shrink-0">
-                <img class="avatar-img rounded-circle" src={{review.user.profileImage}} alt="avatar">
+                <img class="avatar-img rounded-circle" src={{review.user?.profileImage}} alt="avatar">
             </div>
             <!-- Text -->
             <div style="width: 100%;">
@@ -484,7 +508,7 @@ About hotel START -->
 
         <!-- Button -->
         <div class="text-center">
-            <a href="#" class="btn btn-primary-soft mb-0">Load more</a>
+            <button (click)="MoreReviews()" class="btn btn-primary-soft mb-0" [disabled]="hotel?.reviews.length<=reviewlength">Load more</button>
         </div>
     </div>
     <!-- Card body END -->
@@ -571,7 +595,7 @@ About hotel START -->
 
     <!-- Button -->
     <div class="d-grid">
-        <a  [routerLink]="['.']" fragment="room-options" class="btn btn-lg btn-primary-soft mb-0">View {{hotel?.rooms.length}} Rooms Options</a>
+        <a routerLink="." fragment="room-options" class="btn btn-lg btn-primary-soft mb-0">View {{hotel?.rooms.length}} Rooms Options</a>
     </div>
 </div>
 <!-- Book now END -->
