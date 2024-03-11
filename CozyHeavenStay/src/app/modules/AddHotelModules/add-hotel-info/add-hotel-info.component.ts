@@ -15,11 +15,14 @@ export class AddHotelInfoComponent {
   hotelService : HotelService = inject(HotelService);
   toaster : ToastrService = inject(ToastrService);
   selectedFile : File;
+  editHotel;
   imagePreviews: any[] = [];
   user : any;
   states : string[];
+  @Input() editId = null;
 
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem('user'));
     this.states = INDIAN_STATES;
     this.hotelForm = new FormGroup({
       name: new FormControl('',[ Validators.required]),
@@ -33,8 +36,42 @@ export class AddHotelInfoComponent {
       pincode: new FormControl('', [ Validators.required]),
       files: new FormControl([null]) 
     });
-  }
 
+    if(this.editId!= null && this.editId != 0){
+      
+      this.hotelService.getHotelById(this.editId, this.user?.token).subscribe(res => {
+        const addressComponents = res.data?.location?.split(',');
+        console.log(res.data)
+        this.editHotel = res.data;
+        // Extract the components
+        const street = addressComponents[0]?.trim(); // Assuming street is the first component
+        const city = addressComponents[1]?.trim();
+        const pincode = addressComponents[2]?.trim();
+        const state = addressComponents[3]?.trim();
+        const country = addressComponents[4]?.trim();
+        this.hotelService.roomData = res.data?.rooms;
+        const imageUrlArray = res?.data?.hotelImages.map(image => image.imageUrl);
+
+        
+        this.hotelForm.patchValue({
+          name: res?.data?.name,
+          ownerId: res?.data?.ownerId,
+          amenities: res?.data?.amenities,
+          description: res?.data?.description,
+
+          country: country,
+          state: state,
+          city: city,
+          street: street,
+          pincode: pincode,
+          //files: res?.data?.hotelImages
+        });
+
+        this.imagePreviews = imageUrlArray;
+      }      
+      )
+    }
+  }
 
   onFileChange(event) {
     const files = event.target.files;
@@ -52,13 +89,14 @@ export class AddHotelInfoComponent {
     this.hotelForm.get('files').setValue(files);
     this.imagePreviews = [];
 
-    for (let i = 0; i < files.length; i++) {
+    for (let i = 0; i < files?.length; i++) {
       const reader = new FileReader();
       reader.onload = () => {
         this.imagePreviews.push(reader.result);
       };
       reader.readAsDataURL(files[i]);
     }
+    console.log(this.imagePreviews)
   }
 
 
@@ -67,8 +105,9 @@ export class AddHotelInfoComponent {
 
     this.user = JSON.parse(localStorage.getItem("user"))
 
-    const address = this.hotelForm.get('street').value + ' ' + this.hotelForm.get('city').value + ' ' + this.hotelForm.get('pincode').value+
+    const address = this.hotelForm.get('street').value + ',' + this.hotelForm.get('city').value + ',' + this.hotelForm.get('pincode').value+
     ','+ this.hotelForm.get('state').value + ','+ this.hotelForm.get('country').value;
+    console.log(address)
 
     const hotelData: HotelDTO = new HotelDTO(
       this.hotelForm.get('name').value,
@@ -85,7 +124,9 @@ export class AddHotelInfoComponent {
     formData.append('location', address);
     formData.append('description', this.hotelForm.get('description').value);
     formData.append('amenities', this.hotelForm.get('amenities').value);
-    formData.append('ownerId', this.user.adminId);
+    formData.append('ownerId', this.user.userId);
+    formData.append('hotelId', this.editId);
+    console.log("Hotel ID-----", this.editId);
 
     const files = this.hotelForm.get('files').value;
     for (let i = 0; i < files.length; i++) {
@@ -103,7 +144,6 @@ export class AddHotelInfoComponent {
       },
       complete : () => {
         this.hotelForm.reset();
-        this.hotelService.hotelInfo = hotelData;
         this.hotelService.step = 2;
       }
     });

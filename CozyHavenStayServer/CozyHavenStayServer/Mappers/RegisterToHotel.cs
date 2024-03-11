@@ -10,6 +10,7 @@ namespace CozyHavenStayServer.Mappers
         public RegisterToHotel(HotelDTO registerHotel)
         {
             hotel = new Hotel();
+            hotel.HotelId = registerHotel.HotelId;
             hotel.Name = registerHotel.Name;
             hotel.OwnerId = registerHotel.OwnerId;
             hotel.Amenities = registerHotel.Amenities;

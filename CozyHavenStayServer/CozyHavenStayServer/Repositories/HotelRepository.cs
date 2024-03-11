@@ -15,10 +15,25 @@ namespace CozyHavenStayServer.Repositories
             _context = context;
         }
 
+        // public async Task<Hotel> CreateAsync(Hotel dbRecord)
+        // {
+        //     //_context.Add(dbRecord);
+        //     var existingRecord = await _context.Hotels.Where(h => h.HotelId == dbRecord.HotelId).FirstOrDefaultAsync();
+
+        //     if (existingRecord != null)
+        //     {
+        //         _context.Entry(existingRecord).CurrentValues.SetValues(dbRecord);
+        //     }
+        //     else
+        //     {
+        //         _context.Add(dbRecord); 
+        //     }
+        //     await _context.SaveChangesAsync();
+        //     return dbRecord;
+        // }
         public async Task<Hotel> CreateAsync(Hotel dbRecord)
         {
-            //_context.Add(dbRecord);
-            var existingRecord = await _context.Hotels.Where(h => h.HotelId == dbRecord.HotelId).FirstOrDefaultAsync();
+            var existingRecord = await _context.Hotels.FindAsync(dbRecord.HotelId);
 
             if (existingRecord != null)
             {
@@ -26,11 +41,14 @@ namespace CozyHavenStayServer.Repositories
             }
             else
             {
-                _context.Add(dbRecord); // Add new record
+                _context.Add(dbRecord);
             }
+            
             await _context.SaveChangesAsync();
+            
             return dbRecord;
         }
+
 
         public async Task<bool> DeleteAsync(Hotel dbRecord)
         {

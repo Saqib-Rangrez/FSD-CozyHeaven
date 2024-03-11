@@ -10,6 +10,7 @@ namespace CozyHavenStayServer.Mappers
         public RegisterToRoom(RoomDTO registerRoom)
         {
             room = new Room();
+            room.RoomId = registerRoom.RoomId;
             room.HotelId = registerRoom.HotelId;
             room.BaseFare = registerRoom.BaseFare;
             room.RoomSize = registerRoom.RoomSize;

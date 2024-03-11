@@ -213,17 +213,6 @@ namespace CozyHavenStayServer.Controllers
                         message = "Error in details"
                     });
                 }
-                var hotelValid = await _hotelServices.GetHotelByNameAsync(model.Name);
-
-                if ( hotelValid != null )
-                {
-                    return BadRequest(new
-                    {
-                        success = false,
-                        message = "Hotel with given name already exist",
-                        data = hotelValid
-                    });
-                }
 
                 if (model.Files == null || model.Files.Count <= 0)
                 {

@@ -27,6 +27,7 @@ import { ContactComponent } from './modules/contact/contact.component';
 import { AboutComponent } from './modules/about/about.component';
 import { HotelDetailComponent } from './modules/HotelModules/hotel-detail/hotel-detail.component';
 import { AuthGuard, OpenRoute } from './guards/auth.guard';
+import { LocationAutoComponent } from './modules/HotelModules/location-auto/location-auto.component';
 
 const routes: Routes = [
   {path:"" , component: HomeComponent},
@@ -41,6 +42,7 @@ const routes: Routes = [
   {path: "signup-admin", component: SignupAdminComponent, canActivate:[OpenRoute]},
   {path: "login", component: LoginComponent, canActivate:[OpenRoute]},
   {path: "forget-password", component: ForgetPasswordComponent, canActivate:[OpenRoute]},
+  {path: "location", component: LocationAutoComponent},
   {path: "reset-password/:token", component: ResetPasswordComponent, canActivate:[OpenRoute]},
   {
     path: 'dashboard',
@@ -59,7 +61,7 @@ const routes: Routes = [
   },
   { path: 'manage-owners/detail/:id', component: AdOwnerDetailComponent , canActivate: [AuthGuard] },
   { path: 'manage-users/detail/:id', component: AdUserDetailComponent , canActivate: [AuthGuard] },
-  { path: 'add-hotel', component: AddHotelComponent, canActivate: [AuthGuard]},
+  { path: 'add-hotel/:id', component: AddHotelComponent, canActivate: [AuthGuard]},
   {path: "**", component: ErrorComponent}
 ];
 

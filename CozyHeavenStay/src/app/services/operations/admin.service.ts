@@ -129,40 +129,41 @@ export class AdminService {
         //expiresIn
       )
 
-    }else if(res.user.role == "Owner"){
-      user = new User(
-        res.user.ownerId,
-        res.user.firstName,
-        res.user.lastName,
-        res.user.email,
-        res.user.password,
-        res.user.gender,
-        res.user.contactNumber,
-        res.user.address,
-        res.user.role,
-        res.user.profileImage,
-        res.user.token,
-        res.user.resetPasswordExpires,
-        //expiresIn
-    );
+     }
+    //else if(res.user.role == "Owner"){
+    //   user = new User(
+    //     res.user.ownerId,
+    //     res.user.firstName,
+    //     res.user.lastName,
+    //     res.user.email,
+    //     res.user.password,
+    //     res.user.gender,
+    //     res.user.contactNumber,
+    //     res.user.address,
+    //     res.user.role,
+    //     res.user.profileImage,
+    //     res.user.token,
+    //     res.user.resetPasswordExpires,
+    //     //expiresIn
+    // );
 
-    }else{
-      user = new User(
-        res.user.userId,
-        res.user.firstName,
-        res.user.lastName,
-        res.user.email,
-        res.user.password,
-        res.user.gender,
-        res.user.contactNumber,
-        res.user.address,
-        //expiresIn,
-        res.user.role,
-        res.user.profileImage,
-        res.user.token,
-        res.user.resetPasswordExpires,
-    );
-    }     
+    // }else{
+    //   user = new User(
+    //     res.user.userId,
+    //     res.user.firstName,
+    //     res.user.lastName,
+    //     res.user.email,
+    //     res.user.password,
+    //     res.user.gender,
+    //     res.user.contactNumber,
+    //     res.user.address,
+    //     //expiresIn,
+    //     res.user.role,
+    //     res.user.profileImage,
+    //     res.user.token,
+    //     res.user.resetPasswordExpires,
+    // );
+    // }     
     
     localStorage.setItem("user" , JSON.stringify(user));
   }

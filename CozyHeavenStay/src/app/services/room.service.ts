@@ -39,9 +39,13 @@ export class RoomService {
 
   createRoom(room: any,token: string): Observable<any> { 
     const headers = new HttpHeaders();
-    headers.append('Content-Type', 'multipart/form-data');
-    headers.append('Authorization', `Bearer ${token}`);
-    return this.http.post<any>(roomEndpoints.CREATE_ROOM_API, room , { headers: headers })
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${token}` 
+      })
+    };
+
+    return this.http.post<any>(roomEndpoints.CREATE_ROOM_API, room , httpOptions)
       .pipe(
         catchError(this.handleError)
       );

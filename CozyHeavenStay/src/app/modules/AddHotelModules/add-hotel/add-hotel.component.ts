@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { HotelService } from '../../../services/hotel.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-hotel',
@@ -9,13 +9,23 @@ import { Router } from '@angular/router';
 })
 export class AddHotelComponent {
   step;
+  @Input() editData;
   hoteService : HotelService = inject(HotelService);
   router : Router = inject(Router);
+  activatedRoute: ActivatedRoute = inject(ActivatedRoute);
+  id ;
 
   moveToListing() {
     this.router.navigate(['/dashboard/my-listings']);
+    this.hoteService.step = 1;
   }
 
+  ngOnInit() {
+    if (this.activatedRoute.snapshot && this.activatedRoute.snapshot.paramMap) {
+      this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    }
+    console.log(this.id);
+  }
 
   ngDoCheck() {
     this.step = this.hoteService.step;

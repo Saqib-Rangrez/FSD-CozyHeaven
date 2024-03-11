@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HotelService } from '../../../services/hotel.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Hotel } from '../../../models/hotel.Model';
 
 @Component({
@@ -26,6 +26,13 @@ export class HotelDetailComponent {
     this.hoteId = this.activatedRoute.snapshot.params['id'];
     console.log(this.hoteId);
 
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }
+    });
+    
+
     this.hotelService.getHotelById(this.hoteId,this.user.token).subscribe({
       next : (res) => {
       
@@ -48,7 +55,11 @@ export class HotelDetailComponent {
       }
     }) 
 
-    
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }
+    });
 
   }
 

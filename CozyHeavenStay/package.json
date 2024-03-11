@@ -19,6 +19,7 @@
     "@angular/platform-browser": "^17.1.0",
     "@angular/platform-browser-dynamic": "^17.1.0",
     "@angular/router": "^17.1.0",
+    "@auth0/angular-jwt": "^5.2.0",
     "@ng-bootstrap/ng-bootstrap": "^16.0.0",
     "ng-bootstrap": "^0.46.0",
     "ngx-bootstrap": "^12.0.0",

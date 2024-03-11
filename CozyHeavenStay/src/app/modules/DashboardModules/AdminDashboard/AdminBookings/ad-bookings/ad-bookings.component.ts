@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { BookingService } from '../../../../../services/booking.service';
 import { ToastrService } from 'ngx-toastr';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-ad-bookings',
@@ -12,6 +13,7 @@ export class AdBookingsComponent {
   filterBookings;
   user : any;
   loading : boolean;
+  router : Router = inject(Router);
   toastr : ToastrService = inject(ToastrService);
   bookingService : BookingService = inject(BookingService);
 
@@ -37,6 +39,11 @@ export class AdBookingsComponent {
     })
 
     console.log(this.bookings)
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }
+    });  
   }
 
   handleReload(value) {

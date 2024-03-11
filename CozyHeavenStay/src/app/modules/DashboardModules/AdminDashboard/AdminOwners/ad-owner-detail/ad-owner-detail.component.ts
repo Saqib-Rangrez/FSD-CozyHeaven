@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { HotelOwnerService } from '../../../../../services/hotel-owner.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -40,6 +40,12 @@ export class AdOwnerDetailComponent {
         this.loading = false;
       }
     });
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }
+    }); 
 
   }
 

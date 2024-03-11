@@ -17,10 +17,24 @@ namespace CozyHavenStayServer.Repositories
 
         public async Task<Room> CreateAsync(Room dbRecord)
         {
-            _context.Add(dbRecord);
+            // _context.Add(dbRecord);
+            // await _context.SaveChangesAsync();
+            // return dbRecord;
+
+            var existingRecord = await _context.Rooms.FindAsync(dbRecord.RoomId);
+
+            if (existingRecord != null)
+            {
+                _context.Entry(existingRecord).CurrentValues.SetValues(dbRecord);
+            }
+            else
+            {
+                _context.Add(dbRecord); 
+            }
             await _context.SaveChangesAsync();
             return dbRecord;
         }
+
 
         public async Task<bool> DeleteAsync(Room dbRecord)
         {
@@ -35,6 +49,7 @@ namespace CozyHavenStayServer.Repositories
             .Include(r => r.Bookings).ThenInclude(b => b.User)
             .Include(r => r.RoomImages)
             .Include(r => r.Hotel).ThenInclude(h => h.HotelImages)
+            .Include(r => r.Hotel).ThenInclude(h => h.Reviews)
             .ToListAsync();
         }
 
@@ -45,12 +60,14 @@ namespace CozyHavenStayServer.Repositories
                 .Include(r => r.Bookings).ThenInclude(b => b.User)
                 .Include(r => r.RoomImages)
                 .Include(r => r.Hotel).ThenInclude(h => h.HotelImages)
+                .Include(r => r.Hotel).ThenInclude(h => h.Reviews)
                 .FirstOrDefaultAsync();
             else
                 return await _context.Rooms.Where(filter)
                 .Include(r => r.Bookings).ThenInclude(b => b.User)
                 .Include(r => r.RoomImages)
                 .Include(r => r.Hotel).ThenInclude(h => h.HotelImages)
+                .Include(r => r.Hotel).ThenInclude(h => h.Reviews)
                 .FirstOrDefaultAsync();
         }
 

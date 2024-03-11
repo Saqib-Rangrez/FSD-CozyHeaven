@@ -14,6 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 export class HotelService {
   toastr : ToastrService = inject(ToastrService);
   hotelInfo;
+  roomData;
   edit : boolean = false;
   step : number = 1;
 
@@ -36,8 +37,8 @@ export class HotelService {
       );
   }
 
-  getHotelById(id: number,token: string): Observable<Hotel> { 
-    return this.http.get<Hotel>(`${hotelEndpoints.GET_HOTEL_BY_ID_API}${id}`,this.setToken(token))
+  getHotelById(id: number,token: string): Observable<any> { 
+    return this.http.get<any>(`${hotelEndpoints.GET_HOTEL_BY_ID_API}${id}`,this.setToken(token))
       .pipe(
         catchError(this.handleError)
       );
@@ -51,17 +52,21 @@ export class HotelService {
   }
 
   createHotel(formData,token: string): Observable<any> { 
-    const loadingToast = this.toastr.info('Signing up...', 'Please wait', {
+    const loadingToast = this.toastr.info('Adding Hotel...', 'Please wait', {
       disableTimeOut: true,
       closeButton: false,
       positionClass: 'toast-top-center'
     });
 
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'multipart/form-data');
-    headers.append('Authorization', `Bearer ${token}`);
+    console.log("TOken Hotel", token);
 
-    return this.http.post<any>(hotelEndpoints.CREATE_HOTEL_API, formData,{ headers: headers })
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${token}` 
+      })
+    };
+
+    return this.http.post<any>(hotelEndpoints.CREATE_HOTEL_API, formData, httpOptions)
       .pipe(
         catchError(error => {
           if (loadingToast) {
@@ -76,6 +81,7 @@ export class HotelService {
           if(loadingToast){
             this.toastr.clear();
           }
+          this.hotelInfo = res.data;
         }),
         finalize(() => {
           if (loadingToast) {

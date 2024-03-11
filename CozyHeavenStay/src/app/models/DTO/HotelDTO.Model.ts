@@ -1,4 +1,5 @@
 export class HotelDTO {
+  
     Name: string;
     ownerId: number;
     Amenities: string;

@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NavigationEnd, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -12,6 +13,8 @@ export class ContactComponent {
   toastr : ToastrService = inject(ToastrService);
   constructor(private fb: FormBuilder) { }
 
+  router : Router = inject(Router);
+
   ngOnInit(): void {
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
@@ -19,6 +22,12 @@ export class ContactComponent {
       mobile: ['', Validators.required],
       message: ['', Validators.required],
       agree: [false, Validators.requiredTrue]
+    });
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }
     });
   }
 
