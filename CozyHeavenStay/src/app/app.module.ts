@@ -45,14 +45,18 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CommonModule } from '@angular/common';
+import { NgbModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import { AsyncPipe, CommonModule, JsonPipe } from '@angular/common';
 import { BookingConfirmComponent } from './modules/BookingModule/booking-confirm/booking-confirm.component';
 import { AboutComponent } from './modules/about/about.component';
 import { ContactComponent } from './modules/contact/contact.component';
 import { HotelDetailComponent } from './modules/HotelModules/hotel-detail/hotel-detail.component';
 import { AuthGuard } from './guards/auth.guard';
 import { JwtModule } from "@auth0/angular-jwt";
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { LocationAutoComponent } from './modules/HotelModules/location-auto/location-auto.component';
 
 export function tokenGetter() { 
   return  JSON.parse(localStorage.getItem("user")).token; 
@@ -100,6 +104,7 @@ export function tokenGetter() {
     AboutComponent,
     ContactComponent,
     HotelDetailComponent,
+    LocationAutoComponent,
  
   ],
   imports: [
@@ -116,6 +121,12 @@ export function tokenGetter() {
     MatButtonModule,
     NgbModule,
     CommonModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    MatFormFieldModule,
+    AsyncPipe,
+    NgbTypeaheadModule,
+    JsonPipe,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

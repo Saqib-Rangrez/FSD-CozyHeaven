@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { HotelService } from '../../../services/hotel.service';
 import { toArray } from 'rxjs';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,8 +10,8 @@ import { toArray } from 'rxjs';
 })
 export class HomeComponent{
   user;
+  router : Router = inject(Router);
   constructor(private hotelService: HotelService){}
-
   hotelList;
   
   offers: any[]= [
@@ -73,10 +74,13 @@ export class HomeComponent{
     error:error => {
       console.log(error);
     }
-  } 
-  )
+  });
 
-  
+  this.router.events.subscribe((event) => {
+    if (event instanceof NavigationEnd) {
+      window.scrollTo(0, 0);
+    }
+  });
 }
     
   GetAvgRating(ratingArr) {

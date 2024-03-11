@@ -1,4 +1,5 @@
-import { Component, Input, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, Input, AfterViewInit, ElementRef, ViewChild, inject } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 // import {NgxTinySliderSettingsInterface} from 'ngx-tiny-slider';
 
 @Component({
@@ -10,9 +11,16 @@ export class HotelcardComponent {
 @Input() card;
 // tinySliderConfig: NgxTinySliderSettingsInterface; 
 avgRating : number = 0;
+router : Router = inject(Router);
 
 ngOnInit() {
   this.avgRating = this.GetAvgRating(this.card.reviews);
+
+  this.router.events.subscribe((event) => {
+    if (event instanceof NavigationEnd) {
+      window.scrollTo(0, 0);
+    }
+  });
 }
 
 GetAvgRating(ratingArr) {

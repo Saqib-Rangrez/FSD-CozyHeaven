@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { HotelService } from '../../../services/hotel.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Hotel } from '../../../models/hotel.Model';
 import { ReviewService } from '../../../services/review.service';
 import { Review } from '../../../models/review.Model';
@@ -66,7 +66,11 @@ export class HotelDetailComponent {
       }
     }) 
 
-    
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }
+    });
 
   }
 

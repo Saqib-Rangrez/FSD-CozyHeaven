@@ -44,7 +44,7 @@
                         <!-- Main content START -->
                         <div class="col-12">
                            <ng-container *ngIf="step === 1">
-                                <app-add-hotel-info></app-add-hotel-info>
+                                <app-add-hotel-info [editId]="id"></app-add-hotel-info>
                             </ng-container>
                            <ng-container *ngIf="step === 2">
                                 <app-add-room-info></app-add-room-info>

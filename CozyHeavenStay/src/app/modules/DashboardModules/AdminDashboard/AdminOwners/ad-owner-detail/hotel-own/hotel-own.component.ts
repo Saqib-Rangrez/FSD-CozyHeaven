@@ -17,6 +17,7 @@ activatedRoute : ActivatedRoute = inject(ActivatedRoute);
 ownerId : number;
 user;
 
+
 deleteHotel(id:number) {
 
   this.activatedRoute.params.subscribe(params => {
