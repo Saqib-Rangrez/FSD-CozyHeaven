@@ -30,7 +30,7 @@ export class BookingService {
   }
 
   getBookingById(id: number,token: string): Observable<Booking> { 
-    return this.http.get<Booking>(`${bookingsEndpoints.GET_BOOKING_BY_USERID_API}${id}`)
+    return this.http.get<Booking>(`${bookingsEndpoints.GET_BOOKING_BY_BOOKINGID_API}${id}`,this.setToken(token))
       .pipe(
         catchError(this.handleError)
       );

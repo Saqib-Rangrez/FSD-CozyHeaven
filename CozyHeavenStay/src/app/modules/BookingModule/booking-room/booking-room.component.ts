@@ -296,7 +296,7 @@ export class BookingRoomComponent {
       this.selectedDates[0],
       this.selectedDates[1],
       this.priceData.totalAmount,
-      "Booked",
+      "Confirmed",
       this.user.userId,
       this.room.roomId,
       this.room.hotelId,
