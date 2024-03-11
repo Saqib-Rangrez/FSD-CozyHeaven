@@ -339,7 +339,7 @@ About hotel START -->
                                 </div>
                                 <!-- Price -->
                                 <div class="mt-3 mt-sm-0">
-                                    <a routerLink="/roombooking/{{room.roomId}}" class="btn btn-sm btn-primary mb-0">Select Room</a>    
+                                    <a routerLink="/roombooking/{{room.roomId}}" [fragment]="'top'" class="btn btn-sm btn-primary mb-0">Select Room</a>    
                                 </div>                  
                             </div>
                         </div>
@@ -353,7 +353,7 @@ About hotel START -->
     <!-- Card body END -->
 </div>
 <!-- Room END -->
-<form [formGroup]="reviewForm" (ngSubmit)="submitReview()">
+<form *ngIf="user?.role === 'User'" [formGroup]="reviewForm" (ngSubmit)="submitReview()">
     <!-- Rating -->
     <div class="form-control-bg-light mb-3">
       <select class="form-select js-choice" formControlName="rating">
@@ -595,7 +595,7 @@ About hotel START -->
 
     <!-- Button -->
     <div class="d-grid">
-        <a routerLink="." fragment="room-options" class="btn btn-lg btn-primary-soft mb-0">View {{hotel?.rooms.length}} Rooms Options</a>
+        <div routerLink="." fragment="room-options" class="btn btn-lg btn-primary-soft mb-0">View {{hotel?.rooms.length}} Rooms Options</div>
     </div>
 </div>
 <!-- Book now END -->

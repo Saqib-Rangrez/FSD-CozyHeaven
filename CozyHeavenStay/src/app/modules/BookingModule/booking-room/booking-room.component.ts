@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RoomService } from '../../../services/room.service';
 import { HotelService } from '../../../services/hotel.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Room } from '../../../models/room.Model';
 import { User } from '../../../models/User.Model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -10,6 +10,7 @@ import { Booking } from '../../../models/booking.Model';
 import { Payment } from '../../../models/payment.Model';
 import { PaymentService } from '../../../services/payment.service';
 import { ToastrService } from 'ngx-toastr';
+import { ReviewService } from '../../../services/review.service';
 
 
 
@@ -45,7 +46,7 @@ export class BookingRoomComponent {
   createdBooking: Booking;
   payment: Payment;
   paymentCreated: Payment;
- 
+  reviewService : ReviewService = inject(ReviewService);
 
   constructor(private roomService: RoomService,private hotelService: HotelService, 
     private activatedRoute: ActivatedRoute, private fb: FormBuilder,
@@ -54,6 +55,11 @@ export class BookingRoomComponent {
     ){
     //Set minimum selectable date to today
     this.minDate = new Date();
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }
+    });
     
     const today = new Date();
     const tomorrow = new Date();
@@ -78,15 +84,24 @@ export class BookingRoomComponent {
       
         this.response = res;
         this.room = this.response.data;
-        console.log("rom",this.room);
-        this.avgRating = this.GetAvgRating(this.room.hotel.reviews);
-        console.log(this.avgRating);
-        
+        console.log("room",this.room);
+        // this.avgRating = this.GetAvgRating(this.room.hotel.reviews);
+        // console.log(this.avgRating);
+
+        this.reviewService.getReviewByHotelId(this.room.hotelId,this.user.token).subscribe({
+          next : (res) => {
+            this.avgRating = this.GetAvgRating(res.data);
+            console.log("reviews",this.room.hotel.reviews);
+          },
+          error : (err) => {
+            console.log(err);
+          }
+        })        
       },
       error : (err) => {
         console.log(err);
       }
-    }) 
+    })    
 
   }
 

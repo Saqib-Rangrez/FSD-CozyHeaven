@@ -24,6 +24,7 @@ export class AdBookingsComponent {
     this.bookingService.getAllBookings(this.user.token).subscribe({
       next : res => {
         this.bookings = res.data;        
+        
         this.toastr.success("Data Fetched Successfully");
       },
       error : err => {
@@ -35,8 +36,14 @@ export class AdBookingsComponent {
         this.filterHotel('Pending');
         console.log(this.filterBookings);
         this.loading = false;
+        if(this.user.role !== 'Admin') {
+          this.bookings = this.filterBookingsForOwner();
+          console.log("AFTER ROLE BASED FILTER", this.bookings);
+        }
       }
     })
+
+    
 
     console.log(this.bookings)
     this.router.events.subscribe((event) => {
@@ -44,6 +51,16 @@ export class AdBookingsComponent {
         window.scrollTo(0, 0);
       }
     });  
+  }
+
+  filterBookingsForOwner() {
+    return this.bookings = this.bookings.filter(booking => {
+      if(this.user.role === 'Owner'){
+        return booking.hotel.ownerId === this.user.userId;
+      }else{
+        return booking.userId === this.user.userId;
+      }
+    })
   }
 
   handleReload(value) {

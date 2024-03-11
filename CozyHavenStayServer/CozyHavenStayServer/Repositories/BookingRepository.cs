@@ -33,11 +33,8 @@ namespace CozyHavenStayServer.Repositories
         {
             return await _context.Bookings
             .Include(b => b.Room)
-                .ThenInclude(r => r.RoomImages)
             .Include(b => b.Hotel)
-                .ThenInclude(h => h.HotelImages)
             .Include(b => b.User)
-                .ThenInclude(u => u.Reviews)
             .Include(b => b.Payment)
                 .ThenInclude(p => p.Refund)
             .ToListAsync();
@@ -48,22 +45,16 @@ namespace CozyHavenStayServer.Repositories
             if (useNoTracking)
                 return await _context.Bookings.AsNoTracking().Where(filter)
                 .Include(b => b.Room)
-                    .ThenInclude(r => r.RoomImages)
                 .Include(b => b.Hotel)
-                    .ThenInclude(h => h.HotelImages)
                 .Include(b => b.User)
-                    .ThenInclude(u => u.Reviews)
                 .Include(b => b.Payment)
                     .ThenInclude(p => p.Refund)
                 .FirstOrDefaultAsync();
             else
                 return await _context.Bookings.Where(filter)
                 .Include(b => b.Room)
-                    .ThenInclude(r => r.RoomImages)
                 .Include(b => b.Hotel)
-                    .ThenInclude(h => h.HotelImages)
                 .Include(b => b.User)
-                    .ThenInclude(u => u.Reviews)
                 .Include(b => b.Payment)
                     .ThenInclude(p => p.Refund)
                 .FirstOrDefaultAsync();

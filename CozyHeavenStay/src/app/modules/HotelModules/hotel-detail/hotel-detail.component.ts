@@ -34,10 +34,16 @@ export class HotelDetailComponent {
     this.hotelId = this.activatedRoute.snapshot.params['id'];
     console.log(this.hotelId);
     
-    this.activatedRoute.fragment.subscribe((value)=>{
-      console.log(value);
-      document.getElementById(value).scrollIntoView({behavior:"smooth"});
-    })
+    this.activatedRoute.fragment.subscribe((value) => {
+          setTimeout(() => {
+        const element = document.getElementById(value);
+        if (element) {          
+          element.scrollIntoView({ behavior: "smooth" });
+        } else {
+          console.error(`Element with ID '${value}' not found.`);
+        }
+      });
+    });
 
     this.reviewForm = this.formBuilder.group({
       rating: [5, Validators.required],

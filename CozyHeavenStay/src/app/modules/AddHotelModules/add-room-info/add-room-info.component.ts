@@ -64,7 +64,7 @@ constructor(private fb: FormBuilder) { }
         bedType: [this.roomConstants.bedSizes[0], Validators.required],
         baseFare: ['', Validators.required],
         roomSize: [this.roomConstants.roomSizes[0], Validators.required],
-        acstatus: ['', Validators.required],
+        acstatus: [this.roomConstants.acStatuses[0], Validators.required],
         files: [[]]
       });
     }

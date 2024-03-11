@@ -41,6 +41,7 @@ export class BookingDetailComponent {
       console.log(res);
       this.toaster.success("Booking Cancelled Successfully");
       this.booleanValue.emit(true);
+      location.reload();
     },
     error : err => {
       console.log(err);

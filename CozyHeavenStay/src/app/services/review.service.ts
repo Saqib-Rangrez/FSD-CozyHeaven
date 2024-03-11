@@ -43,8 +43,8 @@ export class ReviewService {
       );
   }
 
-  getReviewByHotelId(hotelId: number,token: string): Observable<Review[]> {
-    return this.http.get<Review[]>(`${reviewEndpoints.GET_REVIEW_BY_HOTELID_API}${hotelId}`,this.setToken(token))
+  getReviewByHotelId(hotelId: number,token: string): Observable<any> {
+    return this.http.get<any>(`${reviewEndpoints.GET_REVIEW_BY_HOTELID_API}${hotelId}`,this.setToken(token))
       .pipe(
         catchError(this.handleError)
       );
