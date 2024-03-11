@@ -277,7 +277,7 @@ export class BookingRoomComponent {
         this.response = res;
         this.paymentCreated = this.response.data;
         
-        this.updateBookingPayment(this.paymentCreated.paymentId);
+        this.updateBookingPayment(this.paymentCreated.paymentId, status);
        
         console.log("created",this.paymentCreated);
       },
@@ -296,7 +296,7 @@ export class BookingRoomComponent {
       this.selectedDates[0],
       this.selectedDates[1],
       this.priceData.totalAmount,
-      "Confirmed",
+      'Pending',
       this.user.userId,
       this.room.roomId,
       this.room.hotelId,
@@ -325,7 +325,7 @@ export class BookingRoomComponent {
     } 
   }
 
-  updateBookingPayment(paymentId: number) {
+  updateBookingPayment(paymentId: number, status : string) {
     // Assuming this.booking is already populated with the booking details
     if (!this.createdBooking) {
       console.error('No booking data available.');
@@ -334,6 +334,9 @@ export class BookingRoomComponent {
 
     // Update the payment ID in the booking object
     this.createdBooking.paymentId = paymentId;
+    if(status != 'Pending')
+    this.createdBooking.status = 'Confirmed';
+    
 
     // Call the BookingService to update the booking
     this.bookingService.updateBooking(this.createdBooking,this.user.token).subscribe(
