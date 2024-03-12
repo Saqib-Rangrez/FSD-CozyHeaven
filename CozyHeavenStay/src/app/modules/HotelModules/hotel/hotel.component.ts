@@ -282,13 +282,12 @@ export class HotelComponent {
   checkPriceRange(hotel: Hotel, selectedPriceRanges: string[]): boolean {
     const roomPrices = hotel.rooms.map(room => room.baseFare); // Get an array of room base fares
 
-  // Check if any room matches any selected price range
   return roomPrices.some(roomPrice => {
-    // Assuming each selected price range is in the format 'min - max' (e.g., '₹500 - ₹1000')
     for (const selectedRange of selectedPriceRanges) {
-      const [min, max] = selectedRange.split(' - ').map(s => parseInt(s.replace(/\D/g, ''), 10)); // Extract min and max values
+      const [min, max] = selectedRange.split(' - ').map(s => parseInt(s.replace(/\D/g, ''), 10)); 
+      console.log([min, max]);
       if (!isNaN(min) && !isNaN(max) && roomPrice >= min && roomPrice <= max) {
-        return true; // Room price falls within the selected range
+        return true; 
       }
     }
     return false;
