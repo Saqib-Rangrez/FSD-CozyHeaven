@@ -99,7 +99,7 @@
           >
             <!-- Button -->
             <div class="d-flex align-items-center">
-              <h5 class="fw-bold mb-0 me-1">₹{{card.rooms[0]?.baseFare || 750}}</h5>
+              <h5 class="fw-bold mb-0 me-1">₹{{GetMinPrice(card.rooms) || 750}}</h5>
               <span class="mb-0 me-2">/day</span>
               <span class="text-decoration-line-through mb-0"
                 >₹10000</span

@@ -235,6 +235,8 @@ export class HotelComponent {
     console.log(priceArray)
   }
 
+ 
+
   onChangeRating(event) {
     console.log(event.target.value)
     const ratingArray = this.filterCriteria.get('customerRating') as FormArray;

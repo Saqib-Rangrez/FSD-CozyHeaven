@@ -23,6 +23,19 @@ ngOnInit() {
   });
 }
 
+GetMinPrice(rooms){
+  const minPriceRoom = rooms.reduce((minRoom, currentRoom) => {
+    // If minRoom is null or the baseFare of currentRoom is less than minRoom's baseFare
+    if (!minRoom || currentRoom?.baseFare < minRoom?.baseFare) {
+      return currentRoom;
+    }
+    return minRoom;
+  }, null);
+  
+  // Now minPriceRoom will contain the room with the minimum price
+  return minPriceRoom?.baseFare;
+}
+
 GetAvgRating(ratingArr) {
   if (ratingArr?.length === 0) return 0
   let totalReviewCount = 0;
