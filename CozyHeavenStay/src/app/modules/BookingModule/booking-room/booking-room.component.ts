@@ -42,6 +42,7 @@ export class BookingRoomComponent {
     additionalGuestsCharges:0,
     totalAmount:0
   };
+  bookingList;
   booking: Booking;
   createdBooking: Booking;
   payment: Payment;
@@ -82,6 +83,23 @@ export class BookingRoomComponent {
     this.user = JSON.parse(localStorage.getItem('user'));
     console.log(this.user);
     this.createGuestForm();
+
+    this.bookingService.getAllBookings(this.user.token).subscribe({
+      next : (res) => {
+        this.response = res;
+        this.bookingList = this.response.data;
+        //filter booking on roomid
+        this.bookingList = this.bookingList.filter(booking => booking.roomId == this.roomId);
+      
+      
+        console.log("book",this.response.data);
+        console.log("bookfilter",this.bookingList);
+      },
+      error : (err) => {
+        console.log(err);
+      }
+    })
+
     
     this.roomService.getRoomById(this.roomId,this.user.token).subscribe({
       next : (res) => {
@@ -321,6 +339,7 @@ export class BookingRoomComponent {
       this.room.hotelId,
       null
     );
+
     console.log(this.booking);
 
     this.bookingService.createBooking(this.booking,this.user.token).subscribe({
@@ -395,4 +414,37 @@ export class BookingRoomComponent {
     this.CloseModel();
     this.router.navigate(['/dashboard/bookings']);  
   }
+
+  // Assume this is a method in your component
+    isRoomAvailable(checkInDate: Date, checkOutDate: Date): boolean {
+      // Loop through the list of bookings
+      for (const booking of this.bookingList) {
+          // Convert booking dates to Date objects
+          const bookingCheckInDate = new Date(booking.checkInDate);
+          const bookingCheckOutDate = new Date(booking.checkOutDate);
+
+          // Check if the checking date falls within the booking period
+          if (checkInDate >= bookingCheckInDate && checkInDate < bookingCheckOutDate) {
+              return false; // Room is not available
+          }
+
+          // Check if the checkout date falls within the booking period
+          if (checkOutDate > bookingCheckInDate && checkOutDate <= bookingCheckOutDate) {
+              return false; // Room is not available
+          }
+      }
+
+      // If no conflicting bookings found, room is available
+      return true;
+    }
+
+
+    BookNow(){
+      if(this.isRoomAvailable(this.selectedDates[0],this.selectedDates[1])){
+        this.openModel();
+      }
+      else{
+        this.toastr.error("Not Available on you Dates!! Please check dates!!!!");
+      }
+    }
 }

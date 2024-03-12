@@ -43,7 +43,7 @@ export class HotelComponent {
 
 
   roomTypes: string[] = ['Single', 'Double', 'Suite'];
-  priceRanges: string[] = ['Up to ₹500', '₹500 - ₹1000', '₹1000 - ₹1500', '₹1500 - ₹2000', '₹2000+'];
+  priceRanges: string[] = ['₹0 - ₹500', '₹500 - ₹1000', '₹1000 - ₹1500', '₹1500 - ₹2000', '₹2000+'];
   customerRatings: number[] = [3, 3.5, 4, 4.5];
   filterCriteria: FormGroup;
 
@@ -81,6 +81,7 @@ export class HotelComponent {
         this.filteredList = this.hotelList;
         console.log(this.hotelList)
         console.log("api response: " + res);
+        
       },
       error => {
         console.log(error);
@@ -238,7 +239,7 @@ export class HotelComponent {
  
 
   onChangeRating(event) {
-    console.log(event.target.value)
+    console.log("rat",event.target.value)
     const ratingArray = this.filterCriteria.get('customerRating') as FormArray;
     if(event.target.checked){
       ratingArray.push(new FormControl(event.target.value));
@@ -273,22 +274,43 @@ export class HotelComponent {
   
       // Filter by Customer Rating
       const selectedRatings: number[] = this.filterCriteria.get('customerRating').value;
+      console.log("rat",selectedRatings);
       if (selectedRatings.length > 0) {
-        matchesCriteria = matchesCriteria && selectedRatings.includes(hotel.reviews.rating);
+        console.log("hhh",hotel.reviews)
+        matchesCriteria = matchesCriteria && this.checkRatings(hotel.reviews,selectedRatings);
       }
   
       return matchesCriteria;
     });
   }
   
+  checkRatings(reviews,selectedRatings){
+    let avgrating = this.GetAvgRating(reviews);
+    let minrating = Math.min(...selectedRatings);
+   
+    if(avgrating>=minrating){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
   checkPriceRange(hotel: Hotel, selectedPriceRanges: string[]): boolean {
-    const roomPrices = hotel.rooms.map(room => room.baseFare); // Get an array of room base fares
+    let roomPrices = hotel.rooms.map(room => room.baseFare); // Get an array of room base fares
+    console.log(roomPrices,Math.min(...roomPrices))
+    roomPrices = [Math.min(...roomPrices)];
 
   return roomPrices.some(roomPrice => {
     for (const selectedRange of selectedPriceRanges) {
-      const [min, max] = selectedRange.split(' - ').map(s => parseInt(s.replace(/\D/g, ''), 10)); 
+      let [min, max] = selectedRange.split(' - ').map(s => parseInt(s.replace(/\D/g, ''), 10)); 
+      
+      if(min==2000){
+        max = 1000000000;
+      }
       console.log([min, max]);
       if (!isNaN(min) && !isNaN(max) && roomPrice >= min && roomPrice <= max) {
+        console.log([min, max] , true);
         return true; 
       }
     }
@@ -304,6 +326,24 @@ export class HotelComponent {
       customerRating: new FormArray([])
     });
     this.filteredList = this.hotelList;
+    const roomArray = this.filterCriteria.get('roomType') as FormArray;
+    roomArray.controls.forEach(control => control.setValue(false));
+    console.log("fff",this.filterCriteria);
+    this.ngOnInit();
   }
   
+
+  GetAvgRating(ratingArr) {
+    if (ratingArr?.length === 0) return 0
+    let totalReviewCount = 0;
+    ratingArr?.forEach(element => {
+      totalReviewCount += element.rating
+    });
+  
+    const multiplier = Math.pow(10, 1)
+    const avgReviewCount =
+      Math.round((totalReviewCount / ratingArr?.length) * multiplier) / multiplier
+  
+    return avgReviewCount
+  }
 }

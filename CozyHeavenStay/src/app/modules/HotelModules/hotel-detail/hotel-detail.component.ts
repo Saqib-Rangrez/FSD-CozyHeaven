@@ -93,7 +93,7 @@ export class HotelDetailComponent {
 
     return [1,2,3,4,5].map((rating, index) => ({
       rating: rating,
-      percentage: parseFloat(((this.countStar(rating) / totalReviews) * 100).toFixed(2))
+      percentage: parseFloat(((this.countStar(rating) / totalReviews) * 100).toFixed(1))
         }));
   }
 
