@@ -491,7 +491,7 @@ About hotel START -->
                         <h6 class="me-3 mb-0">{{review.user.firstName +" " + review.user.lastName}}</h6>
                         <!-- Info -->
                         <ul class="nav nav-divider small mb-2">
-                            <li class="nav-item">Stayed 13 Nov 2023</li>
+                            <li class="nav-item">{{review?.date | date:'d MMMM y' }}</li>
                             <li class="nav-item"></li>
                         </ul>
                     </div>

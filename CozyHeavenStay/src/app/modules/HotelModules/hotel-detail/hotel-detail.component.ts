@@ -137,7 +137,8 @@ submitReview() {
       this.user.userId,
       this.hotelId,
       this.reviewForm.value.rating,
-      this.reviewForm.value.reviewMessage
+      this.reviewForm.value.reviewMessage,
+      new Date()
     );
 
     this.reviewService.addReview(reviewData, this.user.token).subscribe(

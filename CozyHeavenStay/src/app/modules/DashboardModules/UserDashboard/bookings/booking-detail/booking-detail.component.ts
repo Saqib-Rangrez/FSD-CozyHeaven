@@ -18,6 +18,7 @@ export class BookingDetailComponent {
   user : any;
   bookingService : BookingService = inject(BookingService);
   toaster : ToastrService = inject(ToastrService);
+  router : Router = inject(Router);
   refundService : RefundService = inject(RefundService);
   paymentService : PaymentService = inject(PaymentService);
   @Output() booleanValue = new EventEmitter<boolean>();
@@ -54,9 +55,6 @@ export class BookingDetailComponent {
       console.log(err);
       this.toaster.error("Something went wrong");
     },
-    complete : () => {
-      
-    }
   });
  }
 
@@ -131,6 +129,60 @@ export class BookingDetailComponent {
   
  }
 
+ payNow(payment) {
+  const paymentToUpdate = new Payment(
+    payment.paymentId,
+    payment.bookingId,
+    'Online',
+    'Paid',
+    payment.amount,
+    payment.paymentDate,
+    null,    
+    null,
+    null,
+  )
+
+  this.paymentService.updatePayment(paymentToUpdate,this.user.token).subscribe({
+    next : res => {
+      console.log("UPDATED PAYMENT DATA",res);
+      this.toaster.success("Payment Successful");
+      this.booleanValue.emit(true);
+      const bookingData : Booking = new Booking(
+        this.data.bookingId,
+        this.data.numberOfGuests,
+        this.data.checkInDate,
+        this.data.checkOutDate,
+        this.data.totalFare,
+        this.data.status,
+        this.data.userId,
+        this.data.roomId,
+        this.data.hotelId,
+        this.data.paymentId,
+      );
+    
+      bookingData.status = 'Confirmed';
+      this.bookingService.updateBooking(bookingData,this.user.token).subscribe({
+        next : res => {
+          console.log(res);
+          this.toaster.success("Booking Cancelled Successfully");
+          this.booleanValue.emit(true);
+          location.reload();
+        },
+        error : err => {
+          console.log(err);
+          this.toaster.error("Something went wrong");
+        },
+      });
+    },
+    error : err => {
+      console.log(err);
+      this.toaster.error("Something went wrong");
+    },
+    complete : () => {
+      this.router.navigate(['/confirm/'+ this.data.hotelId]);
+    }
+  });
+}
 
  approveRefund(payment){
   const refundData : Refund = new Refund(

@@ -16,6 +16,7 @@ namespace CozyHavenStayServer.Context.ModelConfig
             builder.Property(r => r.UserId).HasColumnName("UserId").IsRequired(); 
             builder.Property(r => r.HotelId).HasColumnName("HotelId").IsRequired();
             builder.Property(r => r.Rating).HasColumnName("Rating").IsRequired();
+            builder.Property(r => r.Date).HasColumnName("Date").IsRequired();
             builder.Property(r => r.Comments).HasColumnName("Comments").HasColumnType("nvarchar(max)").IsRequired();
 
             builder.HasOne(r => r.Hotel)

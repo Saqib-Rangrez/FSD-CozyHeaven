@@ -17,7 +17,16 @@ namespace CozyHavenStayServer.Repositories
 
         public async Task<Room> CreateAsync(Room dbRecord)
         {
-            _context.Add(dbRecord);
+            var existingRecord = await _context.Rooms.FindAsync(dbRecord.RoomId);
+
+            if (existingRecord != null)
+            {
+                _context.Entry(existingRecord).CurrentValues.SetValues(dbRecord);
+            }
+            else
+            {
+                _context.Add(dbRecord);
+            }
             await _context.SaveChangesAsync();
             return dbRecord;
         }

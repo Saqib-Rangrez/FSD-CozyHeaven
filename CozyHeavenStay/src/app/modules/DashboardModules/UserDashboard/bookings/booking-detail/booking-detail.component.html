@@ -30,7 +30,11 @@
             user?.role === 'Owner' && data?.payment?.refund?.refundStatus === 'Pending'  " class="btn btn-primary-soft mb-0">
                 Approve Refund
             </button>
-            <button (click)="cancelBooking()" *ngIf="data?.status !== 'Canceled' && user?.role !== 'Owner'"  class="btn btn-primary-soft mb-0">Cancel Booking</button>
+            <button (click)="payNow(data?.payment)" *ngIf="data?.status === 'Pending' && data?.payment?.status === 'Pending' &&
+            user?.role === 'User' " class="btn bg-success text-white btn-primary-soft mb-0">
+                Pay Now
+            </button>
+            <button (click)="cancelBooking()" *ngIf="data?.status !== 'Canceled'"  class="btn btn-primary-soft mb-0">Cancel Booking</button>
         </div>
     </div>
 

@@ -7,6 +7,7 @@ export class Review {
     hotelId: number;
     rating: number;
     comments: string;
+    date : Date;
     hotel?: Hotel; 
     user?: User;   
 
@@ -16,6 +17,7 @@ export class Review {
       hotelId: number,
       rating: number,
       comments: string,
+      date : Date,
       hotel?: Hotel,
       user?: User
     ) {
@@ -24,6 +26,7 @@ export class Review {
       this.hotelId = hotelId;
       this.rating = rating;
       this.comments = comments;
+      this.date = date;
       this.hotel = hotel;
       this.user = user;
     }

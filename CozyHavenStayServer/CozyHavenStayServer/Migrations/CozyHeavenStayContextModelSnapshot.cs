@@ -358,6 +358,10 @@ namespace CozyHavenStayServer.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Comments");
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("Date");
+
                     b.Property<int>("HotelId")
                         .HasColumnType("int")
                         .HasColumnName("HotelId");

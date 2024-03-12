@@ -42,7 +42,7 @@ export class BookingRoomComponent {
     additionalGuestsCharges:0,
     totalAmount:0
   };
-  bookingList;
+  bookingList = [];
   booking: Booking;
   createdBooking: Booking;
   payment: Payment;
@@ -89,11 +89,11 @@ export class BookingRoomComponent {
         this.response = res;
         this.bookingList = this.response.data;
         //filter booking on roomid
-        this.bookingList = this.bookingList.filter(booking => booking.roomId == this.roomId);
+        this.bookingList = this.bookingList?.filter(booking => booking?.roomId == this.roomId);
       
       
         console.log("book",this.response.data);
-        console.log("bookfilter",this.bookingList);
+        console.log("bookfilter",this?.bookingList);
       },
       error : (err) => {
         console.log(err);
@@ -110,10 +110,10 @@ export class BookingRoomComponent {
         // this.avgRating = this.GetAvgRating(this.room.hotel.reviews);
         // console.log(this.avgRating);
 
-        this.reviewService.getReviewByHotelId(this.room.hotelId,this.user.token).subscribe({
+        this.reviewService.getReviewByHotelId(this?.room?.hotelId,this.user.token).subscribe({
           next : (res) => {
             this.avgRating = this.GetAvgRating(res.data);
-            console.log("reviews",this.room.hotel.reviews);
+            console.log("reviews",this?.room?.hotel?.reviews);
           },
           error : (err) => {
             console.log(err);
@@ -418,7 +418,7 @@ export class BookingRoomComponent {
   // Assume this is a method in your component
     isRoomAvailable(checkInDate: Date, checkOutDate: Date): boolean {
       // Loop through the list of bookings
-      for (const booking of this.bookingList) {
+      for (const booking of this?.bookingList) {
           // Convert booking dates to Date objects
           const bookingCheckInDate = new Date(booking.checkInDate);
           const bookingCheckOutDate = new Date(booking.checkOutDate);

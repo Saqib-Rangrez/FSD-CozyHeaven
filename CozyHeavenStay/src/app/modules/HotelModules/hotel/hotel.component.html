@@ -162,10 +162,6 @@
             </div>
           </div>
           
-
-                    
-            
-                      
           </div>
           <!-- Button -->
           <div class="btn-position-md-middle">
@@ -201,7 +197,7 @@
                 <div *ngIf="roomConstrant.roomTypes" class="card card-body rounded-0 rounded-top p-4">
                   <h6 class="mb-2">Room Type & Body Type</h6>
                   <div *ngFor="let item of roomConstrant.roomTypes; let i = index" class="form-check">
-                    <input name="roomType{{i}}" (change)="onChangeRoom($event)" type="checkbox" class="form-check-input" [id]="item" [value]="item">
+                    <input name="roomType{{i}}" (change)="onChangeRoom($event)" [checked]="filterCriteria.get('roomType').value.includes(item)" type="checkbox" class="form-check-input" [id]="item" [value]="item">
                     <label class="form-check-label" [for]="item">{{ item }}</label>
 
                 
@@ -212,7 +208,7 @@
                 <div class="card card-body rounded-0 p-4">
                   <h6 class="mb-2">Price range</h6>
                   <div *ngFor="let range of priceRanges ;let i = index" class="form-check">
-                    <input  (change)="onChangePrice($event)" name="range{{i}}" type="checkbox" class="form-check-input" id="{{ range }}" [value]="range">
+                    <input  (change)="onChangePrice($event)" name="range{{i}}" type="checkbox" [checked]="filterCriteria.get('priceRange').value.includes(range)" class="form-check-input" id="{{ range }}" [value]="range">
                     <label class="form-check-label" for="{{ range }}">{{ range }}</label>
                   </div>
                 </div>
@@ -221,7 +217,7 @@
                 <div class="card card-body rounded-0 p-4">
                   <h6 class="mb-2">Customer Rating</h6>
                   <div *ngFor="let rating of customerRatings; let i = index" class="form-check">
-                    <input (change)="onChangeRating($event)" name="rating{{i}}" type="checkbox" class="form-check-input" id="{{ rating }}" [value]="rating">
+                    <input [checked]="filterCriteria.get('customerRating').value.includes(rating)" (change)="onChangeRating($event)"  name="rating{{i}}" type="checkbox" class="form-check-input" id="{{ rating }}" [value]="rating">
                     <label class="form-check-label" for="{{ rating }}">{{ rating }}+</label>
                   </div>
                 </div>

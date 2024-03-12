@@ -4,7 +4,7 @@ import { Booking } from './booking.Model';
 export class Payment {
   paymentId: number;
   bookingId: number;
-  refundId?: number;
+  refundId?: number | null;
   paymentMode: string;
   status: string;
   amount: number;
@@ -19,7 +19,7 @@ export class Payment {
     status: string,
     amount: number,
     paymentDate: Date,
-    refundId?: number,
+    refundId?: number | null,
     refund?: Refund,
     booking?: Booking
   ) {

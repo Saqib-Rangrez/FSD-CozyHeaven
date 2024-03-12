@@ -115,7 +115,14 @@ export class UserService {
         closeButton: false,
         positionClass: 'toast-top-center'
       });
-    return this.http.post<any>(`${userEndpoints.UPLOAD_DISPLAY_PICTURE_API}`, formData, this.setToken(token))
+
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Authorization': `Bearer ${token}` 
+        })
+      };
+
+    return this.http.post<any>(`${userEndpoints.UPLOAD_DISPLAY_PICTURE_API}`, formData, httpOptions)
     .pipe(
         catchError(error => {
           if (loadingToast) {

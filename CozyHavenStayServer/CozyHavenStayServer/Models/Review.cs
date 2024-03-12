@@ -6,8 +6,8 @@
         public int UserId { get; set; }
         public int HotelId { get; set; }
         public int Rating { get; set; }
+        public DateTime Date { get; set; }
         public string Comments { get; set; }
-
         public virtual Hotel? Hotel { get; set; }
         public virtual User? User { get; set; }
     }

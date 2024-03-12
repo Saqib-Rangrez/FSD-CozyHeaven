@@ -320,16 +320,28 @@ export class HotelComponent {
   
 
   clearFilters(): void {
-    this.filterCriteria.reset( {
-      roomType: new FormArray([]),
-      priceRange: new FormArray([]),
-      customerRating: new FormArray([])
+    this.filterCriteria.patchValue({
+      roomType: [],
+      priceRange: [],
+      customerRating: []
     });
+
     this.filteredList = this.hotelList;
-    const roomArray = this.filterCriteria.get('roomType') as FormArray;
-    roomArray.controls.forEach(control => control.setValue(false));
+    let controlArray;
+
+    //Resetting Room 
+    controlArray = this.filterCriteria.get('roomType') as FormArray;
+    controlArray.clear();
+
+
+    //Resetting Price Range
+    controlArray = this.filterCriteria.get('priceRange') as FormArray;
+    controlArray.clear();
+
+    //Resetting Customer Rating
+    controlArray = this.filterCriteria.get('customerRating') as FormArray;
+    controlArray.clear();
     console.log("fff",this.filterCriteria);
-    this.ngOnInit();
   }
   
 

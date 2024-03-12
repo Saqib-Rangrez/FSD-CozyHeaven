@@ -29,7 +29,7 @@ export class AdUserDetailComponent {
     });
 
     this.userdata = JSON.parse(localStorage.getItem('user'));
-    this.userService.getUserById(this.id, this.user.token).subscribe({
+    this.userService.getUserById(this.id, this.userdata.token).subscribe({
       next : res => {
         this.user = res.data;
         console.log(this.user);

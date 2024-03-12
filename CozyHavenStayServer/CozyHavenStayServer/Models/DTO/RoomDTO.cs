@@ -2,6 +2,7 @@
 {
     public class RoomDTO
     {
+        public int RoomId { get; set; }
         public int? HotelId { get; set; }
         public string RoomType { get; set; }
         public int MaxOccupancy { get; set; }

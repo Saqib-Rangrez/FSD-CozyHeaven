@@ -18,8 +18,9 @@ namespace CozyHavenStayServer.Repositories
         public async Task<Hotel> CreateAsync(Hotel dbRecord)
         {
             //_context.Add(dbRecord);
-            var existingRecord = await _context.Hotels.Where(h => h.HotelId == dbRecord.HotelId).FirstOrDefaultAsync();
-
+            /*            var existingRecord = await _context.Hotels.Where(h => h.HotelId == dbRecord.HotelId).FirstOrDefaultAsync();
+            */
+            var existingRecord = await _context.Hotels.FindAsync(dbRecord.HotelId);
             if (existingRecord != null)
             {
                 _context.Entry(existingRecord).CurrentValues.SetValues(dbRecord);

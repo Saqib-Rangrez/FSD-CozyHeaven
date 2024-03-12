@@ -357,19 +357,6 @@ namespace CozyHavenStayServer.Controllers
                 return BadRequest();
             }
 
-            // if (model.Role == "User")
-            // {
-            //     user = await _userServices.GetUserByEmailAsync(model.Email);
-            // }
-            // else if (model.Role == "Admin")
-            // {
-            //     user = await _adminServices.GetAdminByEmailAsync(model.Email);
-            // }
-            // else
-            // {
-            //     user = await _hotelOwnerServices.GetHotelOwnerByEmailAsync(model.Email);
-            // }
-
             var users = await _userServices.GetAllUsersAsync();
             user = users.Where(u => u.Email == model.Email).FirstOrDefault();
             if(user == null)
@@ -404,9 +391,23 @@ namespace CozyHavenStayServer.Controllers
             }
             else
             {
-                var resetUrl = $"http://localhost:4200/account/reset-password?token{data.Token}";
-                message = $@"<p>Please click the below link to reset your password, the link will be valid for 6 hours:</p>
-                            <p><a href=""{resetUrl}"">{resetUrl}</a></p>";
+                var resetUrl = $"http://localhost:4200/reset-password/{data.Token}";
+                message = $@"
+                    <p>Please click the below button to reset your password. The link will be valid for 6 hours:</p>
+                    <form method=""get"" action=""{resetUrl}"">
+                        <button type=""submit"" style=""background-color: #4CAF50; /* Green */
+                                                        border: none;
+                                                        color: white;
+                                                        padding: 15px 32px;
+                                                        text-align: center;
+                                                        text-decoration: none;
+                                                        display: inline-block;
+                                                        font-size: 16px;
+                                                        margin: 4px 2px;
+                                                        cursor: pointer;"">
+                            Reset Password
+                        </button>
+                    </form>";
             }
 
             var toEmail = model.Email;

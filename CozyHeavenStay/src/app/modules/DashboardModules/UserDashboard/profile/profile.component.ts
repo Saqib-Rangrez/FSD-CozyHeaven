@@ -162,8 +162,6 @@ export class ProfileComponent {
     this.showPassword = !this.showPassword;
   }
 
-  
-
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0] as File;
     this.showImagePreview(this.selectedFile);
@@ -184,11 +182,14 @@ export class ProfileComponent {
     
       formData.append('file', this.selectedFile);
       console.log(this.selectedFile);
+      console.log(this.user?.role)
+      console.log(this.user?.role == 'User', this.user?.role === 'User')
       let id : number;
-      if(this.user?.role === 'User'){
+      if(this.user?.role == 'User'){
+        console.log("Entered into upload")
         formData.append('id', this.user?.userId);
         formData.append('Role', this.user?.role);
-      }else if(this.user?.role === 'Admin') {
+      }else if(this.user?.role == 'Admin') {
         formData.append('id', this.user?.adminId);
         formData.append('Role', this.user?.role);
       }else{
