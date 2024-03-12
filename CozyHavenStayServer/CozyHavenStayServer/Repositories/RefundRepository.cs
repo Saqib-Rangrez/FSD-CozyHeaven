@@ -32,7 +32,8 @@ namespace CozyHavenStayServer.Repositories
         public async Task<List<Refund>> GetAllAsync()
         {
             return await _context.Refunds  
-            .Include(re => re.Payment)      
+            .Include(re => re.Payment)
+            .AsSplitQuery()
             .ToListAsync();
         }
 
@@ -41,10 +42,12 @@ namespace CozyHavenStayServer.Repositories
             if (useNoTracking)
                 return await _context.Refunds.AsNoTracking().Where(filter)
                 .Include(re => re.Payment)
+                .AsSplitQuery()
                 .FirstOrDefaultAsync();
             else
                 return await _context.Refunds.Where(filter)
                 .Include(re => re.Payment)
+                .AsSplitQuery()
                 .FirstOrDefaultAsync();
 
         }

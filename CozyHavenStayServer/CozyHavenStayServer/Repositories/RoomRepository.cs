@@ -32,25 +32,29 @@ namespace CozyHavenStayServer.Repositories
         public async Task<List<Room>> GetAllAsync()
         {
             return await _context.Rooms
-            .Include(r => r.Bookings).ThenInclude(b => b.User)
+            //.Include(r => r.Bookings).ThenInclude(b => b.User)
             .Include(r => r.RoomImages)
             .Include(r => r.Hotel).ThenInclude(h => h.HotelImages)
+            .AsSplitQuery()
             .ToListAsync();
+            
         }
 
         public async Task<Room> GetAsync(Expression<Func<Room, bool>> filter, bool useNoTracking = false)
         {
             if (useNoTracking)
                 return await _context.Rooms.AsNoTracking().Where(filter)
-                .Include(r => r.Bookings).ThenInclude(b => b.User)
+                //.Include(r => r.Bookings).ThenInclude(b => b.User)
                 .Include(r => r.RoomImages)
                 .Include(r => r.Hotel).ThenInclude(h => h.HotelImages)
+                .AsSplitQuery()
                 .FirstOrDefaultAsync();
             else
                 return await _context.Rooms.Where(filter)
-                .Include(r => r.Bookings).ThenInclude(b => b.User)
+                //.Include(r => r.Bookings).ThenInclude(b => b.User)
                 .Include(r => r.RoomImages)
                 .Include(r => r.Hotel).ThenInclude(h => h.HotelImages)
+                .AsSplitQuery()
                 .FirstOrDefaultAsync();
         }
 

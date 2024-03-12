@@ -38,6 +38,7 @@ namespace CozyHavenStayServer.Repositories
                 .Include(r => r.Hotel)
                     .ThenInclude(h => h.Rooms)
                         .ThenInclude(r => r.RoomImages)
+            .AsSplitQuery()
             .ToListAsync();
         }
 
@@ -51,6 +52,7 @@ namespace CozyHavenStayServer.Repositories
                 .Include(r => r.Hotel)
                     .ThenInclude(h => h.Rooms)
                         .ThenInclude(r => r.RoomImages)
+                .AsSplitQuery()
                 .FirstOrDefaultAsync();
             else
                 return await _context.Reviews.Where(filter)
@@ -60,6 +62,7 @@ namespace CozyHavenStayServer.Repositories
                 .Include(r => r.Hotel)
                     .ThenInclude(h => h.Rooms)
                         .ThenInclude(r => r.RoomImages)
+                .AsSplitQuery()
                 .FirstOrDefaultAsync();
         }
 

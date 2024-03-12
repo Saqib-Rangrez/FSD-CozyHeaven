@@ -1,19 +1,19 @@
 import { Payment } from "./payment.Model";
 
 export class Refund {
-    refundId: number;
-    paymentId: number;
-    refundAmount: number;
-    refundDate: Date;
-    reason?: string;
-    refundStatus?: string;
-    payment?: Payment;
+  paymentId: number;
+  refundAmount: number;
+  refundDate: Date;
+  refundId: number;
+  reason?: string;
+  refundStatus?: string;
+  payment?: Payment;
     
     constructor(
-      refundId: number,
       paymentId: number,
       refundAmount: number,
       refundDate: Date,
+      refundId: number,
       reason?: string,
       refundStatus?: string,
       payment?: Payment 

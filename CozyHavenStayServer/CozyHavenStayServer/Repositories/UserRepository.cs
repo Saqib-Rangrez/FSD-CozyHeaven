@@ -32,6 +32,7 @@ namespace CozyHavenStayServer.Repositories
             return await _context.Users
             .Include(u => u.Bookings)
             .Include(u => u.Reviews)
+            .AsSplitQuery()
             .ToListAsync();
         }
 
@@ -41,11 +42,13 @@ namespace CozyHavenStayServer.Repositories
                 return await _context.Users.AsNoTracking().Where(filter)
                 .Include(u => u.Bookings)
                 .Include(u => u.Reviews)
+                .AsSplitQuery()
                 .FirstOrDefaultAsync();
             else
                 return await _context.Users.Where(filter)
                 .Include(u => u.Bookings)
                 .Include(u => u.Reviews)
+                .AsSplitQuery()
                 .FirstOrDefaultAsync();
         }
 
@@ -55,11 +58,14 @@ namespace CozyHavenStayServer.Repositories
                 return await _context.Users.AsNoTracking().Where(filter)
                 .Include(u => u.Bookings)
                 .Include(u => u.Reviews)
+                .AsSplitQuery()
                 .FirstOrDefaultAsync();
             else
                 return await _context.Users.Where(filter)
                 .Include(u => u.Bookings)
-                .Include(u => u.Reviews).FirstOrDefaultAsync();
+                .Include(u => u.Reviews)
+                .AsSplitQuery()
+                .FirstOrDefaultAsync();
         }
 
         public async Task<User> UpdateAsync(User dbRecord)

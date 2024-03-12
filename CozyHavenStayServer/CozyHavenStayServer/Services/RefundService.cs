@@ -107,7 +107,7 @@ namespace CozyHavenStayServer.Services
         {
             try
             {
-                var existingRefund = await _refundRepository.GetAsync(r => r.RefundId == refund.RefundId);
+                var existingRefund = await _refundRepository.GetAsync(r => r.RefundId == refund.RefundId, true);
                 if (existingRefund == null)
                 {
                     _logger.LogError("Refund not found with given Id");

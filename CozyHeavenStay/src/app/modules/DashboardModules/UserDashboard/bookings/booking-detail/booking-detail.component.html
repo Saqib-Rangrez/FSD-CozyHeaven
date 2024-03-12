@@ -19,8 +19,18 @@
             <div class="text-white p-2 rounded-2   " [ngClass]="{ 'bg-success': data?.status === 'Confirmed',
         'bg-warning' : data?.status === 'Pending','bg-danger' : data?.status === 'Canceled'  }">
                 Booking {{data?.status}}</div>
-            <!-- <a href="#" *ngIf="data?.status === 'Pending'"  class="btn btn-primary-soft mb-0">Manage Booking</a> -->
-            <button (click)="cancelBooking()" *ngIf="data?.status === 'Pending' && user?.role !== 'Owner'"  class="btn btn-primary-soft mb-0">Cancel Booking</button>
+            <div class="text-white p-2 rounded-2" *ngIf=" data?.payment?.refund !==null " 
+            [ngClass]="{ 
+                'bg-success': data?.payment?.refund?.refundStatus === 'Approved',
+                'bg-warning' : data?.payment?.refund?.refundStatus === 'Pending'  }">
+                Refund : {{data?.payment.refund.refundStatus}}
+            </div>
+            <button (click)="requestRefund(data?.payment)" *ngIf="data?.status === 'Canceled' && data?.payment?.status === 'Paid'"  class="btn btn-primary-soft mb-0">Request Refund</button>
+            <button (click)="approveRefund(data?.payment)" *ngIf="data?.status === 'Canceled' && data?.payment?.status === 'Refunded' &&
+            user?.role === 'Owner' && data?.payment?.refund?.refundStatus === 'Pending'  " class="btn btn-primary-soft mb-0">
+                Approve Refund
+            </button>
+            <button (click)="cancelBooking()" *ngIf="data?.status !== 'Canceled' && user?.role !== 'Owner'"  class="btn btn-primary-soft mb-0">Cancel Booking</button>
         </div>
     </div>
 

@@ -42,10 +42,11 @@ namespace CozyHavenStayServer.Repositories
         public async Task<List<Hotel>> GetAllAsync()
         {
             return await _context.Hotels
-            .Include(h => h.Bookings).ThenInclude(b => b.User)
+            //.Include(h => h.Bookings).ThenInclude(b => b.User)
             .Include(h => h.HotelImages)
             .Include(h => h.Reviews).ThenInclude(r => r.User)
             .Include(h => h.Rooms).ThenInclude(r => r.RoomImages)
+            .AsSplitQuery()
             .ToListAsync();
         }
 
@@ -53,17 +54,21 @@ namespace CozyHavenStayServer.Repositories
         {
             if (useNoTracking)
                 return await _context.Hotels.AsNoTracking().Where(filter)
-                .Include(h => h.Bookings).ThenInclude(b => b.User)
+                //.Include(h => h.Bookings).ThenInclude(b => b.User)
                 .Include(h => h.HotelImages)
                 .Include(h => h.Reviews).ThenInclude(r => r.User)
                 .Include(h => h.Rooms).ThenInclude(r => r.RoomImages)
-                .FirstOrDefaultAsync();
+                .AsSplitQuery()
+                .FirstOrDefaultAsync()
+                
+                ;
             else
                 return await _context.Hotels.Where(filter)
-                .Include(h => h.Bookings).ThenInclude(b => b.User)
+                //.Include(h => h.Bookings).ThenInclude(b => b.User)
                 .Include(h => h.HotelImages)
                 .Include(h => h.Reviews).ThenInclude(r => r.User)
                 .Include(h => h.Rooms).ThenInclude(r => r.RoomImages)
+                .AsSplitQuery()
                 .FirstOrDefaultAsync();
 
         }

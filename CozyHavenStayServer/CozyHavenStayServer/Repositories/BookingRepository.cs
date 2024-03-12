@@ -2,6 +2,7 @@
 using CozyHavenStayServer.Interfaces;
 using CozyHavenStayServer.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Any;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -37,7 +38,8 @@ namespace CozyHavenStayServer.Repositories
             .Include(b => b.User)
             .Include(b => b.Payment)
                 .ThenInclude(p => p.Refund)
-            .ToListAsync();
+            .AsSplitQuery()
+            .ToListAsync();       
         }
 
         public async Task<Booking> GetAsync(Expression<Func<Booking, bool>> filter, bool useNoTracking = false)
@@ -45,18 +47,20 @@ namespace CozyHavenStayServer.Repositories
             if (useNoTracking)
                 return await _context.Bookings.AsNoTracking().Where(filter)
                 .Include(b => b.Room)
-                .Include(b => b.Hotel)
+                .Include(b => b.Hotel).ThenInclude(h => h.HotelImages)
                 .Include(b => b.User)
                 .Include(b => b.Payment)
                     .ThenInclude(p => p.Refund)
+                .AsSplitQuery()
                 .FirstOrDefaultAsync();
             else
                 return await _context.Bookings.Where(filter)
                 .Include(b => b.Room)
-                .Include(b => b.Hotel)
+                .Include(b => b.Hotel).ThenInclude(h => h.HotelImages)
                 .Include(b => b.User)
                 .Include(b => b.Payment)
                     .ThenInclude(p => p.Refund)
+                .AsSplitQuery()
                 .FirstOrDefaultAsync();
         }
 

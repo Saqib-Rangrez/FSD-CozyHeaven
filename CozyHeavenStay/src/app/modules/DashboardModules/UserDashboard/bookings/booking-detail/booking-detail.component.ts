@@ -3,6 +3,10 @@ import { BookingService } from '../../../../../services/booking.service';
 import { ToastrService } from 'ngx-toastr';
 import { Booking } from '../../../../../models/booking.Model';
 import { Router } from '@angular/router';
+import { Refund } from '../../../../../models/refund.Model';
+import { RefundService } from '../../../../../services/refund.service';
+import { PaymentService } from '../../../../../services/payment.service';
+import { Payment } from '../../../../../models/payment.Model';
 
 @Component({
   selector: 'app-booking-detail',
@@ -14,7 +18,10 @@ export class BookingDetailComponent {
   user : any;
   bookingService : BookingService = inject(BookingService);
   toaster : ToastrService = inject(ToastrService);
+  refundService : RefundService = inject(RefundService);
+  paymentService : PaymentService = inject(PaymentService);
   @Output() booleanValue = new EventEmitter<boolean>();
+  refundResult;
 
  ngOnInit() {
   this.user = JSON.parse(localStorage.getItem('user'));
@@ -52,4 +59,108 @@ export class BookingDetailComponent {
     }
   });
  }
+
+ requestRefund(payment){
+  const refundData : Refund = new Refund(
+    payment.paymentId,
+    payment.amount,
+    new Date(),
+    0,
+    'Booking Canceled',
+    'Pending',
+    null,
+  );
+
+  console.log(refundData)
+
+  this.refundService.createRefund(refundData,this.user.token).subscribe({
+    next : res => {
+      console.log("REFUND DATA",res);
+      this.refundResult = res;
+      this.refundResult = this.refundResult.data;
+    },
+    error : err => {
+      console.log(err);
+      this.toaster.error("Something went wrong");
+    },
+    complete : () => {
+      // this.paymentService.getPaymentByBookingId(payment.bookingId,this.user.token).subscribe({
+      //   next : data => {
+      //     paymentToUpdate = data;
+      //     paymentToUpdate = paymentToUpdate.data;
+      //     console.log("DATATOUPDATE",paymentToUpdate)
+
+      //     paymentToUpdate.refundId = this.refundResult.refundId;
+      //     paymentToUpdate.status = 'Refunded';
+          
+          
+      //   }
+      // })
+
+      const paymentToUpdate = new Payment(
+        payment.paymentId,
+        payment.bookingId,
+        payment.paymentMode,
+        'Refunded',
+        payment.amount,
+        payment.paymentDate,
+        this.refundResult.refundId,    
+        null,
+        null,
+      )
+      console.log(paymentToUpdate);
+    
+      this.paymentService.updatePayment(paymentToUpdate,this.user.token).subscribe({
+        next : res => {
+          console.log("UPDATED PAYMENT DATA",res);
+          this.toaster.success("Refund Requested Successfully");
+          this.booleanValue.emit(true);
+          location.reload();
+        },
+        error : err => {
+          console.log(err);
+          this.toaster.error("Something went wrong");
+        },
+        complete : () => {
+          
+        }
+      });
+    }
+  });
+
+  
+ }
+
+
+ approveRefund(payment){
+  const refundData : Refund = new Refund(
+    payment.paymentId,
+    payment.amount,
+    new Date(),
+    payment.refundId,
+    'Booking Canceled',
+    'Approved',
+    null,
+  );
+
+  console.log(refundData)
+  let updateRefundResult
+
+  this.refundService.updateRefund(refundData,this.user.token).subscribe({
+
+    next : res => {
+      console.log("REFUND UPDATE DATA",res);
+      location.reload();
+      updateRefundResult = res;
+      updateRefundResult = updateRefundResult.data;
+    },
+    error : err => {
+      console.log(err);
+      this.toaster.error("Something went wrong");
+    },
+  });
+
+  
+ }
+
 }

@@ -33,6 +33,7 @@ namespace CozyHavenStayServer.Repositories
             return await _context.Payments
             .Include(p => p.Refund)
             .Include(p => p.Booking)
+            .AsSplitQuery()
             .ToListAsync();
         }
 
@@ -42,11 +43,13 @@ namespace CozyHavenStayServer.Repositories
                 return await _context.Payments.AsNoTracking().Where(filter)
                 .Include(p => p.Refund)
                 .Include(p => p.Booking)
+                .AsSplitQuery()
                 .FirstOrDefaultAsync();
             else
                 return await _context.Payments.Where(filter)
                 .Include(p => p.Refund)
                 .Include(p => p.Booking)
+                .AsSplitQuery()
                 .FirstOrDefaultAsync();
 
         }

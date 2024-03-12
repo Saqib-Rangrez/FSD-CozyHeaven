@@ -190,476 +190,52 @@
       <div class="row">
         <!-- Left sidebar START -->
         <aside class="col-xl-4 col-xxl-3">
-          <!-- Responsive offcanvas body START -->
-          <div
-            class="offcanvas-xl offcanvas-end"
-            tabindex="-1"
-            id="offcanvasSidebar"
-            aria-labelledby="offcanvasSidebarLabel"
-          >
+          <div class="offcanvas-xl offcanvas-end" tabindex="-1" id="offcanvasSidebar" aria-labelledby="offcanvasSidebarLabel">
             <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasSidebarLabel">
-                Advance Filters
-              </h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="offcanvas"
-                data-bs-target="#offcanvasSidebar"
-                aria-label="Close"
-              ></button>
+              <h5 class="offcanvas-title" id="offcanvasSidebarLabel">Advance Filters</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasSidebar" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body flex-column p-3 p-xl-0">
-              <form class="rounded-3 shadow">
-                <!-- Hotel type START -->
-                <div class="card card-body rounded-0 rounded-top p-4">
-                  <!-- Title -->
-                  <h6 class="mb-2">Hotel Type</h6>
-                  <!-- Hotel Type group -->
-                  <div class="col-12">
-                    <!-- Checkbox -->
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="hotelType1"
-                      />
-                      <label class="form-check-label" for="hotelType1"
-                        >All</label
-                      >
-                    </div>
-                    <!-- Checkbox -->
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="hotelType2"
-                      />
-                      <label class="form-check-label" for="hotelType2"
-                        >Hotel</label
-                      >
-                    </div>
-                    <!-- Checkbox -->
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="hotelType3"
-                      />
-                      <label class="form-check-label" for="hotelType3"
-                        >Apartment</label
-                      >
-                    </div>
-                    <!-- Checkbox -->
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="hotelType4"
-                      />
-                      <label class="form-check-label" for="hotelType4"
-                        >Resort</label
-                      >
-                    </div>
-                    <!-- Checkbox -->
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="hotelType5"
-                      />
-                      <label class="form-check-label" for="hotelType5"
-                        >Villa</label
-                      >
-                    </div>
-                    <!-- Checkbox -->
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="hotelType6"
-                      />
-                      <label class="form-check-label" for="hotelType6"
-                        >Lodge</label
-                      >
-                    </div>
+              <form [formGroup]="filterCriteria" class="rounded-3 shadow" (ngSubmit)="applyFilters()">
+                <!-- Room Type & Body Type -->
+                <div *ngIf="roomConstrant.roomTypes" class="card card-body rounded-0 rounded-top p-4">
+                  <h6 class="mb-2">Room Type & Body Type</h6>
+                  <div *ngFor="let item of roomConstrant.roomTypes; let i = index" class="form-check">
+                    <input name="roomType{{i}}" (change)="onChangeRoom($event)" type="checkbox" class="form-check-input" [id]="item" [value]="item">
+                    <label class="form-check-label" [for]="item">{{ item }}</label>
 
-                    <!-- Collapse body -->
-                    <div class="multi-collapse collapse" id="hotelType">
-                      <!-- Checkbox -->
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value=""
-                          id="hotelType7"
-                        />
-                        <label class="form-check-label" for="hotelType7"
-                          >Guest House</label
-                        >
-                      </div>
-                      <!-- Checkbox -->
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value=""
-                          id="hotelType10"
-                        />
-                        <label class="form-check-label" for="hotelType10"
-                          >Cottage</label
-                        >
-                      </div>
-                      <!-- Checkbox -->
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value=""
-                          id="hotelType8"
-                        />
-                        <label class="form-check-label" for="hotelType8"
-                          >Beach Hut</label
-                        >
-                      </div>
-                      <!-- Checkbox -->
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value=""
-                          id="hotelType9"
-                        />
-                        <label class="form-check-label" for="hotelType9"
-                          >Farm house</label
-                        >
-                      </div>
-                    </div>
-                    <!-- Collapse button -->
-                    <a
-                      class="p-0 mb-0 mt-2 btn-more d-flex align-items-center collapsed"
-                      data-bs-toggle="collapse"
-                      href="#hotelType"
-                      role="button"
-                      aria-expanded="false"
-                      aria-controls="hotelType"
-                    >
-                      See <span class="see-more ms-1">more</span
-                      ><span class="see-less ms-1">less</span
-                      ><i class="fa-solid fa-angle-down ms-2"></i>
-                    </a>
+                
                   </div>
                 </div>
-                <!-- Hotel type END -->
-
-                <hr class="my-0" />
-                <!-- Divider -->
-
-                <!-- Price range START -->
+        
+                <!-- Price Range -->
                 <div class="card card-body rounded-0 p-4">
-                  <!-- Title -->
                   <h6 class="mb-2">Price range</h6>
-                  <!-- Price range group -->
-                  <div class="col-12">
-                    <!-- Checkbox -->
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="priceRange1"
-                      />
-                      <label class="form-check-label" for="priceRange1"
-                        >Up to ₹500</label
-                      >
-                    </div>
-                    <!-- Checkbox -->
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="priceRange2"
-                      />
-                      <label class="form-check-label" for="priceRange2"
-                        >₹500 - ₹1000</label
-                      >
-                    </div>
-                    <!-- Checkbox -->
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="priceRange3"
-                      />
-                      <label class="form-check-label" for="priceRange3"
-                        >₹1000 - ₹1500</label
-                      >
-                    </div>
-                    <!-- Checkbox -->
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="priceRange4"
-                      />
-                      <label class="form-check-label" for="priceRange4"
-                        >₹1500 - ₹2000</label
-                      >
-                    </div>
-                    <!-- Checkbox -->
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="priceRange5"
-                      />
-                      <label class="form-check-label" for="priceRange5"
-                        >₹2000+</label
-                      >
-                    </div>
+                  <div *ngFor="let range of priceRanges ;let i = index" class="form-check">
+                    <input  (change)="onChangePrice($event)" name="range{{i}}" type="checkbox" class="form-check-input" id="{{ range }}" [value]="range">
+                    <label class="form-check-label" for="{{ range }}">{{ range }}</label>
                   </div>
                 </div>
-                <!-- Price range END -->
-
-
-                <hr class="my-0" />
-                <!-- Divider -->
-
-                <!-- Customer Rating START -->
+        
+                <!-- Customer Rating -->
                 <div class="card card-body rounded-0 p-4">
-                  <!-- Title -->
                   <h6 class="mb-2">Customer Rating</h6>
-                  <!-- Customer Rating group -->
-                  <ul class="list-inline mb-0 g-3">
-                    <!-- Item -->
-                    <li class="list-inline-item mb-0">
-                      <input
-                        type="checkbox"
-                        class="btn-check"
-                        id="btn-check-c1"
-                      />
-                      <label
-                        class="btn btn-sm btn-light btn-primary-soft-check"
-                        for="btn-check-c1"
-                        >3+</label
-                      >
-                    </li>
-                    <!-- Item -->
-                    <li class="list-inline-item mb-0">
-                      <input
-                        type="checkbox"
-                        class="btn-check"
-                        id="btn-check-c2"
-                      />
-                      <label
-                        class="btn btn-sm btn-light btn-primary-soft-check"
-                        for="btn-check-c2"
-                        >3.5+</label
-                      >
-                    </li>
-                    <!-- Item -->
-                    <li class="list-inline-item mb-0">
-                      <input
-                        type="checkbox"
-                        class="btn-check"
-                        id="btn-check-c3"
-                      />
-                      <label
-                        class="btn btn-sm btn-light btn-primary-soft-check"
-                        for="btn-check-c3"
-                        >4+</label
-                      >
-                    </li>
-                    <!-- Item -->
-                    <li class="list-inline-item mb-0">
-                      <input
-                        type="checkbox"
-                        class="btn-check"
-                        id="btn-check-c4"
-                      />
-                      <label
-                        class="btn btn-sm btn-light btn-primary-soft-check"
-                        for="btn-check-c4"
-                        >4.5+</label
-                      >
-                    </li>
-                  </ul>
-                </div>
-                <!-- Customer Rating END -->
-
-                <hr class="my-0" />
-                <!-- Divider -->
-
-                <hr class="my-0" />
-                <!-- Divider -->
-
-                <!-- Amenities START -->
-                <div class="card card-body rounded-0 rounded-bottom p-4">
-                  <!-- Title -->
-                  <h6 class="mb-2">Amenities</h6>
-                  <!-- Amenities group -->
-                  <div class="col-12">
-                    <!-- Checkbox -->
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="amenitiesType1"
-                      />
-                      <label class="form-check-label" for="amenitiesType1"
-                        >All</label
-                      >
-                    </div>
-                    <!-- Checkbox -->
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="amenitiesType2"
-                      />
-                      <label class="form-check-label" for="amenitiesType2"
-                        >Air Conditioning</label
-                      >
-                    </div>
-                    <!-- Checkbox -->
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="amenitiesType3"
-                      />
-                      <label class="form-check-label" for="amenitiesType3"
-                        >Bar</label
-                      >
-                    </div>
-                    <!-- Checkbox -->
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="amenitiesType4"
-                      />
-                      <label class="form-check-label" for="amenitiesType4"
-                        >Bonfire</label
-                      >
-                    </div>
-                    <!-- Checkbox -->
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="amenitiesType5"
-                      />
-                      <label class="form-check-label" for="amenitiesType5"
-                        >Business Services</label
-                      >
-                    </div>
-                    <!-- Checkbox -->
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="amenitiesType6"
-                      />
-                      <label class="form-check-label" for="amenitiesType6"
-                        >Caretaker</label
-                      >
-                    </div>
-
-                    <!-- Collapse body -->
-                    <div class="multi-collapse collapse" id="amenitiesCollapes">
-                      <!-- Checkbox -->
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value=""
-                          id="amenitiesType7"
-                        />
-                        <label class="form-check-label" for="amenitiesType7"
-                          >Dining</label
-                        >
-                      </div>
-                      <!-- Checkbox -->
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value=""
-                          id="amenitiesType8"
-                        />
-                        <label class="form-check-label" for="amenitiesType8"
-                          >Free Internet</label
-                        >
-                      </div>
-                      <!-- Checkbox -->
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value=""
-                          id="amenitiesType9"
-                        />
-                        <label class="form-check-label" for="amenitiesType9"
-                          >Hair nets</label
-                        >
-                      </div>
-                      <!-- Checkbox -->
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value=""
-                          id="amenitiesType10"
-                        />
-                        <label class="form-check-label" for="amenitiesType10"
-                          >Masks</label
-                        >
-                      </div>
-                    </div>
-                    <!-- Collapse button -->
-                    <a
-                      class="p-0 mb-0 mt-2 btn-more d-flex align-items-center collapsed"
-                      data-bs-toggle="collapse"
-                      href="#amenitiesCollapes"
-                      role="button"
-                      aria-expanded="false"
-                      aria-controls="amenitiesCollapes"
-                    >
-                      See <span class="see-more ms-1">more</span
-                      ><span class="see-less ms-1">less</span
-                      ><i class="fa-solid fa-angle-down ms-2"></i>
-                    </a>
+                  <div *ngFor="let rating of customerRatings; let i = index" class="form-check">
+                    <input (change)="onChangeRating($event)" name="rating{{i}}" type="checkbox" class="form-check-input" id="{{ rating }}" [value]="rating">
+                    <label class="form-check-label" for="{{ rating }}">{{ rating }}+</label>
                   </div>
                 </div>
-                <!-- Amenities END -->
+        
+                <!-- Filter and Clear buttons -->
+                <div class="d-flex justify-content-between p-2 p-xl-0 mt-xl-4">
+                  <button type="button" class="btn btn-link p-0 mb-0" (click)="clearFilters()">Clear all</button>
+                  <button type="submit" class="btn btn-primary mb-0">Filter Result</button>
+                </div>
               </form>
-              <!-- Form End -->
-            </div>
-            <!-- Buttons -->
-            <div class="d-flex justify-content-between p-2 p-xl-0 mt-xl-4">
-              <button class="btn btn-link p-0 mb-0">Clear all</button>
-              <button class="btn btn-primary mb-0">Filter Result</button>
             </div>
           </div>
-          <!-- Responsive offcanvas body END -->
         </aside>
+        
         <!-- Left sidebar END -->
 
         <!-- Main content START -->
@@ -667,9 +243,12 @@
           <div class="vstack gap-4">
 
             <!-- Card item START -->
-            <ng-container *ngIf="hotelList">
-                <app-hotelcard *ngFor="let data of hotelList.data" [card]="data"></app-hotelcard>
+            <ng-container *ngIf="filteredList">
+                <app-hotelcard *ngFor="let data of filteredList" [card]="data"></app-hotelcard>
             </ng-container>
+            <div *ngIf="filteredList?.length <= 0" class="d-flex justify-content-center align-items-center " style="min-height: 70vh;">
+              <div  style="font-weight: 900; font-size: 3rem;"> No Hotels Found</div>
+            </div>
             <!-- Card item END -->
 
            

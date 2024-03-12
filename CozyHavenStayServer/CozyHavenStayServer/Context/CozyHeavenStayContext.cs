@@ -1,6 +1,7 @@
 ﻿using CozyHavenStayServer.Context.ModelConfig;
 using CozyHavenStayServer.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace CozyHavenStayServer.Context
 {
@@ -42,7 +43,9 @@ namespace CozyHavenStayServer.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.UseLazyLoadingProxies(); 
-            //optionsBuilder.EnableSensitiveDataLogging();
+            //optionsBuilder.EnableSensitiveDataLogging();          
+
+            
         }
         
     }

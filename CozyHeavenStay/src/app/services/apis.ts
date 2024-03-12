@@ -91,13 +91,13 @@ export const paymentEndpoints = {
 
 // REFUND ENDPOINTS
 export const refundEndpoints = {
-    GET_ALL_REFUNDS_API: BASE_URL + "Refund/GetAllRefunds",
-    GET_REFUND_BY_ID_API: BASE_URL + "Refund/GetRefundById/",
-    GET_REFUND_BY_PAYMENT_ID_API: BASE_URL + "Refund/GetRefundByPaymentId/",
-    CREATE_REFUND_API: BASE_URL + "Refund/CreateRefund",
-    UPDATE_REFUND_API: BASE_URL + "Refund/UpdateRefund",
-    DELETE_REFUND_API: BASE_URL + "Refund/DeleteRefund/",
-    APPROVE_REFUND_API: BASE_URL + "Refund/ApproveRefund/"
+    GET_ALL_REFUNDS_API: BASE_URL + "/Refund/GetAllRefunds",
+    GET_REFUND_BY_ID_API: BASE_URL + "/Refund/GetRefundById/",
+    GET_REFUND_BY_PAYMENT_ID_API: BASE_URL + "/Refund/GetRefundByPaymentId/",
+    CREATE_REFUND_API: BASE_URL + "/Refund/CreateRefund",
+    UPDATE_REFUND_API: BASE_URL + "/Refund/UpdateRefund",
+    DELETE_REFUND_API: BASE_URL + "/Refund/DeleteRefund/",
+    APPROVE_REFUND_API: BASE_URL + "/Refund/ApproveRefund/"
 };
 
 

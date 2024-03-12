@@ -55,11 +55,7 @@ export class BookingRoomComponent {
     ){
     //Set minimum selectable date to today
     this.minDate = new Date();
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        window.scrollTo(0, 0);
-      }
-    });
+   
     
     const today = new Date();
     const tomorrow = new Date();
@@ -69,6 +65,14 @@ export class BookingRoomComponent {
     this.guests = [];
   }
   
+  onActivate(_event: any) {
+    window.scroll({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+    });
+}
+
   ngOnInit():void{
     
 

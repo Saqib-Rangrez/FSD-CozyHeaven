@@ -107,7 +107,7 @@ namespace CozyHavenStayServer.Services
         {
             try
             {
-                var existingPayment = await _paymentRepository.GetAsync(p => p.PaymentId == payment.PaymentId);
+                var existingPayment = await _paymentRepository.GetAsync(p => p.PaymentId == payment.PaymentId,true);
                 if (existingPayment == null)
                 {
                     _logger.LogError("Payment not found with given Id");

@@ -15,4 +15,12 @@ export class AppComponent {
   ngOnInit() {
     this.authService.autoLogin();
   }
+
+  onActivate(_event: any) {
+    window.scroll({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+    });
+}
 }
