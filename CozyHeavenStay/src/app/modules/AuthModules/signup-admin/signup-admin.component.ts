@@ -26,7 +26,8 @@ export class SignupAdminComponent {
       email: new FormControl(null, [ Validators.required, Validators.email]),
       password: new FormControl(null, [ Validators.required]),
       confirmPassword: new FormControl(null, [ Validators.required])
-    });
+    }, {validators : this.passwordMatchValidator} 
+     );
   }
 
   onSubmit() {
@@ -37,16 +38,13 @@ export class SignupAdminComponent {
         next: res => {
           this.toastr.success("Registration success")
           this.router.navigate(['/login'])
-          console.log(res);
         },
         error : err => {
           this.toastr.error("Registration failed")
-          console.log(err);
          }
       })
     } else {
       this.toastr.error("Please provide a valid registration details");
-      console.log("Form validation failed!");
     }
   }
 
@@ -57,9 +55,9 @@ export class SignupAdminComponent {
     this.showPassword = !this.showPassword;
   }
 
-  passwordMatchValidator() {
-    const password = this?.adminForm.get('password')?.value;
-    const confirmPassword = this?.adminForm.get('confirmPassword')?.value;
+  passwordMatchValidator(formGroup: FormGroup) {
+    const password = formGroup.get('password')?.value;
+    const confirmPassword = formGroup.get('confirmPassword')?.value;
     return password === confirmPassword ? null : { passwordMismatch: true };
   }
 }

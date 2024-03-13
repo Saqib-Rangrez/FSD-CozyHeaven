@@ -22,9 +22,9 @@ export class ResetPasswordComponent {
   ngOnInit() {
     this.resetForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null,  [Validators.required]),
-      confirmPassword: new FormControl(null,  [Validators.required, this.passwordMatchValidator]),
-    });
+      password: new FormControl(null,  [Validators.required, Validators.minLength(6)]),
+      confirmPassword: new FormControl(null,  [Validators.required]),
+    }, { validators: this.passwordMatchValidator });
   }
 
   onSubmit() {
@@ -33,22 +33,18 @@ export class ResetPasswordComponent {
       this.activeRoute.params.subscribe((params) => {
         formData.token = params['token'];        
       });     
-      console.log(formData);
-      // Do something with formData, like sending it to the server
       this.authService.resetPassword(formData).subscribe({
         next : (res) => {
-          console.log(res);
           this.toastr.success('Your Password has been successfully changed!','Success');     
           this.router.navigate(['/login']);     
         },
         error : (err) => {
+          this.toastr.error('Something went wrong ');
           console.log(err);
         }
       })
-      console.log(formData);
     } else {
       this.toastr.error("Please provide a valid registration details");
-      console.log("Form validation failed!");    
     }
   }
 
@@ -64,4 +60,5 @@ export class ResetPasswordComponent {
     const confirmPassword = formGroup.get('confirmPassword')?.value;
     return password === confirmPassword ? null : { passwordMismatch: true };
   }
+  
 }

@@ -46,7 +46,6 @@ export class BookingDetailComponent {
   cancelData.status = 'Canceled';
   this.bookingService.updateBooking(cancelData,this.user.token).subscribe({
     next : res => {
-      console.log(res);
       this.toaster.success("Booking Cancelled Successfully");
       this.booleanValue.emit(true);
       location.reload();
@@ -69,11 +68,9 @@ export class BookingDetailComponent {
     null,
   );
 
-  console.log(refundData)
 
   this.refundService.createRefund(refundData,this.user.token).subscribe({
     next : res => {
-      console.log("REFUND DATA",res);
       this.refundResult = res;
       this.refundResult = this.refundResult.data;
     },
@@ -82,19 +79,6 @@ export class BookingDetailComponent {
       this.toaster.error("Something went wrong");
     },
     complete : () => {
-      // this.paymentService.getPaymentByBookingId(payment.bookingId,this.user.token).subscribe({
-      //   next : data => {
-      //     paymentToUpdate = data;
-      //     paymentToUpdate = paymentToUpdate.data;
-      //     console.log("DATATOUPDATE",paymentToUpdate)
-
-      //     paymentToUpdate.refundId = this.refundResult.refundId;
-      //     paymentToUpdate.status = 'Refunded';
-          
-          
-      //   }
-      // })
-
       const paymentToUpdate = new Payment(
         payment.paymentId,
         payment.bookingId,
@@ -106,11 +90,9 @@ export class BookingDetailComponent {
         null,
         null,
       )
-      console.log(paymentToUpdate);
     
       this.paymentService.updatePayment(paymentToUpdate,this.user.token).subscribe({
         next : res => {
-          console.log("UPDATED PAYMENT DATA",res);
           this.toaster.success("Refund Requested Successfully");
           this.booleanValue.emit(true);
           location.reload();
@@ -118,15 +100,10 @@ export class BookingDetailComponent {
         error : err => {
           console.log(err);
           this.toaster.error("Something went wrong");
-        },
-        complete : () => {
-          
         }
       });
     }
-  });
-
-  
+  });  
  }
 
  payNow(payment) {
@@ -144,7 +121,6 @@ export class BookingDetailComponent {
 
   this.paymentService.updatePayment(paymentToUpdate,this.user.token).subscribe({
     next : res => {
-      console.log("UPDATED PAYMENT DATA",res);
       this.toaster.success("Payment Successful");
       this.booleanValue.emit(true);
       const bookingData : Booking = new Booking(
@@ -163,7 +139,6 @@ export class BookingDetailComponent {
       bookingData.status = 'Confirmed';
       this.bookingService.updateBooking(bookingData,this.user.token).subscribe({
         next : res => {
-          console.log(res);
           this.toaster.success("Booking Cancelled Successfully");
           this.booleanValue.emit(true);
           location.reload();
@@ -194,14 +169,11 @@ export class BookingDetailComponent {
     'Approved',
     null,
   );
-
-  console.log(refundData)
   let updateRefundResult
 
   this.refundService.updateRefund(refundData,this.user.token).subscribe({
 
     next : res => {
-      console.log("REFUND UPDATE DATA",res);
       location.reload();
       updateRefundResult = res;
       updateRefundResult = updateRefundResult.data;
@@ -211,8 +183,5 @@ export class BookingDetailComponent {
       this.toaster.error("Something went wrong");
     },
   });
-
-  
  }
-
 }

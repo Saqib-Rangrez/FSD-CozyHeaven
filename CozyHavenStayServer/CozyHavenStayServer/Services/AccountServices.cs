@@ -87,15 +87,15 @@ namespace CozyHavenStayServer.Services
 
             if (model.Role == "User")
             {
-                await _userServices.UpdateUserAsync(model);
+                await _userServices.UpdateUserAsync(model, false);
             }
             else if (model.Role == "Admin")
             {
-                await _adminServices.UpdateAdminAsync(model);
+                await _adminServices.UpdateAdminAsync(model,false);
             }
             else
             {
-                await _hotelOwnerServices.UpdateHotelOwnerAsync(model);
+                await _hotelOwnerServices.UpdateHotelOwnerAsync(model,false);
             }
             return model;
         }

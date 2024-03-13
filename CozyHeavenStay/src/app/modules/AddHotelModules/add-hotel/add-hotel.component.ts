@@ -24,21 +24,17 @@ export class AddHotelComponent {
     if (this.activatedRoute.snapshot && this.activatedRoute.snapshot.paramMap) {
       this.id = this.activatedRoute.snapshot.paramMap.get('id');
     }
-    console.log(this.id);
   }
 
   ngDoCheck() {
     this.step = this.hoteService.step;
-    console.log(this.step);
   }
 
   next() {
     this.hoteService.step++;
-    console.log(this.step)
   }
 
   previous() {
     this.hoteService.step--;
-    console.log(this.step)
   }
 }

@@ -7,7 +7,4 @@ import { Component, Input } from '@angular/core';
 })
 export class PaymentCardComponent {
   @Input() data : any;
-  ngDoCheck(){
-    console.log(this.data)
-  }
 }

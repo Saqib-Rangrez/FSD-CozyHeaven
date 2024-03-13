@@ -22,13 +22,10 @@ export class ForgetPasswordComponent {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      // Implement your login logic here
       const email = this.loginForm.value.email;
-      console.log("Email:", email);
 
       this.authService.forgetPassword(email).subscribe({
         next : (res) => {
-          console.log(res);
           this.toastr.success("Email sent successfully")
         },
         error: (err) => {
@@ -37,7 +34,7 @@ export class ForgetPasswordComponent {
         }
       });
     } else {
-      // Form is invalid, handle accordingly
+      this.toastr.info("Enter all values");
     }
   }
 }

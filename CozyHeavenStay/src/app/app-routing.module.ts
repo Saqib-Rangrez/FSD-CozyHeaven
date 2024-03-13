@@ -27,7 +27,6 @@ import { ContactComponent } from './modules/contact/contact.component';
 import { AboutComponent } from './modules/about/about.component';
 import { HotelDetailComponent } from './modules/HotelModules/hotel-detail/hotel-detail.component';
 import { AuthGuard, OpenRoute } from './guards/auth.guard';
-import { LocationAutoComponent } from './modules/HotelModules/location-auto/location-auto.component';
 
 const routes: Routes = [
   {path:"" , component: HomeComponent},
@@ -42,7 +41,6 @@ const routes: Routes = [
   {path: "signup-admin", component: SignupAdminComponent, canActivate:[OpenRoute]},
   {path: "login", component: LoginComponent, canActivate:[OpenRoute]},
   {path: "forget-password", component: ForgetPasswordComponent, canActivate:[OpenRoute]},
-  {path: "location", component: LocationAutoComponent},
   {path: "reset-password/:token", component: ResetPasswordComponent, canActivate:[OpenRoute]},
   {
     path: 'dashboard',

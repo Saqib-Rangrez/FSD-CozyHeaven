@@ -24,7 +24,6 @@ deleteHotel(id:number) {
   this.hotelService.deleteHotel(id,this.owner.token).subscribe({
     next: data => {
       this.toaster.success('Hotel deleted successfully');
-      console.log(data)
       this.router.navigate(['/dashboard/my-listings']);
     },
     error: error => {

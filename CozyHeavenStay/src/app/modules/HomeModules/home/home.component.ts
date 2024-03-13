@@ -56,20 +56,14 @@ export class HomeComponent{
     this.user = JSON.parse(localStorage.getItem('user'));
     this.hotelService.getAllHotels('').subscribe({next:(res) => {
       this.hotelList = res;
-      console.log(this.hotelList);
-      console.log("api response: " + res);
       this.reviews = this.hotelList.data[0].reviews.slice(0,2);
       
       for (let index = 0; index < Math.min(4, this.hotelList.data.length); index++) {
         const h = this.hotelList.data[index];
-        console.log("Processing hotel:", h);
         const avgrating = this.GetAvgRating(h.reviews);
         const minPrice = this.GetMinPrice(h.rooms);
-        
-
         this.hotels.push({ Image: h.hotelImages[0].imageUrl, location: h.location, title: h.name, detailpage: "/hoteldetail/"+h.hotelId, price: "Rs"+minPrice, rating: avgrating });
       }
-      
     },
     error:error => {
       console.log(error);
@@ -89,7 +83,6 @@ export class HomeComponent{
     let totalReviewCount = 0;
     ratingArr?.forEach(element => {
       totalReviewCount += element.rating
-    
     });
 
     const multiplier = Math.pow(10, 1)
@@ -101,14 +94,12 @@ export class HomeComponent{
 
   GetMinPrice(rooms){
     const minPriceRoom = rooms.reduce((minRoom, currentRoom) => {
-      // If minRoom is null or the baseFare of currentRoom is less than minRoom's baseFare
       if (!minRoom || currentRoom.baseFare < minRoom.baseFare) {
         return currentRoom;
       }
       return minRoom;
     }, null);
     
-    // Now minPriceRoom will contain the room with the minimum price
     return minPriceRoom.baseFare;
   }
 }

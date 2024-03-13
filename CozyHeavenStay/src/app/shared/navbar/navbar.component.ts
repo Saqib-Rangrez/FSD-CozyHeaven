@@ -17,10 +17,8 @@ export class NavbarComponent implements OnInit {
 
   logOut() {
     const user = JSON.parse(localStorage.getItem('user'))
-    console.log(user);
     this.authService.logout(user?.token).subscribe({
       next : res => {
-        console.log(res);
         this.toastr.success("Logged out successfully", "Success");
       }  ,
       error : err => console.log(err)

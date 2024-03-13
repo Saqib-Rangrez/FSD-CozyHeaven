@@ -56,7 +56,6 @@ import { JwtModule } from "@auth0/angular-jwt";
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { LocationAutoComponent } from './modules/HotelModules/location-auto/location-auto.component';
 
 export function tokenGetter() { 
   return  JSON.parse(localStorage.getItem("user")).token; 
@@ -103,9 +102,7 @@ export function tokenGetter() {
     BookingConfirmComponent,
     AboutComponent,
     ContactComponent,
-    HotelDetailComponent,
-    LocationAutoComponent,
- 
+    HotelDetailComponent, 
   ],
   imports: [
     BrowserModule,

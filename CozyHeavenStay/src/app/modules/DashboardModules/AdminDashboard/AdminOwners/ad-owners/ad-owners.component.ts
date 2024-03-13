@@ -14,21 +14,18 @@ export class AdOwnersComponent {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
-    console.log("Admin..", this.user);
 
     this.loading = true;
     this.ownerService.getAllHotelOwners(this.user.token).subscribe({
       next : res => {
         this.ownerList = res;
         this.ownerList = this.ownerList.data;
-        console.log("Owners LIST...",this.ownerList)
       },
       error : err =>{
         this.loading = false;
         console.log(err)
       } ,
       complete : () => {
-        console.log("complete")
         this.loading = false;
       }
     })

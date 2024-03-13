@@ -18,31 +18,27 @@ export class SignupUserComponent {
   showConfirmPassword: boolean = false;
   showPassword: boolean = false;
 
-
   ngOnInit() {
     this.registerForm = new FormGroup({
       firstName: new FormControl(null, [Validators.required]),
       lastName: new FormControl(null, [Validators.required]),
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null,  [Validators.required]),
-      confirmPassword: new FormControl(null,  [Validators.required, this.passwordMatchValidator]),
+      confirmPassword: new FormControl(null,  [Validators.required]),
       gender: new FormControl(null,  [Validators.required]),
       accountType : new FormControl(null, [Validators.required]),
       contactNumber: new FormControl(null,  [Validators.required]),
       address: new FormControl(null,  [Validators.required]),
-    });
+    },{validators : this.passwordMatchValidator} );
   }
+
 
   onSubmit() {
     if (this.registerForm.valid) {
       const formData: RegisterUserDTO = this.registerForm.value;
-
-      console.log(formData);
-
       if(this.registerForm.get('accountType').value === 'User') {
         this.authService.signupUser(formData).subscribe({
           next : (res) => {
-              console.log(res);
               this.toastr.success("Registration success")
               this.router.navigate(['/login'])
           },
@@ -54,7 +50,6 @@ export class SignupUserComponent {
       }else{
         this.authService.signupOwner(formData).subscribe({
           next : (res) => {
-            console.log(res);
             this.toastr.success("Registration success")
             this.router.navigate(['/login'])
 
@@ -66,7 +61,6 @@ export class SignupUserComponent {
         })
       }           
     } else {
-      console.log('Form is invalid');
       this.toastr.error("Please provide a valid registration details");
     }
   }
@@ -78,9 +72,9 @@ export class SignupUserComponent {
     this.showPassword = !this.showPassword;
   }
 
-  passwordMatchValidator() {
-    const password = this?.registerForm.get('password')?.value;
-    const confirmPassword = this?.registerForm.get('confirmPassword')?.value;
+  passwordMatchValidator(formGroup: FormGroup) {
+    const password = formGroup.get('password')?.value;
+    const confirmPassword = formGroup.get('confirmPassword')?.value;
     return password === confirmPassword ? null : { passwordMismatch: true };
   }
 }

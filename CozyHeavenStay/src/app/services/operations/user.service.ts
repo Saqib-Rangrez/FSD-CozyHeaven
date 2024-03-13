@@ -62,7 +62,6 @@ export class UserService {
       .pipe(
         tap((res) => {
             this.toastr.clear();
-            console.log(res);
             this.handleCreateUser(res);
         }),
         catchError((err) => {
@@ -91,7 +90,6 @@ export class UserService {
       .pipe(
         tap((res) => {
           this.toastr.clear();
-          console.log(res);
         }),
         catchError((err) => {
           if (loadingToast) {
@@ -143,7 +141,6 @@ export class UserService {
   }
 
   private handleError(error: any) {
-    
     console.error('API Error:', error);
     return throwError('Something went wrong; please try again later.');
   }
@@ -152,7 +149,6 @@ export class UserService {
     const expiresInTs = new Date().getTime() + ((3 * 60 * 60) * 1000);
     const expiresIn = new Date(expiresInTs);
     let user : any;
-    console.log("from services handle...." ,res)
 
     if(res.user.role == "Admin") {
       user = new Admin(

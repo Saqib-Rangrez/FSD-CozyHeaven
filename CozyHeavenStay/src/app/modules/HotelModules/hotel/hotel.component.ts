@@ -78,10 +78,7 @@ export class HotelComponent {
       (res) => {
         this.hotelList = res;
         this.hotelList = this.hotelList.data;
-        this.filteredList = this.hotelList;
-        console.log(this.hotelList)
-        console.log("api response: " + res);
-        
+        this.filteredList = this.hotelList;        
       },
       error => {
         console.log(error);
@@ -115,18 +112,14 @@ export class HotelComponent {
       this.searchForm.get('numberOfAdults').value,
       this.searchForm.get('numberOfChildren').value
     );
-    console.log(searchData);
   
-    // Filter the hotelList based on the criteria
     this.filteredList = this.hotelList.filter(hotel => {
       let matchesCriteria = true;
   
-      // Apply location filter
       if (searchData.location) {
         matchesCriteria = matchesCriteria && hotel.location.trim().toLowerCase().includes(searchData.location.trim().toLowerCase());
       }
   
-      // Apply date availability filter
       if (searchData.checkInDate && searchData.checkOutDate) {
         matchesCriteria = matchesCriteria && hotel.rooms.some(room =>
           !room.bookings.some(booking =>
@@ -145,13 +138,9 @@ export class HotelComponent {
       if (searchData.numberOfAdults && searchData.numberOfChildren) {
         const totalPersons = searchData.numberOfAdults + searchData.numberOfChildren;
         matchesCriteria = matchesCriteria && hotel.rooms.some(room => room.maxOccupancy >= totalPersons);
-      }
-  
+      }  
       return matchesCriteria;
-    });
-  
-    // Now you have the filtered hotelList
-    console.log(this.filteredList);
+    });  
   }
   
 
@@ -202,7 +191,6 @@ export class HotelComponent {
   }
 
   onChangeRoom(event) {
-    console.log(event.target.value)
     const roomArray = this.filterCriteria.get('roomType') as FormArray;
     if(event.target.checked){
       roomArray.push(new FormControl(event.target.value));
@@ -215,12 +203,9 @@ export class HotelComponent {
         i++;
       })
     }
-    console.log(roomArray)
   }
 
-  onChangePrice(event) {
-    console.log(event.target.value)
-    
+  onChangePrice(event) {    
     const priceArray = this.filterCriteria.get('priceRange') as FormArray;
     if(event.target.checked){
       priceArray.push(new FormControl(event.target.value));
@@ -233,13 +218,11 @@ export class HotelComponent {
         i++;
       })
     }
-    console.log(priceArray)
   }
 
  
 
   onChangeRating(event) {
-    console.log("rat",event.target.value)
     const ratingArray = this.filterCriteria.get('customerRating') as FormArray;
     if(event.target.checked){
       ratingArray.push(new FormControl(event.target.value));
@@ -252,11 +235,9 @@ export class HotelComponent {
         i++;
       })
     }
-    console.log(ratingArray)
   }
 
   applyFilters(): void {
-    console.log(this.filterCriteria.value);
     this.filteredList = this.hotelList.filter((hotel) => {
       let matchesCriteria = true;
   
@@ -274,9 +255,7 @@ export class HotelComponent {
   
       // Filter by Customer Rating
       const selectedRatings: number[] = this.filterCriteria.get('customerRating').value;
-      console.log("rat",selectedRatings);
       if (selectedRatings.length > 0) {
-        console.log("hhh",hotel.reviews)
         matchesCriteria = matchesCriteria && this.checkRatings(hotel.reviews,selectedRatings);
       }
   
@@ -298,7 +277,6 @@ export class HotelComponent {
 
   checkPriceRange(hotel: Hotel, selectedPriceRanges: string[]): boolean {
     let roomPrices = hotel.rooms.map(room => room.baseFare); // Get an array of room base fares
-    console.log(roomPrices,Math.min(...roomPrices))
     roomPrices = [Math.min(...roomPrices)];
 
   return roomPrices.some(roomPrice => {
@@ -308,9 +286,7 @@ export class HotelComponent {
       if(min==2000){
         max = 1000000000;
       }
-      console.log([min, max]);
       if (!isNaN(min) && !isNaN(max) && roomPrice >= min && roomPrice <= max) {
-        console.log([min, max] , true);
         return true; 
       }
     }
@@ -341,7 +317,6 @@ export class HotelComponent {
     //Resetting Customer Rating
     controlArray = this.filterCriteria.get('customerRating') as FormArray;
     controlArray.clear();
-    console.log("fff",this.filterCriteria);
   }
   
 

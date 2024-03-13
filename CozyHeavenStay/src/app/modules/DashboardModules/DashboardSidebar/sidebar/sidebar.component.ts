@@ -22,10 +22,8 @@ export class SidebarComponent {
 
   logOut() {
     const user = JSON.parse(localStorage.getItem('user'))
-    console.log(user);
     this.authService.logout(user?.token).subscribe({
       next : res => {
-        console.log(res);
         this.toastr.success("Logged out successfully", "Success");
       }  ,
       error : err => console.log(err)
@@ -34,7 +32,6 @@ export class SidebarComponent {
  
   toggleEdit() {
     this.allowEdit =!this.allowEdit;
-    console.log(this.allowEdit)
     this.userService.setDynamicData(this.allowEdit);
   }
 

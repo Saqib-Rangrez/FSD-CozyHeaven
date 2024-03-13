@@ -32,7 +32,6 @@ export class HotelDetailComponent {
   ngOnInit():void{
     this.user = JSON.parse(localStorage.getItem('user'));
     this.hotelId = this.activatedRoute.snapshot.params['id'];
-    console.log(this.hotelId);
     
     this.activatedRoute.fragment.subscribe((value) => {
           setTimeout(() => {
@@ -56,16 +55,13 @@ export class HotelDetailComponent {
         this.response = res;
         this.hotel = this.response.data;
         this.avgRating = this.GetAvgRating(this.hotel.reviews);
-        console.log(this.hotel);
         this.hotelname = this.hotel.name;
        
         this.minPriceRoom = this.GetMinPrice(this.hotel.rooms);
        
         this.reviewRatings = this.extractRatings(this.hotel.reviews);
         
-        this.percentageForEachRating = this.calculatePercentageForEachRating(this.reviewRatings);
-        
-        
+        this.percentageForEachRating = this.calculatePercentageForEachRating(this.reviewRatings);        
       },
       error : (err) => {
         console.log(err);
@@ -145,7 +141,6 @@ submitReview() {
       {
         next: (res) => {
           this.response = res;
-          console.log('Review submitted successfully:', this.response.data);
           this.reviewForm.reset({ rating: 5, reviewMessage: '' });
           this.toastr.success("Review added Success !!")
           this.ngOnInit();
@@ -162,8 +157,6 @@ submitReview() {
 MoreReviews(){
   if(this.reviewlength < this.hotel.reviews.length){
     this.reviewlength += 5;
-    console.log(this.reviewlength)
   }
-
-}
+ }
 }

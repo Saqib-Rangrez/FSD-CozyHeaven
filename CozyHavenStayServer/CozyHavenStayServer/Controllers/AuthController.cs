@@ -385,7 +385,7 @@ namespace CozyHavenStayServer.Controllers
             string message;
             if (!string.IsNullOrEmpty(origin))
             {
-                var resetUrl = $"{origin}/account/reset-password?token={data.Token}";
+                var resetUrl = $"http://localhost:4200/reset-password/{data.Token}";
                 message = $@"<p>Please click the below link to reset your password, the link will be valid for 6 hours:</p>
                             <p><a href=""{resetUrl}"">{resetUrl}</a></p>";
             }

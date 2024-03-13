@@ -15,6 +15,7 @@ export class AdOwnerDetailComponent {
   toastr : ToastrService = inject(ToastrService);
   router : Router = inject(Router);
   user : any;
+  ownerData : any;
   ownerHotels : any;
   loading : boolean = false;
 
@@ -22,16 +23,13 @@ export class AdOwnerDetailComponent {
     this.loading = true;
     this.route.params.subscribe(params => {
       this.id = params['id'];
-      console.log('ID:', this.id); 
     });
     this.user = JSON.parse(localStorage.getItem("user"));
     this.ownerService.getHotelOwnerById(this.id,this.user.token).subscribe({
       next : res => {
-        this.user = res;
-        this.user = this.user.data;
-        this.ownerHotels = this.user.hotels;
-        console.log("OWNER DETAILS",this.user);
-        console.log("OWNER HOTELS",this.ownerHotels);
+        this.ownerData = res;
+        this.ownerData = this.ownerData.data;
+        this.ownerHotels = this.ownerData.hotels;
       },
       error : err => {
         console.log(err);
@@ -46,15 +44,13 @@ export class AdOwnerDetailComponent {
         window.scrollTo(0, 0);
       }
     }); 
-
   }
 
-  deleteUser(id) {
-    this.ownerService.deleteHotelOwner(id,this.user.token).subscribe({
+  deleteUser() {
+    this.ownerService.deleteHotelOwner(this.ownerData.ownerId,this.user.token).subscribe({
       next: (res) => {
         this.router.navigate(['/dashboard/manage-owners']);
         this.toastr.success("User deleted successfully")
-        console.log(res);
       },
       error: (err) => {
         console.log("Failed to delete user");

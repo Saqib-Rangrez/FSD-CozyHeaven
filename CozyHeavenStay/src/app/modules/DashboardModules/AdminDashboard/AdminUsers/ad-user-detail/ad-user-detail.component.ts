@@ -25,14 +25,12 @@ export class AdUserDetailComponent {
     this.loading = true;
     this.route.params.subscribe(params => {
       this.id = params['id'];
-      console.log('ID:', this.id); 
     });
 
     this.userdata = JSON.parse(localStorage.getItem('user'));
     this.userService.getUserById(this.id, this.userdata.token).subscribe({
       next : res => {
         this.user = res.data;
-        console.log(this.user);
       },
       error : err => {
         console.log(err);
@@ -45,7 +43,6 @@ export class AdUserDetailComponent {
     this.reviewService.getReviewByUserId(this.id,this.userdata.token).subscribe({
       next : res => {
         this.reviews = res.data;
-        console.log(this.reviews);
       },
       error : err => {
         console.log(err);
@@ -58,11 +55,10 @@ export class AdUserDetailComponent {
   }
 
   deleteUser() {
-    this.userService.deleteUser(this.user?.userId, this.user.token).subscribe({
+    this.userService.deleteUser(this.user?.userId, this.userdata.token).subscribe({
       next: (res) => {
         this.router.navigate(['/dashboard/manage-users']);
         this.toastr.success("User deleted successfully")
-        console.log(res);
       },
       error: (err) => {
         console.log("Failed to delete user");

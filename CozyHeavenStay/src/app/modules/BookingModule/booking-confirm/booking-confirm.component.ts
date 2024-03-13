@@ -28,7 +28,6 @@ export class BookingConfirmComponent {
     
 
     this.bookingId = this.activatedRoute.snapshot.params['bookingid'];
-    console.log(this.bookingId);
 
     this.user = JSON.parse(localStorage.getItem("user"))
     this.bookingService.getBookingById(this.bookingId,this.user.token).subscribe({
@@ -36,7 +35,6 @@ export class BookingConfirmComponent {
       
         this.response = res;
         this.booking = this.response.data;
-        console.log("book",this.booking);
       },
       error : (err) => {
         console.log(err);

@@ -57,7 +57,6 @@ export class HotelOwnerService {
     .pipe(
       tap((res) => {
           this.toastr.clear();
-          console.log(res);
           this.handleCreateUser(res);
       }),
       catchError((err) => {
@@ -77,8 +76,8 @@ export class HotelOwnerService {
 
 
   deleteHotelOwner(id: number,token: string): Observable<any> {
-    console.log(id)
-    return this.http.delete<any>(`${ownerEndpoints.DELETE_HOTEL_OWNER_API}${id}`,this.setToken(token))
+    console.log(token)
+    return this.http.delete<any>(`${ownerEndpoints.DELETE_HOTEL_OWNER_API}${id}`, this.setToken(token))
       .pipe(
         catchError(this.handleError)
       );
@@ -89,23 +88,7 @@ export class HotelOwnerService {
     const expiresInTs = new Date().getTime() + ((3 * 60 * 60) * 1000);
     const expiresIn = new Date(expiresInTs);
     let user : any;
-    console.log("from services handle...." ,res)
 
-    // if(res.user.role == "Admin") {
-    //   user = new Admin(
-    //     res.user.adminId,
-    //     res.user.firstName,
-    //     res.user.lastName,
-    //     res.user.email,
-    //     res.user.password,
-    //     res.user.profileImage,
-    //     res.user.role,
-    //     res.user.token,
-    //     res.user.resetPasswordExpires,
-    //     //expiresIn
-    //   )
-
-    //  }
     if(res.user.role == "Owner"){
       user = new User(
         res.user.ownerId,
@@ -124,23 +107,6 @@ export class HotelOwnerService {
     );
       }
 
-    // }else{
-    //   user = new User(
-    //     res.user.userId,
-    //     res.user.firstName,
-    //     res.user.lastName,
-    //     res.user.email,
-    //     res.user.password,
-    //     res.user.gender,
-    //     res.user.contactNumber,
-    //     res.user.address,
-    //     //expiresIn,
-    //     res.user.role,
-    //     res.user.profileImage,
-    //     res.user.token,
-    //     res.user.resetPasswordExpires,
-    // );
-    // }     
     
     localStorage.setItem("user" , JSON.stringify(user));
   }

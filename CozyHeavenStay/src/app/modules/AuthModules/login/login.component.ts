@@ -33,47 +33,41 @@ export class LoginComponent {
       if(this.loginForm.get('accountType').value === 'Admin') {
         this.authService.loginAdmin(email, password).subscribe({
           next : (res) => {
-            console.log(res);
             this.toastr.success("Login success")
             this.router.navigate(['/home']);
           },
           error: (err) => {
             console.log(err);
-            this.toastr.success("Login failed")
+            this.toastr.success("Invalid credentials")
           }
         });
   
       }else if(this.loginForm.get('accountType').value === 'User') {
         this.authService.loginUser(email, password).subscribe({
           next : (res) => {
-            console.log(res);
             this.toastr.success("Login success");
             this.router.navigate(['/home']);
           },
           error: (err) => {
             console.log(err);
-            this.toastr.success("Login failed")
+            this.toastr.success("Invalid credentials")
           }
         });
   
       }else{
         this.authService.loginOwner(email, password).subscribe({
           next : (res) => {
-            console.log(res);
             this.toastr.success("Login success");
             this.router.navigate(['/home']);
           },
           error: (err) => {
             console.log(err);
-            this.toastr.error("Login failed")
+            this.toastr.error("Invalid credentials")
           }
-        });
-  
+        });  
       }      
-
     } else {
       this.toastr.error("Please provide a valid registration details");
-      console.log("Form validation failed!");  
     }
   }
 

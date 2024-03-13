@@ -41,7 +41,6 @@ export class AddHotelInfoComponent {
       
       this.hotelService.getHotelById(this.editId, this.user?.token).subscribe(res => {
         const addressComponents = res.data?.location?.split(',');
-        console.log(res.data)
         this.editHotel = res.data;
         // Extract the components
         const street = addressComponents[0]?.trim(); // Assuming street is the first component
@@ -96,7 +95,6 @@ export class AddHotelInfoComponent {
       };
       reader.readAsDataURL(files[i]);
     }
-    console.log(this.imagePreviews)
   }
 
 
@@ -107,7 +105,6 @@ export class AddHotelInfoComponent {
 
     const address = this.hotelForm.get('street').value + ',' + this.hotelForm.get('city').value + ',' + this.hotelForm.get('pincode').value+
     ','+ this.hotelForm.get('state').value + ','+ this.hotelForm.get('country').value;
-    console.log(address)
 
     const hotelData: HotelDTO = new HotelDTO(
       this.hotelForm.get('name').value,
@@ -117,7 +114,6 @@ export class AddHotelInfoComponent {
       this.user.adminId,
       this.hotelForm.get('files').value
     );
-    console.log("HOTEL DATA ....",hotelData)
 
     const formData = new FormData();
     formData.append('name', this.hotelForm.get('name').value);
@@ -126,7 +122,6 @@ export class AddHotelInfoComponent {
     formData.append('amenities', this.hotelForm.get('amenities').value);
     formData.append('ownerId', this.user.userId);
     formData.append('hotelId', this.editId);
-    console.log("Hotel ID-----", this.editId);
 
     const files = this.hotelForm.get('files').value;
     for (let i = 0; i < files.length; i++) {
@@ -135,7 +130,6 @@ export class AddHotelInfoComponent {
 
     this.hotelService.createHotel(formData,this.user.token).subscribe({
       next : (res) => {
-        console.log(res);
         this.toaster.success("Hotel added successfully");
         this.hotelForm.reset();
       },

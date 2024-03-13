@@ -17,13 +17,10 @@ export class PaymentHistoryComponent {
 
 
   ngOnInit() {
-    
     this.user = JSON.parse(localStorage.getItem('user'));
-    console.log(this.user)
     this.loading = true;
     this.paymentService.getPaymentById(this.user.userId,this.user.token).subscribe({
       next : res => {
-        console.log(res)
         this.paymentRecords = res?.data;
         this.toastr.success("Data Fetched Successfully");
       },
@@ -35,7 +32,5 @@ export class PaymentHistoryComponent {
         this.loading = false;
       }
     })
-
-    console.log(this.paymentRecords)
   }
 }

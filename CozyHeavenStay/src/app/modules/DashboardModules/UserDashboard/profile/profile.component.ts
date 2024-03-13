@@ -37,7 +37,6 @@ export class ProfileComponent {
 
     this.userService.dynamicData$.subscribe(data => {
       this.allowEdit = data;
-      console.log(data)
     });
 
     this.userForm = new FormGroup({
@@ -70,10 +69,7 @@ export class ProfileComponent {
       role: this.user?.role,      
       token: this.user?.token,      
       userId: this.user?.userId,
-    })
-
-    console.log(this.userForm.value)
-    
+    })    
   }
 
   updateProfile() {
@@ -106,7 +102,7 @@ export class ProfileComponent {
 
     }else if(this.user?.role == 'Admin') {
       this.adminToUpdate = new Admin(
-        this.userForm.value.userId,
+        this.user?.adminId,
         this.userForm.value.firstName,
         this.userForm.value.lastName,
         this.userForm.value.email,
@@ -116,8 +112,6 @@ export class ProfileComponent {
         this.userForm.value.token,
         this.userForm.value.resetPasswordExpires
       );
-      console.log(this.adminToUpdate)
-
       this.adminService.updateAdmin(this.adminToUpdate, this.user.token).subscribe({
         next : (res) => {
           this.toastr.success("User updated successfully")
@@ -181,12 +175,8 @@ export class ProfileComponent {
       const formData = new FormData();
     
       formData.append('file', this.selectedFile);
-      console.log(this.selectedFile);
-      console.log(this.user?.role)
-      console.log(this.user?.role == 'User', this.user?.role === 'User')
       let id : number;
       if(this.user?.role == 'User'){
-        console.log("Entered into upload")
         formData.append('id', this.user?.userId);
         formData.append('Role', this.user?.role);
       }else if(this.user?.role == 'Admin') {
@@ -199,7 +189,6 @@ export class ProfileComponent {
 
       this.userService.uploadDisplayPicture(formData, this.user.token).subscribe({
         next : (res) => {
-          console.log(res);
           this.toastr.success("Image Uploaded Successfully");
         },
         error : (err) => {
@@ -207,7 +196,6 @@ export class ProfileComponent {
           this.toastr.error("Image Uploading Failed");
         }
       });
-
     }
   }
 
@@ -216,5 +204,4 @@ export class ProfileComponent {
     const confirmPassword = this?.userForm.get('confirmPassword')?.value;
     return password === confirmPassword ? null : { passwordMismatch: true };
   }
-
 }

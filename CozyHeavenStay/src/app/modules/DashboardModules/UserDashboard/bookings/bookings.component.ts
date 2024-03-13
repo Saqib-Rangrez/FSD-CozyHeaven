@@ -18,7 +18,6 @@ export class BookingsComponent {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
-    console.log(this.user)
     this.loading = true;
     this.bookingService.getBookingByUserId(this.user.userId,this.user.token).subscribe({
       next : res => {
@@ -30,18 +29,13 @@ export class BookingsComponent {
         this.toastr.success("No bookings found");
       },
       complete : () => {
-        console.log(this.bookings);
         this.filterHotel('Pending');
-        console.log(this.filterBookings);
         this.loading = false;
       }
     })
-
-    console.log(this.bookings)
   }
 
   filterHotel(key : string) {
     this.filterBookings = this.bookings.filter((val) => val?.status?.toLocaleLowerCase() === key.toLocaleLowerCase() );
   }
-
 }

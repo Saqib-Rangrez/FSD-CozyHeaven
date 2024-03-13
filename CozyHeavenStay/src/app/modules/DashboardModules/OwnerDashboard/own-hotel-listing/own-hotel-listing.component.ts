@@ -18,7 +18,6 @@ export class OwnHotelListingComponent {
     this.ownerService.getHotelOwnerById(this.user?.userId,this.user.token).subscribe({
       next : res => {
         this.hotelList = res.data.hotels;
-        console.log(this.hotelList)
       },
       error : err =>{
         this.loading = false;

@@ -15,10 +15,10 @@
                     <div class="card-body text-center">
                         <!-- Avatar Image -->
                         <div class="avatar avatar-xl flex-shrink-0 mb-3">
-                            <img class="avatar-img rounded-circle" [src]="user?.profileImage" alt="avatar">
+                            <img class="avatar-img rounded-circle" [src]="ownerData?.profileImage" alt="avatar">
                         </div>
                         <!-- Title -->
-                        <h5 class="mb-2">{{user?.firstName}} {{user?.lastName}} </h5>
+                        <h5 class="mb-2">{{ownerData?.firstName}} {{ownerData?.lastName}} </h5>
 
                     </div>
                     <!-- Card footer -->
@@ -29,7 +29,7 @@
                             <div class="icon-md bg-mode h6 mb-0 rounded-circle flex-shrink-0"><i class="bi bi-envelope-fill"></i></div>
                             <div class="ms-2">
                                 <small>Email id</small>
-                                <h6 class="fw-normal small mb-0"><span href="#">{{user?.email}}</span></h6>
+                                <h6 class="fw-normal small mb-0"><span href="#">{{ownerData?.email}}</span></h6>
                             </div>
                         </div>
 
@@ -38,7 +38,7 @@
                             <div class="icon-md bg-mode h6 mb-0 rounded-circle flex-shrink-0"><i class="bi bi-telephone-fill"></i></div>
                             <div class="ms-2">
                                 <small>Phone</small>
-                                <h6 class="fw-normal small mb-0"><span href="#">+91 {{user?.contactNumber}}</span></h6>
+                                <h6 class="fw-normal small mb-0"><span href="#">+91 {{ownerData?.contactNumber}}</span></h6>
                             </div>
                         </div>
 
@@ -47,13 +47,13 @@
                             <div class="icon-md bg-mode h6 mb-0 rounded-circle flex-shrink-0"><i class="bi bi-geo-alt-fill"></i></div>
                             <div class="ms-2">
                                 <small>Address</small>
-                                <h6 class="fw-normal small mb-0">{{user?.address}}</h6>
+                                <h6 class="fw-normal small mb-0">{{ownerData?.address}}</h6>
                             </div>
                         </div>
 
                     </div>
                 </div>
-                <button (click)="deleteUser(user?.ownerId)"   class="btn btn-danger btn-sm mb-0 mt-3 w-100">Delete Owner</button>
+                <button (click)="deleteUser()" class="btn btn-danger btn-sm mb-0 mt-3 w-100">Delete Owner</button>
             </div>
             <!-- Agent info END -->
 
@@ -72,37 +72,37 @@
                                 <div class="row px-2">
                                     <div class="list-group-item mb-3 col-6">
                                         <span>First Name:</span>
-                                        <span class="h6 fw-normal ms-1 mb-0">{{user?.firstName | titlecase}}</span>
+                                        <span class="h6 fw-normal ms-1 mb-0">{{ownerData?.firstName | titlecase}}</span>
                                     </div>
 
                                     <div class="list-group-item mb-3 col-6">
                                         <span>Last Name:</span>
-                                        <span class="h6 fw-normal ms-1 mb-0">{{user?.lastName | titlecase}}</span>
+                                        <span class="h6 fw-normal ms-1 mb-0">{{ownerData?.lastName | titlecase}}</span>
                                     </div>
 
                                     <div class="list-group-item mb-3 col-6">
                                         <span>Mobile Number:</span>
-                                        <span class="h6 fw-normal ms-1 mb-0"> +91 {{user?.contactNumber}} </span>
+                                        <span class="h6 fw-normal ms-1 mb-0"> +91 {{ownerData?.contactNumber}} </span>
                                     </div>
 
                                     <div class="list-group-item mb-3 col-6">
                                         <span>Email:</span>
-                                        <span class="h6 fw-normal ms-1 mb-0">{{user?.email }}</span>
+                                        <span class="h6 fw-normal ms-1 mb-0">{{ownerData?.email }}</span>
                                     </div>
 
                                     <div class="list-group-item mb-3 col-6">
                                         <span>Gender:</span>
-                                        <span class="h6 fw-normal ms-1 mb-0">{{user?.gender | titlecase}} </span>
+                                        <span class="h6 fw-normal ms-1 mb-0">{{ownerData?.gender | titlecase}} </span>
                                     </div>
 
                                     <div class="list-group-item mb-3 col-6">
                                         <span>Role:</span>
-                                        <span class="h6 fw-normal ms-1 mb-0">{{user?.role | titlecase}}</span>
+                                        <span class="h6 fw-normal ms-1 mb-0">{{ownerData?.role | titlecase}}</span>
                                     </div>
 
                                     <div class="list-group-item mb-3 col-12">
                                         <span>Location:</span>
-                                        <span class="h6 fw-normal ms-1 mb-0">{{user?.address | titlecase}}</span>
+                                        <span class="h6 fw-normal ms-1 mb-0">{{ownerData?.address | titlecase}}</span>
                                     </div>
                                 </div>
                             
@@ -112,7 +112,7 @@
                             <div class="col-12">
                                 <div class="row">
                                     <div class="col-12">
-                                        <span mb-5>Hotels Own by {{user?.firstName | titlecase}} {{user?.lastName | titlecase}} : </span>
+                                        <span mb-5>Hotels Own by {{ownerData?.firstName | titlecase}} {{ownerData?.lastName | titlecase}} : </span>
                                         <hr class="mt-2 mb-3 m-0">                                         
 
                                         <ng-container *ngIf="ownerHotels.length > 0">

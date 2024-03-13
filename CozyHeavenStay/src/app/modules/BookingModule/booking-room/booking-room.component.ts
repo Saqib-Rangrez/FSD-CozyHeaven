@@ -78,22 +78,15 @@ export class BookingRoomComponent {
     
 
     this.roomId = this.activatedRoute.snapshot.params['roomid'];
-    console.log(this.roomId);
     
     this.user = JSON.parse(localStorage.getItem('user'));
-    console.log(this.user);
     this.createGuestForm();
 
     this.bookingService.getAllBookings(this.user.token).subscribe({
       next : (res) => {
         this.response = res;
         this.bookingList = this.response.data;
-        //filter booking on roomid
         this.bookingList = this.bookingList?.filter(booking => booking?.roomId == this.roomId);
-      
-      
-        console.log("book",this.response.data);
-        console.log("bookfilter",this?.bookingList);
       },
       error : (err) => {
         console.log(err);
@@ -103,19 +96,15 @@ export class BookingRoomComponent {
     
     this.roomService.getRoomById(this.roomId,this.user.token).subscribe({
       next : (res) => {
-      
         this.response = res;
         this.room = this.response.data;
-        console.log("room",this.room);
-        // this.avgRating = this.GetAvgRating(this.room.hotel.reviews);
-        // console.log(this.avgRating);
 
         this.reviewService.getReviewByHotelId(this?.room?.hotelId,this.user.token).subscribe({
           next : (res) => {
             this.avgRating = this.GetAvgRating(res.data);
-            console.log("reviews",this?.room?.hotel?.reviews);
           },
           error : (err) => {
+
             console.log(err);
           }
         })        
@@ -225,12 +214,10 @@ export class BookingRoomComponent {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required]
     }));
-    console.log(this.guests);
   }
 
   removeGuest(index: number): void {
     this.guests.splice(index, 1);
-    console.log(this.guests);
   }
 
   saveGuests(): void {
@@ -307,16 +294,13 @@ export class BookingRoomComponent {
       new Date()
     );
     
-    console.log(this.payment);
     this.paymentService.createPayment(this.payment,this.user.token).subscribe(
       {
       next: (res) => {
         this.response = res;
         this.paymentCreated = this.response.data;
         
-        this.updateBookingPayment(this.paymentCreated.paymentId, status);
-       
-        console.log("created",this.paymentCreated);
+        this.updateBookingPayment(this.paymentCreated.paymentId, status);       
       },
       error: (err) => {
         console.error(err);
@@ -340,15 +324,11 @@ export class BookingRoomComponent {
       null
     );
 
-    console.log(this.booking);
-
     this.bookingService.createBooking(this.booking,this.user.token).subscribe({
       next: (res) => {
         this.response = res;
         this.createdBooking = this.response.data;
-        // Process the retrieved booking data as needed
         
-        console.log(this.createdBooking);
         this.toastr.success("Booking Success !!")
       },
       error: (err) => {
@@ -364,13 +344,11 @@ export class BookingRoomComponent {
   }
 
   updateBookingPayment(paymentId: number, status : string) {
-    // Assuming this.booking is already populated with the booking details
     if (!this.createdBooking) {
       console.error('No booking data available.');
       return;
     }
 
-    // Update the payment ID in the booking object
     this.createdBooking.paymentId = paymentId;
     if(status != 'Pending')
     this.createdBooking.status = 'Confirmed';
@@ -380,9 +358,7 @@ export class BookingRoomComponent {
     this.bookingService.updateBooking(this.createdBooking,this.user.token).subscribe(
       {
         next: (res) => {
-          this.response = res;
-        
-          console.log(this.response);
+          this.response = res;        
         },
         error: (err) => {
           console.error(err);
@@ -398,9 +374,7 @@ export class BookingRoomComponent {
   }
 
   PayNow(){
-    this.createPay("Online","Paid");
-    
-    console.log("paid...")
+    this.createPay("Online","Paid");    
     this.toastr.success("Payment Success !!")
     this.CloseModel();
     this.router.navigate(['/confirm', this.createdBooking.bookingId]);
@@ -409,32 +383,24 @@ export class BookingRoomComponent {
   PayLater(){
     this.createPay("None", "Pending");
     
-    console.log("paid cancel");
     this.toastr.success("Payment Pending!!")
     this.CloseModel();
     this.router.navigate(['/dashboard/bookings']);  
   }
 
-  // Assume this is a method in your component
     isRoomAvailable(checkInDate: Date, checkOutDate: Date): boolean {
-      // Loop through the list of bookings
       for (const booking of this?.bookingList) {
-          // Convert booking dates to Date objects
           const bookingCheckInDate = new Date(booking.checkInDate);
           const bookingCheckOutDate = new Date(booking.checkOutDate);
 
-          // Check if the checking date falls within the booking period
           if (checkInDate >= bookingCheckInDate && checkInDate < bookingCheckOutDate) {
-              return false; // Room is not available
+              return false; 
           }
 
-          // Check if the checkout date falls within the booking period
           if (checkOutDate > bookingCheckInDate && checkOutDate <= bookingCheckOutDate) {
-              return false; // Room is not available
+              return false; 
           }
       }
-
-      // If no conflicting bookings found, room is available
       return true;
     }
 

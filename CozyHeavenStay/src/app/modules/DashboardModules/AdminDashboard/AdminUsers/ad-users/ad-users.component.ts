@@ -14,20 +14,17 @@ export class AdUsersComponent {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
-    console.log("Admin..", this.user);
 
     this.loading = true;
     this.userService.getAllUsers(this.user?.token).subscribe({
       next : res => {
         this.userList = res;
-        console.log(this.userList)
       },
       error : err =>{
         this.loading = false;
         console.log(err)
       } ,
       complete : () => {
-        console.log("complete")
         this.loading = false;
       }
     })

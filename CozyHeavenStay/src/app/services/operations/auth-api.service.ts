@@ -175,7 +175,6 @@ loginAdmin(email:string, password:string){
       
     return throwError(() => error);
   }), tap((res) => {
-      console.log(res);
       this.handleCreateUser(res)
   }),finalize(() => {
     if (loadingToast) {
@@ -304,7 +303,7 @@ loginAdmin(email:string, password:string){
         
       return throwError(() => error);
     }), tap((res) => {
-        console.log(res);
+
     }),finalize(() => {
       if (loadingToast) {
         this.toastr.clear();
@@ -329,8 +328,6 @@ loginAdmin(email:string, password:string){
       this.toastr.error('Failed to reset password', 'Error');
         
       return throwError(() => error);
-    }), tap((res) => {
-        console.log(res);
     }),finalize(() => {
       if (loadingToast) {
         this.toastr.clear();
@@ -342,7 +339,6 @@ loginAdmin(email:string, password:string){
     const expiresInTs = new Date().getTime() + ((3 * 60 * 60) * 1000);
     const expiresIn = new Date(expiresInTs);
     let user : any;
-    console.log("from services handle...." ,res.user)
 
     if(res.user.role == "Admin") {
       user = new Admin(
@@ -396,7 +392,6 @@ loginAdmin(email:string, password:string){
     this.user.next(user);
     }
       
-    
     this.autoLogout(1000);
 
     localStorage.setItem("user" , JSON.stringify(user));

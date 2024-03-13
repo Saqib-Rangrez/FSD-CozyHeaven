@@ -19,7 +19,6 @@ export class AdBookingsComponent {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
-    console.log(this.user)
     this.loading = true;
     this.bookingService.getAllBookings(this.user.token).subscribe({
       next : res => {
@@ -32,20 +31,14 @@ export class AdBookingsComponent {
         this.toastr.success("No bookings found");
       },
       complete : () => {
-        console.log(this.bookings);
         this.filterHotel('Pending');
-        console.log(this.filterBookings);
         this.loading = false;
         if(this.user.role !== 'Admin') {
           this.bookings = this.filterBookingsForOwner();
-          console.log("AFTER ROLE BASED FILTER", this.bookings);
         }
       }
     })
 
-    
-
-    console.log(this.bookings)
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         window.scrollTo(0, 0);

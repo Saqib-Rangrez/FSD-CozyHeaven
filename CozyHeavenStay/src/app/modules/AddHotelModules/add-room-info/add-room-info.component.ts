@@ -27,14 +27,12 @@ export class AddRoomInfoComponent {
 constructor(private fb: FormBuilder) { }
   ngOnInit(): void {
     this.currHotel = this.hotelService.hotelInfo;
-    console.log(this.currHotel)
     // this.roomForm = this.fb.group({
     //   rooms: this.fb.array([this.createRoom()])
     // });
 
     if (this.hotelService.roomData != null && this.hotelService.roomData.length > 0) {
       
-      console.log(this.hotelService.roomData);
       this.roomForm = this.fb.group({
         rooms: this.fb.array(this.hotelService.roomData.map(room => this.createRoom(room)))
       });
@@ -95,7 +93,6 @@ removeImage(image) {
 }
 
 processFiles(files: FileList, roomIndex: number) {
-  console.log("Entered in process files: " + JSON.stringify(files));
   const roomControl = this.rooms.at(roomIndex) as FormGroup;
 
   roomControl?.get('files')?.setValue(files);
@@ -110,44 +107,7 @@ processFiles(files: FileList, roomIndex: number) {
   }
 }
 
-  // Function to handle form submission
-  // onSubmit() {
-
-  //   this.user = JSON.parse(localStorage.getItem("user"))
-  //   console.log("USER DATA",this.user)
-
-  //   const formData = new FormData();
-  //   formData.append('hotelId', this.currHotel.hotelId);
-  //   formData.append('roomType', this.roomForm.get('roomType').value);
-  //   formData.append('bedType', this.roomForm.get('bedType').value);
-  //   formData.append('baseFare', this.roomForm.get('baseFare').value);
-  //   formData.append('roomSize', this.roomForm.get('roomSize').value);
-  //   formData.append('acstatus', this.roomForm.get('acstatus').value);
-
-  //   const files = this.roomForm.get('files').value;
-  //   for (let i = 0; i < files.length; i++) {
-  //     formData.append('files', files[i]);
-  //   }
-
-  //   this.hotelService.createHotel(formData).subscribe({
-  //     next : (res) => {
-  //       console.log(res);
-  //       this.hotelService.hotelInfo = res.data;
-  //       this.toaster.success("Hotel added successfully");
-  //       this.roomForm.reset();
-  //     },
-  //     error : (err) => {
-  //       console.log(err);
-  //     },
-  //     complete : () => {
-  //       this.roomForm.reset();
-  //       this.hotelService.step = 3;
-  //     }
-  //   });
-  // }
-
   onSubmit(): void {
-    console.log("Entered in SUbmit")
     if (true) {
       const loadingToast = this.toaster.info('Adding Rooms...', 'Please wait', {
         disableTimeOut: true,
@@ -159,11 +119,9 @@ processFiles(files: FileList, roomIndex: number) {
       this.rooms.controls.forEach((roomControl: FormGroup) => {
         const formData = new FormData();
         const roomValue = roomControl.value;
-        console.log(roomValue)
   
         Object.keys(roomValue).forEach(key => {
           if (key === 'files') {
-            console.log("Entering files")
             const files = roomValue[key];
             for (let i = 0; i < files.length; i++) {
               formData.append(key, files[i]);
@@ -177,7 +135,6 @@ processFiles(files: FileList, roomIndex: number) {
         }else{
           formData.append('hotelId', this.hotelService?.roomData[0]?.hotelId);
           formData.append('roomId', this.hotelService?.roomData[index].roomId);
-          console.log(this.hotelService?.roomData[index].roomId,"INdex", index)
           index++;
         }
 
@@ -185,13 +142,11 @@ processFiles(files: FileList, roomIndex: number) {
         this.user = JSON.parse(localStorage.getItem("user"))
         this.roomService.createRoom(formData,this.user.token).subscribe({
           next : (res) => {
-            console.log(res);
             //this.hotelService.hotelInfo = res.data;
             this.toaster.success("Room added successfully");
             this.roomForm.reset();
           },
           error : (err) => {
-            console.log(err);
             this.toaster.clear();      
           },
           complete : () => {

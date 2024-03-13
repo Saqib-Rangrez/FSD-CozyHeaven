@@ -58,8 +58,6 @@ export class HotelService {
       positionClass: 'toast-top-center'
     });
 
-    console.log("TOken Hotel", token);
-
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${token}` 
@@ -77,7 +75,6 @@ export class HotelService {
           return throwError(() => error);
         }),        
         tap((res) => {
-          console.log(res);
           if(loadingToast){
             this.toastr.clear();
           }

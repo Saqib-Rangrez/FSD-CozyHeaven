@@ -7,8 +7,4 @@ import { Component, Input } from '@angular/core';
 })
 export class AdReviewComponent {
 @Input() data;
-
-ngOnInit() {
-  console.log(this.data);
-}
 }
