@@ -1,5 +1,5 @@
 import { Component, Input, inject } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HotelService } from '../../../services/hotel.service';
 import { ToastrService } from 'ngx-toastr';
 import {HotelDTO } from '../../../models/DTO/HotelDTO.Model'
@@ -33,7 +33,7 @@ export class AddHotelInfoComponent {
       state: new FormControl('', [ Validators.required]),
       city: new FormControl('', [ Validators.required]),
       street: new FormControl('', [ Validators.required]),
-      pincode: new FormControl('', [ Validators.required]),
+      pincode: new FormControl('', [ Validators.required, this.onlyNumbersValidator]),
       files: new FormControl([null]) 
     });
 
@@ -95,6 +95,14 @@ export class AddHotelInfoComponent {
       };
       reader.readAsDataURL(files[i]);
     }
+  }
+
+  onlyNumbersValidator(control: AbstractControl): { [key: string]: any } | null {
+    const value = control.value;
+    if (value && !/^[0-9]*$/.test(value)) {
+      return { 'onlyNumbers': true };
+    }
+    return null;
   }
 
 

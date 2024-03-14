@@ -25,7 +25,7 @@
                 'bg-warning' : data?.payment?.refund?.refundStatus === 'Pending'  }">
                 Refund : {{data?.payment.refund.refundStatus}}
             </div>
-            <button (click)="requestRefund(data?.payment)" *ngIf="data?.status === 'Canceled' && data?.payment?.status === 'Paid'"  class="btn btn-primary-soft mb-0">Request Refund</button>
+            <button (click)="requestRefund(data?.payment)" *ngIf="user?.role === 'User' && data?.status === 'Canceled' && data?.payment?.status === 'Paid'"  class="btn btn-primary-soft mb-0">Request Refund</button>
             <button (click)="approveRefund(data?.payment)" *ngIf="data?.status === 'Canceled' && data?.payment?.status === 'Refunded' &&
             user?.role === 'Owner' && data?.payment?.refund?.refundStatus === 'Pending'  " class="btn btn-primary-soft mb-0">
                 Approve Refund

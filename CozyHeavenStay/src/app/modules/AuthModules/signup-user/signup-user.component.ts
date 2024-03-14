@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, Renderer2, inject } from '@angular/core';
 import { RegisterUserDTO } from '../../../models/DTO/RegisterUserDTO';
-import {  FormControl, FormGroup, Validators } from '@angular/forms';
+import {  AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthAPIService } from '../../../services/operations/auth-api.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -23,14 +23,67 @@ export class SignupUserComponent {
       firstName: new FormControl(null, [Validators.required]),
       lastName: new FormControl(null, [Validators.required]),
       email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null,  [Validators.required]),
+      password: new FormControl(null,  [Validators.required, Validators.minLength(6)]),
       confirmPassword: new FormControl(null,  [Validators.required]),
       gender: new FormControl(null,  [Validators.required]),
       accountType : new FormControl(null, [Validators.required]),
-      contactNumber: new FormControl(null,  [Validators.required]),
+      contactNumber: new FormControl(null,  [Validators.required, Validators.minLength(10), Validators.maxLength(10), this.onlyNumbersValidator]),
       address: new FormControl(null,  [Validators.required]),
     },{validators : this.passwordMatchValidator} );
   }
+
+  onlyNumbersValidator(control: AbstractControl): { [key: string]: any } | null {
+    const value = control.value;
+    if (value && !/^[0-9]*$/.test(value)) {
+      return { 'onlyNumbers': true };
+    }
+    return null;
+  }
+
+  calcStrength(): void {
+    const passwordControl = this.registerForm.get('password');
+    if (passwordControl && passwordControl.value) {
+      const password = passwordControl.value;
+      const passwordLength = password.length;
+      let strengthLevel = '';
+  
+      const hasUpperCase = /[A-Z]/.test(password);
+      const hasLowerCase = /[a-z]/.test(password);
+      const hasNumber = /[0-9]/.test(password);
+      const hasSymbol = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
+  
+      if (passwordLength >= 8 && hasUpperCase && hasLowerCase && hasNumber && hasSymbol) {
+        strengthLevel = 'Strong';
+        this.setIndicator('#90EE90', '0 0 5px 0.5px #0f0'); 
+      } else if (passwordLength >= 6 && ((hasUpperCase && hasLowerCase) || (hasLowerCase && hasNumber) || (hasUpperCase && hasNumber) || (hasUpperCase && hasSymbol) || (hasLowerCase && hasSymbol) || (hasNumber && hasSymbol))) {
+        strengthLevel = 'Medium';
+        this.setIndicator('#ff0', '0 0 5px 0.5px #ff0'); 
+      } else {
+        strengthLevel = 'Weak';
+        this.setIndicator('#FF474C', '0 0 5px 0.5px #f00'); 
+      }
+  
+      // Update strength text based on the level
+      this.updateStrengthText(strengthLevel);
+    }
+  }
+  
+  updateStrengthText(level: string): void {
+    const strengthElement = document.getElementById('password-strength');
+    if (strengthElement) {
+      strengthElement.innerText = `Password Strength: ${level}`;
+    }
+  }
+  
+
+  indicatorColor: string = '';
+  indicatorShadow: string = '';
+
+  setIndicator(color: string, shadow: string): void {
+    this.indicatorColor = color;
+    this.indicatorShadow = shadow;
+  }
+
 
 
   onSubmit() {

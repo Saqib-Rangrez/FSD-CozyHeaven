@@ -88,7 +88,7 @@
                     <div class=" d-flex flex-row gap-2 w-100 justify-content-between align-items-center">
                       <div class="position-relative w-50">
                         <label class="form-label text-secondary position-relative" for="password">Password<sup class="mand">*</sup>
-                          <input class="form-control fakepassword" placeholder="Enter password" [type]="showPassword ? 'text' : 'password'" formControlName="password" id="password">
+                          <input (input)="calcStrength()" class="form-control fakepassword" placeholder="Enter password" [type]="showPassword ? 'text' : 'password'" formControlName="password" id="password">
                           <span (click)="toggleShowPassword()" class="position-absolute top-50 end-0 translate-middle-y p-0 mt-3">
                             <i class="fakepasswordicon bi bi-eye-fill cursor-pointer p-2" style="cursor: pointer;" *ngIf="!showPassword"></i>
                             <i class="fakepasswordicon bi bi-eye-slash cursor-pointer p-2" style="cursor: pointer;" *ngIf="showPassword"></i>
@@ -119,6 +119,10 @@
                     <small *ngIf="registerForm.hasError('passwordMismatch') && (registerForm.get('confirmPassword').dirty || registerForm.get('confirmPassword').touched)">
                       Passwords do not match.
                     </small> 
+
+                    <div id="password-strength" class="indicator rounded-2" style="color: rgba(0, 0, 0, 0.888); width: fit-content; margin: 5px; padding-left: 5px; font-weight: 400;
+                    padding-right: 5px; " [ngStyle]="{ 'background-color': indicatorColor, 'box-shadow': indicatorShadow }">
+                    </div>
                   </div>
                  
                 
@@ -152,9 +156,12 @@
                 
                   <div>
                     <label class="form-label text-secondary" for="contactNumber">Contact Number<sup class="mand">*</sup></label>
-                    <input class="form-control" placeholder="Enter contact number" type="text" formControlName="contactNumber" id="contactNumber">
+                    <input class="form-control" placeholder="Enter contact number" type="text" pattern="[0-9]*" inputmode="numeric" formControlName="contactNumber" id="contactNumber" />
                     <small *ngIf="registerForm.get('contactNumber').invalid && (registerForm.get('contactNumber').dirty || registerForm.get('contactNumber').touched)">
                       <small *ngIf="registerForm.get('contactNumber').errors['required']">Contact Number is required.</small>
+                      <small *ngIf="registerForm.get('contactNumber').errors['minlength']">Minmum 10 digits required.</small>
+                      <small *ngIf="registerForm.get('contactNumber').errors['maxlength']">Max 10 digits required.</small>
+                      <small style="margin-left: 3px;" *ngIf="registerForm.get('contactNumber').errors?.['pattern']">Only numeric characters allowed.</small>
                     </small>
                   </div>
                 

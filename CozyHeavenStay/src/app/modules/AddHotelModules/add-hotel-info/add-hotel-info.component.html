@@ -77,7 +77,10 @@
                         <!-- Postal number -->
                         <div class="col-md-6">
                             <label class="form-label">Postal number *</label>
-                            <input formControlName="pincode" class="form-control" type="text" placeholder="Enter postal number">
+                            <input formControlName="pincode" class="form-control" type="text" pattern="[0-9]*" inputmode="numeric"  placeholder="Enter postal number">
+                            <small *ngIf="hotelForm.get('pincode').invalid && (hotelForm.get('pincode').dirty || hotelForm.get('pincode').touched)">
+                                <small style="margin-left: 3px;" *ngIf="hotelForm.get('pincode').errors?.['pattern']">Only numeric characters allowed.</small>
+                            </small>
                         </div>
     
                         <!-- Street -->

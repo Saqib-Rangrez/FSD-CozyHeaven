@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AuthAPIService } from './services/operations/auth-api.service';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 
 
 @Component({
@@ -11,16 +13,18 @@ import { AuthAPIService } from './services/operations/auth-api.service';
 export class AppComponent {
   toastr: ToastrService = inject(ToastrService);
   authService : AuthAPIService = inject(AuthAPIService);
+  router : Router = inject(Router);
 
   ngOnInit() {
     this.authService.autoLogin();
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      window.scrollTo(0, 0);
+    });
   }
 
-  onActivate(_event: any) {
-    window.scroll({
-        top: 0,
-        left: 0,
-        behavior: 'smooth'
-    });
-}
+  onDeactivate() {
+    document.body.scrollTop = 0;
+  }
 }

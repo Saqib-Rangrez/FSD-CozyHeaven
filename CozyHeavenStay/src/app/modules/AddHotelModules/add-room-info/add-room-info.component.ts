@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { HotelDTO } from '../../../models/DTO/HotelDTO.Model';
 import { RoomConstants } from '../../../utils/RoomConstants';
 import { HotelService } from '../../../services/hotel.service';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-room-info',
