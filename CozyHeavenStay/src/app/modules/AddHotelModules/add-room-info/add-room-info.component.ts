@@ -6,6 +6,8 @@ import { HotelDTO } from '../../../models/DTO/HotelDTO.Model';
 import { RoomConstants } from '../../../utils/RoomConstants';
 import { HotelService } from '../../../services/hotel.service';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-add-room-info',
@@ -17,6 +19,7 @@ export class AddRoomInfoComponent {
   roomService : RoomService = inject(RoomService);
   hotelService : HotelService = inject(HotelService);
   toaster : ToastrService = inject(ToastrService);
+  router : Router = inject(Router);
   selectedFile : File;
   imagePreviews: any[] = [];
   user : any;
@@ -27,9 +30,13 @@ export class AddRoomInfoComponent {
 constructor(private fb: FormBuilder) { }
   ngOnInit(): void {
     this.currHotel = this.hotelService.hotelInfo;
-    // this.roomForm = this.fb.group({
-    //   rooms: this.fb.array([this.createRoom()])
-    // });
+
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      window.scrollTo(0, 0);
+    });
+    document.body.scrollTop = 0;
 
     if (this.hotelService.roomData != null && this.hotelService.roomData.length > 0) {
       
@@ -135,6 +142,8 @@ processFiles(files: FileList, roomIndex: number) {
         }else{
           formData.append('hotelId', this.hotelService?.roomData[0]?.hotelId);
           formData.append('roomId', this.hotelService?.roomData[index].roomId);
+          console.log(this.hotelService?.roomData[index].roomId)
+
           index++;
         }
 

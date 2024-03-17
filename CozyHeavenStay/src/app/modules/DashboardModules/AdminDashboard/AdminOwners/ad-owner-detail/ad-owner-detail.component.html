@@ -117,7 +117,7 @@
 
                                         <ng-container *ngIf="ownerHotels.length > 0">
                                             <div class="row g-4">
-                                                <app-hotel-own class="col-md-6" *ngFor="let item of ownerHotels" [data]="item"></app-hotel-own>
+                                                <app-hotel-own class="col-md-6" *ngFor="let item of ownerHotels" [data]="item" (booleanValue)="checkDel($event)"></app-hotel-own>
                                             </div>
                                         </ng-container> 
                                         

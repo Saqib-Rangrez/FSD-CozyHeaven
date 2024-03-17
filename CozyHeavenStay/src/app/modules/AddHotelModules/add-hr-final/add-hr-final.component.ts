@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-add-hr-final',
@@ -7,5 +8,14 @@ import { Router } from '@angular/router';
   styleUrl: './add-hr-final.component.css'
 })
 export class AddHrFinalComponent {
-  
+  router : Router = inject(Router);
+
+  ngOnInit() {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      window.scrollTo(0, 0);
+    });
+    document.body.scrollTop = 0;
+  }
 }

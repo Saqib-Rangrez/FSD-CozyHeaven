@@ -261,8 +261,18 @@ export class BookingRoomComponent {
   }
 
   calculateRoomCharges(): number {
+    const inputString = (this.calculateDuration(this.selectedDates[0],this.selectedDates[1]));
+    const parts = inputString.split(' ');
+  
+  const nightsStr = parts[0];
+  const daysStr = parts[3]; 
+
+  const nights = parseInt(nightsStr, 10); 
+  const days = parseInt(daysStr, 10);
+
+  const maxNightOrDay = Math.max(nights, days);
    
-    this.priceData.roomCharges = (this.numberOfRooms * this.room?.baseFare);
+  this.priceData.roomCharges = maxNightOrDay * (this.numberOfRooms * this.room?.baseFare);
     
     return this.priceData.roomCharges;
   }
@@ -278,7 +288,7 @@ export class BookingRoomComponent {
   }
 
   calculatePayableNow(): number {
-    this.priceData.totalAmount = this.calculatePriceAfterDiscount() + this.priceData.taxesAndFees;
+    this.priceData.totalAmount = this.calculatePriceAfterDiscount() + this.priceData.taxesAndFees + this.calculateAdditionalCharges();
     return this.priceData.totalAmount;
   }
 

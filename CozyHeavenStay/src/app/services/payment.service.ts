@@ -22,8 +22,8 @@ export class PaymentService {
     return httpOptions;
   }
   
-  getAllPayments(token: string): Observable<Payment[]> { 
-    return this.http.get<Payment[]>(paymentEndpoints.GET_ALL_PAYMENTS_API,this.setToken(token))
+  getAllPayments(token: string): Observable<any> { 
+    return this.http.get<any>(paymentEndpoints.GET_ALL_PAYMENTS_API,this.setToken(token))
       .pipe(
         catchError(this.handleError)
       );

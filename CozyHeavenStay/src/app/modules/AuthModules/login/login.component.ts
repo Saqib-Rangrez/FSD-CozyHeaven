@@ -29,43 +29,15 @@ export class LoginComponent {
       const email = this.loginForm.value.email;
       const password = this.loginForm.value.password;
 
-
-      if(this.loginForm.get('accountType').value === 'Admin') {
-        this.authService.loginAdmin(email, password).subscribe({
-          next : (res) => {
-            this.toastr.success("Login success")
-            this.router.navigate(['/home']);
-          },
-          error: (err) => {
-            console.log(err);
-            this.toastr.success("Invalid credentials")
-          }
-        });
-  
-      }else if(this.loginForm.get('accountType').value === 'User') {
-        this.authService.loginUser(email, password).subscribe({
-          next : (res) => {
-            this.toastr.success("Login success");
-            this.router.navigate(['/home']);
-          },
-          error: (err) => {
-            console.log(err);
-            this.toastr.success("Invalid credentials")
-          }
-        });
-  
-      }else{
-        this.authService.loginOwner(email, password).subscribe({
-          next : (res) => {
-            this.toastr.success("Login success");
-            this.router.navigate(['/home']);
-          },
-          error: (err) => {
-            console.log(err);
-            this.toastr.error("Invalid credentials")
-          }
-        });  
-      }      
+      this.authService.login(email, password).subscribe({
+        next : (res) => {
+          this.toastr.success("Login success");
+          this.router.navigate(['/home']);
+        },
+        error: (err) => {
+          this.toastr.error("Invalid credentials");
+        }
+      })      
     } else {
       this.toastr.error("Please provide a valid registration details");
     }

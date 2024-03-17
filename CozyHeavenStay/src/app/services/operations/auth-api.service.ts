@@ -100,34 +100,7 @@ export class AuthAPIService {
   }
 
 
-  loginUser(email:string, password:string){
-
-    const loadingToast = this.toastr.info("Logging in", "Please wait...", {
-      disableTimeOut: true,
-      closeButton: false,
-      positionClass: 'toast-top-center'
-    });
-
-    const data = {email: email, password: password};
-
-    return this.http.post(
-    endpoints.LOGIN_USER_API, data
-    ).pipe(catchError((error) => {
-      if (loadingToast) {
-        this.toastr.clear();
-      }
-      this.toastr.error('Failed to Login', 'Error');
-      return throwError(() => error);
-    }), tap((res) => {
-        this.handleCreateUser(res)
-    }),finalize(() => {
-      if (loadingToast) {
-        this.toastr.clear();
-      }
-    }));
-}
-
-loginOwner(email:string, password:string){
+login(email:string, password:string){
 
   const loadingToast = this.toastr.info("Logging in", "Please wait...", {
     disableTimeOut: true,
@@ -138,41 +111,12 @@ loginOwner(email:string, password:string){
   const data = {email: email, password: password};
 
   return this.http.post(
-  endpoints.LOGIN_OWNER_API, data
+  endpoints.LOGIN_API, data
   ).pipe(catchError((error) => {
     if (loadingToast) {
       this.toastr.clear();
     }
     this.toastr.error('Failed to Login', 'Error');
-      
-    return throwError(() => error);
-  }), tap((res) => {
-      this.handleCreateUser(res)
-  }),finalize(() => {
-    if (loadingToast) {
-      this.toastr.clear();
-    }
-  }));
-}
-
-loginAdmin(email:string, password:string){
-
-  const loadingToast = this.toastr.info("Logging in", "Please wait...", {
-    disableTimeOut: true,
-    closeButton: false,
-    positionClass: 'toast-top-center'
-  });
-
-  const data = {email: email, password: password};
-
-  return this.http.post(
-  endpoints.LOGIN_ADMIN_API, data
-  ).pipe(catchError((error) => {
-    if (loadingToast) {
-      this.toastr.clear();
-    }
-    this.toastr.error('Failed to Login', 'Error');
-      
     return throwError(() => error);
   }), tap((res) => {
       this.handleCreateUser(res)

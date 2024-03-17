@@ -137,7 +137,17 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "CozyHavenStayServer.Models.Admin",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "CozyHavenStayServer.Controllers.AuthController",
@@ -214,6 +224,22 @@
       {
         "Name": "registrationData",
         "Type": "CozyHavenStayServer.Models.DTO.RegisterUserDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CozyHavenStayServer.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/Auth/Login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginCredentials",
+        "Type": "CozyHavenStayServer.Models.DTO.LoginUserDTO",
         "IsRequired": true
       }
     ],
@@ -417,7 +443,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Boolean",
+        "Type": "CozyHavenStayServer.Models.Booking",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -436,8 +462,13 @@
     "Order": 0,
     "Parameters": [
       {
+        "Name": "HotelId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
         "Name": "OwnerId",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Type": "System.Int32",
         "IsRequired": false
       },
       {
@@ -766,7 +797,17 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "CozyHavenStayServer.Models.HotelOwner",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "CozyHavenStayServer.Controllers.PaymentController",
@@ -1259,6 +1300,11 @@
     "Order": 0,
     "Parameters": [
       {
+        "Name": "RoomId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
         "Name": "HotelId",
         "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
@@ -1562,7 +1608,7 @@
   {
     "ContainingType": "CozyHavenStayServer.Controllers.UserController",
     "Method": "UploadDisplayPicture",
-    "RelativePath": "api/User/UploadDisplayPicture/{id}",
+    "RelativePath": "api/User/UploadDisplayPicture",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -1570,36 +1616,16 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       },
       {
-        "Name": "ContentType",
+        "Name": "Role",
         "Type": "System.String",
         "IsRequired": false
       },
       {
-        "Name": "ContentDisposition",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Headers",
-        "Type": "Microsoft.AspNetCore.Http.IHeaderDictionary",
-        "IsRequired": false
-      },
-      {
-        "Name": "Length",
-        "Type": "System.Int64",
-        "IsRequired": false
-      },
-      {
-        "Name": "Name",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "FileName",
-        "Type": "System.String",
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
         "IsRequired": false
       }
     ],

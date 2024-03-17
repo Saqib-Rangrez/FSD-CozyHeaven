@@ -28,7 +28,7 @@
                                 <label class="form-label">Room Type *</label>
                                 <select formControlName="roomType" class="form-select js-choice" data-search-enabled="true">
                                     <option disabled>Select Room Type</option>
-                                    <option *ngFor="let item of roomConstants.roomTypes">{{item}}</option>
+                                    <option [value]="item" *ngFor="let item of roomConstants.roomTypes">{{item}}</option>
                                 </select>
                             </div>
         
@@ -36,7 +36,7 @@
                                 <label class="form-label">Bed Type *</label>
                                 <select formControlName="bedType" class="form-select js-choice" data-search-enabled="true">
                                     <option disabled selected>Select Bed Type</option>
-                                    <option *ngFor="let item of roomConstants.bedSizes">{{item}}</option>
+                                    <option [value]="item" *ngFor="let item of roomConstants.bedSizes">{{item}}</option>
                                 </select>
                             </div>
                             
@@ -44,7 +44,7 @@
                                 <label class="form-label">Room Size *</label>
                                 <select formControlName="roomSize" class="form-select js-choice" data-search-enabled="true">
                                     <option disabled selected>Select Room Size</option>
-                                    <option *ngFor="let item of roomConstants.roomSizes">{{item}}</option>
+                                    <option [value]="item" *ngFor="let item of roomConstants.roomSizes">{{item}}</option>
                                 </select>
                             </div>
     
@@ -52,7 +52,7 @@
                                 <label class="form-label">AC Status *</label>
                                 <select formControlName="acstatus" class="form-select js-choice" data-search-enabled="true">
                                     <option disabled selected>Select AC Status</option>
-                                    <option *ngFor="let item of roomConstants.acStatuses">{{item}}</option>
+                                    <option [value]="item" *ngFor="let item of roomConstants.acStatuses">{{item}}</option>
                                 </select>
                             </div>
     
@@ -60,13 +60,13 @@
                                 <label class="form-label">Max Occupancy *</label>
                                 <select formControlName="maxOccupancy" class="form-select js-choice" data-search-enabled="true">
                                     <option disabled selected>Select Max. Occupancy</option>
-                                    <option *ngFor="let item of roomConstants.maxOccupancy">{{item}}</option>
+                                    <option [value]="item" *ngFor="let item of roomConstants.maxOccupancy">{{item}}</option>
                                 </select>
                             </div>
         
                             <div class="col-6">
                                 <label class="form-label">Base Fare *</label>
-                                <input formControlName="baseFare" class="form-control" type="text" pattern="[0-9]*" inputmode="numeric" placeholder="Enter max occupancy">
+                                <input formControlName="baseFare" class="form-control" type="text" pattern="[0-9]*" [inputMode]="'numeric'" placeholder="Enter max occupancy">
                                 
                             </div>    
                        

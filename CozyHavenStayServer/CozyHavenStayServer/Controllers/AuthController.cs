@@ -181,16 +181,25 @@ namespace CozyHavenStayServer.Controllers
             }
         }
 
-        //Hotel Owner Login
+
+        // Login
         [HttpPost]
-        [Route("Admin/Login")]
-        public async Task<ActionResult> AdminLogin([FromBody] LoginUserDTO loginCredentials)
+        [Route("Login")]
+        public async Task<ActionResult> Login([FromBody] LoginUserDTO loginCredentials)
         {
-            if (loginCredentials == null) return BadRequest(ModelState); ;
+            if (loginCredentials == null) return BadRequest(ModelState);
+            dynamic user;
+            user = await _userServices.GetUserByEmailAsync(loginCredentials.Email);
+            if(user == null)
+            {
+                user = await _hotelOwnerServices.GetHotelOwnerByEmailAsync(loginCredentials.Email);
+                if( user == null )
+                {
+                    user = await _adminServices.GetAdminByEmailAsync(loginCredentials.Email);
+                }
+            }
 
-            var user = await _adminServices.GetAdminByEmailAsync(loginCredentials.Email);
-
-            if (user == null) return BadRequest("Invalid Username or Password!");
+            if (user == null) return BadRequest("User not found!");
 
             var match = _authServices.VerifyPassword(loginCredentials.Password, user.Password);
 
@@ -228,106 +237,9 @@ namespace CozyHavenStayServer.Controllers
                 _logger.LogError(ex.Message);
                 return StatusCode(500, "Internal server error");
             }
-        }
-
-        //Hotel Owner Login
-        [HttpPost]
-        [Route("HotelOwner/Login")]
-        public async Task<ActionResult> HotelOwnerLogin([FromBody] LoginUserDTO loginCredentials)
-        {
-            if (loginCredentials == null) return BadRequest(ModelState); ;
-
-            var user = await _hotelOwnerServices.GetHotelOwnerByEmailAsync(loginCredentials.Email);
-
-            if (user == null) return BadRequest("Invalid Username or Password!");
-
-            var match = _authServices.VerifyPassword(loginCredentials.Password, user.Password);
-
-            if (!match) return BadRequest("Invalid Username or Password!");
-
-            var token = _accountServices.LoginAsync(user);
-            user.Token = token;
-            user.Password = null;
-
-
-            try
-            {
-                var cookieOptions = new CookieOptions
-                {
-                    HttpOnly = true,
-                    Secure = true,
-                    IsEssential = true,
-                    SameSite = SameSiteMode.None,
-                    Expires = DateTimeOffset.UtcNow.AddDays(1)
-                };
-
-                Response.Cookies.Append("token", token, cookieOptions);
-
-                return Ok(new
-                {
-                    success = true,
-                    token,
-                    user,
-                    message = "Logged in successfully"
-                });
-
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex.Message);
-                return StatusCode(500, "Internal server error");
-            }
-        }
-
-        //User  Login
-        [HttpPost]
-        [Route("User/Login")]
-        public async Task<ActionResult> UserLogin([FromBody] LoginUserDTO loginCredentials)
-        {
-            if (loginCredentials == null) return BadRequest(ModelState);;
-
-            var user = await _userServices.GetUserByEmailAsync(loginCredentials.Email);
-
-            if (user == null) return BadRequest("Invalid Username or Password!");
-
-            var match = _authServices.VerifyPassword(loginCredentials.Password, user.Password);
-
-            if (!match) return BadRequest("Invalid Username or Password!");
-
-            var token = _accountServices.LoginAsync(user);
-            user.Token = token;
-            user.Password = null;
-
-
-            try
-            {
-                var cookieOptions = new CookieOptions
-                {
-                    HttpOnly = true,
-                    Secure = true,
-                    IsEssential = true,
-                    SameSite = SameSiteMode.None,
-                    Expires = DateTimeOffset.UtcNow.AddDays(1) 
-                };
-
-                Response.Cookies.Append("token", token, cookieOptions);
-
-                return Ok(new
-                {
-                    success = true,
-                    token,
-                    user,
-                    message = "Logged in successfully"
-                });
-
-            }
-            catch (Exception ex) 
-            {
-                _logger.LogError(ex.Message);
-                return StatusCode(500, "Internal server error"); 
-            }
 
         }
+
 
         [HttpPost]
         [Route("Logout")]
@@ -386,8 +298,24 @@ namespace CozyHavenStayServer.Controllers
             if (!string.IsNullOrEmpty(origin))
             {
                 var resetUrl = $"http://localhost:4200/reset-password/{data.Token}";
-                message = $@"<p>Please click the below link to reset your password, the link will be valid for 6 hours:</p>
-                            <p><a href=""{resetUrl}"">{resetUrl}</a></p>";
+                // message = $@"<p>Please click the below link to reset your password, the link will be valid for 6 hours:</p>
+                //             <p><a href=""{resetUrl}"">{resetUrl}</a></p>";
+                message = $@"
+                    <p>Please click the below button to reset your password. The link will be valid for 6 hours:</p>
+                    <form method=""get"" action=""{resetUrl}"">
+                        <button type=""submit"" style=""background-color: #4CAF50; /* Green */
+                                                        border: none;
+                                                        color: white;
+                                                        padding: 15px 32px;
+                                                        text-align: center;
+                                                        text-decoration: none;
+                                                        display: inline-block;
+                                                        font-size: 16px;
+                                                        margin: 4px 2px;
+                                                        cursor: pointer;"">
+                            Reset Password
+                        </button>
+                    </form>";
             }
             else
             {

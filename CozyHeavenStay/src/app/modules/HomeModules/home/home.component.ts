@@ -48,7 +48,6 @@ export class HomeComponent{
     {image:"./assets/HomeImages/hotel/nearby/10.jpg", location:"Chicago", time:"13 min drive"},
     {image:"./assets/HomeImages/hotel/nearby/11.jpg", location:"New Keagan", time:"35 min drive"},
     {image:"./assets/HomeImages/hotel/nearby/01.jpg", location:"Oslo", time:"1 hour 13 min drive"}
-
   ]
 
 
@@ -56,7 +55,7 @@ export class HomeComponent{
     this.user = JSON.parse(localStorage.getItem('user'));
     this.hotelService.getAllHotels('').subscribe({next:(res) => {
       this.hotelList = res;
-      this.reviews = this.hotelList.data[0].reviews.slice(0,2);
+      this.reviews = this.hotelList.data[5].reviews.slice(0,2);
       
       for (let index = 0; index < Math.min(4, this.hotelList.data.length); index++) {
         const h = this.hotelList.data[index];

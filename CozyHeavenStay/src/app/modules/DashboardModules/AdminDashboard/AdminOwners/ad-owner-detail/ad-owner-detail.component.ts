@@ -46,6 +46,12 @@ export class AdOwnerDetailComponent {
     }); 
   }
 
+  checkDel(value: boolean) {
+    if(value) {
+      this.ngOnInit();
+    }
+  }
+
   deleteUser() {
     this.ownerService.deleteHotelOwner(this.ownerData.ownerId,this.user.token).subscribe({
       next: (res) => {

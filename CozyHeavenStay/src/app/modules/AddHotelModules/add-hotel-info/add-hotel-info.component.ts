@@ -4,6 +4,8 @@ import { HotelService } from '../../../services/hotel.service';
 import { ToastrService } from 'ngx-toastr';
 import {HotelDTO } from '../../../models/DTO/HotelDTO.Model'
 import { INDIAN_STATES } from '../../../utils/state';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-add-hotel-info',
@@ -14,6 +16,7 @@ export class AddHotelInfoComponent {
   hotelForm: FormGroup;
   hotelService : HotelService = inject(HotelService);
   toaster : ToastrService = inject(ToastrService);
+  router : Router = inject(Router);
   selectedFile : File;
   editHotel;
   imagePreviews: any[] = [];
@@ -22,8 +25,23 @@ export class AddHotelInfoComponent {
   @Input() editId = null;
 
   ngOnInit(): void {
+
+    //Scrolling up
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      window.scrollTo(0, 0);
+    });
+    document.body.scrollTop = 0;
+    //Scrolling end
+
+    //Fetching user information from local storage
     this.user = JSON.parse(localStorage.getItem('user'));
+
+    //Assigning states constants array
     this.states = INDIAN_STATES;
+
+    //Initializing form group
     this.hotelForm = new FormGroup({
       name: new FormControl('',[ Validators.required]),
       ownerId: new FormControl ('', [Validators.required]),
@@ -37,6 +55,7 @@ export class AddHotelInfoComponent {
       files: new FormControl([null]) 
     });
 
+    //Checking for edit permissions
     if(this.editId!= null && this.editId != 0){
       
       this.hotelService.getHotelById(this.editId, this.user?.token).subscribe(res => {

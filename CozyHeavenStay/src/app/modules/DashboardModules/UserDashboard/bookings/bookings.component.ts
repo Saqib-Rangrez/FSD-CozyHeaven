@@ -22,7 +22,7 @@ export class BookingsComponent {
     this.bookingService.getBookingByUserId(this.user.userId,this.user.token).subscribe({
       next : res => {
         this.bookings = res.data;        
-        this.toastr.success("Data Fetched Successfully");
+        this.toastr.success("See all bookings here ");
       },
       error : err => {
         console.log(err);

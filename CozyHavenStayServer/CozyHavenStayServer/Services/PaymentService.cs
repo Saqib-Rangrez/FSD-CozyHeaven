@@ -76,7 +76,7 @@ namespace CozyHavenStayServer.Services
                 {
                     _logger.LogError("Payment not found with given Id");
                 }
-                return payment;
+                return paymentList;
             }
             catch (Exception ex)
             {

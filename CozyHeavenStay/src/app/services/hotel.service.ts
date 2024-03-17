@@ -52,7 +52,7 @@ export class HotelService {
   }
 
   createHotel(formData,token: string): Observable<any> { 
-    const loadingToast = this.toastr.info('Adding Hotel...', 'Please wait', {
+    const loadingToast = this.toastr.info('Adding Hotel Information...', 'Please wait', {
       disableTimeOut: true,
       closeButton: false,
       positionClass: 'toast-top-center'
@@ -70,7 +70,7 @@ export class HotelService {
           if (loadingToast) {
             this.toastr.clear();
           }
-          this.toastr.error('Failed to sign up', 'Error');
+          this.toastr.error('Please provide all the details', 'Error');
           
           return throwError(() => error);
         }),        
