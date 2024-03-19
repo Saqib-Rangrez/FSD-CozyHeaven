@@ -25,18 +25,7 @@
 								<!-- Form START -->
 								<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mt-4 text-start d-flex flex-column gap-2">
 
-                  <!-- <div class="">
-                    <label class="form-label text-secondary" for="accountType">Account Type<sup class="mand">*</sup></label>
-                    <select  class="form-select" formControlName="accountType" id="accountType">
-                      <option value="User" [defaultSelected]="true">User</option>
-                      <option value="Owner">Hotel Owner</option>
-                      <option value="Admin">Admin</option>
-                    </select>
-                    <small *ngIf="loginForm.get('accountType').invalid && (loginForm.get('gender').dirty || loginForm.get('gender').touched)">
-                      <small *ngIf="loginForm.get('accountType').errors['required']">Account type is required.</small>
-                    </small>
-                  </div> -->
-
+                  
                   <div>
                     <label class="form-label" for="email">Email<sup class="mand">*</sup></label>
                     <input placeholder="Enter email" class="form-control" type="email" formControlName="email" id="email">

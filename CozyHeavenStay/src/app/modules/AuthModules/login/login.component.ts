@@ -20,7 +20,6 @@ export class LoginComponent {
     this.loginForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl (null, [Validators.required]),
-      accountType : new FormControl("User", [Validators.required])
     });
   }
 
@@ -39,7 +38,7 @@ export class LoginComponent {
         }
       })      
     } else {
-      this.toastr.error("Please provide a valid registration details");
+      this.toastr.error("Please provide a valid credential details");
     }
   }
 
