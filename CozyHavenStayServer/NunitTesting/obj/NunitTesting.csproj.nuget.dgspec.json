@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\FSD Project\\CozyHavenStayServer\\NunitTesting\\NunitTesting.csproj": {}
+    "C:\\Users\\2000123560\\OneDrive - Hexaware Technologies\\cozy-heaven-booking-master\\FSD-CozyHeaven\\CozyHavenStayServer\\NunitTesting\\NunitTesting.csproj": {}
   },
   "projects": {
-    "C:\\FSD Project\\CozyHavenStayServer\\CozyHavenStayServer\\CozyHavenStayServer.csproj": {
+    "C:\\Users\\2000123560\\OneDrive - Hexaware Technologies\\cozy-heaven-booking-master\\FSD-CozyHeaven\\CozyHavenStayServer\\CozyHavenStayServer\\CozyHavenStayServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\FSD Project\\CozyHavenStayServer\\CozyHavenStayServer\\CozyHavenStayServer.csproj",
+        "projectUniqueName": "C:\\Users\\2000123560\\OneDrive - Hexaware Technologies\\cozy-heaven-booking-master\\FSD-CozyHeaven\\CozyHavenStayServer\\CozyHavenStayServer\\CozyHavenStayServer.csproj",
         "projectName": "CozyHavenStayServer",
-        "projectPath": "C:\\FSD Project\\CozyHavenStayServer\\CozyHavenStayServer\\CozyHavenStayServer.csproj",
-        "packagesPath": "C:\\Users\\saqui\\.nuget\\packages\\",
-        "outputPath": "C:\\FSD Project\\CozyHavenStayServer\\CozyHavenStayServer\\obj\\",
+        "projectPath": "C:\\Users\\2000123560\\OneDrive - Hexaware Technologies\\cozy-heaven-booking-master\\FSD-CozyHeaven\\CozyHavenStayServer\\CozyHavenStayServer\\CozyHavenStayServer.csproj",
+        "packagesPath": "C:\\Users\\2000123560\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\2000123560\\OneDrive - Hexaware Technologies\\cozy-heaven-booking-master\\FSD-CozyHeaven\\CozyHavenStayServer\\CozyHavenStayServer\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\saqui\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\2000123560\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -87,6 +92,10 @@
               "target": "Package",
               "version": "[4.20.70, )"
             },
+            "Razorpay": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
@@ -107,6 +116,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.29, 6.0.29]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[6.0.29, 6.0.29]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.29, 6.0.29]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[6.0.29, 6.0.29]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -115,21 +142,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\FSD Project\\CozyHavenStayServer\\NunitTesting\\NunitTesting.csproj": {
+    "C:\\Users\\2000123560\\OneDrive - Hexaware Technologies\\cozy-heaven-booking-master\\FSD-CozyHeaven\\CozyHavenStayServer\\NunitTesting\\NunitTesting.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\FSD Project\\CozyHavenStayServer\\NunitTesting\\NunitTesting.csproj",
+        "projectUniqueName": "C:\\Users\\2000123560\\OneDrive - Hexaware Technologies\\cozy-heaven-booking-master\\FSD-CozyHeaven\\CozyHavenStayServer\\NunitTesting\\NunitTesting.csproj",
         "projectName": "NunitTesting",
-        "projectPath": "C:\\FSD Project\\CozyHavenStayServer\\NunitTesting\\NunitTesting.csproj",
-        "packagesPath": "C:\\Users\\saqui\\.nuget\\packages\\",
-        "outputPath": "C:\\FSD Project\\CozyHavenStayServer\\NunitTesting\\obj\\",
+        "projectPath": "C:\\Users\\2000123560\\OneDrive - Hexaware Technologies\\cozy-heaven-booking-master\\FSD-CozyHeaven\\CozyHavenStayServer\\NunitTesting\\NunitTesting.csproj",
+        "packagesPath": "C:\\Users\\2000123560\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\2000123560\\OneDrive - Hexaware Technologies\\cozy-heaven-booking-master\\FSD-CozyHeaven\\CozyHavenStayServer\\NunitTesting\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\saqui\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\2000123560\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -137,14 +168,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\FSD Project\\CozyHavenStayServer\\CozyHavenStayServer\\CozyHavenStayServer.csproj": {
-                "projectPath": "C:\\FSD Project\\CozyHavenStayServer\\CozyHavenStayServer\\CozyHavenStayServer.csproj"
+              "C:\\Users\\2000123560\\OneDrive - Hexaware Technologies\\cozy-heaven-booking-master\\FSD-CozyHeaven\\CozyHavenStayServer\\CozyHavenStayServer\\CozyHavenStayServer.csproj": {
+                "projectPath": "C:\\Users\\2000123560\\OneDrive - Hexaware Technologies\\cozy-heaven-booking-master\\FSD-CozyHeaven\\CozyHavenStayServer\\CozyHavenStayServer\\CozyHavenStayServer.csproj"
               }
             }
           }
@@ -200,12 +232,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.29, 6.0.29]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.29, 6.0.29]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[6.0.29, 6.0.29]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
         }
       }
     }
