@@ -184,4 +184,14 @@ export class BookingDetailComponent {
     },
   });
  }
+
+ isCheckInDateInFuture(checkindate): boolean {
+  
+
+  const today = new Date();
+  const checkInDate = new Date(checkindate);
+  console.log(checkInDate,today);
+  console.log(checkInDate>today)
+  return checkInDate > today;
+}
 }

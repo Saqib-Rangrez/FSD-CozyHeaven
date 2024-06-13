@@ -34,7 +34,7 @@
             user?.role === 'User' " class="btn bg-success text-white btn-primary-soft mb-0">
                 Pay Now
             </button>
-            <button (click)="cancelBooking()" *ngIf="data?.status !== 'Canceled'"  class="btn btn-primary-soft mb-0">Cancel Booking</button>
+            <button (click)="cancelBooking()" *ngIf="data?.status !== 'Canceled' && isCheckInDateInFuture(data?.checkInDate)"  class="btn btn-primary-soft mb-0">Cancel Booking</button>
         </div>
     </div>
 
