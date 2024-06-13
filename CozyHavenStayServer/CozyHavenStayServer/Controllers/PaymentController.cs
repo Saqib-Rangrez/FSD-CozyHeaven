@@ -127,7 +127,8 @@ namespace CozyHavenStayServer.Controllers
         public async Task<ActionResult<Payment>> CreatePaymentAsync([FromBody] Payment payment)
         {
             try
-            {
+            {   
+
                 var createdPayment = await _paymentServices.CreatePaymentAsync(payment);
                 if (createdPayment == null)
                 {
@@ -137,6 +138,8 @@ namespace CozyHavenStayServer.Controllers
                         error = "Failed to create payment"
                     });
                 }
+
+
                 return Ok(new
                 {
                     success = true,

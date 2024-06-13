@@ -11,7 +11,7 @@ import { Payment } from '../../../models/payment.Model';
 import { PaymentService } from '../../../services/payment.service';
 import { ToastrService } from 'ngx-toastr';
 import { ReviewService } from '../../../services/review.service';
-
+import { RazorpayService } from '../../../services/razorpay.service';
 
 
 @Component({
@@ -52,7 +52,7 @@ export class BookingRoomComponent {
   constructor(private roomService: RoomService,private hotelService: HotelService, 
     private activatedRoute: ActivatedRoute, private fb: FormBuilder,
     private bookingService:BookingService, private paymentService: PaymentService,
-    private router: Router
+    private router: Router, private razorpayService: RazorpayService
     ){
     //Set minimum selectable date to today
     this.minDate = new Date();
@@ -384,11 +384,71 @@ export class BookingRoomComponent {
   }
 
   PayNow(){
+    //RazorPay Start
+    const obj = {amount : 1};
+    this.razorpayService.createOrder(obj).subscribe(
+      {
+        next: (res) => {
+          this.response = res;  
+          console.log(this.response);
+          this.openRazorpayCheckout(res);
+          
+        },
+        error: (err) => {
+          console.error(err);
+        },
+        
+      });
+    //Razorpay END
+
     this.createPay("Online","Paid");    
     this.toastr.success("Payment Success !!")
     this.CloseModel();
-    this.router.navigate(['/confirm', this.createdBooking.bookingId]);
   }
+
+  verifyPayment(paymentDetails: any) {
+    this.razorpayService.verifyPayment(paymentDetails).subscribe(
+      (response) => {
+        console.log('Payment verified successfully:', response);  
+        this.router.navigate(['/confirm', this.createdBooking.bookingId]);      
+      },
+      (error) => {
+        console.error('Error verifying payment:', error);
+      },
+   
+    );
+  }
+
+  openRazorpayCheckout(order: any) {
+    const options = {
+      key: order.key,
+      amount: order.amount * 100, 
+      currency: order.currency,
+      name: order.name,
+      order_id: order.order_id,
+      handler: (response) => {
+        console.log(response);
+        
+        this.verifyPayment(response);
+      },
+      prefill: {
+        name: 'CozyHeaven Stay',
+        email: 'cozyheavenstay@gmail.com',
+        contact: '+91-9900776669'
+      },
+      notes: {
+        address: 'Razorpay Corporate Office'
+      },
+      theme: {
+        color: '#3399cc'
+      },
+      callback_url: order.callback_url 
+    };
+    const rzp1 = new Razorpay(options);
+    rzp1.open();
+   }
+
+  
 
   PayLater(){
     this.createPay("None", "Pending");

@@ -56,6 +56,13 @@ export const reviewEndpoints = {
     GET_REVIEW_BY_HOTELID_API: BASE_URL + "/Review/GetReviewByHotelId/",
 }
 
+// PAYMENT ENDPOINTS
+export const checkoutEndpoints = {
+    CREATE_ORDER_API: BASE_URL + "/Checkout/create-order",
+    VERIFY_PAYMENT_API: BASE_URL + "/Checkout/verify-payment",
+    
+}
+
 // BOOKINGS ENDPOINTS
 export const bookingsEndpoints = {
     ADD_BOOKING_API: BASE_URL + "/Booking/CreateBooking",
