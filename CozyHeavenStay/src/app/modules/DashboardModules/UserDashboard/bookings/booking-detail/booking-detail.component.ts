@@ -24,7 +24,7 @@ export class BookingDetailComponent {
   paymentService : PaymentService = inject(PaymentService);
   @Output() booleanValue = new EventEmitter<boolean>();
   refundResult;
-  //  = inject (RazorpayService);
+  payment ;
 constructor(private razorpayService: RazorpayService) {
 
 }
@@ -90,11 +90,11 @@ constructor(private razorpayService: RazorpayService) {
         'Refunded',
         payment.amount,
         payment.paymentDate,
-        this.refundResult.refundId,    
+        this.refundResult.refundId,
         null,
         null,
       )
-    
+
       this.paymentService.updatePayment(paymentToUpdate,this.user.token).subscribe({
         next : res => {
           this.toaster.success("Refund Requested Successfully");
@@ -107,34 +107,83 @@ constructor(private razorpayService: RazorpayService) {
         }
       });
     }
-  });  
+  });
  }
 
- 
+
  verifyPayment(paymentDetails: any) {
   this.razorpayService.verifyPayment(paymentDetails).subscribe(
     (response) => {
-      console.log('Payment verified successfully:', response);  
-      // this.router.navigate(['/confirm', this.createdBooking.bookingId]);  
+      console.log('Payment verified successfully:', response);
+
+      //Updating the payment
+      const paymentToUpdate = new Payment(
+        this.payment.paymentId,
+        this.payment.bookingId,
+        'Online',
+        'Paid',
+        this.payment.amount,
+        this.payment.paymentDate,
+        null,
+        null,
+        null,
+      )
+
+      this.paymentService.updatePayment(paymentToUpdate,this.user.token).subscribe({
+        next : res => {
+          this.booleanValue.emit(true);
+          const bookingData : Booking = new Booking(
+            this.data.bookingId,
+            this.data.numberOfGuests,
+            this.data.checkInDate,
+            this.data.checkOutDate,
+            this.data.totalFare,
+            this.data.status,
+            this.data.userId,
+            this.data.roomId,
+            this.data.hotelId,
+            this.data.paymentId,
+          );
+
+          bookingData.status = 'Confirmed';
+          this.bookingService.updateBooking(bookingData,this.user.token).subscribe({
+            next : res => {
+              this.toaster.success("Booking Cancelled Successfully");
+              this.booleanValue.emit(true);
+              // location.reload();
+            },
+            error : err => {
+              console.log(err);
+              this.toaster.error("Something went wrong");
+            },
+          });
+        },
+        error : err => {
+          console.log(err);
+          this.toaster.error("Something went wrong");
+        },
+      });
+
+      //Update End
       this.router.navigate(['/confirm/'+ this.data.bookingId]);
       this.toaster.success("Payment Successful");
     },
     (error) => {
       console.error('Error verifying payment:', error);
     },
- 
+
   );
 }
 
 openRazorpayCheckout(order: any) {
   const options = {
     key: order.key,
-    amount: order.amount * 100, 
+    amount: order.amount * 100,
     currency: order.currency,
     name: order.name,
     order_id: order.order_id,
     handler: (response) => {
-      console.log(response);      
+      console.log(response);
       this.verifyPayment(response);
     },
     prefill: {
@@ -148,7 +197,7 @@ openRazorpayCheckout(order: any) {
     theme: {
       color: '#3399cc'
     },
-    callback_url: order.callback_url 
+    callback_url: order.callback_url
   };
   const rzp1 = new Razorpay(options);
   rzp1.open();
@@ -156,69 +205,24 @@ openRazorpayCheckout(order: any) {
 
  payNow(payment) {
 
+
   //RazorPay Start
-  const obj = {amount : 1};
+  const obj = {amount : this.data.totalFare};
   this.razorpayService.createOrder(obj).subscribe(
     {
       next: (res) => {
-        // this.response = res;  
+        // this.response = res;
         console.log(res);
         this.openRazorpayCheckout(res);
-        
+
       },
       error: (err) => {
         console.error(err);
       },
-      
+
     });
   //Razorpay END
-
-  const paymentToUpdate = new Payment(
-    payment.paymentId,
-    payment.bookingId,
-    'Online',
-    'Paid',
-    payment.amount,
-    payment.paymentDate,
-    null,    
-    null,
-    null,
-  )
-
-  this.paymentService.updatePayment(paymentToUpdate,this.user.token).subscribe({
-    next : res => {
-      this.booleanValue.emit(true);
-      const bookingData : Booking = new Booking(
-        this.data.bookingId,
-        this.data.numberOfGuests,
-        this.data.checkInDate,
-        this.data.checkOutDate,
-        this.data.totalFare,
-        this.data.status,
-        this.data.userId,
-        this.data.roomId,
-        this.data.hotelId,
-        this.data.paymentId,
-      );
-    
-      bookingData.status = 'Confirmed';
-      this.bookingService.updateBooking(bookingData,this.user.token).subscribe({
-        next : res => {
-          this.toaster.success("Booking Cancelled Successfully");
-          this.booleanValue.emit(true);
-          // location.reload();
-        },
-        error : err => {
-          console.log(err);
-          this.toaster.error("Something went wrong");
-        },
-      });
-    },
-    error : err => {
-      console.log(err);
-      this.toaster.error("Something went wrong");
-    },
-  });
+  this.payment = payment;
 }
 
  approveRefund(payment){

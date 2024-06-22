@@ -12,7 +12,7 @@
           <li class="nav-item">
             <a class="nav-link" [routerLink]="'/signup-user'">Signup</a>
           </li>
-          
+
           <button class="btn btn-secondary" (click)="logOut()">
             Logout
           </button>
@@ -23,7 +23,7 @@
   </nav>
  -->
 
-  
+
  <header class="navbar-light header-sticky">
 	<!-- Logo Nav START -->
 	<nav class="navbar navbar-expand-xl">
@@ -33,7 +33,7 @@
 				<img class="light-mode-item navbar-brand-item" src="../../../assets/AuthImages/logo.png" style="background-color: transparent;" width="85" height="85" alt="logo">
 			</a>
 			<!-- Logo END -->
-			
+
 			<!-- Responsive navbar toggler -->
 			<button class="navbar-toggler ms-auto mx-3 me-md-0 p-0 p-sm-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-animation">
@@ -63,17 +63,17 @@
           <div class="btn btn-primary-soft mb-0" (click)="moveToSignup()">SignUp
           </div>
         </div>
-				
+
 				<!-- Profile dropdown START -->
-			<li class="nav-item ms-3 dropdown d-lg-flex flex-lg-row align-items-center gap-2" *ngIf="user">
-					<di routerLink="/dashboard/bookings" *ngIf="user?.role==='User'" class="position-relative mt-1">
+			<li class="nav-item ms-3 dropdown d-flex flex-row align-items-center gap-2" *ngIf="user">
+					<div routerLink="/dashboard/bookings" *ngIf="user?.role==='User'" class="position-relative mt-1">
 						<i class="bi bi-cart2" style="font-size: 2rem; color: rgb(74, 74, 93); cursor: pointer;"></i>
-						<!-- <span class="position-absolute bg-primary p-2 text-center text-white d-flex 
-						justify-content-center align-items-center animate__animated animate__bounce rounded-circle top-0 end-0" 
+						<!-- <span class="position-absolute bg-primary p-2 text-center text-white d-flex
+						justify-content-center align-items-center animate__animated animate__bounce rounded-circle top-0 end-0"
 						style="margin-top: 15%; margin-right: -10%; width: 15px; height: 15px;">
-						Have to show users booking length 
+						Have to show users booking length
 						</span> -->
-					</di>
+					</div>
 					<!-- Avatar -->
 					<div style="text-decoration: none;" class="avatar avatar-xs p-0" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
 						<img class="avatar-img rounded-circle" [src]="user?.profileImage" width="35" height="35" alt="avatar">
@@ -107,9 +107,9 @@
 							<li *ngIf="user?.role === 'Owner'"><a class="dropdown-item rounded-2 bg-hov" routerLink="/dashboard/my-listings"><i class="fa fa-list fa-fw me-2"></i>My Listings</a></li>
 							<li><a class="dropdown-item rounded-2 bg-hov" routerLink="/dashboard/profile"><i class="bi bi-gear fa-fw me-2"></i>Profile</a></li>
 							<!-- <li><a class="dropdown-item rounded-2 bg-hov" routerLink="/dashboard/delete-profile"><i class="bi bi-speedometer fa-fw me-2"></i>Dashboard</a></li> -->
-							<li><div (click)="logOut()" class="rounded-2 dropdown-item bg-danger-soft-hover" style="cursor: pointer;"><i class="bi bi-power fa-fw me-2"></i>Sign Out</div></li>       
+							<li><div (click)="logOut()" class="rounded-2 dropdown-item bg-danger-soft-hover" style="cursor: pointer;"><i class="bi bi-power fa-fw me-2"></i>Sign Out</div></li>
 						</div>
-						
+
 					</ul>
 					<!-- Profile dropdown END -->
 				</li>

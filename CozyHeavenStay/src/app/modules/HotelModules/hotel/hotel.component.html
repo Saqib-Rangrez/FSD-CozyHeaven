@@ -30,7 +30,7 @@
           class="bg-mode shadow rounded-3 position-relative p-4 pe-md-5 pb-5 pb-md-4 mb-4"
         >
           <div class="row g-4 align-items-center">
-            
+
             <!-- Guest -->
             <div class="col-lg-6">
                 <div
@@ -129,12 +129,12 @@
                     </div>
                   </div>
                 </div>
-              </div>  
+              </div>
 
             <!-- Date Range -->
             <div class="col-lg-6">
               <div
-                  class="form-control-border form-control form-fs-md d-flex bg-light py-3 px-4 rounded-3">
+                  class="form-control-border form-control-transparent form-fs-md d-flex ">
                   <!-- Icon -->
                   <i class="bi bi-calendar fs-3 me-2 mt-2"></i>
                   <!-- Date input -->
@@ -156,12 +156,12 @@
               <i class="bi bi-geo-alt fs-3 me-2"></i>
               <div class="" style="width: 100%;">
                 <label for="typeahead-basic">Search for a Location:</label>
-                <input style="width: 100%;" id="typeahead-basic" placeholder="Enter Location" type="text" class="form-control" formControlName="location" 
-                [ngbTypeahead]="search" />                
+                <input style="width: 100%;" id="typeahead-basic" placeholder="Enter Location" type="text" class="form-control" formControlName="location"
+                [ngbTypeahead]="search" />
               </div>
             </div>
           </div>
-          
+
           </div>
           <!-- Button -->
           <div class="btn-position-md-middle">
@@ -181,7 +181,29 @@
     Hotel list START -->
   <section class="pt-0">
     <div class="container">
-      
+
+      	<!-- Tabs and alert START -->
+      <div class="row mb-4">
+        <div class="col-12">
+
+          <!-- Buttons -->
+          <div class="hstack gap-3 justify-content-between justify-content-md-end">
+            <!-- Filter offcanvas button -->
+            <button class="btn btn-primary-soft btn-primary-check mb-0 d-xl-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+              <i class="fa-solid fa-sliders-h me-1"></i> Show filters
+            </button>
+            <!-- tabs -->
+            <!-- <ul class="nav nav-pills nav-pills-dark" id="tour-pills-tab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link rounded-start rounded-0 mb-0 active" href="hotel-list.html"><i class="bi fa-fw bi-list-ul"></i></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link rounded-end rounded-0 mb-0" href="hotel-grid.html"><i class="bi fa-fw bi-grid-fill"></i></a>
+              </li>
+            </ul> -->
+          </div>
+        </div>
+      </div>
 
       <div class="row">
         <!-- Left sidebar START -->
@@ -200,10 +222,10 @@
                     <input name="roomType{{i}}" (change)="onChangeRoom($event)" [checked]="filterCriteria.get('roomType').value.includes(item)" type="checkbox" class="form-check-input" [id]="item" [value]="item">
                     <label class="form-check-label" [for]="item">{{ item }}</label>
 
-                
+
                   </div>
                 </div>
-        
+
                 <!-- Price Range -->
                 <div class="card card-body rounded-0 p-4">
                   <h6 class="mb-2">Price range</h6>
@@ -212,7 +234,7 @@
                     <label class="form-check-label" for="{{ range }}">{{ range }}</label>
                   </div>
                 </div>
-        
+
                 <!-- Customer Rating -->
                 <div class="card card-body rounded-0 p-4">
                   <h6 class="mb-2">Customer Rating</h6>
@@ -221,7 +243,7 @@
                     <label class="form-check-label" for="{{ rating }}">{{ rating }}+</label>
                   </div>
                 </div>
-        
+
                 <!-- Filter and Clear buttons -->
                 <div class="d-flex justify-content-between p-2 p-xl-0 mt-xl-4">
                   <button type="button" class="btn btn-link p-0 mb-0" (click)="clearFilters()">Clear all</button>
@@ -231,7 +253,7 @@
             </div>
           </div>
         </aside>
-        
+
         <!-- Left sidebar END -->
 
         <!-- Main content START -->
@@ -247,7 +269,7 @@
             </div>
             <!-- Card item END -->
 
-           
+
 
             <!-- Pagination -->
             <!-- <nav class="d-flex justify-content-center" aria-label="navigation">
