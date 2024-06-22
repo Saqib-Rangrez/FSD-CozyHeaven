@@ -7,6 +7,7 @@ import { Refund } from '../../../../../models/refund.Model';
 import { RefundService } from '../../../../../services/refund.service';
 import { PaymentService } from '../../../../../services/payment.service';
 import { Payment } from '../../../../../models/payment.Model';
+import { RazorpayService } from '../../../../../services/razorpay.service';
 
 @Component({
   selector: 'app-booking-detail',
@@ -23,7 +24,10 @@ export class BookingDetailComponent {
   paymentService : PaymentService = inject(PaymentService);
   @Output() booleanValue = new EventEmitter<boolean>();
   refundResult;
+  //  = inject (RazorpayService);
+constructor(private razorpayService: RazorpayService) {
 
+}
  ngOnInit() {
   this.user = JSON.parse(localStorage.getItem('user'));
  }
@@ -106,7 +110,69 @@ export class BookingDetailComponent {
   });  
  }
 
+ 
+ verifyPayment(paymentDetails: any) {
+  this.razorpayService.verifyPayment(paymentDetails).subscribe(
+    (response) => {
+      console.log('Payment verified successfully:', response);  
+      // this.router.navigate(['/confirm', this.createdBooking.bookingId]);  
+      this.router.navigate(['/confirm/'+ this.data.bookingId]);
+      this.toaster.success("Payment Successful");
+    },
+    (error) => {
+      console.error('Error verifying payment:', error);
+    },
+ 
+  );
+}
+
+openRazorpayCheckout(order: any) {
+  const options = {
+    key: order.key,
+    amount: order.amount * 100, 
+    currency: order.currency,
+    name: order.name,
+    order_id: order.order_id,
+    handler: (response) => {
+      console.log(response);      
+      this.verifyPayment(response);
+    },
+    prefill: {
+      name: 'CozyHeaven Stay',
+      email: 'cozyheavenstay@gmail.com',
+      contact: '+91-9900776669'
+    },
+    notes: {
+      address: 'Razorpay Corporate Office'
+    },
+    theme: {
+      color: '#3399cc'
+    },
+    callback_url: order.callback_url 
+  };
+  const rzp1 = new Razorpay(options);
+  rzp1.open();
+ }
+
  payNow(payment) {
+
+  //RazorPay Start
+  const obj = {amount : 1};
+  this.razorpayService.createOrder(obj).subscribe(
+    {
+      next: (res) => {
+        // this.response = res;  
+        console.log(res);
+        this.openRazorpayCheckout(res);
+        
+      },
+      error: (err) => {
+        console.error(err);
+      },
+      
+    });
+  //Razorpay END
+
   const paymentToUpdate = new Payment(
     payment.paymentId,
     payment.bookingId,
@@ -121,7 +187,6 @@ export class BookingDetailComponent {
 
   this.paymentService.updatePayment(paymentToUpdate,this.user.token).subscribe({
     next : res => {
-      this.toaster.success("Payment Successful");
       this.booleanValue.emit(true);
       const bookingData : Booking = new Booking(
         this.data.bookingId,
@@ -141,7 +206,7 @@ export class BookingDetailComponent {
         next : res => {
           this.toaster.success("Booking Cancelled Successfully");
           this.booleanValue.emit(true);
-          location.reload();
+          // location.reload();
         },
         error : err => {
           console.log(err);
@@ -153,9 +218,6 @@ export class BookingDetailComponent {
       console.log(err);
       this.toaster.error("Something went wrong");
     },
-    complete : () => {
-      this.router.navigate(['/confirm/'+ this.data.hotelId]);
-    }
   });
 }
 
@@ -186,12 +248,11 @@ export class BookingDetailComponent {
  }
 
  isCheckInDateInFuture(checkindate): boolean {
-  
 
   const today = new Date();
   const checkInDate = new Date(checkindate);
-  console.log(checkInDate,today);
-  console.log(checkInDate>today)
+  // console.log(checkInDate,today);
+  // console.log(checkInDate>today)
   return checkInDate > today;
 }
 }

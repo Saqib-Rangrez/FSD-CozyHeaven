@@ -35,6 +35,10 @@ export class BookingsComponent {
     })
   }
 
+  onChanges() {
+    this.ngOnInit()
+  }
+
   filterHotel(key : string) {
     this.filterBookings = this.bookings.filter((val) => val?.status?.toLocaleLowerCase() === key.toLocaleLowerCase() );
   }

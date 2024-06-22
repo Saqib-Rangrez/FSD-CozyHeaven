@@ -402,7 +402,6 @@ export class BookingRoomComponent {
     //Razorpay END
 
     this.createPay("Online","Paid");    
-    this.toastr.success("Payment Success !!")
     this.CloseModel();
   }
 
@@ -410,7 +409,8 @@ export class BookingRoomComponent {
     this.razorpayService.verifyPayment(paymentDetails).subscribe(
       (response) => {
         console.log('Payment verified successfully:', response);  
-        this.router.navigate(['/confirm', this.createdBooking.bookingId]);      
+        this.router.navigate(['/confirm', this.createdBooking.bookingId]);     
+        this.toastr.success("Payment Success !!") 
       },
       (error) => {
         console.error('Error verifying payment:', error);

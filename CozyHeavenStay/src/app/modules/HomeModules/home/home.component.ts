@@ -55,7 +55,7 @@ export class HomeComponent{
     this.user = JSON.parse(localStorage.getItem('user'));
     this.hotelService.getAllHotels('').subscribe({next:(res) => {
       this.hotelList = res;
-      this.reviews = this.hotelList.data[5].reviews.slice(0,2);
+      this.reviews = this.hotelList.data[0].reviews.slice(0,2);
       
       for (let index = 0; index < Math.min(4, this.hotelList.data.length); index++) {
         const h = this.hotelList.data[index];
