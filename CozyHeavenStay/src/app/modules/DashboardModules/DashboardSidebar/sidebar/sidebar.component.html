@@ -3,12 +3,20 @@
     <!-- Sidebar links -->
    <!-- **************** MAIN CONTENT START **************** -->
 <main>
+
+    
 	
     <!-- =======================
     Content START -->
     <section class="pt-3">
         <div class="container">
             <div class="row">
+
+                <div class="d-grid mb-0 d-lg-none w-100">
+                    <button class="btn btn-primary mb-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+                        <i class="fas fa-sliders-h"></i> Menu
+                    </button>
+                </div>
     
                 <!-- Sidebar START -->
                 <div class="col-lg-4 col-xl-3">
@@ -84,7 +92,7 @@
                                         <li class="nav-item">
                                             <a class="nav-link" routerLinkActive="active" routerLink="/dashboard/delete-profile"><i class="bi bi-trash fa-fw me-2"></i>Delete Profile</a>
                                         </li>
-                                        <li class="nav-item">
+                                        <li class="nav-item" style="cursor: pointer;">
                                             <div class="nav-link text-danger bg-danger-soft-hover" (click)="logOut()"><i class="fas fa-sign-out-alt fa-fw me-2"></i>Sign Out</div>
                                         </li>
                                     </ul>
