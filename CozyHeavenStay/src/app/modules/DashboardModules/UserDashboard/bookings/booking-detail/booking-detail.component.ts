@@ -148,7 +148,7 @@ constructor(private razorpayService: RazorpayService) {
           bookingData.status = 'Confirmed';
           this.bookingService.updateBooking(bookingData,this.user.token).subscribe({
             next : res => {
-              this.toaster.success("Booking Cancelled Successfully");
+              //this.toaster.success("Booking Cancelled Successfully");
               this.booleanValue.emit(true);
               // location.reload();
             },

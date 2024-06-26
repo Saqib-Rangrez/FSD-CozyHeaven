@@ -86,6 +86,7 @@ export class BookingRoomComponent {
       next : (res) => {
         this.response = res;
         this.bookingList = this.response.data;
+        console.log("book",this.bookingList)
         this.bookingList = this.bookingList?.filter(booking => booking?.roomId == this.roomId);
       },
       error : (err) => {
@@ -385,7 +386,7 @@ export class BookingRoomComponent {
 
   PayNow(){
     //RazorPay Start
-    const obj = {amount : 1};
+    const obj = {amount : this.booking.totalFare};
     this.razorpayService.createOrder(obj).subscribe(
       {
         next: (res) => {
@@ -459,6 +460,8 @@ export class BookingRoomComponent {
   }
 
     isRoomAvailable(checkInDate: Date, checkOutDate: Date): boolean {
+      console.log(this.bookingList)
+
       for (const booking of this?.bookingList) {
           const bookingCheckInDate = new Date(booking.checkInDate);
           const bookingCheckOutDate = new Date(booking.checkOutDate);
